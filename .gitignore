@@ -1,0 +1,15 @@
+**/target/
+**/node_modules/
+**/.next/
+.env
+.env.*
+!.env.example
+.work/
+.superpowers/
+.idea/
+.vscode/
+*.log
+*.trace
+*.zip
+playwright-report/
+test-results/
