@@ -1,0 +1,24 @@
+meta {
+  name: Post purchase
+  type: http
+  seq: 3
+}
+post {
+  url: {{baseUrl}}/api/v1/accounts/{{accountId}}/purchases
+  body: json
+  auth: bearer
+}
+headers {
+  Content-Type: application/json
+  Idempotency-Key: bruno-purchase
+}
+auth:bearer {
+  token: {{sandboxToken}}
+}
+body:json {
+  {"amount":"100.00"}
+}
+tests {
+  test("Purchase posted", function () { expect(res.getStatus()).to.equal(201); });
+  test("Purchase balance", function () { expect(res.getBody().balanceAfter).to.equal("350.00"); });
+}

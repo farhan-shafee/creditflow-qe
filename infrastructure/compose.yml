@@ -1,0 +1,115 @@
+name: creditflow-qe
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: creditflow
+      POSTGRES_USER: creditflow_app
+      POSTGRES_PASSWORD: ${CREDITFLOW_DB_PASSWORD:?Create the ignored project .env first}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U creditflow_app -d creditflow"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+    mem_limit: 256m
+  api:
+    build:
+      context: ..
+      dockerfile: infrastructure/Dockerfile.api
+    environment:
+      CREDITFLOW_DB_URL: jdbc:postgresql://postgres:5432/creditflow
+      CREDITFLOW_DB_USER: creditflow_app
+      CREDITFLOW_DB_PASSWORD: ${CREDITFLOW_DB_PASSWORD}
+      CREDITFLOW_SANDBOX_QUOTA: 10000
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:18081:8080"
+    mem_limit: 512m
+  verify:
+    image: maven:3.9.11-eclipse-temurin-21
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace
+      - maven-cache:/root/.m2
+    environment:
+      CREDITFLOW_DB_URL: jdbc:postgresql://postgres:5432/creditflow
+      CREDITFLOW_DB_USER: creditflow_app
+      CREDITFLOW_DB_PASSWORD: ${CREDITFLOW_DB_PASSWORD}
+      CREDITFLOW_BIND_ADDRESS: 0.0.0.0
+      CREDITFLOW_SANDBOX_QUOTA: 10000
+      CREDITFLOW_BASE_URL: http://api:8080
+      MAVEN_OPTS: -Xmx768m
+    depends_on:
+      api:
+        condition: service_healthy
+    command: ["sh", "./mvnw", "-B", "verify", "spotless:check"]
+    profiles: ["test"]
+    mem_limit: 1536m
+  web:
+    build:
+      context: ..
+      dockerfile: infrastructure/Dockerfile.web
+    environment:
+      CREDITFLOW_API_URL: http://api:8080
+      CREDITFLOW_LOCAL_DEMO: 'true'
+    ports:
+      - "127.0.0.1:3100:3100"
+    depends_on:
+      api:
+        condition: service_healthy
+    mem_limit: 768m
+    profiles: ["ui"]
+  selenium:
+    image: selenium/standalone-chromium:4.51.0-20261010
+    shm_size: 1gb
+    environment:
+      SE_NODE_MAX_SESSIONS: 1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4444/status"]
+      interval: 5s
+      timeout: 3s
+      retries: 40
+    mem_limit: 1536m
+    profiles: ["ui"]
+  playwright:
+    image: mcr.microsoft.com/playwright:v1.63.0-noble
+    init: true
+    command: ["npx", "-y", "playwright@1.63.0", "run-server", "--port", "3001", "--host", "0.0.0.0"]
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3001').then(()=>process.exit(0)).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 40
+    mem_limit: 1536m
+    profiles: ["ui"]
+  ui-verify:
+    image: maven:3.9.11-eclipse-temurin-21
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace
+      - maven-cache:/root/.m2
+    environment:
+      CREDITFLOW_WEB_URL: http://web:3100
+      CREDITFLOW_SELENIUM_URL: http://selenium:4444
+      CREDITFLOW_PLAYWRIGHT_URL: ws://playwright:3001
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+      MAVEN_OPTS: -Xmx768m
+    depends_on:
+      web:
+        condition: service_healthy
+      selenium:
+        condition: service_healthy
+      playwright:
+        condition: service_healthy
+    command: ["sh", "./mvnw", "-B", "-Pui", "-pl", "automation/ui-e2e", "verify", "spotless:check"]
+    mem_limit: 1536m
+    profiles: ["ui"]
+volumes:
+  postgres-data:
+  maven-cache:
+    external: true
+    name: creditflow-qe-maven-cache

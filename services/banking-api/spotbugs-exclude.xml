@@ -1,0 +1,10 @@
+<FindBugsFilter>
+  <!-- Spring owns this injected, thread-safe JdbcTemplate. The service does not expose
+       it or change its configuration; copying it would break managed transactions.
+       Keep every other EI_EXPOSE_REP2 site and every other detector enabled. -->
+  <Match>
+    <Class name="com.creditflow.banking.ledger.LedgerService"/>
+    <Method name="&lt;init&gt;" params="org.springframework.jdbc.core.JdbcTemplate"/>
+    <Bug pattern="EI_EXPOSE_REP2"/>
+  </Match>
+</FindBugsFilter>

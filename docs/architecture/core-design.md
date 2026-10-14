@@ -28,7 +28,11 @@ Fresh sandbox per scenario; no reset of shared state. Cucumber hooks use scenari
 
 ## Deployment and UI boundary
 
-Next.js dashboard may proxy to the backend with per-visitor sandbox credentials in secure, HttpOnly session cookies; never ship a service credential to the client. Local browser automation requires the owner's Browser Use approval before an interactive/cloud browser session. Java browser suites may be authored and compiled first, with execution approval status recorded explicitly. No cloud resources or public deployments before a concrete cost and readiness review.
+The Next.js dashboard proxies the backend with per-visitor sandbox credentials in signed HttpOnly SameSite=Strict cookies; HTTPS origins receive Secure cookies. Production requires unique server-only session/provision keys and an explicit HTTPS origin/API URL. Public-mode backend requests require the provision key in addition to account bearer ownership. A bounded process-local rate limiter applies to all non-metadata requests, and the mapped provisioning handler enforces its own hourly quota even on matrix-path aliases. Forwarded source headers are not trusted. Limits are deliberately conservative per backend-observed peer; distributed replicas would require a shared limiter.
+
+The UI retains one idempotency key for an ambiguous response and freezes the intent until retry or reconciliation. A successful post followed by a failed account read offers a refresh, preventing a second posting. Tests exercise both failures using real HTTP completion plus controlled browser transport loss.
+
+The owner's master prompt authorizes project-local headless Java Selenium and Playwright executions. No Browser Use or cloud browser has been opened; those require separate permission. No cloud resource or public deployment is created before a concrete cost and readiness review.
 
 ## Alternatives considered
 

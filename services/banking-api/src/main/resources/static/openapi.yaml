@@ -1,0 +1,172 @@
+openapi: 3.1.0
+info:
+  title: CreditFlow QE Synthetic Banking API
+  version: 0.1.0
+  description: >-
+    Synthetic USD ledger only. No real funds, card processing or settlement.
+    Public-mode deployments additionally require the server-only X-Sandbox-Provision-Key
+    header on every API call. Public visitors use the Next.js BFF; this key is never a browser credential.
+servers:
+  - url: http://localhost:18081
+security:
+  - sandboxBearer: []
+paths:
+  /api/v1/sandboxes:
+    post:
+      operationId: createSandbox
+      security: []
+      summary: Provision one isolated account and a 30-minute token
+      responses:
+        '201':
+          description: Created; token appears only in this response
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [accountId, token, expiresAt]
+                properties:
+                  accountId: {type: string, format: uuid}
+                  token: {type: string, description: Secret bearer token returned only on sandbox creation}
+                  expiresAt: {type: string, format: date-time}
+        '429': {$ref: '#/components/responses/Error'}
+  /api/v1/accounts/{id}:
+    parameters:
+      - {$ref: '#/components/parameters/AccountId'}
+    get:
+      operationId: getAccount
+      responses:
+        '200':
+          description: Current owned account
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Account'}
+        '401': {$ref: '#/components/responses/Error'}
+        '404': {$ref: '#/components/responses/Error'}
+  /api/v1/accounts/{id}/payments:
+    parameters:
+      - {$ref: '#/components/parameters/AccountId'}
+      - {$ref: '#/components/parameters/IdempotencyKey'}
+    post:
+      operationId: postPayment
+      requestBody: {$ref: '#/components/requestBodies/Amount'}
+      responses:
+        '201': {$ref: '#/components/responses/Posted'}
+        '200': {$ref: '#/components/responses/Replayed'}
+        '400': {$ref: '#/components/responses/Error'}
+        '401': {$ref: '#/components/responses/Error'}
+        '404': {$ref: '#/components/responses/Error'}
+        '409': {$ref: '#/components/responses/Error'}
+        '422': {$ref: '#/components/responses/Error'}
+        '500': {$ref: '#/components/responses/Error'}
+  /api/v1/accounts/{id}/purchases:
+    parameters:
+      - {$ref: '#/components/parameters/AccountId'}
+      - {$ref: '#/components/parameters/IdempotencyKey'}
+    post:
+      operationId: postPurchase
+      requestBody: {$ref: '#/components/requestBodies/Amount'}
+      responses:
+        '201': {$ref: '#/components/responses/Posted'}
+        '200': {$ref: '#/components/responses/Replayed'}
+        '400': {$ref: '#/components/responses/Error'}
+        '401': {$ref: '#/components/responses/Error'}
+        '404': {$ref: '#/components/responses/Error'}
+        '409': {$ref: '#/components/responses/Error'}
+        '422': {$ref: '#/components/responses/Error'}
+        '500': {$ref: '#/components/responses/Error'}
+  /api/v1/accounts/{id}/transactions:
+    parameters:
+      - {$ref: '#/components/parameters/AccountId'}
+    get:
+      operationId: getHistory
+      parameters:
+        - name: limit
+          in: query
+          schema: {type: integer, minimum: 1, maximum: 100, default: 50}
+        - name: before
+          in: query
+          schema: {type: integer, format: int64, minimum: 1}
+      responses:
+        '200':
+          description: Descending sequence; use nextCursor as before for the next page
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [entries, nextCursor]
+                properties:
+                  entries: {type: array, items: {$ref: '#/components/schemas/Entry'}}
+                  nextCursor: {type: [integer, 'null'], format: int64}
+        '400': {$ref: '#/components/responses/Error'}
+        '401': {$ref: '#/components/responses/Error'}
+        '404': {$ref: '#/components/responses/Error'}
+components:
+  securitySchemes:
+    sandboxBearer: {type: http, scheme: bearer, description: Random token scoped to one synthetic account}
+    serverAccess: {type: apiKey, in: header, name: X-Sandbox-Provision-Key, description: Additional server-only access gate required when public mode is enabled}
+  parameters:
+    AccountId: {name: id, in: path, required: true, schema: {type: string, format: uuid}}
+    IdempotencyKey: {name: Idempotency-Key, in: header, required: true, schema: {type: string, pattern: '^[A-Za-z0-9_-]{1,80}$'}}
+  requestBodies:
+    Amount:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required: [amount]
+            properties:
+              amount: {type: string, pattern: '^[0-9]{1,9}(\.[0-9]{1,2})?$', description: 'Positive USD, maximum 1000000.00; no rounding', example: '10.00'}
+  responses:
+    Error:
+      description: Structured error; code distinguishes validation, auth, business rule and internal failures
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+    Posted:
+      description: Atomically posted ledger entry
+      headers:
+        Idempotency-Replayed: {schema: {type: boolean}, description: false for initial posting}
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Entry'}
+    Replayed:
+      description: Original immutable receipt; account is not mutated again
+      headers:
+        Idempotency-Replayed: {schema: {type: boolean}, description: true for replay}
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Entry'}
+  schemas:
+    Money: {type: string, pattern: '^[0-9]+\.[0-9]{2}$'}
+    Account:
+      type: object
+      required: [id, currency, creditLimit, outstandingBalance, availableCredit, expiresAt]
+      properties:
+        id: {type: string, format: uuid}
+        currency: {type: string, const: USD}
+        creditLimit: {$ref: '#/components/schemas/Money'}
+        outstandingBalance: {$ref: '#/components/schemas/Money'}
+        availableCredit: {$ref: '#/components/schemas/Money'}
+        expiresAt: {type: string, format: date-time}
+    Entry:
+      type: object
+      required: [id, sequence, accountId, kind, amount, balanceAfter, availableAfter, postedAt]
+      properties:
+        id: {type: string, format: uuid}
+        sequence: {type: integer, format: int64}
+        accountId: {type: string, format: uuid}
+        kind: {enum: [PAYMENT, PURCHASE]}
+        amount: {$ref: '#/components/schemas/Money'}
+        balanceAfter: {$ref: '#/components/schemas/Money'}
+        availableAfter: {$ref: '#/components/schemas/Money'}
+        postedAt: {type: string, format: date-time}
+    Error:
+      type: object
+      required: [code, message, requestId, timestamp]
+      properties:
+        code: {type: string}
+        message: {type: string}
+        requestId: {type: string, format: uuid}
+        timestamp: {type: string, format: date-time}

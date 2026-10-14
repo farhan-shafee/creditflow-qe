@@ -1,0 +1,6 @@
+title = "CreditFlow source scan"
+[extend]
+useDefault = true
+[[allowlists]]
+description = "Ignored local state and generated reports never enter source control"
+paths = ['''(^|/)\.env$''', '''(^|/)\.work/''', '''(^|/)target/''', '''(^|/)node_modules/''', '''(^|/)\.next/''', '''(^|/)\.git/''']

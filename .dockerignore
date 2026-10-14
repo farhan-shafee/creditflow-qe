@@ -1,0 +1,7 @@
+.git
+.work
+.env*
+**/target
+**/node_modules
+**/.next
+upload
