@@ -1,0 +1,108 @@
+{
+  "startedAt": "2026-10-15T03:50:57.763Z",
+  "origin": "https://banking-api-pilot.up.railway.app",
+  "sourceCommit": "20c91f5e10658ab4ce3ec7f2727c8a4934f5b314",
+  "checks": [
+    {
+      "name": "public HTTPS liveness",
+      "passed": true,
+      "durationMs": 293
+    },
+    {
+      "name": "public machine-readable API contract",
+      "passed": true,
+      "durationMs": 130
+    },
+    {
+      "name": "readiness rejects missing server key",
+      "passed": true,
+      "durationMs": 98
+    },
+    {
+      "name": "sandbox creation rejects missing server key",
+      "passed": true,
+      "durationMs": 93
+    },
+    {
+      "name": "authenticated database readiness",
+      "passed": true,
+      "durationMs": 2396
+    },
+    {
+      "name": "fresh synthetic account",
+      "passed": true,
+      "durationMs": 363
+    },
+    {
+      "name": "account requires its bearer credential",
+      "passed": true,
+      "durationMs": 106
+    },
+    {
+      "name": "initial account reconciliation",
+      "passed": true,
+      "durationMs": 72
+    },
+    {
+      "name": "purchase posts exact decimal amount",
+      "passed": true,
+      "durationMs": 291
+    },
+    {
+      "name": "payment reduces outstanding balance",
+      "passed": true,
+      "durationMs": 137
+    },
+    {
+      "name": "identical payment replays original receipt",
+      "passed": true,
+      "durationMs": 127
+    },
+    {
+      "name": "conflicting idempotency request is rejected",
+      "passed": true,
+      "durationMs": 135
+    },
+    {
+      "name": "zero amount has structured validation error",
+      "passed": true,
+      "durationMs": 89
+    },
+    {
+      "name": "overpayment is rejected",
+      "passed": true,
+      "durationMs": 125
+    },
+    {
+      "name": "insufficient credit is rejected",
+      "passed": true,
+      "durationMs": 114
+    },
+    {
+      "name": "unexpected request fields are rejected",
+      "passed": true,
+      "durationMs": 99
+    },
+    {
+      "name": "failed requests preserve financial state",
+      "passed": true,
+      "durationMs": 104
+    },
+    {
+      "name": "ledger has exactly two ordered committed entries",
+      "passed": true,
+      "durationMs": 139
+    },
+    {
+      "name": "second isolated synthetic account",
+      "passed": true,
+      "durationMs": 124
+    }
+  ],
+  "passed": false,
+  "failedCheck": "foreign account credential is rejected",
+  "errorType": "AssertionError",
+  "passedCount": 19,
+  "failedCount": 1,
+  "endedAt": "2026-10-15T03:51:02.916Z"
+}

@@ -1,0 +1,17 @@
+{
+  "phase": "after",
+  "startedAt": "2026-10-15T04:23:31.226Z",
+  "origin": "https://creditflow-qe-pilot.vercel.app",
+  "checks": [
+    {
+      "name": "Owned account and complete ledger unchanged after API restart",
+      "passed": true
+    },
+    {
+      "name": "Idempotency receipt and balances survive API restart",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "endedAt": "2026-10-15T04:23:32.588Z"
+}

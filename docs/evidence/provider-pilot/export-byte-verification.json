@@ -1,0 +1,35 @@
+{
+  "checks": [
+    {
+      "file": "automation/ui-e2e/src/test/java/com/creditflow/qe/ui/BffContractTest.java",
+      "originalCrlf": 79,
+      "committedCrlf": 0,
+      "canonicalMatchesCommit": true
+    },
+    {
+      "file": "automation/ui-e2e/src/test/java/com/creditflow/qe/ui/PlaywrightJourneyTest.java",
+      "originalCrlf": 194,
+      "committedCrlf": 0,
+      "canonicalMatchesCommit": true
+    },
+    {
+      "file": "automation/ui-e2e/src/test/java/com/creditflow/qe/ui/SeleniumJourneyTest.java",
+      "originalCrlf": 89,
+      "committedCrlf": 0,
+      "canonicalMatchesCommit": true
+    },
+    {
+      "file": "automation/ui-e2e/src/test/java/com/creditflow/qe/ui/TraceRedactor.java",
+      "originalCrlf": 68,
+      "committedCrlf": 0,
+      "canonicalMatchesCommit": true
+    },
+    {
+      "file": "automation/ui-e2e/src/test/java/com/creditflow/qe/ui/TraceRedactorTest.java",
+      "originalCrlf": 28,
+      "committedCrlf": 0,
+      "canonicalMatchesCommit": true
+    }
+  ],
+  "passed": true
+}

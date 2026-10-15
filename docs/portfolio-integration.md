@@ -25,10 +25,10 @@ No existing portfolio source, deployment, or DNS record was modified.
 | description | A synthetic credit-card ledger with transactional PostgreSQL state, independently tested through Java, Cucumber and REST Assured. |
 | technologies | Java21, Spring Boot, PostgreSQL, Cucumber, REST Assured, Jupiter, TestNG, Selenium, Playwright, Next.js, Maven, GitHub Actions |
 | GitHub | https://github.com/farhan-shafee/creditflow-qe |
-| live URL | Add https://creditflow.farhan-shafee.com only after its approved deployment is verified |
+| live URL | https://creditflow-qe-pilot.vercel.app — provider pilot verified; use https://creditflow.farhan-shafee.com only after separate DNS approval and verification |
 | featured / visibility | true / public |
 | inspection facts | Exact money, original receipt replay, account ownership, rollback and concurrent updates; attach only executed results |
 
-Create a dedicated `src/data/creditflow-project.ts` following the existing TradeFlow pattern, import it into projects.ts, append it to the flagship selection, and reuse the shared card/case-study components. Use the reviewed screenshot from the real local UI test once available; do not use generated dashboard imagery as execution evidence.
+Create a dedicated `src/data/creditflow-project.ts` following the existing TradeFlow pattern, import it into projects.ts, append it to the flagship selection, and reuse the shared card/case-study components. The reviewed, actual hosted payment screenshot is `docs/evidence/provider-pilot/payment.png`. After approval, copy it into a new portfolio asset path and reuse the existing screenshot fields. It shows a real synthetic $50 payment leaving $200 outstanding and $800 available; it contains no credentials.
 
-The intended flagship sequence remains AegisGraph, CreditOps AI, TradeFlow, CreditFlow QE. Preserve all other project content and existing routes. This proposal requires owner approval after CreditFlow is validated and deployed.
+The intended flagship sequence remains AegisGraph, CreditOps AI, TradeFlow, CreditFlow QE. Preserve all other project content and existing routes. The provider pilot is now validated and deployed; see [the release receipt](evidence/provider-pilot.md). This concrete integration remains unapplied and requires separate owner approval. Proposed inspection links are the verified provider demo, GitHub source, Actions 38680627735 and the pilot receipt. The card should say Active, not production banking software. Existing project summaries and routes remain intact.

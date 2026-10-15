@@ -1,0 +1,21 @@
+{
+  "preparedAt": "2026-10-15T04:30:31.675Z",
+  "approvalRequired": true,
+  "zoneId": "40b0b65f2b8e58cdad31ddf5e7c95843",
+  "zoneName": "farhan-shafee.com",
+  "existingExactRecordCount": 0,
+  "newRecord": {
+    "type": "CNAME",
+    "name": "creditflow.farhan-shafee.com",
+    "content": "cname.vercel-dns.com",
+    "ttl": "auto",
+    "proxied": false
+  },
+  "vercelProjectId": "prj_oKV8BBgmOOjtRaHGDErtWNOEETJ3",
+  "canonicalOriginAfterApproval": "https://creditflow.farhan-shafee.com",
+  "scope": "Bind only the new pilot, add only this record, update only its canonical origin, redeploy and verify HTTPS/user flows. Recheck provider recommendation immediately before applying.",
+  "existingPortfolioRepository": "farhan-shafee/farhanshafee.com",
+  "existingPortfolioHost": "https://farhan-shafee.com",
+  "portfolioModificationApproved": false,
+  "applied": false
+}

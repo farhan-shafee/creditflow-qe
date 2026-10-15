@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-10-15T04:25:35.900Z",
+  "hoursBack": 1,
+  "data": {
+    "service": {
+      "id": "b6ba2644-1e82-471d-8e50-fe1c83e61b10",
+      "name": "banking-api"
+    },
+    "environment": {
+      "id": "ea414395-69ad-4a40-bf74-61ffe0911649",
+      "name": "pilot"
+    },
+    "metrics": [
+      {
+        "measurement": "CPU_USAGE",
+        "current": 0,
+        "average": 0.007039431404958679,
+        "min": 0,
+        "max": 0.24942889999999998,
+        "sampleCount": 121
+      },
+      {
+        "measurement": "MEMORY_USAGE_GB",
+        "current": 0.169222144,
+        "average": 0.09489159193388441,
+        "min": 0,
+        "max": 0.182665216,
+        "sampleCount": 121
+      },
+      {
+        "measurement": "CPU_LIMIT",
+        "current": 0.5,
+        "average": 0.3140495867768595,
+        "min": 0,
+        "max": 0.5,
+        "sampleCount": 121
+      },
+      {
+        "measurement": "MEMORY_LIMIT_GB",
+        "current": 0.49999872,
+        "average": 0.31404878280991766,
+        "min": 0,
+        "max": 0.49999872,
+        "sampleCount": 121
+      }
+    ]
+  }
+}

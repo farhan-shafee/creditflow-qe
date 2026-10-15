@@ -1,0 +1,29 @@
+{
+  "startedAt": "2026-10-15T04:02:01.130Z",
+  "origin": "https://creditflow-qe-pilot.vercel.app",
+  "backendBefore": "SLEEPING",
+  "databaseBefore": "idle",
+  "commit": "20c91f5e10658ab4ce3ec7f2727c8a4934f5b314",
+  "checks": [
+    {
+      "name": "Public HTTPS dashboard",
+      "passed": true
+    },
+    {
+      "name": "Session required",
+      "passed": true
+    },
+    {
+      "name": "Foreign origin rejected",
+      "passed": true
+    }
+  ],
+  "coldStart": {
+    "status": 503,
+    "durationMs": 8185,
+    "code": "BACKEND_UNAVAILABLE"
+  },
+  "passed": false,
+  "errorType": "AssertionError",
+  "endedAt": "2026-10-15T04:02:09.932Z"
+}

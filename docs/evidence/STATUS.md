@@ -1,5 +1,13 @@
 # Execution evidence — engineering finish
 
+## Current provider pilot — 2026-10-15
+
+**DEPLOYED / VERIFIED** at https://creditflow-qe-pilot.vercel.app. [The cloud release record](provider-pilot.md) identifies API commit 20c91f5 and frontend commit b3209d3, exact provider deployment IDs, 24 hosted API checks, the 14.8-second true cold start, restart persistence, and the 11-test successful hosted UI/Spotless run. Both jobs passed in [Actions 38680627735](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38680627735); all 174 downloaded report/log hashes matched.
+
+DNS and existing portfolio changes remain unapplied. Jenkins server execution and sustained-load/SLA claims remain unverified. The historical engineering finish below retains its original provenance; its pre-deployment statements describe that earlier point in time.
+
+## Historical engineering finish
+
 The required [GitHub Actions run #2](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38665882283) passed completely for implementation commit [`b688e172c86c6e9cb711da79a39244636d62615c`](https://github.com/farhan-shafee/creditflow-qe/commit/b688e172c86c6e9cb711da79a39244636d62615c). Both [core](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38665882283/job/116197623096) and [browser](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38665882283/job/116197623278) jobs succeeded. The same engineering finish passed locally on 2026-10-14 (America/New_York), using project Java21/Maven3.9.11 containers, actual PostgreSQL and local Java browser drivers.
 
 ## Verified implementation and CI provenance

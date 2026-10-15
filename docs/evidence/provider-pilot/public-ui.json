@@ -1,0 +1,47 @@
+{
+  "startedAt": "2026-10-15T04:23:38.002Z",
+  "endedAt": "2026-10-15T04:25:35.425Z",
+  "commit": "b3209d36d979b9b2c3bfe1850882db3481839e65",
+  "origin": "https://creditflow-qe-pilot.vercel.app",
+  "target": "actual Vercel BFF / Railway API / Neon PostgreSQL",
+  "noServerCredentials": true,
+  "exitCode": 1,
+  "suites": [
+    {
+      "name": "com.creditflow.qe.ui.BffContractTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.creditflow.qe.ui.PlaywrightJourneyTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.creditflow.qe.ui.SeleniumJourneyTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.creditflow.qe.ui.TraceRedactorTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "totals": {
+    "tests": 11,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "passed": false,
+  "error": null
+}

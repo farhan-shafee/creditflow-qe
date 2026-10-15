@@ -1,0 +1,41 @@
+{
+  "projectId": "prj_oKV8BBgmOOjtRaHGDErtWNOEETJ3",
+  "teamId": "team_Jko2Re3IdRArhoz0S6WVeboc",
+  "variables": [
+    {
+      "key": "CREDITFLOW_API_URL",
+      "type": "plain",
+      "target": [
+        "production"
+      ],
+      "id": null
+    },
+    {
+      "key": "CREDITFLOW_WEB_ORIGIN",
+      "type": "plain",
+      "target": [
+        "production"
+      ],
+      "id": null
+    },
+    {
+      "key": "CREDITFLOW_SESSION_SECRET",
+      "type": "sensitive",
+      "target": [
+        "production"
+      ],
+      "id": null
+    },
+    {
+      "key": "CREDITFLOW_PROVISION_KEY",
+      "type": "sensitive",
+      "target": [
+        "production"
+      ],
+      "id": null
+    }
+  ],
+  "readBackVerified": true,
+  "localDemoEnabled": false,
+  "publicSecretVariables": false
+}

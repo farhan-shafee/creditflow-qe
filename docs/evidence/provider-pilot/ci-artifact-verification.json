@@ -1,0 +1,241 @@
+{
+  "verifiedAt": "2026-10-15T04:20:49.691Z",
+  "runId": "38680627735",
+  "sourceCommit": "b3209d36d979b9b2c3bfe1850882db3481839e65",
+  "url": "https://github.com/farhan-shafee/creditflow-qe/actions/runs/38680627735",
+  "jobs": [
+    {
+      "name": "browser",
+      "conclusion": "success",
+      "url": "https://github.com/farhan-shafee/creditflow-qe/actions/runs/38680627735/job/116244111475"
+    },
+    {
+      "name": "core",
+      "conclusion": "success",
+      "url": "https://github.com/farhan-shafee/creditflow-qe/actions/runs/38680627735/job/116244111766"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 11948195939,
+      "name": "creditflow-core-bb169a6f591e60ebd94358c82da5b9ae12e4093f",
+      "sizeBytes": 1226613,
+      "expiresAt": "2026-10-29T04:20:25Z"
+    },
+    {
+      "id": 11948130836,
+      "name": "creditflow-browser-bb169a6f591e60ebd94358c82da5b9ae12e4093f",
+      "sizeBytes": 8652745,
+      "expiresAt": "2026-10-29T04:19:41Z"
+    }
+  ],
+  "matchedHashes": 174,
+  "manifests": [
+    {
+      "scope": "browser",
+      "runId": "20261015T041713Z-db7a14af53994c89a16ace1a922a1e94",
+      "source": {
+        "head": "bb169a6f591e60ebd94358c82da5b9ae12e4093f",
+        "fingerprint": "455cd521c3fce8a79353382fb313434aba007b14156b61cfc5ec2a1469ecf778",
+        "sourceFiles": 111
+      },
+      "counts": {
+        "ui": 11,
+        "bruno_requests": 7,
+        "bruno_checks": 11
+      },
+      "reportCount": 18,
+      "commands": [
+        {
+          "name": "browser-start",
+          "exitCode": 0
+        },
+        {
+          "name": "browser-tests",
+          "exitCode": 0
+        },
+        {
+          "name": "browser-bruno",
+          "exitCode": 0
+        }
+      ],
+      "finishedAt": "2026-10-15T04:19:40.671814+00:00"
+    },
+    {
+      "scope": "web",
+      "runId": "20261015T041649Z-3dc63f82c30847158f40ad3f11ef842a",
+      "source": {
+        "head": "bb169a6f591e60ebd94358c82da5b9ae12e4093f",
+        "fingerprint": "455cd521c3fce8a79353382fb313434aba007b14156b61cfc5ec2a1469ecf778",
+        "sourceFiles": 111
+      },
+      "counts": {
+        "frontend": 5,
+        "npm_vulnerabilities": 0
+      },
+      "reportCount": 1,
+      "commands": [
+        {
+          "name": "web-install",
+          "exitCode": 0
+        },
+        {
+          "name": "web-test",
+          "exitCode": 0
+        },
+        {
+          "name": "web-build",
+          "exitCode": 0
+        },
+        {
+          "name": "web-types",
+          "exitCode": 0
+        },
+        {
+          "name": "web-audit",
+          "exitCode": 0
+        }
+      ],
+      "finishedAt": "2026-10-15T04:17:13.732614+00:00"
+    },
+    {
+      "scope": "core",
+      "runId": "20261015T041654Z-0bd438fb3a9848a7864116e8f455e648",
+      "source": {
+        "head": "bb169a6f591e60ebd94358c82da5b9ae12e4093f",
+        "fingerprint": "455cd521c3fce8a79353382fb313434aba007b14156b61cfc5ec2a1469ecf778",
+        "sourceFiles": 111
+      },
+      "counts": {
+        "unit": 31,
+        "postgres_integration": 18,
+        "coverage": {
+          "INSTRUCTION": {
+            "covered": 1235,
+            "missed": 76
+          },
+          "BRANCH": {
+            "covered": 101,
+            "missed": 18
+          },
+          "LINE": {
+            "covered": 222,
+            "missed": 17
+          },
+          "COMPLEXITY": {
+            "covered": 101,
+            "missed": 24
+          },
+          "METHOD": {
+            "covered": 58,
+            "missed": 7
+          },
+          "CLASS": {
+            "covered": 21,
+            "missed": 0
+          }
+        },
+        "testng": 6,
+        "cucumber": 31,
+        "cucumber_steps": 154
+      },
+      "reportCount": 104,
+      "commands": [
+        {
+          "name": "core-start",
+          "exitCode": 0
+        },
+        {
+          "name": "core-verify",
+          "exitCode": 0
+        }
+      ],
+      "finishedAt": "2026-10-15T04:19:17.734443+00:00"
+    },
+    {
+      "scope": "public",
+      "runId": "20261015T041918Z-c215d76f28804cbf8b161cbd26d53d0f",
+      "source": {
+        "head": "bb169a6f591e60ebd94358c82da5b9ae12e4093f",
+        "fingerprint": "455cd521c3fce8a79353382fb313434aba007b14156b61cfc5ec2a1469ecf778",
+        "sourceFiles": 111
+      },
+      "counts": {
+        "testng": 6,
+        "cucumber": 31,
+        "cucumber_steps": 154
+      },
+      "reportCount": 24,
+      "commands": [
+        {
+          "name": "prepare-archive",
+          "exitCode": 0
+        },
+        {
+          "name": "public-start",
+          "exitCode": 0
+        },
+        {
+          "name": "public-bdd",
+          "exitCode": 0
+        },
+        {
+          "name": "public-testng",
+          "exitCode": 0
+        }
+      ],
+      "finishedAt": "2026-10-15T04:19:58.627420+00:00"
+    },
+    {
+      "scope": "quality",
+      "runId": "20261015T041959Z-e4f3e15ad89b45a0b1bb0a9ef0812cea",
+      "source": {
+        "head": "bb169a6f591e60ebd94358c82da5b9ae12e4093f",
+        "fingerprint": "455cd521c3fce8a79353382fb313434aba007b14156b61cfc5ec2a1469ecf778",
+        "sourceFiles": 111
+      },
+      "counts": {
+        "components": 209,
+        "affected_components": 0,
+        "gitleaks_findings": 0,
+        "jenkins_runtime": "NOT RUN"
+      },
+      "reportCount": 5,
+      "commands": [
+        {
+          "name": "prepare-archive",
+          "exitCode": 0
+        },
+        {
+          "name": "quality-compose",
+          "exitCode": 0
+        },
+        {
+          "name": "quality-compose-public",
+          "exitCode": 0
+        },
+        {
+          "name": "quality-bom",
+          "exitCode": 0
+        },
+        {
+          "name": "quality-osv",
+          "exitCode": 0
+        },
+        {
+          "name": "quality-gitleaks",
+          "exitCode": 0
+        },
+        {
+          "name": "quality-jenkins",
+          "exitCode": 0
+        },
+        {
+          "name": "quality-runtime-role",
+          "exitCode": 0
+        }
+      ],
+      "finishedAt": "2026-10-15T04:20:24.515440+00:00"
+    }
+  ]
+}
