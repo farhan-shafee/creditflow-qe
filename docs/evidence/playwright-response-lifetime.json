@@ -1,0 +1,97 @@
+{
+  "recordedAt": "2026-10-15T18:29:25.978Z",
+  "failedRun": {
+    "id": "38784669890",
+    "url": "https://github.com/farhan-shafee/creditflow-qe/actions/runs/38784669890",
+    "attempt": 1,
+    "sourceCommit": "f2533700d2467ea9ca8c17215adc351e014c4e93",
+    "conclusion": "failure",
+    "core": "success",
+    "browser": "failure",
+    "browserTests": {
+      "tests": 11,
+      "failures": 1,
+      "errors": 0,
+      "skips": 0
+    },
+    "bruno": "not run after preceding test failure",
+    "artifact": {
+      "id": 11996997266,
+      "name": "creditflow-browser-050651d22d109c5738289aeccaaa64f565e45d01",
+      "expiresAt": "2026-10-29T18:22:26Z"
+    },
+    "failedJobLogSha256": "6674c51c76c162b3161f0a2b33bb968b61833ed9a672db60c519a0b4231a4a2f",
+    "artifactZipSha256": "982647e8af67be0a967085681a9aaacb4144939ba0a1876ebf3a0ec8f43fc741",
+    "protocolFailure": {
+      "method": "Route.fulfill",
+      "error": "Fetch response has been disposed",
+      "observedBalance": "250.00",
+      "expectedBalance": "200.00"
+    }
+  },
+  "rootCause": "Playwright Java RouteImpl sends fulfill asynchronously using a response handle. The fixture disposed that handle in finally before remote fulfillment consumed the body.",
+  "officialSource": {
+    "url": "https://github.com/microsoft/playwright-java/blob/v1.63.0/playwright/src/main/java/com/microsoft/playwright/impl/RouteImpl.java",
+    "downloadedSourceSha256": "5ecf35fe9686e0bbd1d074a04fd40845fa1acec4a108433bd05c50ca474d0b88"
+  },
+  "correction": "Set the actual response body bytes explicitly before disposing the APIResponse; preserve actual status, headers and every existing assertion.",
+  "applicationCodeChanged": false,
+  "deployedServicesChanged": false,
+  "local": [
+    {
+      "name": "recovery-focused",
+      "startedAt": "2026-10-15T18:28:26.260Z",
+      "finishedAt": "2026-10-15T18:28:44.605Z",
+      "exitCode": 0,
+      "logSha256": "db33244f153e86fb2d0d5fb8e89b677829a484548e729e8774a273813fb7ea6d"
+    },
+    {
+      "name": "recovery-full-ui",
+      "startedAt": "2026-10-15T18:28:44.607Z",
+      "finishedAt": "2026-10-15T18:29:15.789Z",
+      "exitCode": 0,
+      "logSha256": "0620a36dc995d3d7433f1681b89674f90b1b8f63e9e85dcd60a763f0f09c84ec"
+    }
+  ],
+  "uiReports": [
+    {
+      "file": "TEST-com.creditflow.qe.ui.BffContractTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "e863e42cb220c870fb5905f363292c9b1d1672f880bacb1ec7d80c98aed9d427"
+    },
+    {
+      "file": "TEST-com.creditflow.qe.ui.PlaywrightJourneyTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "0589c9f4c47f9f9ea1aa37af10860b4bd1739996d0a4f181723de5e22c67fb8e"
+    },
+    {
+      "file": "TEST-com.creditflow.qe.ui.SeleniumJourneyTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "fc0e09e3d3aee2dbb056c532bc2a7f4f13f1429843cee966cfb3ce4b32a9367d"
+    },
+    {
+      "file": "TEST-com.creditflow.qe.ui.TraceRedactorTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "85f3736596f2ae497f5db0e42cbfb2c8ea58bc8284b54a5ae64d7aa0739a3187"
+    }
+  ],
+  "initialCompileFailure": {
+    "testsExecuted": 0,
+    "reason": "Used string-body setter with byte array; corrected to setBodyBytes",
+    "logSha256": "fe2770c8c273ab65201f482e0f43aa2a0168547c540a90e799eaa5ca2324a2fa"
+  },
+  "rawFailurePreservedLocally": true,
+  "finalCi": "Pending fresh run on the correction commit; see PR #2 checks."
+}

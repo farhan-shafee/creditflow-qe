@@ -4,6 +4,10 @@
 
 **DEPLOYED / VERIFIED.** [The fourth flagship is live](https://farhan-shafee.com/work/creditflow-qe). [The integration receipt](portfolio-integration.md) records portfolio commit 9867fd2ccab55441165760ed67602e89bce76b3d, Vercel dpl_DQV4fVimiUPLNg11eFCVVZ6U6HUH, 37 unit tests, 26 browser tests plus 5 expanded checks, 7 staged checks, 18 public HTTPS checks and 2 public UI journeys. Remaining portfolio npm advisories are explicitly REVIEW. CreditFlow application services and DNS were unchanged.
 
+## Playwright fixture correction — 2026-10-15
+
+The final documentation CI exposed an asynchronous response-disposal race in the lost-response test fixture. [The failure and correction receipt](playwright-response-lifetime.md) preserves the failed run and records the focused recovery plus all 11 local UI/BFF tests passing with assertions unchanged. Fresh correction-commit CI is tracked by PR #2; deployed application services remain unchanged.
+
 ## Current custom-domain release — 2026-10-15
 
 **DEPLOYED / VERIFIED** at https://creditflow.farhan-shafee.com. [The domain receipt](custom-domain.md) records frontend 39e1728 / Vercel dpl_F6d4kYaLpdojbwBQ8aKUDKNmNkbe, unchanged API 20c91f5, the exact single CNAME, trusted HTTPS, 5 cold-start checks (17.4 seconds), 10 banking checks and 11 hosted UI/BFF tests with Spotless passing. The old provider URL redirects with 308.
