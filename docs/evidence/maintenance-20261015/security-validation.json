@@ -1,0 +1,18 @@
+{
+  "kind": "candidate-source-secret-scan",
+  "runId": "20261015T214355Z-3d5f2cac508c4c8f93ff9cc7d270c428",
+  "outcome": {
+    "StartedAt": "2026-10-15T21:43:58.6743522Z",
+    "FinishedAt": "2026-10-15T21:44:00.2936897Z",
+    "ExitCode": 0,
+    "Command": "Gitleaks8.30.1 redacted directory scan of exported tracked/nonignored candidate",
+    "Files": 218,
+    "Log": "command.log"
+  },
+  "findings": 0,
+  "version": "8.30.1",
+  "sourceManifestSha256": "48fbd8a05a1e8261bac61ea95ca4c97f6d34d08c0a2fffb0b4ec82d1c2845cc4",
+  "logSha256": "53ddbaca7fcd3ac0a40db54f604008e5e682a330f5e313d60b65e347a61435c1",
+  "reportSha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+  "scope": "Exact tracked/nonignored candidate export at 2026-10-15T21:43:56Z. Later sanitized receipt/index/documentation updates are outside this snapshot; required PR CI scans committed source."
+}

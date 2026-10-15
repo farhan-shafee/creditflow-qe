@@ -1,0 +1,111 @@
+{
+  "kind": "preserved-bounded-harness-red-green",
+  "runs": [
+    {
+      "runId": "20261015T212701Z-c99b41187a254af6a64e346f2d4c1c05",
+      "outcome": {
+        "command": "node --test infrastructure/test-bounded-reliability.cjs",
+        "exitCode": 1,
+        "phase": "RED"
+      },
+      "logs": [
+        {
+          "path": ".work\\maintenance-20261015\\unit-reliability\\20261015T212701Z-c99b41187a254af6a64e346f2d4c1c05\\red.log",
+          "sha256": "02cc03c307cd06bcd96c40513c9fae8d9be117fe9faceab33da9039ace85db9a",
+          "bytes": 14470
+        }
+      ]
+    },
+    {
+      "runId": "20261015T212903Z-0777f3b136a445a98b313f576da37ff2",
+      "outcome": {
+        "command": "node --test infrastructure/test-bounded-reliability.cjs",
+        "phase": "GREEN",
+        "exitCode": 0
+      },
+      "logs": [
+        {
+          "path": ".work\\maintenance-20261015\\unit-reliability\\20261015T212903Z-0777f3b136a445a98b313f576da37ff2\\green.log",
+          "sha256": "f8ef41f07644659e84b8223a07edc504d43b954d71f750f647dc3af7cab81695",
+          "bytes": 1305
+        }
+      ]
+    },
+    {
+      "runId": "20261015T212940Z-0663d574ff8f4cc68e9474ad1a9e831f",
+      "outcome": {
+        "exitCode": 1,
+        "phase": "RED-rejection-schedule",
+        "command": "node --test infrastructure/test-bounded-reliability.cjs"
+      },
+      "logs": [
+        {
+          "path": ".work\\maintenance-20261015\\unit-reliability\\20261015T212940Z-0663d574ff8f4cc68e9474ad1a9e831f\\red.log",
+          "sha256": "f4b684c8455e67b77058ceae244007fc567b8847e922655c2e82f384190e9cdc",
+          "bytes": 2441
+        }
+      ]
+    },
+    {
+      "runId": "20261015T212954Z-7bb63d17c78c43e9aa8a0f05945810b9",
+      "outcome": {
+        "command": "node --test infrastructure/test-bounded-reliability.cjs",
+        "exitCode": 1,
+        "phase": "RED-rejection-contention"
+      },
+      "logs": [
+        {
+          "path": ".work\\maintenance-20261015\\unit-reliability\\20261015T212954Z-7bb63d17c78c43e9aa8a0f05945810b9\\red.log",
+          "sha256": "b28efd8ed313f261f73e8cddf2d5233a55cbe800f3ddd027338bce334a001c9f",
+          "bytes": 2085
+        }
+      ]
+    },
+    {
+      "runId": "20261015T213015Z-ec9da35a51fa4c678e9ae6fedb6b0b72",
+      "outcome": {
+        "command": "node --test infrastructure/test-bounded-reliability.cjs",
+        "exitCode": 0,
+        "phase": "GREEN-rejection-contention"
+      },
+      "logs": [
+        {
+          "path": ".work\\maintenance-20261015\\unit-reliability\\20261015T213015Z-ec9da35a51fa4c678e9ae6fedb6b0b72\\green.log",
+          "sha256": "512cb101374d7e003b993c99bf30c3cf03a226b5c331d36c8413e3fafab67e67",
+          "bytes": 1411
+        }
+      ]
+    },
+    {
+      "runId": "20261015T213112Z-0bb659ad3b9c430a8c91a9c97c807296",
+      "outcome": {
+        "exitCode": 1,
+        "phase": "RED-compose-ownership",
+        "command": "node --test infrastructure/test-bounded-reliability.cjs"
+      },
+      "logs": [
+        {
+          "path": ".work\\maintenance-20261015\\unit-reliability\\20261015T213112Z-0bb659ad3b9c430a8c91a9c97c807296\\red.log",
+          "sha256": "f2e047683f1eb5e7068a07660eebc27375679cfc67b8ca97f345de6e25654aa5",
+          "bytes": 2367
+        }
+      ]
+    },
+    {
+      "runId": "20261015T213122Z-29b10b50374048dbbe6ead456014875f",
+      "outcome": {
+        "phase": "GREEN-compose-ownership",
+        "exitCode": 0,
+        "command": "node --test infrastructure/test-bounded-reliability.cjs"
+      },
+      "logs": [
+        {
+          "path": ".work\\maintenance-20261015\\unit-reliability\\20261015T213122Z-29b10b50374048dbbe6ead456014875f\\green.log",
+          "sha256": "2ebb0bcf3e179d4a8c90700bf6903bde5c32e37d118ec38db4c67fab99552eb4",
+          "bytes": 1412
+        }
+      ]
+    }
+  ],
+  "note": "Initial missing contract, schedule cap and Compose ownership failures were retained before the real local workload. Root fresh validation is separate."
+}

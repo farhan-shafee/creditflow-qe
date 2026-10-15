@@ -1,0 +1,20 @@
+{
+  "kind": "fresh-node-harness-unit-tests",
+  "outcome": {
+    "Command": "node --test infrastructure/test-bounded-reliability.cjs",
+    "FinishedAt": "2026-10-15T21:32:10.5867822Z",
+    "ExitCode": 0,
+    "Log": "D:/Dev/Repos/creditflow-qe/.work/maintenance-20261015/root-unit-20261015T213210Z.log"
+  },
+  "counts": {
+    "tests": 14,
+    "pass": 14,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "harnessSha256": "2e88ba9fd2bd12a5486f397317a74d909781b2bb4190e558aa3f13cb3861e47e",
+  "testSha256": "2d0902cc07bd054a813d82c59d42a977b46ebe8a8cca25d418b02c33ce381627",
+  "logSha256": "740cd4d8c65a98927ad856989f38d7f823be072a381a803956d6119061575641"
+}

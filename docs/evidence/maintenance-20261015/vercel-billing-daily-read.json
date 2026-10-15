@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-15T21:27:07.721Z",
+  "tool": "vercel_list_billing_charges",
+  "teamId": "team_Jko2Re3IdRArhoz0S6WVeboc",
+  "from": "2026-10-15T00:00:00Z",
+  "to": "2026-10-16T00:00:00Z",
+  "isError": false,
+  "keys": [
+    "summary",
+    "byService",
+    "byCategory",
+    "sample",
+    "context"
+  ],
+  "interpretation": "Current UTC-day partial window only. Provider response is aggregate summary/byService/byCategory/sample/context; no complete target-project cost breakdown was available. Aggregate team cost values and unrelated samples were not retained. Month total, current target cost, credits and spending-control status remain unverified."
+}

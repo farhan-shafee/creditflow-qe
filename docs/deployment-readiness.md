@@ -1,5 +1,7 @@
 # Isolated pilot readiness, cost and completed approvals
 
+For the 2026-10-15 21:23–21:26 UTC read-only follow-up, see the [maintenance/operator handoff](maintenance-handoff.md). Railway/Neon identities and settings were read back; current Vercel project/deployment access and target cost/spending-control fields remain blocked or unavailable. The balances and release validations below describe their original preflight/release timestamps, not a new invoice or current Vercel readback. No provider configuration changed in this maintenance pass.
+
 The owner approved the isolated provider-URL pilot. Fresh Railway, Neon Free and Vercel resources are now deployed and verified; see [component commits, tests, limits and retained failures](evidence/provider-pilot.md). The separately approved custom-domain release is now verified at https://creditflow.farhan-shafee.com, with one DNS-only CNAME and its production origin update. See the [actual custom-domain receipt](evidence/custom-domain.md). The separately approved [portfolio integration](portfolio-integration.md) is merged, deployed and verified. [Current release and dependency-closure evidence](evidence/portfolio-lint-remediation.md) records the verified portfolio source and clean audits. The [hosted banking release record](evidence/completion.md) retains the later frontend release and actual local Jenkins execution.
 
 ## Approved pilot scope

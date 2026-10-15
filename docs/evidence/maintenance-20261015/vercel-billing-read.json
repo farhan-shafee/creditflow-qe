@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-15T21:26:50.853Z",
+  "tool": "vercel_list_billing_charges",
+  "teamId": "team_Jko2Re3IdRArhoz0S6WVeboc",
+  "from": "2026-10-01T00:00:00Z",
+  "to": "2026-10-16T00:00:00Z",
+  "isError": true,
+  "keys": [
+    "error",
+    "cliFallback",
+    "error_code"
+  ],
+  "error": {
+    "message": "Vercel API response for GET /v1/billing/charges exceeded the 4194304-byte catalog limit. Split the range into adjacent UTC date windows using from (inclusive) and to (exclusive), down to one-day windows. Use each window's to as the next window's from to avoid gaps or double counting. Combine totals only after every window succeeds. If a one-day window still exceeds the limit, use a billing export outside this tool; do not retry the same range or report partial totals."
+  },
+  "targetRows": [],
+  "interpretation": "Billing could not be read."
+}

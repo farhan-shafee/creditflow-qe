@@ -1,0 +1,237 @@
+{
+  "version": 1,
+  "runId": "20261015T213213438Z-2b5dd427-dd99-435a-affc-9dbab2078fcb",
+  "startedAt": "2026-10-15T21:32:13.442Z",
+  "endedAt": "2026-10-15T21:32:17.448Z",
+  "elapsedMs": 4006,
+  "pid": 44992,
+  "command": "node infrastructure/bounded-reliability.cjs",
+  "origin": "http://127.0.0.1:18081",
+  "status": "passed",
+  "exitCode": 0,
+  "failure": null,
+  "limits": {
+    "accounts": 4,
+    "rounds": 3,
+    "contenders": 3,
+    "requests": 300,
+    "inFlight": 12,
+    "totalMs": 180000,
+    "requestMs": 10000,
+    "pageSize": 3
+  },
+  "scope": "Bounded local functional reliability observation; not a capacity or SLA measurement.",
+  "credentialsWritten": false,
+  "publicRequests": 0,
+  "sourceBefore": {
+    "head": "51a2affe38a733f350390fafd59b885b74823b42",
+    "dirty": true,
+    "statusSha256": "61d5f4cea6d9c7d71215f7594c3e212deba4573dc217d68f8bbe0cb32feab187",
+    "trackedDiffSha256": "f589dec86ca88c982bbb478113c38a1838b5198017b3b2d66d50f7bab053dd35",
+    "worktreeSha256": "a73d54ce43003101c95afb1b8c651f69f7a35288909a21511f3f388df8954827",
+    "files": 210,
+    "harnessSha256": "2e88ba9fd2bd12a5486f397317a74d909781b2bb4190e558aa3f13cb3861e47e"
+  },
+  "environment": {
+    "api": {
+      "name": "/creditflow-qe-api-1",
+      "project": "creditflow-qe",
+      "service": "api",
+      "workingDirectory": "D:\\Dev\\Repos\\creditflow-qe\\infrastructure",
+      "configFiles": "D:\\Dev\\Repos\\creditflow-qe\\infrastructure\\compose.yml",
+      "status": "running",
+      "health": "healthy",
+      "imageId": "sha256:c57004c5bc81a94ac6c7f2c38dfb8941d4d79f1efd348dafb78d503e18c3126e",
+      "startedAt": "2026-10-15T01:09:52.845621109Z",
+      "ports": {
+        "8080/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "18081"
+          }
+        ]
+      }
+    },
+    "postgres": {
+      "name": "/creditflow-qe-postgres-1",
+      "project": "creditflow-qe",
+      "service": "postgres",
+      "workingDirectory": "D:\\Dev\\Repos\\creditflow-qe\\infrastructure",
+      "configFiles": "D:\\Dev\\Repos\\creditflow-qe\\infrastructure\\compose.yml",
+      "status": "running",
+      "health": "healthy",
+      "imageId": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "startedAt": "2026-10-14T22:23:37.221970029Z",
+      "ports": {
+        "5432/tcp": null
+      }
+    },
+    "versions": {
+      "node": "v26.12.0",
+      "dockerClient": "29.8.2",
+      "dockerServer": "29.8.2",
+      "java": "21.0.12.1",
+      "postgres": "17.11"
+    },
+    "imageProvenance": "Observed fixed API image ID; this image has no verified embedded Git revision. Current HEAD/worktree hashes identify the harness source, not the image build source."
+  },
+  "progress": {
+    "accountsCreated": 4,
+    "roundsCompleted": 3,
+    "checkpoints": [
+      {
+        "round": 1,
+        "account": 1,
+        "entries": 4,
+        "balance": "250.00",
+        "available": "750.00"
+      },
+      {
+        "round": 1,
+        "account": 2,
+        "entries": 4,
+        "balance": "250.00",
+        "available": "750.00"
+      },
+      {
+        "round": 1,
+        "account": 4,
+        "entries": 4,
+        "balance": "250.00",
+        "available": "750.00"
+      },
+      {
+        "round": 1,
+        "account": 3,
+        "entries": 4,
+        "balance": "250.00",
+        "available": "750.00"
+      },
+      {
+        "round": 2,
+        "account": 4,
+        "entries": 8,
+        "balance": "250.00",
+        "available": "750.00"
+      },
+      {
+        "round": 2,
+        "account": 2,
+        "entries": 8,
+        "balance": "250.00",
+        "available": "750.00"
+      },
+      {
+        "round": 2,
+        "account": 3,
+        "entries": 8,
+        "balance": "250.00",
+        "available": "750.00"
+      },
+      {
+        "round": 2,
+        "account": 1,
+        "entries": 8,
+        "balance": "250.00",
+        "available": "750.00"
+      },
+      {
+        "round": 3,
+        "account": 1,
+        "entries": 12,
+        "balance": "250.00",
+        "available": "750.00"
+      },
+      {
+        "round": 3,
+        "account": 2,
+        "entries": 12,
+        "balance": "250.00",
+        "available": "750.00"
+      },
+      {
+        "round": 3,
+        "account": 4,
+        "entries": 12,
+        "balance": "250.00",
+        "available": "750.00"
+      },
+      {
+        "round": 3,
+        "account": 3,
+        "entries": 12,
+        "balance": "250.00",
+        "available": "750.00"
+      }
+    ]
+  },
+  "environmentAfter": {
+    "api": {
+      "name": "/creditflow-qe-api-1",
+      "project": "creditflow-qe",
+      "service": "api",
+      "workingDirectory": "D:\\Dev\\Repos\\creditflow-qe\\infrastructure",
+      "configFiles": "D:\\Dev\\Repos\\creditflow-qe\\infrastructure\\compose.yml",
+      "status": "running",
+      "health": "healthy",
+      "imageId": "sha256:c57004c5bc81a94ac6c7f2c38dfb8941d4d79f1efd348dafb78d503e18c3126e",
+      "startedAt": "2026-10-15T01:09:52.845621109Z",
+      "ports": {
+        "8080/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "18081"
+          }
+        ]
+      }
+    },
+    "postgres": {
+      "name": "/creditflow-qe-postgres-1",
+      "project": "creditflow-qe",
+      "service": "postgres",
+      "workingDirectory": "D:\\Dev\\Repos\\creditflow-qe\\infrastructure",
+      "configFiles": "D:\\Dev\\Repos\\creditflow-qe\\infrastructure\\compose.yml",
+      "status": "running",
+      "health": "healthy",
+      "imageId": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+      "startedAt": "2026-10-14T22:23:37.221970029Z",
+      "ports": {
+        "5432/tcp": null
+      }
+    }
+  },
+  "sourceAfter": {
+    "head": "51a2affe38a733f350390fafd59b885b74823b42",
+    "dirty": true,
+    "statusSha256": "61d5f4cea6d9c7d71215f7594c3e212deba4573dc217d68f8bbe0cb32feab187",
+    "trackedDiffSha256": "f589dec86ca88c982bbb478113c38a1838b5198017b3b2d66d50f7bab053dd35",
+    "worktreeSha256": "a73d54ce43003101c95afb1b8c651f69f7a35288909a21511f3f388df8954827",
+    "files": 210,
+    "harnessSha256": "2e88ba9fd2bd12a5486f397317a74d909781b2bb4190e558aa3f13cb3861e47e"
+  },
+  "lockReleased": true,
+  "metrics": {
+    "httpRequests": 253,
+    "statuses": {
+      "200": 141,
+      "201": 52,
+      "400": 12,
+      "409": 24,
+      "422": 24
+    },
+    "postings": 48,
+    "replays": 36,
+    "conflicts": 24,
+    "rejections": 36,
+    "sandboxCreates": 4,
+    "transportFailures": 0,
+    "maxInFlight": 12,
+    "inFlight": 0,
+    "latencyMs": {
+      "samples": 253,
+      "p50": 8.65,
+      "p95": 39.801,
+      "max": 414.759
+    }
+  }
+}

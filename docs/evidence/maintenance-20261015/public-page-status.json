@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "maxRequests": 2,
+  "timeoutSeconds": 25,
+  "requests": [
+    {
+      "checkedAt": "2026-10-15T21:25:53.4331404Z",
+      "url": "https://creditflow.farhan-shafee.com/",
+      "method": "GET",
+      "elapsedMs": 121,
+      "status": "REQUEST_FAILED",
+      "errorType": "HttpRequestException"
+    },
+    {
+      "checkedAt": "2026-10-15T21:25:53.4730475Z",
+      "url": "https://farhan-shafee.com/work/creditflow-qe",
+      "method": "GET",
+      "elapsedMs": 33,
+      "status": "REQUEST_FAILED",
+      "errorType": "HttpRequestException"
+    }
+  ]
+}

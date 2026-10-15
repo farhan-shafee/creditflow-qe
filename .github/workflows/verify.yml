@@ -24,12 +24,16 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
-      - name: Evidence gate behavior tests
-        run: python3 -m unittest infrastructure/test_evidence_run.py -v
+      - name: Evidence and bounded-harness behavior tests
+        run: |
+          python3 -m unittest infrastructure/test_evidence_run.py -v
+          node --test infrastructure/test-bounded-reliability.cjs
       - name: Private unit, PostgreSQL, Cucumber and TestNG evidence
         run: node infrastructure/verify.cjs
       - name: Independent public-mode Cucumber and TestNG evidence
         run: node infrastructure/public-verify.cjs
+      - name: Bounded owned-local PostgreSQL relationship and workload
+        run: node infrastructure/bounded-reliability.cjs
       - name: Full inventory, OSV, Gitleaks and configuration checks
         run: node infrastructure/quality-verify.cjs
       - name: Reject stale or incomplete core/public/quality evidence
@@ -41,6 +45,7 @@ jobs:
           path: |
             .work/evidence/runs/
             .work/evidence/latest/
+            .work/maintenance-20261015/reliability/
           retention-days: 14
           include-hidden-files: true
       - name: Stop this project stack
