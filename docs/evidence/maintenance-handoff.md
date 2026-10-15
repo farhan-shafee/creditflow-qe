@@ -1,5 +1,7 @@
 # Verification and maintenance receipt — 2026-10-15
 
+Follow-up: [PR #4 stack guard correction and fresh results](pr4-stack-guard.md). The counts and indexed receipts below remain evidence of the original maintenance implementation.
+
 **TESTED / DOCUMENTED. No deployment or portfolio edit.** This follow-up starts from CreditFlow main `51a2affe38a733f350390fafd59b885b74823b42` and portfolio main `7cf155efa7ec7567a3aa7c2baa031722e971a915`. Both expected PRs are merged; neither remote main had a newer commit at the initial read-only check. Work is on `codex/maintenance-handoff` in the existing CreditFlow checkout.
 
 [Operator, dependency and interview handoff](../maintenance-handoff.md) · [Sanitized JSON receipts and byte hashes](maintenance-20261015/receipt-index.json). These are pre-commit working-tree executions with their own HEAD/diff/file hashes; final committed-source CI belongs to the new PR's checks. Historical failures/releases/Jenkins results were inspected and preserved rather than rerun or overwritten.

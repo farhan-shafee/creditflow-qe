@@ -32,6 +32,8 @@ jobs:
         run: node infrastructure/verify.cjs
       - name: Independent public-mode Cucumber and TestNG evidence
         run: node infrastructure/public-verify.cjs
+      - name: Bounded owned-local PostgreSQL relationship and workload
+        run: node infrastructure/bounded-reliability.cjs
       - name: Full inventory, OSV, Gitleaks and configuration checks
         run: node infrastructure/quality-verify.cjs
       - name: Reject stale or incomplete core/public/quality evidence
@@ -43,6 +45,7 @@ jobs:
           path: |
             .work/evidence/runs/
             .work/evidence/latest/
+            .work/maintenance-20261015/reliability/
           retention-days: 14
           include-hidden-files: true
       - name: Stop this project stack

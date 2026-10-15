@@ -1,0 +1,646 @@
+{
+  "kind": "pr4-local-stack-guard-correction",
+  "exportedAt": "2026-10-15T22:18:01.265Z",
+  "baseline": "32d685271fae32f71e32b1e4b6f657e63dd6b523",
+  "source": {
+    "harnessSha256": "9eaa054421651146896cdc5b1957d4d18e0038e9310e76b7d9081a9c48bee097",
+    "testSha256": "9d4d89918c553f812d609ab314cff10b0d90be02f975345bec0d099f210d899e"
+  },
+  "outcomes": [
+    {
+      "receipt": "final-host-20261015T181606201.json",
+      "startedAt": "2026-10-15T22:16:06.2023840Z",
+      "exitCode": 0,
+      "command": "node --test infrastructure/test-bounded-reliability.cjs",
+      "finishedAt": "2026-10-15T22:16:06.4528671Z",
+      "log": "final-host-20261015T181606201.log",
+      "receiptSha256": "9e6fa73269e6f111a21f52a315e97271a2e7800676f6d21a39c302451ec54206",
+      "logSha256": "6c776812de40402c75c4e014c996dfc11469f577c881b91ab6eee344d165724b",
+      "counts": {
+        "tests": 26,
+        "pass": 25,
+        "fail": 0,
+        "skipped": 1
+      }
+    },
+    {
+      "receipt": "final-linux-20261015T181610408.json",
+      "finishedAt": "2026-10-15T22:16:11.2507157Z",
+      "startedAt": "2026-10-15T22:16:10.4100777Z",
+      "imageId": "sha256:a5f4366e834695d5f363b920c104953a535d3a9864d1bdf74566a0ebe01daee5",
+      "exitCode": 0,
+      "log": "final-linux-20261015T181610408.log",
+      "command": "existing node24 Linux image, network none, read-only checkout: node --test infrastructure/test-bounded-reliability.cjs",
+      "receiptSha256": "5e93023df98d19486e772b8ffb7da6105a9ef7c6d49729beefdd00597a121de4",
+      "logSha256": "a675fc4e69e2d71c0c69ec86758e69abb9f7f8b2e6f9655e9434ae7463711bf9",
+      "counts": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "receipt": "final-workload-20261015T181611275.json",
+      "finishedAt": "2026-10-15T22:16:21.6104101Z",
+      "startedAt": "2026-10-15T22:16:11.2751886Z",
+      "exitCode": 0,
+      "log": "final-workload-20261015T181611275.log",
+      "command": "node infrastructure/bounded-reliability.cjs",
+      "receiptSha256": "f7ea124a3b4c09370e3c85b61423166dd38db38e0f535291340e63bf7725fe64",
+      "logSha256": "6ba9f5fd8ae48874595e3b826f01a20f42b5a679500a61a2e7870c4ee76ca2d1",
+      "counts": {}
+    },
+    {
+      "receipt": "guard-final-host-20261015T181444491.json",
+      "log": "guard-final-host-20261015T181444491.log",
+      "exitCode": 0,
+      "command": "node --test infrastructure/test-bounded-reliability.cjs",
+      "finishedAt": "2026-10-15T22:14:44.7176221Z",
+      "startedAt": "2026-10-15T22:14:44.4928062Z",
+      "receiptSha256": "f0a09974c8ee754f3fbfad479d70986adf253f76e1753fb4a45418c2da661d1f",
+      "logSha256": "e84440ac786fcf920ad08213de50a3d282ac343d53b9aaa1a16dbb147c1f131e",
+      "counts": {
+        "tests": 24,
+        "pass": 23,
+        "fail": 0,
+        "skipped": 1
+      }
+    },
+    {
+      "receipt": "guard-green-host-20261015T181250921.json",
+      "finishedAt": "2026-10-15T22:12:51.1714020Z",
+      "log": "guard-green-host-20261015T181250921.log",
+      "startedAt": "2026-10-15T22:12:50.9226674Z",
+      "exitCode": 0,
+      "command": "node --test infrastructure/test-bounded-reliability.cjs",
+      "receiptSha256": "13db751c53fc14cc9e9cee9e06dd84e6a17739aaf281eb37fd7e3df0a458f5db",
+      "logSha256": "89ec06e435c5ec87bc0d4aa0a13b4a40e50fbf57f78db46a11619d2a5a357b6e",
+      "counts": {
+        "tests": 24,
+        "pass": 23,
+        "fail": 0,
+        "skipped": 1
+      }
+    },
+    {
+      "receipt": "guard-green-linux-20261015T181059231.json",
+      "startedAt": "2026-10-15T22:10:59.4952586Z",
+      "exitCode": 0,
+      "finishedAt": "2026-10-15T22:11:00.3982983Z",
+      "imageId": "sha256:a5f4366e834695d5f363b920c104953a535d3a9864d1bdf74566a0ebe01daee5",
+      "log": "guard-green-linux-20261015T181059231.log",
+      "command": "existing node24 Linux image, network none, read-only checkout: node --test infrastructure/test-bounded-reliability.cjs",
+      "receiptSha256": "ffde5da0422f6afdec6fc9aba96d377fab1397c4df2e62ed243fa1d0fd71f2f2",
+      "logSha256": "d478611fa3d9f77fcdaf3b944ecd0e84dfb65b9d0a2f713fa83b49ec59fe81c1",
+      "counts": {
+        "tests": 22,
+        "pass": 22,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "receipt": "guard-green-linux-20261015T181313375.json",
+      "command": "existing node24 Linux image, network none, read-only checkout: node --test infrastructure/test-bounded-reliability.cjs",
+      "imageId": "sha256:a5f4366e834695d5f363b920c104953a535d3a9864d1bdf74566a0ebe01daee5",
+      "startedAt": "2026-10-15T22:13:13.5756581Z",
+      "log": "guard-green-linux-20261015T181313375.log",
+      "finishedAt": "2026-10-15T22:13:14.3068419Z",
+      "exitCode": 0,
+      "receiptSha256": "dcaeb370f249edbbd848946715751f82737ad08073e0cc14d6d7a7438f5592cc",
+      "logSha256": "d5617e4a3776cb241eff152c7a52ad517c7d36548b198dceeb0162e2531fa4ab",
+      "counts": {
+        "tests": 24,
+        "pass": 24,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "receipt": "guarded-workload-20261015T181325213.json",
+      "startedAt": "2026-10-15T22:13:25.2146508Z",
+      "finishedAt": "2026-10-15T22:13:27.6780335Z",
+      "exitCode": 1,
+      "command": "node infrastructure/bounded-reliability.cjs",
+      "log": "guarded-workload-20261015T181325213.log",
+      "receiptSha256": "d4068e3e0b68fc2857ac8a6a8df0442b83d05e8d2e0da653ffb8f4e1536aceaa",
+      "logSha256": "bf8286bf1f533db88935d0121f0244808f7134682dd609a12a3d819868e22d7a",
+      "counts": {}
+    },
+    {
+      "receipt": "guarded-workload-20261015T181447730.json",
+      "log": "guarded-workload-20261015T181447730.log",
+      "exitCode": 0,
+      "startedAt": "2026-10-15T22:14:47.7319452Z",
+      "finishedAt": "2026-10-15T22:14:58.1087124Z",
+      "command": "node infrastructure/bounded-reliability.cjs",
+      "receiptSha256": "f347ecc13b58b51fcf157d698b8ed2807312aacd08b2e13306f2946a5cbe938b",
+      "logSha256": "e54489c3d10125550b9be603df31b2e50d37e36ec23188ec0ed05b21ad5a1271",
+      "counts": {}
+    },
+    {
+      "receipt": "jdk-library-red-host-20261015T181428806.json",
+      "startedAt": "2026-10-15T22:14:28.8086740Z",
+      "command": "node --test infrastructure/test-bounded-reliability.cjs",
+      "log": "jdk-library-red-host-20261015T181428806.log",
+      "finishedAt": "2026-10-15T22:14:29.0648806Z",
+      "exitCode": 1,
+      "receiptSha256": "ade8e69570071ec4d522f7fe6ece2ce85118cb18b8d71f280045adc77804b2c4",
+      "logSha256": "75bcd7aa2b74a3ee9c3f02f89d4c661cf6bf5f1d389ec069ee2be68288470105",
+      "counts": {
+        "tests": 24,
+        "pass": 22,
+        "fail": 1,
+        "skipped": 1
+      }
+    },
+    {
+      "receipt": "path-green-host-20261015T180702132.json",
+      "exitCode": 0,
+      "log": "path-green-host-20261015T180702132.log",
+      "finishedAt": "2026-10-15T22:07:02.3301406Z",
+      "startedAt": "2026-10-15T22:07:02.1335535Z",
+      "command": "node --test infrastructure/test-bounded-reliability.cjs",
+      "receiptSha256": "1f8b926644162c3895b483ff10163a48cdd4e4383c262da619399b9f44f36cea",
+      "logSha256": "35b331a451343a8e5f2cf7268a176082dfa4c5260b20f9e7fd447ac5266d19a8",
+      "counts": {
+        "tests": 17,
+        "pass": 16,
+        "fail": 0,
+        "skipped": 1
+      }
+    },
+    {
+      "receipt": "path-red-host-20261015T180623952.json",
+      "head": "32d685271fae32f71e32b1e4b6f657e63dd6b523",
+      "startedAt": "2026-10-15T22:06:23.9547307Z",
+      "finishedAt": "2026-10-15T22:06:24.2411661Z",
+      "exitCode": 1,
+      "log": "path-red-host-20261015T180623952.log",
+      "command": "node --test infrastructure/test-bounded-reliability.cjs",
+      "receiptSha256": "5958f9cb36411f45369bbfd3de30a19862b931fe8d266894ef397e5a91f857f4",
+      "logSha256": "816dda3b40007edf5cccda14a40098a2546f615cbe01d549b7f7774944f60fbd",
+      "counts": {
+        "tests": 17,
+        "pass": 15,
+        "fail": 1,
+        "skipped": 1
+      }
+    },
+    {
+      "receipt": "path-red-linux-20261015T180632679.json",
+      "command": "existing Linux Node image, network none, read-only checkout: node --test infrastructure/test-bounded-reliability.cjs",
+      "exitCode": 125,
+      "log": "path-red-linux-20261015T180632679.log",
+      "imageId": "sha256:50205997e39d2b79c91cf49ac74df7c035dcbddaed19db4152ef78d2c177ac8c",
+      "startedAt": "2026-10-15T22:06:32.8698877Z",
+      "finishedAt": "2026-10-15T22:06:33.0999916Z",
+      "receiptSha256": "a6a3eb1d5df6b3082905129a4efa691f4a0484216d0a1dc3bd03cb78594d315f",
+      "logSha256": "27aba376ae3a03bf647b27321c658ce29b14cf2e3aebc5f4b2d4e0b5181d8adb",
+      "counts": {}
+    },
+    {
+      "receipt": "path-red-linux-20261015T180647925.json",
+      "command": "existing node24 Linux image, network none, read-only checkout: node --test infrastructure/test-bounded-reliability.cjs",
+      "startedAt": "2026-10-15T22:06:48.1518399Z",
+      "finishedAt": "2026-10-15T22:06:48.9675809Z",
+      "imageId": "sha256:a5f4366e834695d5f363b920c104953a535d3a9864d1bdf74566a0ebe01daee5",
+      "exitCode": 1,
+      "log": "path-red-linux-20261015T180647925.log",
+      "receiptSha256": "8584abcc32b38c99840cc779955730a59e1b689bc6bdafbed57f0d941b0f0c74",
+      "logSha256": "d73a503572def92368127bec980b42444f2dc3f758d08a6829f9973b204ef806",
+      "counts": {
+        "tests": 17,
+        "pass": 14,
+        "fail": 3,
+        "skipped": 0
+      }
+    },
+    {
+      "receipt": "pg-probe-red-host-20261015T181536705.json",
+      "finishedAt": "2026-10-15T22:15:36.9240851Z",
+      "command": "node --test infrastructure/test-bounded-reliability.cjs",
+      "exitCode": 1,
+      "log": "pg-probe-red-host-20261015T181536705.log",
+      "startedAt": "2026-10-15T22:15:36.7069857Z",
+      "receiptSha256": "b0e820ca4b128cd0f364f6e6de7d76fe13b4cd78ef45a6bd4ce0ff52801685e1",
+      "logSha256": "acb5f183a53e6cbfdc7d8d149c9c4eec2e7b345b8d8477e16df546e06f960423",
+      "counts": {
+        "tests": 26,
+        "pass": 24,
+        "fail": 1,
+        "skipped": 1
+      }
+    },
+    {
+      "receipt": "relationship-green-host-20261015T181028098.json",
+      "log": "relationship-green-host-20261015T181028098.log",
+      "exitCode": 1,
+      "command": "node --test infrastructure/test-bounded-reliability.cjs",
+      "finishedAt": "2026-10-15T22:10:28.2847899Z",
+      "startedAt": "2026-10-15T22:10:28.0994791Z",
+      "receiptSha256": "9a00eeb5c4718c1b3a01a3d54ffa69e20cd999cdef62ee770231429d01dd031b",
+      "logSha256": "f1944b5baf70a057c75f5326dbdf50e206de6d0093129df2af2a39689da65a8a",
+      "counts": {
+        "tests": 22,
+        "pass": 20,
+        "fail": 1,
+        "skipped": 1
+      }
+    },
+    {
+      "receipt": "relationship-green-host-20261015T181042390.json",
+      "exitCode": 0,
+      "log": "relationship-green-host-20261015T181042390.log",
+      "startedAt": "2026-10-15T22:10:42.3939051Z",
+      "command": "node --test infrastructure/test-bounded-reliability.cjs",
+      "finishedAt": "2026-10-15T22:10:42.6384701Z",
+      "receiptSha256": "44fd018e51030fc1a5753ed7764b00d0cedcc595fe6d006c0deaad4f2c7f9741",
+      "logSha256": "54b08186fdff3ae93bd070a406f2367eb277e19a5ee6decb203d2200840a5f71",
+      "counts": {
+        "tests": 22,
+        "pass": 21,
+        "fail": 0,
+        "skipped": 1
+      }
+    },
+    {
+      "receipt": "relationship-red-host-20261015T180854378.json",
+      "command": "node --test infrastructure/test-bounded-reliability.cjs",
+      "exitCode": 1,
+      "finishedAt": "2026-10-15T22:08:54.5962825Z",
+      "startedAt": "2026-10-15T22:08:54.3804473Z",
+      "log": "relationship-red-host-20261015T180854378.log",
+      "receiptSha256": "8ce44b7729fcfc747164e105cc94f94f562dbef334c92366907f06f51d8d4990",
+      "logSha256": "00d0e9d71db45665a4cb334d35adb87dfdf57b60b9c6e45a89deabc478744a3c",
+      "counts": {
+        "tests": 22,
+        "pass": 16,
+        "fail": 5,
+        "skipped": 1
+      }
+    },
+    {
+      "receipt": "review-followup-red-20261015T181221617.json",
+      "startedAt": "2026-10-15T22:12:21.6186664Z",
+      "command": "node --test infrastructure/test-bounded-reliability.cjs",
+      "log": "review-followup-red-20261015T181221617.log",
+      "finishedAt": "2026-10-15T22:12:21.8036279Z",
+      "exitCode": 1,
+      "receiptSha256": "ec1627ea6cacd0f0d57c8a3eb6ab8b4b7c7ee4fde35fec57d80a0fe2aa36b1e9",
+      "logSha256": "50ee3d481dd722af3af6f19444eb357d0ec49106aecd7653ee6718d200bf9b09",
+      "counts": {
+        "tests": 23,
+        "pass": 19,
+        "fail": 3,
+        "skipped": 1
+      }
+    }
+  ],
+  "workload": {
+    "path": ".work/maintenance-20261015/reliability/20261015T221611324Z-74adacd3-0ce5-4ca7-9e64-ee6bc8a97b98/report.json",
+    "sha256": "54a3117e9cabc238805f2aef964929f8bdd9fbab6f35ec242ca5e339090343c8",
+    "report": {
+      "version": 1,
+      "runId": "20261015T221611324Z-74adacd3-0ce5-4ca7-9e64-ee6bc8a97b98",
+      "startedAt": "2026-10-15T22:16:11.328Z",
+      "endedAt": "2026-10-15T22:16:21.592Z",
+      "elapsedMs": 10263,
+      "pid": 30972,
+      "command": "node infrastructure/bounded-reliability.cjs",
+      "origin": "http://127.0.0.1:18081",
+      "status": "passed",
+      "exitCode": 0,
+      "failure": null,
+      "limits": {
+        "accounts": 4,
+        "rounds": 3,
+        "contenders": 3,
+        "requests": 300,
+        "inFlight": 12,
+        "totalMs": 180000,
+        "requestMs": 10000,
+        "pageSize": 3
+      },
+      "scope": "Bounded local functional reliability observation; not a capacity or SLA measurement.",
+      "credentialsWritten": false,
+      "publicRequests": 0,
+      "sourceBefore": {
+        "head": "32d685271fae32f71e32b1e4b6f657e63dd6b523",
+        "dirty": true,
+        "statusSha256": "1e389c01c5da56fb0c12cc97cf5bbe2d38563623dec0ebdeabf655e46290f1bd",
+        "trackedDiffSha256": "19736cb4f1711475616a6b4191f280efbefc5575fd1310017f0104d1fb428ae9",
+        "worktreeSha256": "18e1c9bad2552203d9bf41844c30e5192cdc8f79cd92832b0392c40640b0bb5a",
+        "files": 220,
+        "harnessSha256": "9eaa054421651146896cdc5b1957d4d18e0038e9310e76b7d9081a9c48bee097"
+      },
+      "environment": {
+        "api": {
+          "name": "/creditflow-qe-api-1",
+          "id": "cee3ac0dc5b7b1c199cc015134e6200ab458888b138cab596f21079cac3531b8",
+          "project": "creditflow-qe",
+          "service": "api",
+          "workingDirectory": "D:\\Dev\\Repos\\creditflow-qe\\infrastructure",
+          "configFiles": "D:\\Dev\\Repos\\creditflow-qe\\infrastructure\\compose.yml",
+          "status": "running",
+          "health": "healthy",
+          "imageId": "sha256:c57004c5bc81a94ac6c7f2c38dfb8941d4d79f1efd348dafb78d503e18c3126e",
+          "startedAt": "2026-10-15T01:09:52.845621109Z",
+          "ports": {
+            "8080/tcp": [
+              {
+                "HostIp": "127.0.0.1",
+                "HostPort": "18081"
+              }
+            ]
+          }
+        },
+        "postgres": {
+          "name": "/creditflow-qe-postgres-1",
+          "id": "cf2251446f18664d7989675ec9ddd7ac2c0e8decd3bda94e02b0ff70a94fd998",
+          "project": "creditflow-qe",
+          "service": "postgres",
+          "workingDirectory": "D:\\Dev\\Repos\\creditflow-qe\\infrastructure",
+          "configFiles": "D:\\Dev\\Repos\\creditflow-qe\\infrastructure\\compose.yml",
+          "status": "running",
+          "health": "healthy",
+          "imageId": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+          "startedAt": "2026-10-14T22:23:37.221970029Z",
+          "ports": {
+            "5432/tcp": null
+          }
+        },
+        "versions": {
+          "node": "v26.12.0",
+          "dockerClient": "29.8.2",
+          "dockerServer": "29.8.2",
+          "java": "21.0.12.1",
+          "postgres": "17.11"
+        },
+        "databaseRelationship": {
+          "configurationVerified": true,
+          "localDockerVerified": true,
+          "processVerified": true,
+          "networkAndDnsVerified": true,
+          "liveConnectionVerified": true,
+          "matchedConnections": 6
+        },
+        "imageProvenance": "Trusted local image and Docker observation, not image source attestation or a guarantee against concurrent external reconfiguration."
+      },
+      "progress": {
+        "accountsCreated": 4,
+        "roundsCompleted": 3,
+        "checkpoints": [
+          {
+            "round": 1,
+            "account": 4,
+            "entries": 4,
+            "balance": "250.00",
+            "available": "750.00"
+          },
+          {
+            "round": 1,
+            "account": 1,
+            "entries": 4,
+            "balance": "250.00",
+            "available": "750.00"
+          },
+          {
+            "round": 1,
+            "account": 2,
+            "entries": 4,
+            "balance": "250.00",
+            "available": "750.00"
+          },
+          {
+            "round": 1,
+            "account": 3,
+            "entries": 4,
+            "balance": "250.00",
+            "available": "750.00"
+          },
+          {
+            "round": 2,
+            "account": 2,
+            "entries": 8,
+            "balance": "250.00",
+            "available": "750.00"
+          },
+          {
+            "round": 2,
+            "account": 1,
+            "entries": 8,
+            "balance": "250.00",
+            "available": "750.00"
+          },
+          {
+            "round": 2,
+            "account": 3,
+            "entries": 8,
+            "balance": "250.00",
+            "available": "750.00"
+          },
+          {
+            "round": 2,
+            "account": 4,
+            "entries": 8,
+            "balance": "250.00",
+            "available": "750.00"
+          },
+          {
+            "round": 3,
+            "account": 2,
+            "entries": 12,
+            "balance": "250.00",
+            "available": "750.00"
+          },
+          {
+            "round": 3,
+            "account": 1,
+            "entries": 12,
+            "balance": "250.00",
+            "available": "750.00"
+          },
+          {
+            "round": 3,
+            "account": 3,
+            "entries": 12,
+            "balance": "250.00",
+            "available": "750.00"
+          },
+          {
+            "round": 3,
+            "account": 4,
+            "entries": 12,
+            "balance": "250.00",
+            "available": "750.00"
+          }
+        ]
+      },
+      "environmentAfter": {
+        "api": {
+          "name": "/creditflow-qe-api-1",
+          "id": "cee3ac0dc5b7b1c199cc015134e6200ab458888b138cab596f21079cac3531b8",
+          "project": "creditflow-qe",
+          "service": "api",
+          "workingDirectory": "D:\\Dev\\Repos\\creditflow-qe\\infrastructure",
+          "configFiles": "D:\\Dev\\Repos\\creditflow-qe\\infrastructure\\compose.yml",
+          "status": "running",
+          "health": "healthy",
+          "imageId": "sha256:c57004c5bc81a94ac6c7f2c38dfb8941d4d79f1efd348dafb78d503e18c3126e",
+          "startedAt": "2026-10-15T01:09:52.845621109Z",
+          "ports": {
+            "8080/tcp": [
+              {
+                "HostIp": "127.0.0.1",
+                "HostPort": "18081"
+              }
+            ]
+          }
+        },
+        "postgres": {
+          "name": "/creditflow-qe-postgres-1",
+          "id": "cf2251446f18664d7989675ec9ddd7ac2c0e8decd3bda94e02b0ff70a94fd998",
+          "project": "creditflow-qe",
+          "service": "postgres",
+          "workingDirectory": "D:\\Dev\\Repos\\creditflow-qe\\infrastructure",
+          "configFiles": "D:\\Dev\\Repos\\creditflow-qe\\infrastructure\\compose.yml",
+          "status": "running",
+          "health": "healthy",
+          "imageId": "sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24",
+          "startedAt": "2026-10-14T22:23:37.221970029Z",
+          "ports": {
+            "5432/tcp": null
+          }
+        }
+      },
+      "sourceAfter": {
+        "head": "32d685271fae32f71e32b1e4b6f657e63dd6b523",
+        "dirty": true,
+        "statusSha256": "1e389c01c5da56fb0c12cc97cf5bbe2d38563623dec0ebdeabf655e46290f1bd",
+        "trackedDiffSha256": "19736cb4f1711475616a6b4191f280efbefc5575fd1310017f0104d1fb428ae9",
+        "worktreeSha256": "18e1c9bad2552203d9bf41844c30e5192cdc8f79cd92832b0392c40640b0bb5a",
+        "files": 220,
+        "harnessSha256": "9eaa054421651146896cdc5b1957d4d18e0038e9310e76b7d9081a9c48bee097"
+      },
+      "lockReleased": true,
+      "metrics": {
+        "httpRequests": 253,
+        "statuses": {
+          "200": 141,
+          "201": 52,
+          "400": 12,
+          "409": 24,
+          "422": 24
+        },
+        "postings": 48,
+        "replays": 36,
+        "conflicts": 24,
+        "rejections": 36,
+        "sandboxCreates": 4,
+        "transportFailures": 0,
+        "maxInFlight": 12,
+        "inFlight": 0,
+        "latencyMs": {
+          "samples": 253,
+          "p50": 5.884,
+          "p95": 16.418,
+          "max": 27.048
+        }
+      }
+    }
+  },
+  "priorWorkloads": [
+    {
+      "path": ".work/maintenance-20261015/reliability/20261015T221325265Z-bddda893-1133-4070-bb1d-900fe14bd6a2/report.json",
+      "sha256": "8d782a0cb748d1d68880a0d65da78f9881c1398af1a4a9f9ceafc264664e3e59",
+      "runId": "20261015T221325265Z-bddda893-1133-4070-bb1d-900fe14bd6a2",
+      "status": "failed",
+      "failure": "DATASOURCE_CONFIGURATION_REJECTED",
+      "metrics": {
+        "httpRequests": 0,
+        "statuses": {},
+        "postings": 0,
+        "replays": 0,
+        "conflicts": 0,
+        "rejections": 0,
+        "sandboxCreates": 0,
+        "transportFailures": 0,
+        "maxInFlight": 0,
+        "inFlight": 0,
+        "latencyMs": {
+          "samples": 0,
+          "p50": null,
+          "p95": null,
+          "max": null
+        }
+      },
+      "source": {
+        "head": "32d685271fae32f71e32b1e4b6f657e63dd6b523",
+        "dirty": true,
+        "statusSha256": "1e389c01c5da56fb0c12cc97cf5bbe2d38563623dec0ebdeabf655e46290f1bd",
+        "trackedDiffSha256": "a8c162a010d267373d2a56f98d94c3cd8a0caeb87cb41e0f407bbeb68be309c4",
+        "worktreeSha256": "107277972ff11fbbb897249228ba0c39d9193f58022ad33e60b5b13553901025",
+        "files": 220,
+        "harnessSha256": "36b89cd9416dc5e06a291bd0ae920a834b5df570823d541bf18e5a27abf5f281"
+      }
+    },
+    {
+      "path": ".work/maintenance-20261015/reliability/20261015T221447792Z-92031691-0dea-4cbe-a92d-47aafa85db5c/report.json",
+      "sha256": "e090de9bb86ea5879492ade8e6a1d6a1aed3dddc95e1ddc0fc2cfac939460935",
+      "runId": "20261015T221447792Z-92031691-0dea-4cbe-a92d-47aafa85db5c",
+      "status": "passed",
+      "failure": null,
+      "metrics": {
+        "httpRequests": 253,
+        "statuses": {
+          "200": 141,
+          "201": 52,
+          "400": 12,
+          "409": 24,
+          "422": 24
+        },
+        "postings": 48,
+        "replays": 36,
+        "conflicts": 24,
+        "rejections": 36,
+        "sandboxCreates": 4,
+        "transportFailures": 0,
+        "maxInFlight": 12,
+        "inFlight": 0,
+        "latencyMs": {
+          "samples": 253,
+          "p50": 6.963,
+          "p95": 23.981,
+          "max": 45.766
+        }
+      },
+      "source": {
+        "head": "32d685271fae32f71e32b1e4b6f657e63dd6b523",
+        "dirty": true,
+        "statusSha256": "1e389c01c5da56fb0c12cc97cf5bbe2d38563623dec0ebdeabf655e46290f1bd",
+        "trackedDiffSha256": "b95231bc6d42303cf975ac5ca31fe6ba8109a4fb863d198263a4f80d56ebda36",
+        "worktreeSha256": "13f21e5d37f78ec8ce947b1747bd2292a39e2a01b318d8cc140c6f81190f0212",
+        "files": 220,
+        "harnessSha256": "d849460ff5db38d713780ba4ab8ffa26801743dc2800ec3cd8044b0ecd933eb5"
+      }
+    }
+  ],
+  "counting": "Only final-host/final-linux and the final workload supply current pass counts. Earlier RED/iterations/refused run are preserved separately. Later docs/receipts are outside workload source fingerprint; committed-source CI belongs to PR4.",
+  "security": {
+    "outcome": {
+      "finishedAt": "2026-10-15T22:19:15.8649997Z",
+      "exitCode": 0,
+      "log": "command.log",
+      "startedAt": "2026-10-15T22:19:14.6447066Z",
+      "command": "Gitleaks8.30.1 candidate export, redacted, network none",
+      "files": 222
+    },
+    "findings": 0,
+    "manifestSha256": "016632dce30a40a913643b9c180af41f2a86997b266092478979fa6cd5cff6f2",
+    "logSha256": "025de92cac3694ff0ebf3f31d4b7ec5b0721434934f43a93834caf17dbf609a5",
+    "reportSha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "scope": "Candidate source export before sanitized scan-summary/plan additions; full committed source scanned by required Actions quality job."
+  }
+}

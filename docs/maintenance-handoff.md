@@ -19,6 +19,8 @@ For a separately approved portfolio dependency change:
 
 ## Bounded local verification
 
+The [PR #4 guard correction](evidence/pr4-stack-guard.md) supersedes the earlier metadata-only preflight. It preserves POSIX case and requires local Docker, canonical configured/PID1 datasource settings, owned network/DNS targets and a live JVM-socket/PostgreSQL-session match before any POST. Raw configuration and credentials never enter evidence. Unsupported overrides/targets are refused; this is a current observation under trusted local Docker/images, not image-source attestation or protection against concurrent external reconfiguration.
+
 The previous [204-request observation](evidence/bounded-reliability.json) remains historical. Its ignored harness and narrower traffic did not provide a maintained mixed-contention regression. The versioned [bounded harness](../infrastructure/bounded-reliability.cjs) runs only against the identified local Compose API/PostgreSQL stack at `http://127.0.0.1:18081`. It rejects foreign/public targets and redirects, verifies container ownership/health/binding, and refuses overlap with an active project verification scope.
 
 This pass also reproduced a Windows checkout defect: all 30 tracked Java files had CRLF while Spotless required LF. The Git attributes now explicitly keep Java files LF. Original working bytes were archived before normalization; every normalized file equaled its existing HEAD blob. A fresh `core.autocrlf=true` checkout verified all 30 files as LF with unchanged content. No financial application behavior changed, and the failed formatting run remains preserved.

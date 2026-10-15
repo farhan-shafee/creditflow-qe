@@ -6,6 +6,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const http = require('node:http');
 const crypto = require('node:crypto');
+const net = require('node:net');
 const { spawnSync } = require('node:child_process');
 const { isDeepStrictEqual } = require('node:util');
 
@@ -223,16 +224,19 @@ function remember(account, receipt, kind, amount) {
   account.posted.set(receipt.id, receipt);
 }
 
-function validateStack(root, api, postgres) {
-  const expectedDirectory = path.resolve(root, 'infrastructure').toLowerCase();
-  const expectedConfig = path.resolve(root, 'infrastructure', 'compose.yml').toLowerCase();
+function validateStack(root, api, postgres, platform = process.platform) {
+  const windows = platform === 'win32' && (/^[a-z]:[\\/]/i.test(root) || /^[/\\]{2}[^/\\]/.test(root));
+  const paths = windows ? path.win32 : path.posix;
+  const normalize = value => windows ? paths.resolve(value).toLowerCase() : paths.resolve(value);
+  const expectedDirectory = normalize(paths.join(root, 'infrastructure'));
+  const expectedConfig = normalize(paths.join(root, 'infrastructure', 'compose.yml'));
   for (const [metadata, service] of [[api, 'api'], [postgres, 'postgres']]) {
     check(metadata?.name === `/creditflow-qe-${service}-1` && metadata.project === 'creditflow-qe'
       && metadata.service === service && metadata.status === 'running' && metadata.health === 'healthy'
       && typeof metadata.workingDirectory === 'string'
-      && path.resolve(metadata.workingDirectory).toLowerCase() === expectedDirectory
+      && paths.isAbsolute(metadata.workingDirectory) && normalize(metadata.workingDirectory) === expectedDirectory
       && typeof metadata.configFiles === 'string' && metadata.configFiles.split(',').length === 1
-      && path.resolve(metadata.configFiles).toLowerCase() === expectedConfig
+      && paths.isAbsolute(metadata.configFiles) && normalize(metadata.configFiles) === expectedConfig
       && /^sha256:[a-f0-9]{64}$/.test(metadata.imageId), 'STACK_IDENTITY_REJECTED');
   }
   const bindings = Object.entries(api.ports || {}).flatMap(([port, values]) =>
@@ -241,6 +245,116 @@ function validateStack(root, api, postgres) {
     && bindings[0].HostIp === '127.0.0.1' && bindings[0].HostPort === '18081', 'STACK_IDENTITY_REJECTED');
   check(Object.values(postgres.ports || {}).every(values => !values || values.length === 0),
     'STACK_IDENTITY_REJECTED');
+  validateConfiguration(api, postgres);
+}
+
+const API_ENV = new Set(['PATH', 'JAVA_HOME', 'LANG', 'LANGUAGE', 'LC_ALL', 'JAVA_VERSION',
+  'CREDITFLOW_BIND_ADDRESS', 'CREDITFLOW_SANDBOX_QUOTA', 'CREDITFLOW_DB_URL',
+  'CREDITFLOW_DB_USER', 'CREDITFLOW_DB_PASSWORD', 'JAVA_TOOL_OPTIONS']);
+const PG_ENV = new Set(['POSTGRES_DB', 'POSTGRES_USER', 'POSTGRES_PASSWORD', 'PATH', 'GOSU_VERSION',
+  'LANG', 'PG_MAJOR', 'PG_VERSION', 'PG_SHA256', 'DOCKER_PG_LLVM_DEPS', 'PGDATA']);
+const JAVA_COMMAND = ['java', '-jar', '/app/app.jar'];
+function environment(entries, allowed) {
+  check(Array.isArray(entries), 'DATASOURCE_CONFIGURATION_REJECTED');
+  const values = Object.create(null);
+  for (const entry of entries) {
+    check(typeof entry === 'string' && /^[A-Z_][A-Z0-9_]*=/.test(entry), 'DATASOURCE_CONFIGURATION_REJECTED');
+    const split = entry.indexOf('='); const name = entry.slice(0, split);
+    check(!Object.hasOwn(values, name) && (!allowed || allowed.has(name)), 'DATASOURCE_CONFIGURATION_REJECTED');
+    values[name] = entry.slice(split + 1);
+  }
+  return values;
+}
+function validateConfiguration(api, postgres) {
+  const config = api.config;
+  check(config && postgres.config && isDeepStrictEqual(config.command, JAVA_COMMAND)
+    && config.workingDir === '/app' && Array.isArray(config.mounts) && config.mounts.length === 0,
+  'DATASOURCE_CONFIGURATION_REJECTED');
+  const values = environment(config.environment, API_ENV);
+  const database = environment(postgres.config.environment, PG_ENV);
+  const url = values.CREDITFLOW_DB_URL?.match(/^jdbc:postgresql:\/\/([^/:?#]+):([0-9]+)\/([^/?#]+)$/);
+  check(url && url[1] === 'postgres' && url[2] === '5432' && url[3] === 'creditflow'
+    && values.CREDITFLOW_DB_USER === 'creditflow_app' && database.POSTGRES_USER === 'creditflow_app'
+    && database.POSTGRES_DB === 'creditflow' && !!values.CREDITFLOW_DB_PASSWORD
+    && values.CREDITFLOW_DB_PASSWORD === database.POSTGRES_PASSWORD
+    && values.JAVA_TOOL_OPTIONS === '-XX:MaxRAMPercentage=70.0', 'DATASOURCE_CONFIGURATION_REJECTED');
+  for (const metadata of [api, postgres]) {
+    const c = metadata.config;
+    check(c.networkMode === 'creditflow-qe_default'
+      && ['extraHosts', 'dns', 'dnsSearch', 'dnsOptions', 'links'].every(key => !c[key]?.length)
+      && Object.keys(metadata.networks || {}).length === 1
+      && metadata.networks['creditflow-qe_default'], 'DATABASE_NETWORK_REJECTED');
+  }
+}
+function validateRuntime(api, runtime) {
+  check(typeof runtime?.environment === 'string' && typeof runtime.command === 'string', 'DATASOURCE_CONFIGURATION_REJECTED');
+  const values = environment(runtime.environment.split('\0').filter(Boolean),
+    new Set([...API_ENV, 'HOSTNAME', 'HOME', 'LD_LIBRARY_PATH']));
+  const configured = environment(api.config.environment, API_ENV);
+  check(Object.entries(configured).every(([name, value]) => values[name] === value)
+    && Object.keys(values).every(name => API_ENV.has(name) ? Object.hasOwn(configured, name) : true)
+    && (!values.LD_LIBRARY_PATH || values.LD_LIBRARY_PATH.split(':').every(directory =>
+      !!directory && ['/opt/java/openjdk/lib/server', '/opt/java/openjdk/lib', '/opt/java/lib']
+        .includes(path.posix.normalize(directory))))
+    && isDeepStrictEqual(runtime.command.split('\0').filter(Boolean), JAVA_COMMAND)
+    && runtime.applicationMatches === true && runtime.externalConfigAbsent === true,
+  'DATASOURCE_CONFIGURATION_REJECTED');
+}
+function validateNetwork(api, postgres, network) {
+  const a = api.networks?.['creditflow-qe_default']; const p = postgres.networks?.['creditflow-qe_default'];
+  check(a && p && /^[a-f0-9]{64}$/.test(api.id) && /^[a-f0-9]{64}$/.test(postgres.id)
+    && api.id !== postgres.id && /^[a-f0-9]{64}$/.test(a.NetworkID)
+    && a.NetworkID === p.NetworkID && network.id === a.NetworkID
+    && /^[a-f0-9]{64}$/.test(a.EndpointID) && /^[a-f0-9]{64}$/.test(p.EndpointID)
+    && a.EndpointID !== p.EndpointID && net.isIP(a.IPAddress) === 4 && net.isIP(p.IPAddress) === 4
+    && a.IPAddress !== p.IPAddress && network.name === 'creditflow-qe_default'
+    && network.driver === 'bridge' && network.project === 'creditflow-qe'
+    && Array.isArray(network.endpoints) && Array.isArray(network.resolved), 'DATABASE_NETWORK_REJECTED');
+  for (const [id, ip] of [[api.id, a.IPAddress], [postgres.id, p.IPAddress]]) {
+    check(network.endpoints.filter(e => e.id === id && e.ip === ip).length === 1, 'DATABASE_NETWORK_REJECTED');
+  }
+  const destinations = network.endpoints.filter(e => Array.isArray(e.aliases) && e.aliases.includes('postgres'));
+  check(destinations.length === 1 && destinations[0].id === postgres.id
+    && network.resolved.length === 1 && network.resolved[0] === p.IPAddress, 'DATABASE_NETWORK_REJECTED');
+}
+function procAddress(value) {
+  check(/^(?:[a-f0-9]{8}|[a-f0-9]{32}):[a-f0-9]{4}$/i.test(value), 'DATABASE_CONNECTION_REJECTED');
+  let [address, port] = value.split(':');
+  address = address.match(/.{8}/g).map(word => word.match(/../g).reverse().join('')).join('').toUpperCase();
+  if (address.length === 32) {
+    check(address.startsWith('00000000000000000000FFFF'), 'DATABASE_CONNECTION_REJECTED');
+    address = address.slice(24);
+  }
+  return { ip: address.match(/../g).map(byte => parseInt(byte, 16)).join('.'), port: parseInt(port, 16) };
+}
+function validateConnections(api, postgres, observations) {
+  check(typeof observations.fds === 'string' && typeof observations.tcp === 'string'
+    && typeof observations.tcp6 === 'string' && Array.isArray(observations.sessions), 'DATABASE_CONNECTION_REJECTED');
+  const owned = new Set([...observations.fds.matchAll(/^socket:\[([1-9][0-9]*)\]$/gm)].map(m => m[1]));
+  const outgoing = []; const inodes = new Set();
+  for (const line of (observations.tcp + '\n' + observations.tcp6).split(/\r?\n/).filter(s => s.trim())) {
+    const fields = line.trim().split(/\s+/);
+    if (fields[0] === 'sl') continue;
+    check(fields.length >= 10 && /^[0-9]+:$/.test(fields[0]) && /^[0-9]+$/.test(fields[9])
+      && /^[A-F0-9]{2}$/i.test(fields[3]), 'DATABASE_CONNECTION_REJECTED');
+    if (!owned.has(fields[9])) continue; // Namespace-wide tables also contain other processes' sockets.
+    check(!inodes.has(fields[9]), 'DATABASE_CONNECTION_REJECTED'); inodes.add(fields[9]);
+    if (fields[3] !== '01') continue;
+    check(/^[A-F0-9]{8}(?:[A-F0-9]{24})?:[A-F0-9]{4}$/i.test(fields[1]), 'DATABASE_CONNECTION_REJECTED');
+    if (parseInt(fields[1].split(':')[1], 16) === 8080) continue; // API's inbound HTTP connections.
+    outgoing.push({ local: procAddress(fields[1]), remote: procAddress(fields[2]) });
+  }
+  const a = api.networks['creditflow-qe_default']; const p = postgres.networks['creditflow-qe_default'];
+  check(outgoing.length > 0 && outgoing.every(socket => socket.local.ip === a.IPAddress
+    && socket.local.port > 0 && socket.remote.ip === p.IPAddress && socket.remote.port === 5432
+    && observations.sessions.filter(session => session.client_addr === socket.local.ip
+      && session.client_port === socket.local.port && session.datname === 'creditflow'
+      && session.usename === 'creditflow_app').length === 1), 'DATABASE_CONNECTION_REJECTED');
+  return { matchedConnections: outgoing.length };
+}
+function validateDockerEndpoint(endpoint) {
+  check(typeof endpoint === 'string' && (/^npipe:\/{4}\.\/pipe\/(?:docker_engine|dockerDesktopLinuxEngine)$/i.test(endpoint)
+    || /^unix:\/\/\/[^?#\s\0]+$/.test(endpoint)), 'DOCKER_DAEMON_REJECTED');
 }
 function acquireLock(root, runId) {
   const directory = path.join(root, '.work', 'evidence');
@@ -322,14 +436,21 @@ function sourceState(run) {
     harnessSha256: sha(fs.readFileSync(__filename)) };
 }
 function inspectStack(run) {
-  const format = '{"name":{{json .Name}},"project":{{json (index .Config.Labels "com.docker.compose.project")}},'
-    + '"service":{{json (index .Config.Labels "com.docker.compose.service")}},'
-    + '"workingDirectory":{{json (index .Config.Labels "com.docker.compose.project.working_dir")}},'
-    + '"configFiles":{{json (index .Config.Labels "com.docker.compose.project.config_files")}},'
-    + '"status":{{json .State.Status}},"health":{{if .State.Health}}{{json .State.Health.Status}}{{else}}null{{end}},'
-    + '"imageId":{{json .Image}},"startedAt":{{json .State.StartedAt}},"ports":{{json .NetworkSettings.Ports}}}';
   const inspect = name => {
-    try { return JSON.parse(command(run, 'docker', ['inspect', '--format', format, name], `inspect-${name}`)); }
+    try {
+      // Private only: Docker/process output may contain credentials. Never attach this object to run.context.
+      const d = JSON.parse(command(run, 'docker', ['inspect', '--format', '{{json .}}', name], `inspect-${name}`));
+      return { name: d.Name, id: d.Id, project: d.Config.Labels['com.docker.compose.project'],
+        service: d.Config.Labels['com.docker.compose.service'],
+        workingDirectory: d.Config.Labels['com.docker.compose.project.working_dir'],
+        configFiles: d.Config.Labels['com.docker.compose.project.config_files'],
+        status: d.State.Status, health: d.State.Health?.Status, imageId: d.Image,
+        startedAt: d.State.StartedAt, ports: d.NetworkSettings.Ports, networks: d.NetworkSettings.Networks,
+        config: { environment: d.Config.Env, command: [d.Path, ...d.Args], workingDir: d.Config.WorkingDir,
+          mounts: d.Mounts, networkMode: d.HostConfig.NetworkMode, extraHosts: d.HostConfig.ExtraHosts,
+          dns: d.HostConfig.Dns, dnsSearch: d.HostConfig.DnsSearch, dnsOptions: d.HostConfig.DnsOptions,
+          links: d.HostConfig.Links } };
+    }
     catch (error) { if (error instanceof CheckFailure) throw error; throw new CheckFailure('STACK_IDENTITY_REJECTED'); }
   };
   const api = inspect('creditflow-qe-api-1');
@@ -337,8 +458,65 @@ function inspectStack(run) {
   validateStack(run.root, api, postgres);
   return { api, postgres };
 }
-function preflight(run) {
-  const { api, postgres } = inspectStack(run);
+function publicMetadata(metadata) {
+  return Object.fromEntries(['name', 'id', 'project', 'service', 'workingDirectory', 'configFiles',
+    'status', 'health', 'imageId', 'startedAt', 'ports'].map(key => [key, metadata[key]]));
+}
+function observationsFor(run) {
+  const exec = (args, label) => command(run, 'docker', ['exec', 'creditflow-qe-api-1', ...args], label);
+  return {
+    daemon: () => {
+      // DOCKER_CONTEXT takes precedence over DOCKER_HOST. Do not serialize either value.
+      if (!process.env.DOCKER_CONTEXT && process.env.DOCKER_HOST) return process.env.DOCKER_HOST;
+      const context = command(run, 'docker', ['context', 'show'], 'docker-context');
+      check(/^[a-zA-Z0-9_.-]+$/.test(context), 'DOCKER_DAEMON_REJECTED');
+      return JSON.parse(command(run, 'docker', ['context', 'inspect', context, '--format',
+        '{{json .Endpoints.docker.Host}}'], 'docker-endpoint'));
+    },
+    stack: () => inspectStack(run),
+    runtime: () => {
+      const environment = exec(['cat', '/proc/1/environ'], 'pid1-environment');
+      const argv = exec(['cat', '/proc/1/cmdline'], 'pid1-command');
+      const listing = exec(['unzip', '-l', '/app/app.jar'], 'application-resources');
+      const resources = listing.match(/BOOT-INF\/classes\/(?:config\/)?application[^\s/]*\.(?:properties|ya?ml)/g) || [];
+      const application = exec(['unzip', '-p', '/app/app.jar', 'BOOT-INF/classes/application.yml'], 'application-configuration');
+      const expected = fs.readFileSync(path.join(run.root, 'services/banking-api/src/main/resources/application.yml'), 'utf8');
+      const external = exec(['sh', '-c', 'for p in /app/config /app/application.yml /app/application.yaml /app/application.properties; do if [ -e "$p" ]; then printf present; exit; fi; done; printf absent'], 'external-configuration');
+      return { environment, command: argv, applicationMatches: isDeepStrictEqual(resources, ['BOOT-INF/classes/application.yml'])
+        && application.replace(/\r\n/g, '\n').trim() === expected.replace(/\r\n/g, '\n').trim(),
+      externalConfigAbsent: external === 'absent' };
+    },
+    network: () => {
+      const n = JSON.parse(command(run, 'docker', ['network', 'inspect', 'creditflow-qe_default',
+        '--format', '{{json .}}'], 'owned-network'));
+      const endpoints = Object.entries(n.Containers || {}).map(([id, endpoint]) => {
+        check(/^[a-f0-9]{64}$/.test(id), 'DATABASE_NETWORK_REJECTED');
+        const networks = JSON.parse(command(run, 'docker', ['inspect', '--format', '{{json .NetworkSettings.Networks}}', id],
+          'network-endpoint-aliases'));
+        const attached = networks['creditflow-qe_default'];
+        check(attached?.NetworkID === n.Id && attached.IPAddress === endpoint.IPv4Address.split('/')[0],
+          'DATABASE_NETWORK_REJECTED');
+        return { id, ip: attached.IPAddress, aliases: attached.Aliases };
+      });
+      const resolved = [...new Set(exec(['getent', 'hosts', 'postgres'], 'database-dns')
+        .split(/\r?\n/).map(line => line.trim().split(/\s+/)[0]))];
+      return { id: n.Id, name: n.Name, driver: n.Driver, project: n.Labels?.['com.docker.compose.project'],
+        endpoints, resolved };
+    },
+    connections: () => {
+      // Fixed read-only SQL over the inspected container's Unix socket: no DSN/password is an argument.
+      const sql = "SELECT coalesce(json_agg(json_build_object('client_addr',host(client_addr),'client_port',client_port,'datname',datname,'usename',usename)), '[]'::json) FROM pg_stat_activity WHERE backend_type='client backend' AND client_addr IS NOT NULL";
+      const sessions = JSON.parse(command(run, 'docker', ['exec', '-e', 'PGOPTIONS=-c default_transaction_read_only=on',
+        'creditflow-qe-postgres-1', 'psql', '-X', '-w', '-qAt', '-h', '/var/run/postgresql',
+        '-U', 'creditflow_app', '-d', 'creditflow', '-v', 'ON_ERROR_STOP=1', '-P', 'pager=off', '-c', sql], 'database-sessions'));
+      return { fds: exec(['sh', '-c', 'for f in /proc/1/fd/*; do readlink "$f" || :; done'], 'pid1-socket-inodes'),
+        tcp: exec(['cat', '/proc/1/net/tcp'], 'pid1-tcp'),
+        tcp6: exec(['cat', '/proc/1/net/tcp6'], 'pid1-tcp6'), sessions };
+    },
+    versions: () => versions(run),
+  };
+}
+function versions(run) {
   const workers = command(run, 'docker', ['ps', '--filter', 'label=com.docker.compose.project=creditflow-qe',
     '--format', '{{.Label "com.docker.compose.service"}}'], 'active-services').split(/\r?\n/);
   check(!workers.some(service => /^(verify|ui-verify|verify-public)$/.test(service)), 'ACTIVE_VERIFICATION_WORKER');
@@ -349,16 +527,29 @@ function preflight(run) {
   const javaVersion = java.match(/(?:openjdk|java) version "([0-9][0-9a-z.+_-]*)"/i)?.[1];
   const pgVersion = pg.match(/^postgres \(PostgreSQL\) ([0-9][0-9a-z.+_-]*)\s*$/i)?.[1];
   check(javaVersion && pgVersion, 'VERSION_METADATA_REJECTED');
-  return { api, postgres, versions: { node: process.version, dockerClient: docker.split('|')[0],
-    dockerServer: docker.split('|')[1], java: javaVersion, postgres: pgVersion },
-  imageProvenance: 'Observed fixed API image ID; this image has no verified embedded Git revision. Current HEAD/worktree hashes identify the harness source, not the image build source.' };
+  return { node: process.version, dockerClient: docker.split('|')[0],
+    dockerServer: docker.split('|')[1], java: javaVersion, postgres: pgVersion };
+}
+async function verifiedWorkload(run, client, observations = observationsFor(run)) {
+  validateDockerEndpoint(observations.daemon());
+  const { api, postgres } = observations.stack();
+  validateStack(run.root, api, postgres);
+  validateRuntime(api, observations.runtime());
+  validateNetwork(api, postgres, observations.network());
+  const health = await client.request('/actuator/health');
+  check(health.status === 200 && health.body?.status === 'UP', 'HEALTH_CHECK_FAILED');
+  const proof = validateConnections(api, postgres, observations.connections());
+  run.context.environment = { api: publicMetadata(api), postgres: publicMetadata(postgres),
+    versions: observations.versions(), databaseRelationship: { configurationVerified: true,
+      localDockerVerified: true, processVerified: true, networkAndDnsVerified: true, liveConnectionVerified: true, ...proof },
+    imageProvenance: 'Trusted local image and Docker observation, not image source attestation or a guarantee against concurrent external reconfiguration.' };
+  event(run, 'preflight', 'passed', 0);
+  await workload(run, client);
 }
 
 async function workload(run, client) {
   const accounts = [];
   run.context.progress = { accountsCreated: 0, roundsCompleted: 0, checkpoints: [] };
-  const health = await client.request('/actuator/health');
-  check(health.status === 200 && health.body?.status === 'UP', 'HEALTH_CHECK_FAILED');
   for (let i = 0; i < LIMITS.accounts; i++) {
     const response = await client.request('/api/v1/sandboxes', { body: {} });
     check(response.status === 201 && UUID.test(response.body?.accountId)
@@ -419,11 +610,12 @@ async function main(args = process.argv.slice(2)) {
     validateTarget(args.length ? args[1] : ORIGIN);
     lock = acquireLock(root, run.runId);
     run.context.sourceBefore = sourceState(run);
-    run.context.environment = preflight(run);
-    event(run, 'preflight', 'passed', 0);
     client = createClient({ started: run.started, signal: deadline.signal });
-    await workload(run, client);
-    run.context.environmentAfter = inspectStack(run);
+    await verifiedWorkload(run, client);
+    const after = inspectStack(run);
+    validateRuntime(after.api, observationsFor(run).runtime());
+    validateNetwork(after.api, after.postgres, observationsFor(run).network());
+    run.context.environmentAfter = { api: publicMetadata(after.api), postgres: publicMetadata(after.postgres) };
     check(isDeepStrictEqual(run.context.environmentAfter.api, run.context.environment.api)
       && isDeepStrictEqual(run.context.environmentAfter.postgres, run.context.environment.postgres),
     'STACK_CHANGED_DURING_RUN');
@@ -448,7 +640,8 @@ async function main(args = process.argv.slice(2)) {
 }
 
 module.exports = { validateTarget, cents, reconcile, createClient, history, checkReplayRace,
-  checkRejectedWrites, validateStack, acquireLock, releaseLock, createRun, finishRun };
+  checkRejectedWrites, validateStack, validateRuntime, validateNetwork, validateConnections, validateDockerEndpoint, verifiedWorkload,
+  acquireLock, releaseLock, createRun, finishRun };
 if (require.main === module) main().then(code => { process.exitCode = code; }).catch(() => {
   console.error('Bounded reliability could not write its local receipt.'); process.exitCode = 1;
 });

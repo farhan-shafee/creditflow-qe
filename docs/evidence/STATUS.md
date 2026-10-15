@@ -1,5 +1,7 @@
 # Execution evidence — engineering finish
 
+Latest review correction: [PR #4 stack guard](pr4-stack-guard.md) preserves POSIX path case and proves the effective local API/database relationship before workload POSTs. Original maintenance/release receipts below remain historical evidence.
+
 ## Current maintenance handoff — 2026-10-15
 
 The [maintenance receipt](maintenance-handoff.md) and [operator/dependency runbook](../maintenance-handoff.md) separate the new bounded local verification and interview handoff from earlier completed releases. Fresh read-only Railway/Neon settings and two HTTPS page checks are recorded. Current Vercel control-plane access and target billing/spend-control fields remain explicitly blocked or unavailable. No portfolio edit or public deployment occurred; earlier failure and release records remain historical evidence.

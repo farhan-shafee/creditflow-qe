@@ -7,3 +7,4 @@ mvnw text eol=lf
 # Keep indexed receipt byte hashes stable in Windows and Linux checkouts.
 docs/evidence/portfolio-lint-remediation/*.json text eol=lf
 docs/evidence/maintenance-20261015/*.json text eol=lf
+docs/evidence/pr4-stack-guard/*.json text eol=lf
