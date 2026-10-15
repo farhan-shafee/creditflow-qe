@@ -2,6 +2,8 @@
 
 A simulated credit-card ledger and independent Java quality engineering framework for hands-on financial-services interviews. Synthetic data only; no card numbers, real customers, settlement, or money movement.
 
+Try the [verified live demo](https://creditflow.farhan-shafee.com). Its isolated API and database sleep when idle; the measured first custom-domain account request took 17.4 seconds. See the [current completion/release record](docs/evidence/completion.md) for source commits, HTTPS, banking/UI checks and limitations. The [original custom-domain record](docs/evidence/custom-domain.md) remains historical evidence. The [earlier provider pilot](docs/evidence/provider-pilot.md) retains its historical evidence.
+
 ## Run the working system
 
 On Chopin, from `D:\Dev\Repos\creditflow-qe`:
@@ -27,7 +29,7 @@ Run these commands sequentially. The PowerShell entry point generates an ignored
 - Next.js16 / TypeScript command center with server-only API access, signed HttpOnly cookies, exact-origin writes, byte-limited JSON and safe retry/reconciliation flows.
 - Java Selenium and Java Playwright journeys; screenshots and redacted traces; Bruno collection; Jenkinsfile; GitHub Actions; Spotless, SpotBugs, JaCoCo, CycloneDX, OSV and Gitleaks.
 
-The verified implementation is pinned to [commit b688e17](https://github.com/farhan-shafee/creditflow-qe/tree/b688e172c86c6e9cb711da79a39244636d62615c) and its successful [complete GitHub Actions run #2](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38665882283). These links identify that tested revision. See [execution status](docs/evidence/STATUS.md), [PR #1](https://github.com/farhan-shafee/creditflow-qe/pull/1) and [all Actions runs](https://github.com/farhan-shafee/creditflow-qe/actions) for later changes and limitations. Public deployment is pending owner approval. Jenkins Groovy syntax can be parsed locally; no Jenkins server execution is claimed.
+The current frontend is [81fceff0](https://github.com/farhan-shafee/creditflow-qe/commit/81fceff035c5ad23e761f6a1c49196e488f24d58), validated by [both Actions jobs](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38789200927), with unchanged API [20c91f5](https://github.com/farhan-shafee/creditflow-qe/commit/20c91f5e10658ab4ce3ec7f2727c8a4934f5b314). [Current release evidence](docs/evidence/completion.md) records the promoted deployment and all 11 hosted UI/BFF tests passing after correcting the test transport deadline; the original failed run is retained. The [portfolio case study](https://farhan-shafee.com/work/creditflow-qe) is deployed from merged main source 5c52f226 and passed 19 public HTTPS/content checks plus two public browser journeys. Its production dependency audit has zero findings; five unpatched development-tool affected-package entries remain REVIEW. [Actual local Jenkins execution](docs/evidence/jenkins-execution.md) published 123 passing cases and separately ran 32 framework tests; the isolated controller was stopped after evidence export.
 
 ## Repository map
 
@@ -43,6 +45,6 @@ The verified implementation is pinned to [commit b688e17](https://github.com/far
 
 Each scope saves sanitized logs, immutable report snapshots and a manifest under `.work/evidence/runs/<scope>/<run-id>`. Manifests retain command outcomes, UTC timestamps, executed HEAD, PR head where available, source fingerprint and report hashes. Prior targets/raw diagnostics are preserved under ignored `.work/evidence/private/` and are never uploaded. `verify-evidence.py --all` rejects failed, missing, stale, changed or incomplete evidence across all five scopes. Source changes require fresh runs. Module `target` reports can be replaced by later scopes; use frozen snapshots for combined counts. Generated evidence, session credentials and databases are excluded from Git.
 
-Read the [domain and concurrency decisions](docs/architecture/core-design.md), [test architecture](docs/testing/strategy.md), [five-minute walkthrough](docs/interview-guide/five-minute-walkthrough.md), [coding practice](docs/interview-guide/technical-practice.md), [deployment readiness](docs/deployment-readiness.md) and [portfolio proposal](docs/portfolio-integration.md).
+Read the [domain and concurrency decisions](docs/architecture/core-design.md), [test architecture](docs/testing/strategy.md), [five-minute walkthrough](docs/interview-guide/five-minute-walkthrough.md), [coding practice](docs/interview-guide/technical-practice.md), [deployment readiness](docs/deployment-readiness.md) and [portfolio integration](docs/portfolio-integration.md).
 
 This project was built with AI assistance. It is intended to be understood, reproduced and defended personally. It does not represent employment achievements, banking settlement, regulatory compliance or a production financial platform.

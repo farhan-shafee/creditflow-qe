@@ -1,0 +1,44 @@
+{
+  "status": "REVIEW",
+  "portfolioParserSource": "82abba5ded1c2911ead71c842d7078c11bf21cfe",
+  "releasedPortfolioSource": "5c52f2265bf204cbb0a027c487794c57553f255d",
+  "productionAudit": {
+    "exitCode": 0,
+    "counts": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    }
+  },
+  "fullAudit": {
+    "exitCode": 1,
+    "counts": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 5,
+      "critical": 0,
+      "total": 5
+    },
+    "affectedPackageEntries": [
+      "@next/eslint-plugin-next",
+      "braces",
+      "eslint-config-next",
+      "fast-glob",
+      "micromatch"
+    ],
+    "rootAdvisory": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm"
+  },
+  "remediation": "Removed gray-matter and its older runtime YAML chain; anchored frontmatter extraction uses js-yaml 4.3.2. Existing six authored article objects remain identical.",
+  "remaining": "Unpatched upstream Next ESLint -> fast-glob -> micromatch -> braces development-tool chain. No override, glob adapter, lint-rule suppression or forced downgrade was applied.",
+  "unitTests": 42,
+  "fullBrowserTestsAtParserSource": 26,
+  "affectedBrowserTestsAtCopySource": 4,
+  "committedSourceFilesScanned": 99,
+  "gitleaksFindings": 0,
+  "originalFullAuditSha256": "68a95a1f064cd43b06e3b1e8a45d97ec0639743acf3061d38f69a4989550a44f",
+  "originalProductionAuditSha256": "e4b9eefbaae568fcf23745a3a0a679e124f8964181e2b15b449e82195b603c88"
+}

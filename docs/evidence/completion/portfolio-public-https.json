@@ -1,0 +1,91 @@
+{
+  "checkedAt": "2026-10-15T19:15:54.263Z",
+  "canonicalOrigin": "https://farhan-shafee.com",
+  "caseStudyUrl": "https://farhan-shafee.com/work/creditflow-qe",
+  "deploymentId": "dpl_3xfGi5VMGGFBtzvXddzH1e771ZYQ",
+  "sourceCommit": "5c52f2265bf204cbb0a027c487794c57553f255d",
+  "trustedTls": {
+    "authorized": true,
+    "protocol": "TLSv1.3"
+  },
+  "screenshotSha256": "8ebe78c28fa161da2737c0c5a97eae410ee3d4a63eef29c3eae1b078a41aba4d",
+  "checks": [
+    {
+      "name": "trusted HTTPS 200 /",
+      "passed": true
+    },
+    {
+      "name": "trusted HTTPS 200 /work",
+      "passed": true
+    },
+    {
+      "name": "trusted HTTPS 200 /work/creditflow-qe",
+      "passed": true
+    },
+    {
+      "name": "trusted HTTPS 200 /sitemap.xml",
+      "passed": true
+    },
+    {
+      "name": "trusted HTTPS 200 /llms.txt",
+      "passed": true
+    },
+    {
+      "name": "trusted HTTPS 200 /projects/creditflow-qe/payment.png",
+      "passed": true
+    },
+    {
+      "name": "trusted HTTPS 200 /work/aegisgraph",
+      "passed": true
+    },
+    {
+      "name": "trusted HTTPS 200 /work/creditops-ai",
+      "passed": true
+    },
+    {
+      "name": "trusted HTTPS 200 /work/tradeflow",
+      "passed": true
+    },
+    {
+      "name": "retired project remains 404",
+      "passed": true
+    },
+    {
+      "name": "homepage exposes approved fourth flagship",
+      "passed": true
+    },
+    {
+      "name": "public Work keeps approved project order",
+      "passed": true
+    },
+    {
+      "name": "public case study has canonical URL, real demo and limits",
+      "passed": true
+    },
+    {
+      "name": "public case displays actual scoped Jenkins execution",
+      "passed": true
+    },
+    {
+      "name": "sitemap and machine-readable index include new case study",
+      "passed": true
+    },
+    {
+      "name": "public original image matches reviewed screenshot",
+      "passed": true
+    },
+    {
+      "name": "www redirect preserves path and query",
+      "passed": true
+    },
+    {
+      "name": "linked demo remains reachable over trusted HTTPS",
+      "passed": true
+    },
+    {
+      "name": "public security headers retained",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

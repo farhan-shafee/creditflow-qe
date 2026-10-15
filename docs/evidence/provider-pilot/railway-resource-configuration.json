@@ -1,0 +1,83 @@
+{
+  "checkedAt": "2026-10-15T04:28:47.744Z",
+  "projectId": "d76d1a2a-17bb-42e2-b192-481a83f1cfab",
+  "environment": {
+    "id": "ea414395-69ad-4a40-bf74-61ffe0911649",
+    "name": "pilot"
+  },
+  "service": {
+    "id": "b6ba2644-1e82-471d-8e50-fe1c83e61b10",
+    "name": "banking-api",
+    "state": "live"
+  },
+  "latestDeployment": {
+    "id": "e0d833e4-2ed4-42a1-b32e-bfdd85bf22dd",
+    "status": "SUCCESS",
+    "createdAt": "2026-10-15T03:47:11.013Z",
+    "url": null
+  },
+  "config": {
+    "source": {
+      "repo": "farhan-shafee/creditflow-qe",
+      "branch": "feat/provider-pilot",
+      "commitSha": "20c91f5e10658ab4ce3ec7f2727c8a4934f5b314",
+      "rootDirectory": "/"
+    },
+    "networking": {
+      "serviceDomains": {
+        "banking-api-pilot.up.railway.app": {
+          "port": 8080
+        }
+      }
+    },
+    "build": {
+      "builder": "DOCKERFILE",
+      "buildEnvironment": "V3",
+      "dockerfilePath": "infrastructure/Dockerfile.api"
+    },
+    "deploy": {
+      "healthcheckPath": "/actuator/health/liveness",
+      "limitOverride": {
+        "containers": {
+          "cpu": 0.5,
+          "memoryBytes": 500000000
+        }
+      },
+      "healthcheckTimeout": 120,
+      "restartPolicyMaxRetries": 3,
+      "sleepApplication": true,
+      "useLegacyStacker": false,
+      "ipv6EgressEnabled": false,
+      "runtime": "V2",
+      "multiRegionConfig": {
+        "us-east4-eqdc4a": {
+          "numReplicas": 1
+        }
+      },
+      "drainingSeconds": 10,
+      "overlapSeconds": 0
+    }
+  },
+  "domains": {
+    "serviceDomains": [
+      {
+        "id": "4bd17c01-8587-49a2-a44c-00e8a5902516",
+        "domain": "banking-api-pilot.up.railway.app",
+        "targetPort": 8080
+      }
+    ],
+    "customDomains": []
+  },
+  "volumeCount": 0,
+  "variableNames": [
+    "CREDITFLOW_BIND_ADDRESS",
+    "CREDITFLOW_DB_PASSWORD",
+    "CREDITFLOW_DB_URL",
+    "CREDITFLOW_DB_USER",
+    "CREDITFLOW_PROVISION_KEY",
+    "CREDITFLOW_PUBLIC_MODE",
+    "CREDITFLOW_REQUEST_QUOTA",
+    "CREDITFLOW_SANDBOX_QUOTA",
+    "SPRING_FLYWAY_ENABLED"
+  ]
+}

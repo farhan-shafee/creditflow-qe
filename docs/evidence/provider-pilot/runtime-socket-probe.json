@@ -1,0 +1,15 @@
+{
+  "exitCode": 0,
+  "passed": true,
+  "evidence": {
+    "passed": true,
+    "role": "creditflow_runtime",
+    "externalTls": "TLSv1.3",
+    "verifyFull": true,
+    "backendSsl": false,
+    "allowedOperations": 3,
+    "forbiddenOperationsDenied": 4,
+    "fixtureRolledBack": true
+  },
+  "error": null
+}

@@ -1,0 +1,24 @@
+{
+  "changedAt": "2026-10-15T16:24:42.008Z",
+  "projectId": "prj_oKV8BBgmOOjtRaHGDErtWNOEETJ3",
+  "productionOrigin": "https://creditflow.farhan-shafee.com",
+  "type": "plain",
+  "target": [
+    "production"
+  ],
+  "otherVariableMetadataUnchanged": true,
+  "protectedPreviews": {
+    "deploymentType": "preview"
+  },
+  "resourceConfig": {
+    "fluid": true,
+    "buildMachineSelection": "fixed",
+    "elasticConcurrencyEnabled": false,
+    "functionDefaultMemoryType": "standard",
+    "functionDefaultRegions": [
+      "iad1"
+    ],
+    "functionDefaultTimeout": 30,
+    "buildMachineType": "basic"
+  }
+}

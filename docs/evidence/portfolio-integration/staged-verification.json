@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-10-15T18:11:37.883Z",
+  "deploymentId": "dpl_DQV4fVimiUPLNg11eFCVVZ6U6HUH",
+  "projectId": "prj_cogbj7rjEkWVtCzulTSr9byTFn58",
+  "sourceCommit": "9867fd2ccab55441165760ed67602e89bce76b3d",
+  "readyState": "READY",
+  "target": "production",
+  "publicAliasBeforePromotion": "dpl_3EWqdKQXqHLi1SARhqqr9nnYNe4C",
+  "checks": [
+    {
+      "name": "exact staged production commit READY",
+      "passed": true
+    },
+    {
+      "name": "canonical alias still on previous deployment",
+      "passed": true
+    },
+    {
+      "name": "staged homepage includes fourth flagship",
+      "passed": true
+    },
+    {
+      "name": "staged Work retains four flagships and four supporting projects in order",
+      "passed": true
+    },
+    {
+      "name": "staged case study has real demo and visible boundaries",
+      "passed": true
+    },
+    {
+      "name": "staged machine-readable index includes CreditFlow",
+      "passed": true
+    },
+    {
+      "name": "staged payment image equals reviewed source bytes",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

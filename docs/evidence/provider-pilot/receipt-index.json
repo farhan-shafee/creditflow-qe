@@ -1,0 +1,159 @@
+{
+  "createdAt": "2026-10-15T04:31:05.419Z",
+  "backendSource": "20c91f5e10658ab4ce3ec7f2727c8a4934f5b314",
+  "frontendSource": "b3209d36d979b9b2c3bfe1850882db3481839e65",
+  "files": [
+    {
+      "file": "canonical-spotless.json",
+      "bytes": 134,
+      "sha256": "4212eeadeadaaa300558b4ac3cefd0d7f059b275f313af5d3d56ca37e22d221d"
+    },
+    {
+      "file": "ci-artifact-verification.json",
+      "bytes": 6020,
+      "sha256": "f4d8d14ea26528c7aa4d5c300b0d1e2861eac60c25eca5412e0f527e46830847"
+    },
+    {
+      "file": "cloud-api-smoke-attempt1.json",
+      "bytes": 2503,
+      "sha256": "39e61fb54ee3bd8e063bc4172e9b3e93f31152e2865dbb1056716c369aceec1b"
+    },
+    {
+      "file": "cloud-api-smoke.json",
+      "bytes": 2977,
+      "sha256": "a6d369c6a259d382bebd409d2325050cb14774acca378d8cb9599d395369968a"
+    },
+    {
+      "file": "dns-proposal.json",
+      "bytes": 866,
+      "sha256": "4db176ddf2d8b34e9e30e7ba7f3cb951b32ee353aba8b1c23ea568a310e2ba1d"
+    },
+    {
+      "file": "export-byte-verification.json",
+      "bytes": 1014,
+      "sha256": "90121a268f98d4ede3b29c1e5b8ddabccd6eba25f09a687dc8cd5f18a8ed90ed"
+    },
+    {
+      "file": "frontend-cold-start-fixed.json",
+      "bytes": 1131,
+      "sha256": "3180102d5f9e77e2c34341554b5500a4f673634eddcde93c57ef8d898254f51f"
+    },
+    {
+      "file": "frontend-cold-start.json",
+      "bytes": 641,
+      "sha256": "29ab71efc2dd00ca19eb3ff71888674d4c01e6d7665aab61e6c701c229ff6db9"
+    },
+    {
+      "file": "metrics.json",
+      "bytes": 1092,
+      "sha256": "4b03c618d2d10970f5a756406ce671ffc7c8cd696a1d86bb6cdbbc655ae32aa3"
+    },
+    {
+      "file": "payment.png",
+      "bytes": 365842,
+      "sha256": "2b3dbb5b5c86a354cc098857a02aca4e23002f7d1c8346eb7754f9d8ff68b171"
+    },
+    {
+      "file": "persistence-after.json",
+      "bytes": 413,
+      "sha256": "74ad6405f3c819965a64ce742c22592f6058c4348853fa4941cdd3577e92c179"
+    },
+    {
+      "file": "persistence-before.json",
+      "bytes": 475,
+      "sha256": "a4c3b120b389bae759e88cccf65d5056850940ff22f13901949d303e5e168c0b"
+    },
+    {
+      "file": "public-ui-canonical.json",
+      "bytes": 1039,
+      "sha256": "3ec046bb5f78674815b52ce8aeeee5087aed023130a18a84c966648ae4bd5c86"
+    },
+    {
+      "file": "public-ui.json",
+      "bytes": 1040,
+      "sha256": "2ba161d80e646d3560b16a5874b8eed5309fb2c1a376b098fb2898f20ac12e30"
+    },
+    {
+      "file": "railway-original-build-failure.json",
+      "bytes": 283,
+      "sha256": "86d5e7329fab96374a67d5eebf51393a5ac044a4b752b798b114a4130dd7be8b"
+    },
+    {
+      "file": "railway-resource-configuration.json",
+      "bytes": 2062,
+      "sha256": "c9af61eca3fddb9f06904744ec9378bb087a2d3d9f0926819b808fa9c2310b23"
+    },
+    {
+      "file": "restart-evidence.json",
+      "bytes": 402,
+      "sha256": "e710dee13112ed56211d413c1475a24eaf0fc56260fd8b735dbbebf613e1bf9c"
+    },
+    {
+      "file": "runtime-socket-probe.json",
+      "bytes": 302,
+      "sha256": "9c7128c8cb71b080066ad1d105bac43063bac8ea4622f63adc95900b1f1c5cba"
+    },
+    {
+      "file": "unused-role-probe.json",
+      "bytes": 57,
+      "sha256": "f0fdf5bd8128db73792704f27e4d2232eff10829517a91a837124f6aff339847"
+    },
+    {
+      "file": "vercel-environment-evidence.json",
+      "bytes": 778,
+      "sha256": "f6f1bfc0d667e624a46b2efd37f4d1cacf4194ef260d3fb7433084f740c752c0"
+    },
+    {
+      "file": "vercel-project-configuration.json",
+      "bytes": 538,
+      "sha256": "4f039c98eb52db9822dc389a188d7ea409c6a315e494e9b6aecc2877eae6e213"
+    },
+    {
+      "file": "vercel-ready.json",
+      "bytes": 457,
+      "sha256": "541d27bd2ecb2c7211ccca87df6625d65df1777d73593802c85cbb3d831325c1"
+    }
+  ],
+  "retainedLocalArtifacts": [
+    {
+      "privateLocalPath": ".work/cloud-pilot/cloud-api-smoke.cjs",
+      "sha256": "f56216ded6f090cc059e6fe4529d0fbd44f11c3023a6c6a88fbd5875d8323ebb"
+    },
+    {
+      "privateLocalPath": ".work/cloud-pilot/probe-fixed-cold-start.cjs",
+      "sha256": "3372126848dd8ab8421630eb91bfefde4bbe745da446b59f152f9c692437dd40"
+    },
+    {
+      "privateLocalPath": ".work/cloud-pilot/probe-persistence.cjs",
+      "sha256": "00ac3f729e62ee4fd6e97408ad9b8f53f342cef1ae4898ef31f1a2f5a8e1745c"
+    },
+    {
+      "privateLocalPath": ".work/cloud-pilot/run-public-ui-canonical.cjs",
+      "sha256": "db1a40a3659900b55aabcb1bf32a4f874eb595bb20bf7abe08065fe09d046ec1"
+    },
+    {
+      "privateLocalPath": ".work/cloud-pilot/public-ui.log",
+      "sha256": "a502757deed3eac1eaa2c038b7f6c836937796955adf07d18277095487d2ac6f"
+    },
+    {
+      "privateLocalPath": ".work/cloud-pilot/public-ui-canonical.log",
+      "sha256": "b9a63db00cb6718a499bc5a2a994d97d26003de27cdd8f857846d3629c941ee0"
+    },
+    {
+      "privateLocalPath": ".work/cloud-pilot/canonical-spotless.log",
+      "sha256": "d94ec5ad86197405ba6fe5f0b16eb4e54e2f1e0de16a4ad6422887d00d4e6f5e"
+    },
+    {
+      "privateLocalPath": ".work/cloud-pilot/runtime-probe.json",
+      "sha256": "66ea89ab2a1fbec349ebfa2d481b0e0e541a0d04cb10489470cb4ecc5c8846e8"
+    },
+    {
+      "privateLocalPath": ".work/cloud-pilot/runtime-socket-probe.json",
+      "sha256": "9c7128c8cb71b080066ad1d105bac43063bac8ea4622f63adc95900b1f1c5cba"
+    },
+    {
+      "privateLocalPath": ".work/cloud-pilot/web-node24-overlay.json",
+      "sha256": "70393fc7be493c67480ddf36f4bc026c9477050aa83d041cf866f5d79604a704"
+    }
+  ]
+}

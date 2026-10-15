@@ -1,0 +1,102 @@
+{
+  "finishedAt": "2026-10-15T19:07:15.311Z",
+  "head": "2c48fb1a4bf8b47a7a616d6ce28765e03e91fab6",
+  "branch": "feat/creditflow-portfolio",
+  "pushed": true,
+  "workingTreeClean": true,
+  "changedFileHashes": [
+    {
+      "file": ".vercelignore",
+      "blob": "53101a6f927b930936fd12c18e59354a69ec6f65",
+      "sha256": "52e755557cff9f0b0661f19c3ebaa66abcba5d8feb84e8ee08c325fc1dd4c7a1"
+    },
+    {
+      "file": "README.md",
+      "blob": "92199e375a4588855b2f956c587212403fd11d88",
+      "sha256": "2e11a53288e9eadcdc6d892e14283cabc3783d33e3335c87248a0552c7e934d3"
+    },
+    {
+      "file": "docs/releases/2026-10-15-creditflow-qe.md",
+      "blob": "2881020dfaecb100a5be8e6b66b9508569a5bcba",
+      "sha256": "4c2e01b3ede9d5d4d66fd1fdf8564cc538427659cdc6c25f256bda164df5b542"
+    },
+    {
+      "file": "docs/releases/2026-10-15-frontmatter-dependencies.md",
+      "blob": "129c88986c27df440ddf1b3ceec6d3ee74ae14b3",
+      "sha256": "a9c2c353f150166931c7e63f097048a752fee667496ffc40e8ab87e1fed48880"
+    },
+    {
+      "file": "package-lock.json",
+      "blob": "468f31e72496e23dd008617feeefb73db325bdb1",
+      "sha256": "efc1c550963ca8f541d3128dac33fc80251b4d049dd80d4de0f8302bbd3cef5e"
+    },
+    {
+      "file": "package.json",
+      "blob": "692ff9f3cc3ab041f5d5aac34b4daf2d2b76b5fb",
+      "sha256": "69755fa49137871830d14cfbbdfd8ac06185ea31f2119cb335da428f8029bfcb"
+    },
+    {
+      "file": "public/projects/creditflow-qe/payment.png",
+      "blob": "e713da7830e05105963c82aa8db4801e9ed3f1ff",
+      "sha256": "8ebe78c28fa161da2737c0c5a97eae410ee3d4a63eef29c3eae1b078a41aba4d"
+    },
+    {
+      "file": "src/app/llms.txt/route.ts",
+      "blob": "cf6acb72f94895722613871bee2070b87082658b",
+      "sha256": "abf7ae3ffc5b385e15d3b4dca733cfb7777f894c4a2f66fd434ffda881609431"
+    },
+    {
+      "file": "src/app/work/page.tsx",
+      "blob": "5829f40fb4e4fa6262f54eb8678bfe4956a906cc",
+      "sha256": "f5d7dc244c0d92375f0701f6750b90642dbfff8bf928da30768bee2c63f01bf0"
+    },
+    {
+      "file": "src/data/creditflow-project.ts",
+      "blob": "134d94aec30168a1cb431c5f9dee1f26c1791a3b",
+      "sha256": "df757333943e548b66f1269e9a27556c369e259c49843137c7490c8880e7514f"
+    },
+    {
+      "file": "src/data/project-evidence.ts",
+      "blob": "c1ee778b70628bf7ed0b95c17f7dac1832348459",
+      "sha256": "1eb645510c390aaf2ac8694f3418933bb8ffa95fd223acf12b9cdd24d4901dde"
+    },
+    {
+      "file": "src/data/projects.ts",
+      "blob": "baffd2118345b1a78c47be4060a2a098b89f8884",
+      "sha256": "d0554a50fc85d61f1af965b58d46fd0a73545638834372d8c65d13ed892c747a"
+    },
+    {
+      "file": "src/lib/writing.ts",
+      "blob": "8f2ac13d81c11e31de99317535594a555581d86d",
+      "sha256": "08d3d7a4ab2d9908e38e0bcdba489d979ffdbc9a5570abbb53c84808958fa21c"
+    },
+    {
+      "file": "tests/browser/site.spec.ts",
+      "blob": "baa2a891989844ec134a92f0f0df789982c72f7e",
+      "sha256": "683a6debe3be8100a73c37e17322cc4d00cf54ca3e607261c34d9ddea3faa74b"
+    },
+    {
+      "file": "tests/frontmatter.test.ts",
+      "blob": "67facb8b8b401929d6ba1d590e13774836fda230",
+      "sha256": "0bde276b76bf71eb20b88295f6c6035a914c338b52090ba697c883e8d4367539"
+    },
+    {
+      "file": "tests/portfolio-policy.ts",
+      "blob": "bce4e79355e5eb0765af2dff0eeee1c278641789",
+      "sha256": "42aeb381c46d9b67b3421ef78dde53699251cb8d78a65c1246894928659bcf80"
+    },
+    {
+      "file": "tests/projects.test.ts",
+      "blob": "eaa7e794bbfb44c4d690fe9533c5bfa5f1f537fb",
+      "sha256": "15dde869fff5d67e364050b17f6c077316dce2c051ae6d919c8f6dbbf0f0fe09"
+    }
+  ],
+  "sourceFilesScanned": 99,
+  "gitleaksFindings": 0,
+  "unitTests": 42,
+  "fullBrowserTestsAtParserSource": 26,
+  "affectedBrowserTestsAtCopySource": 4,
+  "parserSource": "82abba5ded1c2911ead71c842d7078c11bf21cfe",
+  "copySource": "2d3020dc3310f99348587650c0642d2cad756af7",
+  "lastChange": "Source-only receipt wording: archived XML, not claimed all published."
+}

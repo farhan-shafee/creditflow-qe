@@ -1,0 +1,14 @@
+{
+  "deploymentId": "e0d833e4-2ed4-42a1-b32e-bfdd85bf22dd",
+  "status": "SUCCESS",
+  "events": [
+    {
+      "timestamp": "2026-10-15T04:23:03.330819950Z",
+      "message": "Tomcat started on port 8080 (http) with context path '/'"
+    },
+    {
+      "timestamp": "2026-10-15T04:23:03.334821941Z",
+      "message": "Started BankingApplication in 10.006 seconds (process running for 11.401)"
+    }
+  ]
+}

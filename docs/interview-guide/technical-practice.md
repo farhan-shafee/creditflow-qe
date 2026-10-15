@@ -34,7 +34,7 @@ Cypress offers a JavaScript/TypeScript browser test runner and command queue; Fi
 
 ## Maven, JUnit, TestNG and CI
 
-Trace reactor module dependencies, Surefire vs Failsafe and Maven lifecycle. Explain why TestNG has its own module/provider. This implementation uses Boot's current Jupiter generation, not a fabricated JUnit 5 version claim. Jenkins requires a real agent/server run before its pipeline can be called verified.
+Trace reactor module dependencies, Surefire vs Failsafe and Maven lifecycle. Explain why TestNG has its own module/provider. This implementation uses Boot's current Jupiter generation, not a fabricated JUnit 5 version claim. Jenkins requires a real agent/server run before its pipeline can be called verified. [This repository records one actual local controller run](../evidence/jenkins-execution.md): 123 published cases and 32 separate framework tests, with browser/web/Bruno covered separately in Actions. Explain the exact source and archived hashes, rather than claiming an always-on service.
 
 ## Debugging drill
 

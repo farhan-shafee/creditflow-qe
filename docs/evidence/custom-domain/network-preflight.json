@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-10-15T16:25:08.639Z",
+  "host": "creditflow.farhan-shafee.com",
+  "cname": [
+    "7686ee5ba0d5ae26.vercel-dns-016.com"
+  ],
+  "https": {
+    "status": 200,
+    "tlsAuthorized": true,
+    "protocol": "TLSv1.3",
+    "subject": "creditflow.farhan-shafee.com",
+    "subjectAltName": "DNS:creditflow.farhan-shafee.com",
+    "validTo": "Jan 13 15:26:11 2027 GMT"
+  }
+}

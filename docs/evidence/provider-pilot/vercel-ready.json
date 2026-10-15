@@ -1,0 +1,15 @@
+{
+  "id": "dpl_BY8Zuk3AiYDb5GGixUVjmwqZeL82",
+  "url": "creditflow-qe-pilot-ccfmc0p7g-cyberbit-solutions.vercel.app",
+  "readyState": "READY",
+  "target": "production",
+  "aliases": [
+    "creditflow-qe-pilot.vercel.app",
+    "creditflow-qe-pilot-cyberbit-solutions.vercel.app",
+    "creditflow-qe-pilot-git-feat-provider-pilot-cyberbit-solutions.vercel.app"
+  ],
+  "regions": [
+    "iad1"
+  ],
+  "sourceCommit": "b3209d36d979b9b2c3bfe1850882db3481839e65"
+}

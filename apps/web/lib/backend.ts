@@ -29,5 +29,5 @@ export async function backend(path: string, options: RequestInit = {}): Promise<
   if (process.env.NODE_ENV === 'production' && process.env.CREDITFLOW_LOCAL_DEMO !== 'true' && (!key || key.length < 32)) throw new Error('API server key required');
   const headers = new Headers(options.headers);
   if (key) headers.set('X-Sandbox-Provision-Key', key);
-  return fetch(new URL(path, target), { ...options, headers, cache: 'no-store', signal: AbortSignal.timeout(8000) });
+  return fetch(new URL(path, target), { ...options, headers, cache: 'no-store', signal: AbortSignal.timeout(20000) });
 }

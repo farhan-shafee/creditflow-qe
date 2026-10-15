@@ -75,7 +75,10 @@ class PlaywrightJourneyTest {
                     response.headers().get("idempotency-replayed"),
                     json.toType(response.text(), Map.class)));
             if (posts.size() == 1) route.abort();
-            else route.fulfill(new Route.FulfillOptions().setResponse(response));
+            // Java fulfills asynchronously; copy the live body before finally disposes its handle.
+            else
+              route.fulfill(
+                  new Route.FulfillOptions().setResponse(response).setBodyBytes(response.body()));
           } finally {
             response.dispose();
           }

@@ -1,34 +1,13 @@
-# Prepared portfolio integration — not applied
+# Portfolio integration — merged, deployed and verified
 
-## Verified destination
+The approved fourth flagship is live at https://farhan-shafee.com/work/creditflow-qe. The repository and Vercel project are named farhanshafee.com; the actual public domain is the hyphenated farhan-shafee.com.
 
-Existing repository: `farhan-shafee/farhanshafee.com`, local `D:\Dev\Repos\farhanshafee.com`. The Vercel project name is `farhanshafee.com`, but its verified custom domains are **farhan-shafee.com** and **www.farhan-shafee.com**. The project also has `farhanshafeecom.vercel.app`. The connected Cloudflare zone for farhan-shafee.com is active; no exact creditflow.farhan-shafee.com record exists in the read-only audit.
+[Portfolio PR #1](https://github.com/farhan-shafee/farhanshafee.com/pull/1) is merged as 5c52f2265bf204cbb0a027c487794c57553f255d. Its source tree equals the tested feature head 2c48fb1a4bf8b47a7a616d6ce28765e03e91fab6. Native Git deployment dpl_3xfGi5VMGGFBtzvXddzH1e771ZYQ reached READY and owns the existing public aliases. The original local main checkout was fast-forwarded cleanly. [Current completion evidence](evidence/completion.md) supersedes the [initial portfolio snapshot](evidence/portfolio-integration.md), which remains intact.
 
-No existing portfolio source, deployment, or DNS record was modified.
+The existing card, inspection panel, case-study route and design patterns were reused. AegisGraph, CreditOps AI, TradeFlow and CreditFlow QE remain the four flagships, followed by the same four supporting projects. Existing pages and articles retain their behavior. The original real synthetic-payment screenshot is unchanged. The [applied card JSON](portfolio-creditflow-card.json) records the actual main merge and deployment.
 
-## Existing implementation pattern
+The later authorized follow-up replaced inherited runtime frontmatter dependencies and updated Jenkins copy to reflect the actual local controller run, with 123 published cases and 32 separate framework tests. It retains synthetic-data, AI-assistance, cold-start, sustained-load and availability limitations.
 
-- `src/data/projects.ts` defines the shared Project type and imports CreditOps and TradeFlow records.
-- `src/components/project-card.tsx` uses the shared `flagship` presentation, selected evidence links, optional reviewed screenshot, and an existing `/work/{slug}` case-study route.
-- `src/app/page.tsx` uses `getFeaturedProjects()` and the existing card component.
-- `src/app/work/page.tsx` explicitly selects flagship slugs; the approved change must add CreditFlow to that list rather than inventing a fifth flagship or restructuring other projects.
+Validation: 42 unit tests; 26 full local browser tests at the parser revision and 4 affected checks after the Jenkins-copy update; build, TypeScript, ESLint and Prettier; 99-file Gitleaks scan with 0 findings. Ten protected-preview checks, 19 public HTTPS/content checks and two mobile/desktop public journeys passed. Production npm audit is clean; full audit remains REVIEW with five unpatched high-severity development-tool affected-package entries in the upstream Next ESLint/fast-glob/micromatch/braces chain. No override or lint suppression masks them.
 
-## Proposed fourth flagship
-
-| Field | Proposed value |
-|---|---|
-| title | CreditFlow QE |
-| slug | creditflow-qe |
-| status | Active; update only from actual release evidence |
-| category | Financial systems / Quality engineering |
-| kind | personal |
-| description | A synthetic credit-card ledger with transactional PostgreSQL state, independently tested through Java, Cucumber and REST Assured. |
-| technologies | Java21, Spring Boot, PostgreSQL, Cucumber, REST Assured, Jupiter, TestNG, Selenium, Playwright, Next.js, Maven, GitHub Actions |
-| GitHub | https://github.com/farhan-shafee/creditflow-qe |
-| live URL | Add https://creditflow.farhan-shafee.com only after its approved deployment is verified |
-| featured / visibility | true / public |
-| inspection facts | Exact money, original receipt replay, account ownership, rollback and concurrent updates; attach only executed results |
-
-Create a dedicated `src/data/creditflow-project.ts` following the existing TradeFlow pattern, import it into projects.ts, append it to the flagship selection, and reuse the shared card/case-study components. Use the reviewed screenshot from the real local UI test once available; do not use generated dashboard imagery as execution evidence.
-
-The intended flagship sequence remains AegisGraph, CreditOps AI, TradeFlow, CreditFlow QE. Preserve all other project content and existing routes. This proposal requires owner approval after CreditFlow is validated and deployed.
+No plan, resource limit, DNS, credential, system software or unrelated project was changed by this follow-up. Future unrelated changes remain outside the completed scope.

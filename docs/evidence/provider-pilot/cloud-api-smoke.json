@@ -1,0 +1,131 @@
+{
+  "startedAt": "2026-10-15T03:52:28.673Z",
+  "origin": "https://banking-api-pilot.up.railway.app",
+  "sourceCommit": "20c91f5e10658ab4ce3ec7f2727c8a4934f5b314",
+  "checks": [
+    {
+      "name": "public HTTPS liveness",
+      "passed": true,
+      "durationMs": 179
+    },
+    {
+      "name": "public machine-readable API contract",
+      "passed": true,
+      "durationMs": 62
+    },
+    {
+      "name": "readiness rejects missing server key",
+      "passed": true,
+      "durationMs": 33
+    },
+    {
+      "name": "sandbox creation rejects missing server key",
+      "passed": true,
+      "durationMs": 95
+    },
+    {
+      "name": "authenticated database readiness",
+      "passed": true,
+      "durationMs": 108
+    },
+    {
+      "name": "fresh synthetic account",
+      "passed": true,
+      "durationMs": 126
+    },
+    {
+      "name": "account requires its bearer credential",
+      "passed": true,
+      "durationMs": 93
+    },
+    {
+      "name": "initial account reconciliation",
+      "passed": true,
+      "durationMs": 47
+    },
+    {
+      "name": "purchase posts exact decimal amount",
+      "passed": true,
+      "durationMs": 143
+    },
+    {
+      "name": "payment reduces outstanding balance",
+      "passed": true,
+      "durationMs": 146
+    },
+    {
+      "name": "identical payment replays original receipt",
+      "passed": true,
+      "durationMs": 133
+    },
+    {
+      "name": "conflicting idempotency request is rejected",
+      "passed": true,
+      "durationMs": 123
+    },
+    {
+      "name": "zero amount has structured validation error",
+      "passed": true,
+      "durationMs": 93
+    },
+    {
+      "name": "overpayment is rejected",
+      "passed": true,
+      "durationMs": 124
+    },
+    {
+      "name": "insufficient credit is rejected",
+      "passed": true,
+      "durationMs": 125
+    },
+    {
+      "name": "unexpected request fields are rejected",
+      "passed": true,
+      "durationMs": 96
+    },
+    {
+      "name": "failed requests preserve financial state",
+      "passed": true,
+      "durationMs": 112
+    },
+    {
+      "name": "ledger has exactly two ordered committed entries",
+      "passed": true,
+      "durationMs": 67
+    },
+    {
+      "name": "second isolated synthetic account",
+      "passed": true,
+      "durationMs": 136
+    },
+    {
+      "name": "foreign account credential is rejected",
+      "passed": true,
+      "durationMs": 118
+    },
+    {
+      "name": "concurrent purchases cannot overspend",
+      "passed": true,
+      "durationMs": 152
+    },
+    {
+      "name": "concurrent transaction state reconciles",
+      "passed": true,
+      "durationMs": 219
+    },
+    {
+      "name": "nonexistent account returns controlled error",
+      "passed": true,
+      "durationMs": 106
+    },
+    {
+      "name": "oversized request is rejected",
+      "passed": true,
+      "durationMs": 82
+    }
+  ],
+  "passed": true,
+  "passedCount": 24,
+  "failedCount": 0,
+  "endedAt": "2026-10-15T03:52:31.406Z"
+}

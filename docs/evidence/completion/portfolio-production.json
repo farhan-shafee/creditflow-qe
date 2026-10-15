@@ -1,0 +1,31 @@
+{
+  "verifiedAt": "2026-10-15T19:15:40.892Z",
+  "sourceCommit": "5c52f2265bf204cbb0a027c487794c57553f255d",
+  "testedFeatureHead": "2c48fb1a4bf8b47a7a616d6ce28765e03e91fab6",
+  "sourceTree": "18bd687834f65af76ec952d6d14cb93920edfc05",
+  "deploymentId": "dpl_3xfGi5VMGGFBtzvXddzH1e771ZYQ",
+  "url": "farhanshafee-fihcx629f-cyberbit-solutions.vercel.app",
+  "readyState": "READY",
+  "target": "production",
+  "canonicalOrigin": "https://farhan-shafee.com",
+  "caseStudyUrl": "https://farhan-shafee.com/work/creditflow-qe",
+  "aliases": [
+    "farhan-shafee.com",
+    "www.farhan-shafee.com",
+    "farhanshafeecom.vercel.app"
+  ],
+  "merge": {
+    "headRefOid": "2c48fb1a4bf8b47a7a616d6ce28765e03e91fab6",
+    "mergeCommit": {
+      "oid": "5c52f2265bf204cbb0a027c487794c57553f255d"
+    },
+    "mergedAt": "2026-10-15T19:14:14Z",
+    "state": "MERGED",
+    "url": "https://github.com/farhan-shafee/farhanshafee.com/pull/1"
+  },
+  "previewChecks": 10,
+  "configurationPreserved": true,
+  "localMainFastForwarded": true,
+  "workingTreeClean": true,
+  "passed": true
+}

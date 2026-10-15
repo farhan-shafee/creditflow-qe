@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-10-15T18:15:41.964Z",
+  "deploymentId": "dpl_DQV4fVimiUPLNg11eFCVVZ6U6HUH",
+  "source": "Bounded authenticated owner CLI request-log sample",
+  "limit": 100,
+  "records": 43,
+  "statuses": {
+    "200": 42,
+    "404": 1
+  },
+  "fiveXx": 0,
+  "interpretation": "Point-in-time request sample, not sustained-load or availability evidence"
+}

@@ -1,0 +1,10 @@
+{
+  "deploymentId": "16220617-cb9e-4ab7-8dc1-3b1838407000",
+  "status": "FAILED",
+  "build": [
+    {
+      "timestamp": "2026-10-15T03:37:11.347104164Z",
+      "message": "dockerfile invalid: flag '--mount=type=cache,target=/root/.m2' is missing an id argument at Line 4"
+    }
+  ]
+}

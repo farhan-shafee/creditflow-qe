@@ -1,0 +1,12 @@
+{
+  "id": "dpl_F6d4kYaLpdojbwBQ8aKUDKNmNkbe",
+  "state": "READY",
+  "commit": "39e1728e6aca03f1e9c3d435a028e0316542edce",
+  "aliases": [
+    "creditflow.farhan-shafee.com",
+    "creditflow-qe-pilot.vercel.app",
+    "creditflow-qe-pilot-cyberbit-solutions.vercel.app",
+    "creditflow-qe-pilot-git-feat-provider-pilot-cyberbit-solutions.vercel.app"
+  ],
+  "target": "production"
+}

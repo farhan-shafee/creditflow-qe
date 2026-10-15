@@ -1,5 +1,35 @@
 # Execution evidence — engineering finish
 
+## Current completion follow-up — 2026-10-15
+
+**TESTED / DEPLOYED / VERIFIED.** [Current source-bound completion record](completion.md): frontend 81fceff0 / Vercel dpl_HQsUSUS6ag68W4Nq2jDNG8e6tCi8; portfolio main 5c52f226 / Vercel dpl_3xfGi5VMGGFBtzvXddzH1e771ZYQ. All 11 hosted UI/BFF tests passed after the documented deadline correction. Portfolio: 42 unit, 26 full browser and 4 affected browser checks; 10 preview, 19 public HTTPS checks and 2 public journeys passed. Production dependency audit 0; five upstream development-tool affected-package entries remain REVIEW. Core and portfolio PRs are merged; final provider/release PR #2 checks track the final documentation/test revision. Historical records below describe their original timestamps.
+
+## Actual local Jenkins execution — 2026-10-15
+
+**TESTED / VERIFIED.** [The Jenkins execution receipt](jenkins-execution.md) binds an actual Jenkins 2.580.1 build to source 47984ef3:123 published passing cases,32 separate framework tests,147 matched report/log hashes and13 XML reports with0 failures/errors/skips. The current Jenkinsfile blob is unchanged. A separate bounded local 204-request observation passed; capacity/SLA remain unverified.
+
+## Historical initial portfolio integration — 2026-10-15
+
+**DEPLOYED / VERIFIED.** [The fourth flagship is live](https://farhan-shafee.com/work/creditflow-qe). [The integration receipt](portfolio-integration.md) records portfolio commit 9867fd2ccab55441165760ed67602e89bce76b3d, Vercel dpl_DQV4fVimiUPLNg11eFCVVZ6U6HUH, 37 unit tests, 26 browser tests plus 5 expanded checks, 7 staged checks, 18 public HTTPS checks and 2 public UI journeys. Remaining portfolio npm advisories are explicitly REVIEW. CreditFlow application services and DNS were unchanged.
+
+## Playwright fixture correction — 2026-10-15
+
+The final documentation CI exposed an asynchronous response-disposal race in the lost-response test fixture. [The failure and correction receipt](playwright-response-lifetime.md) preserves the failed run and records the focused recovery plus all 11 local UI/BFF tests passing with assertions unchanged. Fresh correction-commit CI is tracked by PR #2; deployed application services remain unchanged.
+
+## Historical initial custom-domain release — 2026-10-15
+
+**DEPLOYED / VERIFIED** at https://creditflow.farhan-shafee.com. [The domain receipt](custom-domain.md) records frontend 39e1728 / Vercel dpl_F6d4kYaLpdojbwBQ8aKUDKNmNkbe, unchanged API 20c91f5, the exact single CNAME, trusted HTTPS, 5 cold-start checks (17.4 seconds), 10 banking checks and 11 hosted UI/BFF tests with Spotless passing. The old provider URL redirects with 308.
+
+The origin update preserved existing secrets, protected previews and resource settings. The later approved portfolio integration is verified above; unused-role deletion remains unapplied. The historical records below retain their original component SHAs and timestamps.
+
+## Historical provider-URL pilot — 2026-10-15
+
+**DEPLOYED / VERIFIED** at https://creditflow-qe-pilot.vercel.app. [The cloud release record](provider-pilot.md) identifies API commit 20c91f5 and frontend commit b3209d3, exact provider deployment IDs, 24 hosted API checks, the 14.8-second true cold start, restart persistence, and the 11-test successful hosted UI/Spotless run. Both jobs passed in [Actions 38680627735](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38680627735); all 174 downloaded report/log hashes matched.
+
+At this historical pilot timestamp, DNS and portfolio changes were unapplied; the later verified releases are linked above. Jenkins server execution and sustained-load/SLA claims remain unverified. The historical engineering finish below retains its original provenance; its pre-deployment statements describe that earlier point in time.
+
+## Historical engineering finish
+
 The required [GitHub Actions run #2](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38665882283) passed completely for implementation commit [`b688e172c86c6e9cb711da79a39244636d62615c`](https://github.com/farhan-shafee/creditflow-qe/commit/b688e172c86c6e9cb711da79a39244636d62615c). Both [core](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38665882283/job/116197623096) and [browser](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38665882283/job/116197623278) jobs succeeded. The same engineering finish passed locally on 2026-10-14 (America/New_York), using project Java21/Maven3.9.11 containers, actual PostgreSQL and local Java browser drivers.
 
 ## Verified implementation and CI provenance

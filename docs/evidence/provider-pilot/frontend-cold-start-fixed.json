@@ -1,0 +1,43 @@
+{
+  "startedAt": "2026-10-15T04:22:18.384Z",
+  "origin": "https://creditflow-qe-pilot.vercel.app",
+  "prestate": {
+    "observedAt": "2026-10-15T04:22:12.947Z",
+    "backendState": "SLEEPING",
+    "databaseState": "idle",
+    "backendDeploymentId": "e0d833e4-2ed4-42a1-b32e-bfdd85bf22dd",
+    "backendSourceCommit": "20c91f5e10658ab4ce3ec7f2727c8a4934f5b314",
+    "frontendDeploymentId": "dpl_BY8Zuk3AiYDb5GGixUVjmwqZeL82",
+    "frontendSourceCommit": "b3209d36d979b9b2c3bfe1850882db3481839e65"
+  },
+  "backendWaitBudgetMs": 20000,
+  "functionBudgetSeconds": 30,
+  "checks": [
+    {
+      "name": "Public HTTPS dashboard",
+      "passed": true
+    },
+    {
+      "name": "Session required",
+      "passed": true
+    },
+    {
+      "name": "Foreign origin rejected",
+      "passed": true
+    },
+    {
+      "name": "Cold account has secure HttpOnly cookie and no exposed bearer",
+      "passed": true
+    },
+    {
+      "name": "Frontend to API to PostgreSQL reconciliation",
+      "passed": true
+    }
+  ],
+  "coldStart": {
+    "status": 201,
+    "durationMs": 14767
+  },
+  "passed": true,
+  "endedAt": "2026-10-15T04:22:35.298Z"
+}

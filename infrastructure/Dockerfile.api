@@ -1,7 +1,7 @@
 FROM maven:3.9.11-eclipse-temurin-21 AS build
 WORKDIR /src
 COPY . .
-RUN --mount=type=cache,target=/root/.m2 sh ./mvnw -B -pl services/banking-api -am package -DskipTests
+RUN sh ./mvnw -B -pl services/banking-api -am package -DskipTests
 
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app

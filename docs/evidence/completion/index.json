@@ -1,0 +1,69 @@
+{
+  "recordedAt": "2026-10-15T19:19:33.574Z",
+  "scope": "Completion follow-up: existing approved projects only",
+  "files": [
+    {
+      "file": "dashboard-ci.json",
+      "sha256": "a951e1986bda1bf6836ad6bc4dd5a17f54ecc240a9d74ede7f7064043d7fd0ba"
+    },
+    {
+      "file": "dashboard-release.json",
+      "sha256": "f68ec79e89984b7cbd5f8fe26b8eed2286c465075c12ad442b017330c0246f6f"
+    },
+    {
+      "file": "dashboard-source-verification.json",
+      "sha256": "0ce3802c3e1f0507c9681041377f1744395f6e0efde1241662acb94e2667e055"
+    },
+    {
+      "file": "dashboard-stage.json",
+      "sha256": "d8cfae1dbec1a6ade023e1f7a88868fe3faa0bc91a9d3504ca5d608a2722ae0f"
+    },
+    {
+      "file": "hosted-timeout-diagnosis.json",
+      "sha256": "640aeefa8f7da8ed5add11f93ede7734bf531f6ec2bddc3cda8beaa32e3cb6c8"
+    },
+    {
+      "file": "hosted-ui-corrected.json",
+      "sha256": "f0ee8413620865f3869bb8334c951491b9eea4df03d3a751ff6cf86bd7429de9"
+    },
+    {
+      "file": "hosted-ui-failed.json",
+      "sha256": "0d49448b9cc8eaac0123565a1c9107120cbd5e3ddfa3e29e3a12fcf5b7d58b47"
+    },
+    {
+      "file": "portfolio-dependency-review.json",
+      "sha256": "40a9c0951acdf9d327d5755942644990e42c4817fbd51ac47a825a9742db7538"
+    },
+    {
+      "file": "portfolio-preview.json",
+      "sha256": "f68dd34b86c9e5831528a13c7dc8df07932f3ef56387174ce1c72a5a870c3a94"
+    },
+    {
+      "file": "portfolio-production.json",
+      "sha256": "5bd6f6c07b752fdf01d2101306f007be82a3eae72c55dfbb0b6064a6ad308c90"
+    },
+    {
+      "file": "portfolio-public-https.json",
+      "sha256": "d38b41335d83eeaa578f4c73c5a8b348e9423501ee5df378cc8a36d14e9a9503"
+    },
+    {
+      "file": "portfolio-public-ui.json",
+      "sha256": "749210b76bd756ecc007b6b98014713f00cf06e0e2640a934131b05a563fb895"
+    },
+    {
+      "file": "portfolio-source.json",
+      "sha256": "f0bcf0454b137411beaa91963c43a736825d217f51e9b17b14b5055fdeae28ed"
+    },
+    {
+      "file": "wrapper-mode.json",
+      "sha256": "0bd83ea950afa5e5e11f599d9d13ed75b40ea06bc0f81234f419a99c524e2d64"
+    }
+  ],
+  "historicalReceiptsPreserved": true,
+  "notes": [
+    "Hosted failure is preserved; correction changes only the BFF transport deadline from 15 to 35 seconds.",
+    "Candidate file hash binds the hosted run to the final committed BFF test; final PR CI is verified separately.",
+    "CLI file-upload source is bound by all 165 Git blobs and creditflowReleaseCommit 81fceff0; automatic uploader githubCommitSha 5350573 is not the exported source.",
+    "Jenkins actual server execution is recorded separately in ../jenkins-execution.json."
+  ]
+}
