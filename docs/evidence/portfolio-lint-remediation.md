@@ -27,3 +27,5 @@ The corrected source CI first encountered an unusually long install and was canc
 Application source, articles, project ordering, images and public behavior were unchanged. CreditFlow backend/frontend deployments, DNS, credentials, cloud resources/plans and system software were unchanged. Jenkins remains an executed local verification controller, not an always-on public service. Sustained-load capacity, long-term availability and an SLA remain unverified. A zero-finding audit is not a security certification.
 
 [Sanitized receipts and SHA-256 index](portfolio-lint-remediation/index.json). Earlier [completion](completion.md) and its original receipt index retain their original history.
+
+Receipt files use LF through a narrowly scoped Git attribute so their byte hashes survive Windows autocrlf checkouts. A fresh checkout first reproduced all 11 mismatches; the corrected staged export verified all 11 original hashes without changing receipt contents or historical records. [Checkout regression receipt](portfolio-lint-checkout.json).

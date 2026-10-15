@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-10-15T20:59:51.753Z",
+  "baseCommit": "f8ece798971706ddc1de8e2ccb99f6ed75ad5151",
+  "testedStagedTree": "ab9da5baa4d176d26c23b1d1a8d228a89493bc83",
+  "before": {
+    "checkedAt": "2026-10-15T20:58:59.090Z",
+    "sourceCommit": "f8ece798971706ddc1de8e2ccb99f6ed75ad5151",
+    "coreAutocrlf": true,
+    "receiptCount": 11,
+    "mismatches": [
+      "local.json",
+      "source-review.json",
+      "canonical-install.json",
+      "install-diagnostic.json",
+      "first-ci-failed.json",
+      "pr-ci.json",
+      "main-ci.json",
+      "preview.json",
+      "production.json",
+      "public-https.json",
+      "public-ui.json"
+    ]
+  },
+  "after": {
+    "method": "git -c core.autocrlf=true checkout-index --all with staged attributes",
+    "coreAutocrlf": true,
+    "hashesMatched": 11,
+    "mismatches": []
+  },
+  "scope": "Only docs/evidence/portfolio-lint-remediation/*.json gets LF checkout behavior; original receipts and hashes unchanged",
+  "passed": true
+}
