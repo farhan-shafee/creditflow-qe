@@ -1,0 +1,18 @@
+meta {
+  name: Create isolated synthetic account
+  type: http
+  seq: 1
+}
+post {
+  url: {{baseUrl}}/api/v1/sandboxes
+  body: none
+  auth: none
+}
+script:post-response {
+  bru.setVar("accountId", res.getBody().accountId);
+  bru.setVar("sandboxToken", res.getBody().token);
+}
+tests {
+  test("Sandbox created", function () { expect(res.getStatus()).to.equal(201); });
+  test("Fresh account ID", function () { expect(res.getBody().accountId).to.be.a("string"); });
+}

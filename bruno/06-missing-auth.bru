@@ -1,0 +1,13 @@
+meta {
+  name: Reject unauthenticated access
+  type: http
+  seq: 6
+}
+get {
+  url: {{baseUrl}}/api/v1/accounts/{{accountId}}
+  body: none
+  auth: none
+}
+tests {
+  test("Authentication required", function () { expect(res.getStatus()).to.equal(401); });
+}

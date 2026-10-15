@@ -1,0 +1,23 @@
+meta {
+  name: Reject zero payment
+  type: http
+  seq: 5
+}
+post {
+  url: {{baseUrl}}/api/v1/accounts/{{accountId}}/payments
+  body: json
+  auth: bearer
+}
+headers {
+  Content-Type: application/json
+  Idempotency-Key: bruno-invalid
+}
+auth:bearer {
+  token: {{sandboxToken}}
+}
+body:json {
+  {"amount":"0"}
+}
+tests {
+  test("Rejected invalid amount", function () { expect(res.getStatus()).to.equal(400); expect(res.getBody().code).to.equal("INVALID_AMOUNT"); });
+}

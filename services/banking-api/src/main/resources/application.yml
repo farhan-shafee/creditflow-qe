@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: creditflow-banking-api
+  datasource:
+    url: ${CREDITFLOW_DB_URL:jdbc:postgresql://localhost:15432/creditflow}
+    username: ${CREDITFLOW_DB_USER:creditflow_app}
+    password: ${CREDITFLOW_DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 16
+      minimum-idle: 0
+      keepalive-time: 0
+      idle-timeout: 60000
+      connection-timeout: 5000
+  flyway:
+    enabled: true
+  mvc:
+    problemdetails:
+      enabled: false
+server:
+  address: ${CREDITFLOW_BIND_ADDRESS:127.0.0.1}
+  port: ${PORT:8080}
+  max-http-request-header-size: 8KB
+  tomcat:
+    max-swallow-size: 4KB
+    max-http-form-post-size: 4KB
+    threads:
+      max: 40
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+      probes:
+        enabled: true
+      group:
+        liveness:
+          include: livenessState
+        readiness:
+          include: readinessState,db
+logging:
+  structured:
+    format:
+      console: ecs
+  level:
+    root: INFO
+creditflow:
+  sandbox-quota: ${CREDITFLOW_SANDBOX_QUOTA:20}

@@ -1,0 +1,2 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="CreditFlow data-driven contracts"><test name="Negative payment matrix"><classes><class name="com.creditflow.qe.testng.PaymentContractTest"/></classes></test></suite>

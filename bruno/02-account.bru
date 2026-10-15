@@ -1,0 +1,17 @@
+meta {
+  name: Retrieve owned account
+  type: http
+  seq: 2
+}
+get {
+  url: {{baseUrl}}/api/v1/accounts/{{accountId}}
+  body: none
+  auth: bearer
+}
+auth:bearer {
+  token: {{sandboxToken}}
+}
+tests {
+  test("Account retrieved", function () { expect(res.getStatus()).to.equal(200); });
+  test("Starting balance", function () { expect(res.getBody().outstandingBalance).to.equal("250.00"); });
+}

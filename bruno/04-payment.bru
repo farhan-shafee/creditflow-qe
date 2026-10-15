@@ -1,0 +1,24 @@
+meta {
+  name: Post payment
+  type: http
+  seq: 4
+}
+post {
+  url: {{baseUrl}}/api/v1/accounts/{{accountId}}/payments
+  body: json
+  auth: bearer
+}
+headers {
+  Content-Type: application/json
+  Idempotency-Key: bruno-payment
+}
+auth:bearer {
+  token: {{sandboxToken}}
+}
+body:json {
+  {"amount":"50.00"}
+}
+tests {
+  test("Payment posted", function () { expect(res.getStatus()).to.equal(201); });
+  test("Payment balance", function () { expect(res.getBody().balanceAfter).to.equal("300.00"); });
+}
