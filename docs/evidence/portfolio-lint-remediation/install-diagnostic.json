@@ -1,0 +1,26 @@
+{
+  "recordedAt": "2026-10-15T20:48:47.032Z",
+  "cancelledAttempt": {
+    "runId": 38804226782,
+    "attempt": 1,
+    "url": "https://github.com/farhan-shafee/farhanshafee.com/actions/runs/38804226782",
+    "sourceCommit": "ba750a11477d66d829d7412b142389128a4b0bb3",
+    "phase": "Clean install",
+    "conclusion": "cancelled",
+    "reason": "Stopped to inspect an unusually long installation; no install completion or underlying error was recorded before cancellation",
+    "logSha256": "2387b6125509b5d83fb515fc2fdf3fe1e17f0f3108a041dc9321698f5ce3a4ee"
+  },
+  "linuxReproduction": {
+    "startedAt": "2026-10-15T20:48:01.662Z",
+    "finishedAt": "2026-10-15T20:48:19.801Z",
+    "node": "v24.22.0",
+    "exitCode": 0,
+    "error": null,
+    "focusedPassed": 21,
+    "focusedFailed": 0,
+    "focusedSkipped": 0,
+    "installLogSha256": "53cdd6b4e27c23dec0a0538beb57ff2a5de892ef887dfe09fa5f93099bd813d1",
+    "testLogSha256": "ac74e343cdd1168bc994d7821a00371eb965ed91ea6c83ec8c1e101725cb3c9c"
+  },
+  "rootCause": "Undetermined installation delay; did not reproduce in clean local Linux/Node24 execution. Same commit re-executed on a fresh CI runner without changing tests or dependencies."
+}

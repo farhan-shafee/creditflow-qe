@@ -1,0 +1,52 @@
+{
+  "recordedAt": "2026-10-15T20:56:03.732Z",
+  "scope": "Dated portfolio development-tool remediation; earlier completion receipts preserved",
+  "sourceCommit": "7cf155efa7ec7567a3aa7c2baa031722e971a915",
+  "deploymentId": "dpl_8GMzv1fz6A76G9CnhLkFSJyFsB8j",
+  "records": [
+    {
+      "path": "local.json",
+      "sha256": "d3388644d3d1d28f00d4ae85fe2bdc3b1795356c6699c9da43063855d52f53d3"
+    },
+    {
+      "path": "source-review.json",
+      "sha256": "35620d40c5ed2b05c637cb57892b5368ee5ab65f4a124f46403dd89532b45b92"
+    },
+    {
+      "path": "canonical-install.json",
+      "sha256": "5a2204a2ad3c86da365e650cb7f105ee5545f50ae8e783a485699982629e9544"
+    },
+    {
+      "path": "install-diagnostic.json",
+      "sha256": "143f92dfb2096c064c0cb6c8ab8eb436223f8c24ebfe186dac53fed8eea87e51"
+    },
+    {
+      "path": "first-ci-failed.json",
+      "sha256": "e711e22a10eb63a90562f0b314507274c8b0df4111e7bb5c15b654383b022262"
+    },
+    {
+      "path": "pr-ci.json",
+      "sha256": "99f7d1aa3749b9919c92883c5d200753e91638d2c5fb62d48aca27e678bfbb3a"
+    },
+    {
+      "path": "main-ci.json",
+      "sha256": "9896595383e30d2cd61317da79ea81a8b4b4e77d1ee84ee1a28ec31f629be659"
+    },
+    {
+      "path": "preview.json",
+      "sha256": "074960fd2e4939890470a6bc9b1c566593dd2de277110027b97e83817459a343"
+    },
+    {
+      "path": "production.json",
+      "sha256": "47d3738796c59c294aa37fd7fec4173a071d94e074a480de84e3cff9b0ad953d"
+    },
+    {
+      "path": "public-https.json",
+      "sha256": "ab625d91ccfe6e5f29a23e1f5a3b2a7ee2df95621b3345e78ce5494860ecf102"
+    },
+    {
+      "path": "public-ui.json",
+      "sha256": "b9ed4e37e1aa115a6a83adde67ed7ff1f0e90550a9147282df59a10f90f4e541"
+    }
+  ]
+}

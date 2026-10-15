@@ -1,0 +1,12 @@
+{
+  "recordedAt": "2026-10-15T20:42:35.745Z",
+  "runId": 38803557382,
+  "url": "https://github.com/farhan-shafee/farhanshafee.com/actions/runs/38803557382",
+  "sourceCommit": "d06aacf570486d2851704026b1acdf8e86898214",
+  "conclusion": "failure",
+  "cause": "actions/upload-artifact excludes hidden directories by default; .artifacts and successful-suite hidden last-run file supplied no uploadable reports",
+  "requiredGateFailed": "Preserve execution evidence",
+  "testGatesPassed": true,
+  "correction": "Use a scoped non-hidden quality-artifacts directory; retain if-no-files-found:error and the complete test/audit gates",
+  "rawLogSha256": "1d601a82f7ab67280e78b97668eac86a754ca6b9fa4934f00d1d18fa6e42736b"
+}

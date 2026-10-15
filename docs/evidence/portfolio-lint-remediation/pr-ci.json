@@ -1,0 +1,65 @@
+{
+  "verifiedAt": "2026-10-15T20:51:27.662Z",
+  "runId": 38804226782,
+  "attempt": 2,
+  "url": "https://github.com/farhan-shafee/farhanshafee.com/actions/runs/38804226782",
+  "event": "pull_request",
+  "status": "completed",
+  "conclusion": "success",
+  "sourceCommit": "ba750a11477d66d829d7412b142389128a4b0bb3",
+  "executedCommit": "db181a5630ac1adbaa32f6d5c1a0d85a0b71aac2",
+  "sourceTree": "988d2f42a38cfe2712efb3e51e210fc26aa15175",
+  "artifact": {
+    "id": 12005493371,
+    "name": "portfolio-quality-db181a5630ac1adbaa32f6d5c1a0d85a0b71aac2",
+    "expired": false,
+    "expiresAt": "2026-10-29T20:51:08Z",
+    "digest": "sha256:c1e3042fc525de0a1902c5e1937090548cf59056c8ff5b364f0d7616cf93c794"
+  },
+  "counts": {
+    "unitPassed": 63,
+    "focusedIncluded": 21,
+    "browserPassed": 26,
+    "failures": 0,
+    "skips": 0,
+    "flaky": 0
+  },
+  "audits": {
+    "audit-full.json": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "audit-production.json": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    }
+  },
+  "files": [
+    {
+      "path": "quality-artifacts/audit-full.json",
+      "sha256": "54dcd54b805332fe7b90b745a0f31008354e4fac505dee65cfc78c11b461499b"
+    },
+    {
+      "path": "quality-artifacts/audit-production.json",
+      "sha256": "54dcd54b805332fe7b90b745a0f31008354e4fac505dee65cfc78c11b461499b"
+    },
+    {
+      "path": "quality-artifacts/browser.json",
+      "sha256": "182605b33866a06f765b5a7d7b1d1994c141e0df61258aef24fd158f75244d44"
+    },
+    {
+      "path": "quality-artifacts/unit.log",
+      "sha256": "e2198d75b6659195a9365e98f676ac4d0bcb8ce899edc93f2bc25610988091ea"
+    }
+  ],
+  "allRequiredStepsPassed": true,
+  "passed": true
+}

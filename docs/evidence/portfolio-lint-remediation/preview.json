@@ -1,0 +1,54 @@
+{
+  "verifiedAt": "2026-10-15T20:44:14.318Z",
+  "deploymentId": "dpl_HPKChycy72Wk2cVvSxdwoKpEzQWT",
+  "url": "farhanshafee-73yr4gawi-cyberbit-solutions.vercel.app",
+  "sourceCommit": "ba750a11477d66d829d7412b142389128a4b0bb3",
+  "projectId": "prj_cogbj7rjEkWVtCzulTSr9byTFn58",
+  "target": "preview",
+  "checks": [
+    {
+      "name": "exact Git preview READY",
+      "passed": true
+    },
+    {
+      "name": "canonical alias retained previous release",
+      "passed": true
+    },
+    {
+      "name": "home includes fourth flagship",
+      "passed": true
+    },
+    {
+      "name": "four flagships and four supporting projects preserve order",
+      "passed": true
+    },
+    {
+      "name": "case includes scoped actual local Jenkins proof",
+      "passed": true
+    },
+    {
+      "name": "case keeps AI/synthetic scope and actual demo",
+      "passed": true
+    },
+    {
+      "name": "machine-readable index retained",
+      "passed": true
+    },
+    {
+      "name": "writing index renders with new parser",
+      "passed": true
+    },
+    {
+      "name": "authored article building-an-evidence-grounded-ai-security-investigation-system retains live title and200",
+      "passed": true
+    },
+    {
+      "name": "actual payment image hash preserved",
+      "passed": true
+    }
+  ],
+  "articleRoutes": [
+    "building-an-evidence-grounded-ai-security-investigation-system"
+  ],
+  "passed": true
+}

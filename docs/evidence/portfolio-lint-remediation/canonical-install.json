@@ -1,0 +1,40 @@
+{
+  "verifiedAt": "2026-10-15T20:53:19.415Z",
+  "sourceCommit": "7cf155efa7ec7567a3aa7c2baa031722e971a915",
+  "cleanInstall": true,
+  "focusedPassed": 21,
+  "fullAuditFindings": 0,
+  "productionAuditFindings": 0,
+  "workingTreeClean": true,
+  "steps": [
+    {
+      "label": "canonical-clean-install",
+      "startedAt": "2026-10-15T20:52:25.240Z",
+      "finishedAt": "2026-10-15T20:53:11.282Z",
+      "exitCode": 0,
+      "error": null
+    },
+    {
+      "label": "canonical-focused",
+      "startedAt": "2026-10-15T20:53:11.283Z",
+      "finishedAt": "2026-10-15T20:53:15.973Z",
+      "exitCode": 0,
+      "error": null
+    },
+    {
+      "label": "canonical-audit-full",
+      "startedAt": "2026-10-15T20:53:15.973Z",
+      "finishedAt": "2026-10-15T20:53:17.709Z",
+      "exitCode": 0,
+      "error": null
+    },
+    {
+      "label": "canonical-audit-production",
+      "startedAt": "2026-10-15T20:53:17.710Z",
+      "finishedAt": "2026-10-15T20:53:19.344Z",
+      "exitCode": 0,
+      "error": null
+    }
+  ],
+  "passed": true
+}

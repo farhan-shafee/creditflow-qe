@@ -102,11 +102,12 @@
     ]
   },
   "applied": {
-    "sourceCommit": "5c52f2265bf204cbb0a027c487794c57553f255d",
-    "deploymentId": "dpl_3xfGi5VMGGFBtzvXddzH1e771ZYQ",
+    "sourceCommit": "7cf155efa7ec7567a3aa7c2baa031722e971a915",
+    "deploymentId": "dpl_8GMzv1fz6A76G9CnhLkFSJyFsB8j",
     "caseStudyUrl": "https://farhan-shafee.com/work/creditflow-qe",
-    "verifiedAt": "2026-10-15T19:16:01.420Z",
-    "prUrl": "https://github.com/farhan-shafee/farhanshafee.com/pull/1",
-    "merged": true
+    "verifiedAt": "2026-10-15T20:53:11.209Z",
+    "prUrl": "https://github.com/farhan-shafee/farhanshafee.com/pull/2",
+    "merged": true,
+    "dependencyRemediation": "docs/evidence/portfolio-lint-remediation.md"
   }
 }
