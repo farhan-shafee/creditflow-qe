@@ -1,6 +1,6 @@
 # Completion follow-up — 2026-10-15
 
-**IMPLEMENTED / TESTED / DEPLOYED / VERIFIED**, with the portfolio development dependency review below remaining unresolved. This record supersedes the earlier release pointers without rewriting their original evidence.
+**IMPLEMENTED / TESTED / DEPLOYED / VERIFIED.** At this historical completion timestamp the portfolio development dependency review below remained unresolved. The later [lint remediation](portfolio-lint-remediation.md) resolves it and supplies the current portfolio release pointer. This record supersedes the earlier release pointers without rewriting their original evidence.
 
 ## Released components
 

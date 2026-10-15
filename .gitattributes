@@ -2,3 +2,6 @@
 *.sh text eol=lf
 mvnw text eol=lf
 *.cmd text eol=crlf
+
+# Keep indexed receipt byte hashes stable in Windows and Linux checkouts.
+docs/evidence/portfolio-lint-remediation/*.json text eol=lf

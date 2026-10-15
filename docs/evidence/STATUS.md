@@ -1,6 +1,10 @@
 # Execution evidence — engineering finish
 
-## Current completion follow-up — 2026-10-15
+## Current portfolio dependency closure — 2026-10-15
+
+**IMPLEMENTED / TESTED / DEPLOYED / VERIFIED.** [The lint remediation record](portfolio-lint-remediation.md) closes the previous five development-tool entries: full and production-only audits report zero findings. PR and main Actions each passed 63 unit and 26 browser tests. Portfolio main 7cf155ef / Vercel dpl_8GMzv1fz6A76G9CnhLkFSJyFsB8j passed 19 public HTTPS checks and two mobile/desktop journeys. CreditFlow application releases and earlier evidence remain unchanged; historical unresolved-review statements below describe their original timestamps.
+
+## Historical completion follow-up before lint remediation — 2026-10-15
 
 **TESTED / DEPLOYED / VERIFIED.** [Current source-bound completion record](completion.md): frontend 81fceff0 / Vercel dpl_HQsUSUS6ag68W4Nq2jDNG8e6tCi8; portfolio main 5c52f226 / Vercel dpl_3xfGi5VMGGFBtzvXddzH1e771ZYQ. All 11 hosted UI/BFF tests passed after the documented deadline correction. Portfolio: 42 unit, 26 full browser and 4 affected browser checks; 10 preview, 19 public HTTPS checks and 2 public journeys passed. Production dependency audit 0; five upstream development-tool affected-package entries remain REVIEW. Core and portfolio PRs are merged; final provider/release PR #2 checks track the final documentation/test revision. Historical records below describe their original timestamps.
 

@@ -1,0 +1,86 @@
+{
+  "recordedAt": "2026-10-15T20:37:29.007Z",
+  "scope": "Portfolio lint-toolchain local working tree; commit and cloud evidence recorded after execution",
+  "baseCommit": "5c52f2265bf204cbb0a027c487794c57553f255d",
+  "branch": "fix/portfolio-lint-globbing",
+  "node": "v26.11.1",
+  "unit": {
+    "passed": 63,
+    "failed": 0,
+    "skipped": 0,
+    "focused": 21
+  },
+  "browser": {
+    "passed": 26,
+    "failed": 0,
+    "skipped": 0,
+    "ownedLoopbackPort": 34210
+  },
+  "checks": [
+    "clean npm ci",
+    "build",
+    "eslint",
+    "next typegen",
+    "typescript",
+    "prettier"
+  ],
+  "audits": {
+    "full": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "production": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    }
+  },
+  "sourceReview": {
+    "checkedAt": "2026-10-15T20:36:40.395Z",
+    "sourceFiles": 161,
+    "applicationContentUnchanged": true,
+    "diffCheckPassed": true,
+    "gitleaksExit": 0,
+    "gitleaksFindings": 0
+  },
+  "independentReview": {
+    "pathComparisonsMatched": 54,
+    "originalBlockers": 3,
+    "remainingBlockers": 0,
+    "actualRuleViolationsRestored": 3
+  },
+  "sourceHashes": {
+    "package.json": "4ff975e0170ef85faca20bf07f8b46a7ad3f79ba3555fc4d31ea800121022ed1",
+    "package-lock.json": "a8c6e22bff1f67d7a6864bb552b4c068f212c84bc6bb2d7c7d2ac6a48c135569",
+    ".npmrc": "0ed44e7d606cd7a9eba915a10f13a13a09ea85e4b2bb4415bb0c481dbdcded51",
+    "eslint.config.mjs": "34318725d236333eaedfc6163252b6ecec84bdbe450b4c2c4ac98f51f65243ef",
+    "tests/lint-toolchain.test.ts": "abbcc35c1b7bdfd7db90a941fa5cd8eb1eb68e3f5375cf5705ec19bc471fa5ee",
+    "tests/fixtures/next-lint-config.json": "c15bee9da18f9853e63cf702efc9c19be8e5a47178d861ccdff1edfe9c51a3c1",
+    "tooling/next-eslint-plugin/dist/utils/get-root-dirs.js": "67d9b02933cbf6823a9ffa16d985bad094d29d3267abfe5c9d2b51b09e2c25b3",
+    "tooling/next-eslint-plugin/upstream.json": "680ce138d212b515456c8c069b01262a9e3d25443c209aac17acf6df22354834"
+  },
+  "logHashes": {
+    "final-clean-install.log": "0b2fffdeb28ef5a93945343cad5dfc1892a5f3a3adbd9899b9923023835643fa",
+    "unit.log": "6965d1f599dad9cf5547c0b2f2adfe81d49b66bcd577d102b0b626693dc8346a",
+    "lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "build.log": "b20392dcab61d5f2747cf0d0f82b8df48f68c1a493eaa27e264710648ad750ee",
+    "types.log": "adba4af9194e10e47dda75ff0fd0f8c2b756474896d0eba5612799c527ff372a",
+    "tsc.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "format.log": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20",
+    "audit-full.log": "54dcd54b805332fe7b90b745a0f31008354e4fac505dee65cfc78c11b461499b",
+    "audit-production.log": "54dcd54b805332fe7b90b745a0f31008354e4fac505dee65cfc78c11b461499b",
+    "local-browser.log": "9136b6b3cd44ec5787ddf78faeb71f9e09e9f3f31f545fc3d27d1982b940a959",
+    "red.log": "8129593e9dc3eb105e7b99c51cb357c471ca4e8eeb83a95cbe8f2deaa593131a",
+    "focused-bundled-entry-failure.log": "8f74e5481583a9d8b88102b296b4c2009b01a722502fbe07158899af8a986aee",
+    "review-regressions-red.log": "6b9437a2dc2f09fe92a582742538ecdcbf4e18da27fe24c54af3428ac8becc8a",
+    "focused.log": "ab62b1071d1aecf78ff85bec753ac21f10bb6b21b64f88d81c7248486513bd5d",
+    "gitleaks.log": "bed849ba77a5881fc6d3255a222d3497c6d8dedfebfaebe09b8e9f79b36a62a6"
+  }
+}
