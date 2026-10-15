@@ -1,0 +1,308 @@
+{
+  "startedAt": "2026-10-15T18:55:04.995Z",
+  "endedAt": "2026-10-15T18:56:36.579Z",
+  "durationMs": 91573,
+  "origin": "http://127.0.0.1:18081",
+  "scope": "local isolated synthetic accounts; bounded functional stability, not capacity/SLA",
+  "clients": 4,
+  "stats": {
+    "requests": 204,
+    "postings": 80,
+    "replays": 40,
+    "rounds": 10,
+    "errors": 0
+  },
+  "latencyMs": {
+    "median": 7,
+    "p95": 32,
+    "maximum": 518
+  },
+  "snapshots": [
+    {
+      "round": 1,
+      "client": 2,
+      "entries": 2,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 1,
+      "client": 3,
+      "entries": 2,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 1,
+      "client": 1,
+      "entries": 2,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 1,
+      "client": 4,
+      "entries": 2,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 2,
+      "client": 1,
+      "entries": 4,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 2,
+      "client": 3,
+      "entries": 4,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 2,
+      "client": 2,
+      "entries": 4,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 2,
+      "client": 4,
+      "entries": 4,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 3,
+      "client": 3,
+      "entries": 6,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 3,
+      "client": 4,
+      "entries": 6,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 3,
+      "client": 1,
+      "entries": 6,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 3,
+      "client": 2,
+      "entries": 6,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 4,
+      "client": 3,
+      "entries": 8,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 4,
+      "client": 2,
+      "entries": 8,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 4,
+      "client": 1,
+      "entries": 8,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 4,
+      "client": 4,
+      "entries": 8,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 5,
+      "client": 4,
+      "entries": 10,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 5,
+      "client": 3,
+      "entries": 10,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 5,
+      "client": 2,
+      "entries": 10,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 5,
+      "client": 1,
+      "entries": 10,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 6,
+      "client": 3,
+      "entries": 12,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 6,
+      "client": 4,
+      "entries": 12,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 6,
+      "client": 1,
+      "entries": 12,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 6,
+      "client": 2,
+      "entries": 12,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 7,
+      "client": 1,
+      "entries": 14,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 7,
+      "client": 4,
+      "entries": 14,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 7,
+      "client": 3,
+      "entries": 14,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 7,
+      "client": 2,
+      "entries": 14,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 8,
+      "client": 3,
+      "entries": 16,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 8,
+      "client": 1,
+      "entries": 16,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 8,
+      "client": 4,
+      "entries": 16,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 8,
+      "client": 2,
+      "entries": 16,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 9,
+      "client": 3,
+      "entries": 18,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 9,
+      "client": 2,
+      "entries": 18,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 9,
+      "client": 1,
+      "entries": 18,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 9,
+      "client": 4,
+      "entries": 18,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 10,
+      "client": 1,
+      "entries": 20,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 10,
+      "client": 3,
+      "entries": 20,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 10,
+      "client": 4,
+      "entries": 20,
+      "balance": "250.00",
+      "available": "750.00"
+    },
+    {
+      "round": 10,
+      "client": 2,
+      "entries": 20,
+      "balance": "250.00",
+      "available": "750.00"
+    }
+  ],
+  "status": "passed",
+  "credentialsWritten": false,
+  "publicRequests": 0,
+  "localApiImageId": "sha256:c57004c5bc81a94ac6c7f2c38dfb8941d4d79f1efd348dafb78d503e18c3126e",
+  "sourceProvenance": "Identified running local Compose image; exact Git SHA is not embedded and is not asserted.",
+  "harnessSha256": "5629eef0ca4a9ca41c0f441e1c74b745c921883fd19caa35b64a3d6d4e142663"
+}

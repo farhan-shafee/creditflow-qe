@@ -1,5 +1,9 @@
 # Execution evidence — engineering finish
 
+## Actual local Jenkins execution — 2026-10-15
+
+**TESTED / VERIFIED.** [The Jenkins execution receipt](jenkins-execution.md) binds an actual Jenkins 2.580.1 build to source 47984ef3:123 published passing cases,32 separate framework tests,147 matched report/log hashes and13 XML reports with0 failures/errors/skips. The current Jenkinsfile blob is unchanged. A separate bounded local 204-request observation passed; capacity/SLA remain unverified.
+
 ## Current portfolio integration — 2026-10-15
 
 **DEPLOYED / VERIFIED.** [The fourth flagship is live](https://farhan-shafee.com/work/creditflow-qe). [The integration receipt](portfolio-integration.md) records portfolio commit 9867fd2ccab55441165760ed67602e89bce76b3d, Vercel dpl_DQV4fVimiUPLNg11eFCVVZ6U6HUH, 37 unit tests, 26 browser tests plus 5 expanded checks, 7 staged checks, 18 public HTTPS checks and 2 public UI journeys. Remaining portfolio npm advisories are explicitly REVIEW. CreditFlow application services and DNS were unchanged.

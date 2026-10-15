@@ -1,0 +1,227 @@
+{
+  "verifiedAt": "2026-10-15T18:53:55.642Z",
+  "sourceCommit": "47984ef34e444268d9315d4aa596fb6b8be8590d",
+  "job": "creditflow-qe-verify",
+  "build": 1,
+  "url": "http://127.0.0.1:32465/job/creditflow-qe-verify/1/",
+  "result": "SUCCESS",
+  "building": false,
+  "durationMs": 363781,
+  "totalPublishedTests": [
+    123
+  ],
+  "artifactCount": 153,
+  "consoleSha256": "f17c3e24ad81da33520cd8e13a020137fc8edb112bd3d9f10da06eb248f902d3",
+  "anonymousApiStatus": 403,
+  "publishedTests": {
+    "_class": "hudson.tasks.junit.TestResult",
+    "failCount": 0,
+    "passCount": 123,
+    "skipCount": 0
+  },
+  "archivedArtifactCount": 153,
+  "archiveSha256": "d8c3d14dc6df4cf79021098a12b3f3caaad49bbd1c88c507fae61468e510ae4e",
+  "matchedHashes": 147,
+  "xmlReportsChecked": 13,
+  "sourceFingerprint": "3b429448427eaded0ea572380ec43c15c692b6fac8aa56958cc4361c2826144d",
+  "manifests": [
+    {
+      "scope": "core",
+      "runId": "20261015T184749Z-4ee13c11bf2140aea5592a35cb97afa9",
+      "source": {
+        "head": "47984ef34e444268d9315d4aa596fb6b8be8590d",
+        "fingerprint": "3b429448427eaded0ea572380ec43c15c692b6fac8aa56958cc4361c2826144d",
+        "sourceFiles": 165
+      },
+      "counts": {
+        "unit": 31,
+        "postgres_integration": 18,
+        "coverage": {
+          "INSTRUCTION": {
+            "covered": 1235,
+            "missed": 76
+          },
+          "BRANCH": {
+            "covered": 101,
+            "missed": 18
+          },
+          "LINE": {
+            "covered": 222,
+            "missed": 17
+          },
+          "COMPLEXITY": {
+            "covered": 101,
+            "missed": 24
+          },
+          "METHOD": {
+            "covered": 58,
+            "missed": 7
+          },
+          "CLASS": {
+            "covered": 21,
+            "missed": 0
+          }
+        },
+        "testng": 6,
+        "cucumber": 31,
+        "cucumber_steps": 154
+      },
+      "commands": [
+        {
+          "name": "core-start",
+          "exitCode": 0
+        },
+        {
+          "name": "core-verify",
+          "exitCode": 0
+        }
+      ],
+      "reportCount": 104
+    },
+    {
+      "scope": "public",
+      "runId": "20261015T185132Z-1931eb422599403ca5ef5ec76e8733ed",
+      "source": {
+        "head": "47984ef34e444268d9315d4aa596fb6b8be8590d",
+        "fingerprint": "3b429448427eaded0ea572380ec43c15c692b6fac8aa56958cc4361c2826144d",
+        "sourceFiles": 165
+      },
+      "counts": {
+        "testng": 6,
+        "cucumber": 31,
+        "cucumber_steps": 154
+      },
+      "commands": [
+        {
+          "name": "prepare-archive",
+          "exitCode": 0
+        },
+        {
+          "name": "public-start",
+          "exitCode": 0
+        },
+        {
+          "name": "public-bdd",
+          "exitCode": 0
+        },
+        {
+          "name": "public-testng",
+          "exitCode": 0
+        }
+      ],
+      "reportCount": 24
+    },
+    {
+      "scope": "quality",
+      "runId": "20261015T185253Z-5ca7c5d1186548039ad2250256429bda",
+      "source": {
+        "head": "47984ef34e444268d9315d4aa596fb6b8be8590d",
+        "fingerprint": "3b429448427eaded0ea572380ec43c15c692b6fac8aa56958cc4361c2826144d",
+        "sourceFiles": 165
+      },
+      "counts": {
+        "components": 209,
+        "affected_components": 0,
+        "gitleaks_findings": 0,
+        "jenkins_runtime": "NOT RUN"
+      },
+      "commands": [
+        {
+          "name": "prepare-archive",
+          "exitCode": 0
+        },
+        {
+          "name": "quality-compose",
+          "exitCode": 0
+        },
+        {
+          "name": "quality-compose-public",
+          "exitCode": 0
+        },
+        {
+          "name": "quality-bom",
+          "exitCode": 0
+        },
+        {
+          "name": "quality-osv",
+          "exitCode": 0
+        },
+        {
+          "name": "quality-gitleaks",
+          "exitCode": 0
+        },
+        {
+          "name": "quality-jenkins",
+          "exitCode": 0
+        },
+        {
+          "name": "quality-runtime-role",
+          "exitCode": 0
+        }
+      ],
+      "reportCount": 5
+    }
+  ],
+  "stages": [
+    {
+      "name": "Declarative: Checkout SCM",
+      "status": "SUCCESS",
+      "durationMs": 874
+    },
+    {
+      "name": "Checkout",
+      "status": "SUCCESS",
+      "durationMs": 620
+    },
+    {
+      "name": "Evidence gate behavior",
+      "status": "SUCCESS",
+      "durationMs": 2215
+    },
+    {
+      "name": "Unit and PostgreSQL/API automation",
+      "status": "SUCCESS",
+      "durationMs": 223128
+    },
+    {
+      "name": "Independent public-mode automation",
+      "status": "SUCCESS",
+      "durationMs": 81770
+    },
+    {
+      "name": "Execution evidence and dependency quality",
+      "status": "SUCCESS",
+      "durationMs": 45395
+    },
+    {
+      "name": "Declarative: Post Actions",
+      "status": "SUCCESS",
+      "durationMs": 2271
+    }
+  ],
+  "evidenceFrameworkTests": 32,
+  "loopbackOnly": true,
+  "hostDockerSocketMounted": false,
+  "publicDeployment": false,
+  "passed": true,
+  "jenkinsVersion": "2.580.1",
+  "javaMajor": 21,
+  "pipelineBlob": "d598fe38b7c56d05ce519e8ff3bb0035331a0730",
+  "controllerImageId": "sha256:8082413372f76c189133a3435453db5227612ae3cad905b2dec58849ff85f0ea",
+  "privateEngineImageId": "sha256:0b6d18a4a222e71c88be6034926b4f6cde2fc33c2218643d03ccfddc65995470",
+  "pluginInventorySha256": "4cc4fbcf94fd9e032ff19b121a797b44ba6ac8b0c3df20b40a4a21abeb5bbcb4",
+  "controllerDockerfileSha256": "f93042f735347ab83a4dca765ccb5b2dd0823d446eb3ec78c02d0d9ae85b1051",
+  "bootstrapSha256": "71045a3b464c68d796ef18e628c04e2b4f1a0e48027ff8ad81416c9ed6b068fb",
+  "artifactExported": true,
+  "scope": "Actual isolated local Jenkins controller, pinned SCM pipeline; no public Jenkins service",
+  "helperCorrections": [
+    {
+      "issue": "TestResult endpoint exports passCount; totalCount belongs to TestResultAction.",
+      "effect": "Read-only evidence helper corrected; actual published123pass0fail0skip unchanged."
+    },
+    {
+      "issue": "Helper output variable shadowed console after all checks and verified receipt had been persisted.",
+      "effect": "Printing corrected; pipeline and checks unchanged."
+    }
+  ]
+}
