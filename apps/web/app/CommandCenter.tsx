@@ -5,11 +5,11 @@ type Account = { id: string; currency: string; creditLimit: string; outstandingB
 type Entry = { id: string; sequence: number; kind: string; amount: string; balanceAfter: string; postedAt: string };
 type Snapshot = { account: Account; history: { entries: Entry[]; nextCursor: number | null } };
 const repo = 'https://github.com/farhan-shafee/creditflow-qe';
-const verifiedCommit = 'b688e172c86c6e9cb711da79a39244636d62615c';
-const verifiedRun = `${repo}/actions/runs/38665882283`;
+const verifiedCommit = '20c91f5e10658ab4ce3ec7f2727c8a4934f5b314';
+const verifiedRun = `${repo}/actions/runs/38677641852`;
 const verifiedTree = `${repo}/tree/${verifiedCommit}`;
 const verifiedBlob = `${repo}/blob/${verifiedCommit}`;
-const evidenceRecord = `${repo}/blob/feat/banking-core/docs/evidence/STATUS.md`;
+const evidenceRecord = `${repo}/blob/feat/provider-pilot/docs/evidence/STATUS.md`;
 const navigation = [['01', 'Overview', '#overview'], ['02', 'Banking simulator', '#simulator'], ['03', 'API explorer', '#api'], ['04', 'Test automation', '#automation'], ['05', 'Architecture', '#architecture'], ['06', 'Interview walkthrough', '#interview']];
 
 export default function CommandCenter() {
@@ -37,7 +37,7 @@ export default function CommandCenter() {
     setBusy(true); setError('');
     try {
       const r = await fetch('/api/sandbox', { method: 'POST' });
-      if (!r.ok) throw new Error(r.status === 429 ? 'Sandbox creation limit reached. Try again later.' : 'The API is unavailable. Start the local project stack and retry.');
+      if (!r.ok) throw new Error(r.status === 429 ? 'Sandbox creation limit reached. Try again later.' : 'The banking sandbox is temporarily unavailable. Please try again.');
       pending.current = null; setRecovery(null); setReceipt(null); await refresh(); setMessage('Fresh synthetic account created. Your session expires in 30 minutes.');
     } catch (e) { setError(e instanceof Error ? e.message : 'Request failed.'); }
     finally { setBusy(false); }
