@@ -1,14 +1,1 @@
-const fs = require('node:fs');
-const path = require('node:path');
-const { spawnSync } = require('node:child_process');
-const root = path.resolve(__dirname, '..');
-process.chdir(root);
-fs.mkdirSync('.work', { recursive: true });
-const log = path.join('.work', 'maven-focused.log');
-const fd = fs.openSync(log, 'w');
-const result = spawnSync('docker', ['compose', '--env-file', '.env', '-f', 'infrastructure/compose.yml', 'run', '--rm', 'verify', 'sh', './mvnw', '-B', ...process.argv.slice(2)], { stdio: ['ignore', fd, fd], timeout: 1200000 });
-fs.closeSync(fd);
-console.log(`Maven exit=${result.status}`);
-console.log(fs.readFileSync(log, 'utf8').split(/\r?\n/).slice(-42).join('\n'));
-if (result.error) console.error(result.error.message);
-process.exit(result.status || (result.error ? 1 : 0));
+require('./run-evidence.cjs')('focused', ['--', ...process.argv.slice(2)]);

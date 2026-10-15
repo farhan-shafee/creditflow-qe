@@ -39,7 +39,7 @@ public final class RequestControls extends OncePerRequestFilter {
     response.setHeader("X-Content-Type-Options", "nosniff");
     boolean metadata =
         request.getMethod().equals("GET")
-            && (request.getRequestURI().equals("/actuator/health")
+            && (request.getRequestURI().equals("/actuator/health/liveness")
                 || request.getRequestURI().equals("/openapi.yaml"));
     if (publicMode && !metadata) {
       String supplied = request.getHeader("X-Sandbox-Provision-Key");

@@ -3,6 +3,8 @@ package com.creditflow.qe;
 import static io.restassured.RestAssured.given;
 
 import io.restassured.builder.*;
+import io.restassured.config.LogConfig;
+import io.restassured.config.RestAssuredConfig;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.*;
@@ -18,7 +20,19 @@ public final class ApiClient {
         System.getProperty(
             "creditflow.baseUrl",
             System.getenv().getOrDefault("CREDITFLOW_BASE_URL", "http://localhost:18081"));
-    requests = new RequestSpecBuilder().setBaseUri(base).setContentType(ContentType.JSON).build();
+    RequestSpecBuilder builder =
+        new RequestSpecBuilder()
+            .setBaseUri(base)
+            .setContentType(ContentType.JSON)
+            .setConfig(
+                RestAssuredConfig.config()
+                    .logConfig(
+                        LogConfig.logConfig()
+                            .blacklistHeader("Authorization", "X-Sandbox-Provision-Key")));
+    String provisionKey = System.getenv("CREDITFLOW_PROVISION_KEY");
+    if (provisionKey != null && !provisionKey.isBlank())
+      builder.addHeader("X-Sandbox-Provision-Key", provisionKey);
+    requests = builder.build();
   }
 
   public Response sandbox() {

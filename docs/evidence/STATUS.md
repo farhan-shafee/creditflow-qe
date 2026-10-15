@@ -1,56 +1,57 @@
-# Execution evidence — 2026-10-14
+# Execution evidence — engineering finish
 
-## Verified local gates
+The complete local finish passed on 2026-10-14 (America/New_York), using project Java21/Maven3.9.11 containers, actual PostgreSQL and local Java browser drivers. GitHub Actions for these corrections is pending commit/push; CI is not yet claimed green.
 
-Executed on Chopin in `D:\Dev\Repos\creditflow-qe`, branch `feat/banking-core`, using project-scoped Java21/Maven3.9.11 and actual PostgreSQL17.11 containers. No H2 or mocked ledger replaces integration behavior.
+## Fresh local results
 
 | Gate | Actual result |
 |---|---|
-| Domain/request-budget unit tests | 31 passed, 0 failed/errors/skipped |
-| PostgreSQL + HTTP integration | 14 passed, 0 failed/errors/skipped |
-| Independent Cucumber/REST Assured | 28 scenarios passed |
-| Separate TestNG data-provider suite | 6 passed, 0 failed/errors/skipped |
-| Java Selenium | 2 journeys passed |
-| Java Playwright | 4 journeys passed, including real-commit transport loss and failed refresh |
-| BFF HTTP contracts / trace redaction | 4 + 1 passed |
-| Frontend request/session unit tests | 5 passed |
-| Next.js build / TypeScript | Both passed |
-| Bruno CLI4.2.1 | 7 requests passed; 11/11 checks |
-| Spotless / SpotBugs | Checks passed; 0 reported SpotBugs defects |
-| npm audit | 0 vulnerabilities reported |
-| Gitleaks source scan | No leaks found; redacted output |
-| Jenkinsfile | Groovy syntax parsed; Jenkins server execution NOT RUN |
-| Runtime database role SQL | Executed in a local transaction then rolled back; insert/balance-update allowed, ledger-update/expiry-update/schema-create denied |
+| Application unit tests | 31 passed; zero failures/errors/skips |
+| PostgreSQL/HTTP integration | 18 passed; includes healthy and database-unavailable public probes |
+| Independent Cucumber, private API | 31 scenarios / 154 steps passed |
+| Independent Cucumber, isolated public API | 31 scenarios / 154 steps passed |
+| Separate TestNG | 6 private + 6 public cases passed |
+| Java UI / BFF / trace tests | 11 passed: 2 Selenium, 4 Playwright, 4 BFF, 1 redaction |
+| Browser artifacts | 6 screenshots and 4 redacted traces retained |
+| Frontend | 5 passed; Next.js build and TypeScript passed |
+| Bruno 4.2.1 | 7 requests and 11 checks passed |
+| Evidence-framework behavior tests | 32 passed, including real stale-report and Windows encoding regressions |
+| Spotless / SpotBugs | All checks passed; 0 SpotBugs defects/errors |
+| Dependency checks | Complete 209-component Maven/UI/test inventory; OSV 0 affected; full npm audit 0 vulnerabilities |
+| Gitleaks | 0 source findings; redacted JSON retained |
+| Configuration | Private/public Compose validation passed; Jenkins Groovy AST parsed |
+| Runtime-role SQL | Real local grants/probes passed inside a bounded transaction, then rolled back |
 
-The full core reactor finished successfully at `2026-10-14T23:09:55Z`. The browser module also completed successfully after aligning Selenium4.51 and correcting click synchronization. `infrastructure/verify-evidence.py` independently reads XML/JSON and rejects failures, skipped tests, empty scenarios and insufficient execution counts.
+JaCoCo measured **222/239 lines** and **101/119 branches**. These are generated test measurements, not production-readiness or security-certification claims.
 
-JaCoCo's local application report measured 222/239 lines (92.9%) and 101/119 branches (84.9%); domain lines30/30 and branches22/25. These are generated execution measurements, not a production-readiness claim. CI generates its own clean-workspace report and is the preferred reproducible evidence.
+`python infrastructure/verify-evidence.py --all` returned exit0 after all five fresh scopes. The actual command result and working-tree state are retained in ignored `.work/final-local-validation.json`. Each scope has its own immutable sanitized manifest/logs/reports under `.work/evidence/runs/`, and the shared working targets are not counted across scopes.
 
-The advisory scan initially found six affected dependency components. Jackson2/3, Tomcat and test-only Rhino were patched, then OSV returned zero affected components across the resolved inventory. No advisory was suppressed. The final inventory and query timestamp are generated in CI artifacts; this is not a container-image security certification.
+Local execution was pre-commit: HEAD `44727ba121a8996d0ae8e2cb2f81b4c7355eb541` plus the engineering corrections. The manifest source fingerprint, not that old commit alone, identifies the tested working tree: `b5227b5b8abeb7ac0b67134a1edbd667d646017bd20051bdecb62b3cf49033b4`. A clean-commit CI run will provide committed-source proof.
 
-## Debugging and review evidence
+| Scope | Actual successful local run |
+|---|---|
+| Core | `20261015T010924Z-d2e4bf634dee4a5b9f1fccf91bd23e75` |
+| Public | `20261015T011458Z-4645a567a5004117b830d5ef9d2bf0b8` |
+| Web | `20261015T010659Z-7fcd26684dbd47a6868c338458097d0b` |
+| Browser/Bruno | `20261015T011815Z-822dcd6420984c63be4d8e1f51e1f6ed` |
+| Quality | `20261015T012242Z-4941d6e3644d473db8b32729830d6ca6` |
 
-Fresh independent source reviews identified a matrix-path quota bypass, expiry after waiting for an account lock, and unsafe UI recovery after a committed payment followed by a failed read. Genuine regression failures were observed before repairs. History defensive-copy and missing public server-access checks also failed before implementation.
+## Defects demonstrated and corrected
 
-Actual UI execution found `crypto.randomUUID` unavailable on the Docker HTTP hostname; traces identified the exception before any POST. The fix uses cryptographic random bytes. Selenium's smooth-scroll click interception was corrected with instant scrolling and an explicit hit-target condition, without JavaScript-click bypasses or assertion weakening. Negative UI journeys reload persisted state before asserting unchanged balances.
+The [first Actions run](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38652624557) passed core application tests and its browser job but failed host CycloneDX generation. A controlled Linux reproduction retained `java.nio.file.AccessDeniedException: /tmp/creditflow-qe-bom-ownership/target/bom.json`: runner UID 1001 could not create the file inside Docker-created root:root directories with mode 0755. Running the complete `-Pui`/test-scope goal through the Compose Maven service succeeded. Actions and Jenkins now use that shared command; inventory and advisory checks remain required.
 
-The rollback integration test uses an account-targeted PostgreSQL trigger in the isolated local test database; it verifies a real HTTP500, safe error output, unchanged balance/ledger and successful retry after removing only its own fixture. There is no public failure-injection endpoint.
+The original uncommitted public-health regression was preserved before edits, observed failing, and completed. Public liveness is independent of PostgreSQL; aggregate/readiness probes require the server key in public mode. Healthy readiness returns 200; an isolated unavailable PostgreSQL fixture returns 503 while liveness remains200. Pool minimum idle 0, disabled keepalive and bounded idle retirement permit idle connections to drain.
 
-## Environment and repository
+Independent public-mode automation uses its own API/database and private environment-only server key, with suitable test quotas. Cucumber verifies foreign-token reads/writes and independently reconciles paginated receipts against literal initial balance and signed postings. Playwright observes the first POST201 before losing delivery, checks unchanged retry identity and the replayed receipt, then reloads and proves one posting persisted. No public administrative or fault-injection endpoint was added.
 
-- Chopin online: Windows11, PowerShell5.1, Git2.56.0, Docker29.8.2, Node26.11.1/npm11.20.0, D drive approximately900GB free.
-- GitHub CLI authenticated as farhan-shafee over HTTPS with repo/workflow access. New public repository created and cloned; no existing repository overwritten.
-- Host JRE17.0.19/JDK17.0.16 found; global Maven3.9.11 resolves the JRE. No JDK21 found in standard locations/registry. Java21 runs in project containers; no system installation performed.
-- Initial wrapper/bootstrap validated, committed and pushed as `0b88290d1f3bf961377da795898b8cc9d4ded522`.
-- Implementation is written by the current Codex agent through filesystem tools and Desktop Commander. No external host Codex executable was available or claimed.
-- Existing CreditOps services/data preserved. A conflicting host database port was resolved by removing this project's unnecessary host database port; the database is internal to Compose.
+The old evidence checker accepted stale passing reports without current execution. Its regression failed before repair. During full validation, a new checker defect rejected an actually passing frontend run because Windows decoded UTF-8 logs as CP1252. That failed manifest and all zero-exit command outputs remain preserved. Explicit UTF-8 reads and safe console output passed focused regressions, followed by fresh successful scopes. Prior successful app runs under an earlier runner fingerprint are historical evidence, not reused as fresh results.
 
-## Remaining gates
+## Scope and limitations
 
-- GitHub Actions: configuration implemented; run links and exact implementation commit will be recorded after push/PR execution. Until then, cloud CI is NOT VERIFIED.
-- Deployment: PREPARED, NOT DEPLOYED. New cloud resources, public services and DNS require the owner's separate approval and confirmed provider cost/limits.
-- Portfolio: existing patterns and actual hyphenated domain inspected read-only; integration proposal prepared, not applied.
-- Jenkins: no server available for an actual pipeline run.
-- Browser Use/cloud browser: never opened. Java headless browser suites ran locally as authorized by the master prompt.
+The committed baseline had 31 unit, 14 integration, 28 Cucumber scenarios/129 steps and 6 TestNG cases. Its reports remain archived separately; they are not the finish counts above. Prior targets and raw failure diagnostics are private under `.work/evidence/private/`; CI publishes only sanitized runs/latest pointers. Manifests retain timestamps, command exits, executed HEAD, PR head where available, source fingerprint and original/snapshot hashes. Failed, skipped, stale, partial or modified evidence is rejected.
 
-No production-readiness, customer-activity, security-certification or professional-workplace achievement is claimed.
+Bruno emits upstream deprecation messages. Its `glob@10.5.0` is a patched version in the [maintainer's advisory](https://github.com/isaacs/node-glob/security/advisories/GHSA-5j98-mcp5-4vw2), and [Bruno 4.2.1 is the current release](https://github.com/usebruno/bruno/releases/tag/v4.2.1). This does not claim a complete audit of external CLI/container toolchains. No warning was suppressed. Local Bruno used HTTP; public HTTPS verification remains a release gate.
+
+Jenkins syntax parsing passed; **no Jenkins server execution occurred**. Cloud deployment, actual provider sleep/cold-start behavior, DNS and portfolio integration remain unverified and require separate approval. No cloud infrastructure, public deployment, DNS, portfolio edit, system Java installation or Browser Use/cloud browser occurred. See [readiness and cost review](../deployment-readiness.md).
+
+This synthetic, AI-assisted portfolio project does not claim banking settlement, regulatory compliance or professional workplace achievement.

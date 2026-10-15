@@ -3,6 +3,7 @@ package com.creditflow.banking;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.zaxxer.hikari.HikariDataSource;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.web.server.context.WebServerApplicationContext;
@@ -66,7 +67,30 @@ class PublicBoundaryIT {
   }
 
   @Test
-  void healthRemainsAvailableWithoutCredentials() {
-    given().baseUri(base).get("/actuator/health").then().statusCode(200);
+  void livenessIsPublicButDatabaseReadinessRequiresServerAccess() {
+    given().baseUri(base).get("/actuator/health/liveness").then().statusCode(200);
+    given().baseUri(base).get("/actuator/health").then().statusCode(403);
+    given().baseUri(base).get("/actuator/health/readiness").then().statusCode(403);
+    given()
+        .baseUri(base)
+        .header("X-Sandbox-Provision-Key", KEY)
+        .get("/actuator/health/readiness")
+        .then()
+        .statusCode(200);
+  }
+
+  @Test
+  void runtimePoolCanRetireAllIdleConnectionsWithoutKeepalive() {
+    HikariDataSource pool = app.getBean(HikariDataSource.class);
+    assertAll(
+        () ->
+            assertEquals(0, pool.getMinimumIdle(), "The sandbox pool must be able to become empty"),
+        () ->
+            assertEquals(
+                0L, pool.getKeepaliveTime(), "Idle connections must not ping the database"),
+        () ->
+            assertTrue(
+                pool.getIdleTimeout() >= 10000L && pool.getIdleTimeout() <= 60000L,
+                "Idle connections must be eligible for retirement within one minute"));
   }
 }

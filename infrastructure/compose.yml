@@ -108,6 +108,57 @@ services:
     command: ["sh", "./mvnw", "-B", "-Pui", "-pl", "automation/ui-e2e", "verify", "spotless:check"]
     mem_limit: 1536m
     profiles: ["ui"]
+  postgres-public:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: creditflow_public
+      POSTGRES_USER: creditflow_app
+      POSTGRES_PASSWORD: ${CREDITFLOW_DB_PASSWORD:?Create the ignored project .env first}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U creditflow_app -d creditflow_public"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+    mem_limit: 256m
+    profiles: ["public-test"]
+  api-public:
+    build:
+      context: ..
+      dockerfile: infrastructure/Dockerfile.api
+    environment:
+      CREDITFLOW_DB_URL: jdbc:postgresql://postgres-public:5432/creditflow_public
+      CREDITFLOW_DB_USER: creditflow_app
+      CREDITFLOW_DB_PASSWORD: ${CREDITFLOW_DB_PASSWORD}
+      CREDITFLOW_SANDBOX_QUOTA: 10000
+      CREDITFLOW_REQUEST_QUOTA: 10000
+      CREDITFLOW_PUBLIC_MODE: 'true'
+      CREDITFLOW_PROVISION_KEY: ${CREDITFLOW_PUBLIC_TEST_KEY:-}
+    depends_on:
+      postgres-public:
+        condition: service_healthy
+    mem_limit: 512m
+    profiles: ["public-test"]
+  verify-public:
+    image: maven:3.9.11-eclipse-temurin-21
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace
+      - maven-cache:/root/.m2
+    environment:
+      CREDITFLOW_DB_URL: jdbc:postgresql://postgres-public:5432/creditflow_public
+      CREDITFLOW_DB_USER: creditflow_app
+      CREDITFLOW_DB_PASSWORD: ${CREDITFLOW_DB_PASSWORD}
+      CREDITFLOW_BIND_ADDRESS: 0.0.0.0
+      CREDITFLOW_SANDBOX_QUOTA: 10000
+      CREDITFLOW_BASE_URL: http://api-public:8080
+      CREDITFLOW_PROVISION_KEY: ${CREDITFLOW_PUBLIC_TEST_KEY:-}
+      MAVEN_OPTS: -Xmx768m
+    depends_on:
+      api-public:
+        condition: service_healthy
+    command: ["sh", "./mvnw", "-B", "-pl", "automation/api-bdd,automation/api-testng", "verify", "spotless:check"]
+    profiles: ["public-test"]
+    mem_limit: 1536m
 volumes:
   postgres-data:
   maven-cache:

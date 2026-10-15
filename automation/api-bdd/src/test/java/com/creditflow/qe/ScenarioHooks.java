@@ -28,5 +28,7 @@ public class ScenarioHooks {
             + (context.response == null ? "none" : context.response.statusCode()),
         "text/plain",
         "Redacted execution summary");
+    context.token = null;
+    context.otherToken = null;
   }
 }

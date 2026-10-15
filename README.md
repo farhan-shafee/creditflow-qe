@@ -8,12 +8,16 @@ On Chopin, from `D:\Dev\Repos\creditflow-qe`:
 
 ```powershell
 .\infrastructure\verify.ps1
+node infrastructure/public-verify.cjs
+node infrastructure/web-verify.cjs --container-web
 node infrastructure/ui-verify.cjs
+node infrastructure/quality-verify.cjs
+python infrastructure/verify-evidence.py --all
 ```
 
-The PowerShell entry point generates an ignored local database password, builds the Java21 application, starts isolated PostgreSQL and runs the core reactor. The UI command starts the command center at **http://localhost:3100**, real local Selenium/Playwright containers and their tests. API: http://127.0.0.1:18081 ; contract: http://127.0.0.1:18081/openapi.yaml ; health: http://127.0.0.1:18081/actuator/health . Docker and Node are prerequisites; no host Java upgrade is required. Java21/Maven3.9.11 are supplied by project containers. With a host JDK21, Maven Wrapper also supports direct development.
+Run these commands sequentially. The PowerShell entry point generates an ignored local database password, builds the Java21 application, starts isolated PostgreSQL and runs the core reactor. Public-mode automation uses a separate API/database, private generated server key and test quotas. The UI command starts the command center at **http://localhost:3100**, local Selenium/Playwright containers and Bruno. API: http://127.0.0.1:18081 ; contract: http://127.0.0.1:18081/openapi.yaml ; liveness: http://127.0.0.1:18081/actuator/health/liveness . PostgreSQL readiness is `/actuator/health/readiness` and requires the server key in public mode. Docker, Git, Node and Python3.10+ are prerequisites. Java21/Maven3.9.11 are supplied by project containers. With a host JDK21, Maven Wrapper also supports direct development.
 
-`node infrastructure/verify.cjs --format` applies Java formatting during development. CI uses check-only formatting. `node infrastructure/web-verify.cjs` verifies the Next.js build, TypeScript, request/session tests and npm advisory status. Stop only this stack with `docker compose --env-file .env -f infrastructure/compose.yml --profile ui down`; the database volume remains intact.
+`node infrastructure/verify.cjs --format` applies Java formatting during development. CI uses check-only formatting. The web command verifies the Next.js build, TypeScript, request/session tests and full npm advisory status. The quality command generates the complete UI/test-scope inventory through Compose Maven, queries OSV, scans source secrets and validates configuration/runtime-role SQL. Stop only this stack with `python infrastructure/evidence-run.py cleanup`; database volumes remain intact.
 
 ## What is implemented
 
@@ -37,7 +41,7 @@ See [execution status](docs/evidence/STATUS.md) and [GitHub Actions](https://git
 | `bruno` | Executed versioned API collection |
 | `infrastructure` | Isolated local stack, verification scripts, release preparation |
 
-Reports are generated in each module's `target` directory; Cucumber HTML/JSON are in `automation/api-bdd/target/cucumber`. CI uploads reports tied to the exact commit. Generated reports, session credentials and databases are excluded from Git.
+Each scope saves sanitized logs, immutable report snapshots and a manifest under `.work/evidence/runs/<scope>/<run-id>`. Manifests retain command outcomes, UTC timestamps, executed HEAD, PR head where available, source fingerprint and report hashes. Prior targets/raw diagnostics are preserved under ignored `.work/evidence/private/` and are never uploaded. `verify-evidence.py --all` rejects failed, missing, stale, changed or incomplete evidence across all five scopes. Source changes require fresh runs. Module `target` reports can be replaced by later scopes; use frozen snapshots for combined counts. Generated evidence, session credentials and databases are excluded from Git.
 
 Read the [domain and concurrency decisions](docs/architecture/core-design.md), [test architecture](docs/testing/strategy.md), [five-minute walkthrough](docs/interview-guide/five-minute-walkthrough.md), [coding practice](docs/interview-guide/technical-practice.md), [deployment readiness](docs/deployment-readiness.md) and [portfolio proposal](docs/portfolio-integration.md).
 

@@ -1,7 +1,7 @@
 package com.creditflow.qe;
 
 import io.restassured.response.Response;
-import java.util.List;
+import java.util.*;
 
 public final class ScenarioContext {
   final ApiClient client = new ApiClient();
@@ -10,6 +10,10 @@ public final class ScenarioContext {
   Response response;
   String originalReceipt;
   List<Integer> concurrentStatuses;
+  List<Response> concurrentResponses;
+  final Set<String> postedReceiptIds = new LinkedHashSet<>();
+  String otherAccountId;
+  String otherToken;
 
   String accountPath() {
     return "/api/v1/accounts/" + accountId;

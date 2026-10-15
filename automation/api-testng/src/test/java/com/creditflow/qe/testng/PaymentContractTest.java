@@ -3,7 +3,12 @@ package com.creditflow.qe.testng;
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.*;
 
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.config.LogConfig;
+import io.restassured.config.RestAssuredConfig;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import java.util.*;
 import org.testng.annotations.*;
 
@@ -11,6 +16,7 @@ public class PaymentContractTest {
   private String base;
   private String token;
   private String account;
+  private RequestSpecification requests;
 
   @BeforeClass
   @Parameters({"baseUrl"})
@@ -19,12 +25,28 @@ public class PaymentContractTest {
         configured.isBlank()
             ? System.getenv().getOrDefault("CREDITFLOW_BASE_URL", "http://localhost:18081")
             : configured;
+    RequestSpecBuilder builder =
+        new RequestSpecBuilder()
+            .setBaseUri(base)
+            .setContentType(ContentType.JSON)
+            .setConfig(
+                RestAssuredConfig.config()
+                    .logConfig(
+                        LogConfig.logConfig()
+                            .blacklistHeader("Authorization", "X-Sandbox-Provision-Key")));
+    String provisionKey = System.getenv("CREDITFLOW_PROVISION_KEY");
+    if (provisionKey != null && !provisionKey.isBlank())
+      builder.addHeader("X-Sandbox-Provision-Key", provisionKey);
+    requests = builder.build();
+  }
+
+  private RequestSpecification request() {
+    return given().spec(requests);
   }
 
   @BeforeMethod
   public void freshAccount() {
-    Response r =
-        given().baseUri(base).post("/api/v1/sandboxes").then().statusCode(201).extract().response();
+    Response r = request().post("/api/v1/sandboxes").then().statusCode(201).extract().response();
     token = r.path("token");
     account = r.path("accountId");
   }
@@ -44,8 +66,7 @@ public class PaymentContractTest {
   @Test(dataProvider = "invalidPayments")
   public void rejectsInvalidPaymentWithoutMutation(String amount, int status, String code) {
     Response r =
-        given()
-            .baseUri(base)
+        request()
             .auth()
             .oauth2(token)
             .contentType("application/json")
@@ -55,8 +76,7 @@ public class PaymentContractTest {
     assertEquals(r.statusCode(), status);
     assertEquals(r.path("code"), code);
     Response state =
-        given()
-            .baseUri(base)
+        request()
             .auth()
             .oauth2(token)
             .get("/api/v1/accounts/" + account)
@@ -66,6 +86,20 @@ public class PaymentContractTest {
             .response();
     assertEquals(state.path("outstandingBalance"), "250.00");
     assertEquals(state.path("availableCredit"), "750.00");
+    assertEquals(state.path("id"), account);
+    assertEquals(state.path("currency"), "USD");
+    assertEquals(state.path("creditLimit"), "1000.00");
+    Response history =
+        request()
+            .auth()
+            .oauth2(token)
+            .get("/api/v1/accounts/" + account + "/transactions")
+            .then()
+            .statusCode(200)
+            .extract()
+            .response();
+    assertTrue(history.jsonPath().getList("entries").isEmpty());
+    assertNull(history.path("nextCursor"));
   }
 
   @AfterMethod

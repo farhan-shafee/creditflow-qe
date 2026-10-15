@@ -1,5 +1,6 @@
 """Query OSV's official API using the resolved CycloneDX inventory. No API key."""
 import datetime
+import hashlib
 import json
 import pathlib
 import urllib.request
@@ -19,7 +20,7 @@ for offset in range(0, len(purls), 100):
     for package, result in zip(batch, results):
         if result.get('vulns'):
             findings.append({'package': package, 'advisories': [v['id'] for v in result['vulns']]})
-output = {'queriedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'components': len(purls), 'findings': findings}
+output = {'queriedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'bomSha256': hashlib.sha256((root / 'target/bom.json').read_bytes()).hexdigest(), 'components': len(purls), 'findings': findings}
 (root / '.work').mkdir(exist_ok=True)
 (root / '.work/dependency-audit.json').write_text(json.dumps(output, indent=2) + '\n')
 print(f'OSV: {len(purls)} resolved components; {len(findings)} affected components')

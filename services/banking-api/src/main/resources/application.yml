@@ -7,6 +7,9 @@ spring:
     password: ${CREDITFLOW_DB_PASSWORD}
     hikari:
       maximum-pool-size: 16
+      minimum-idle: 0
+      keepalive-time: 0
+      idle-timeout: 60000
       connection-timeout: 5000
   flyway:
     enabled: true
@@ -30,6 +33,13 @@ management:
   endpoint:
     health:
       show-details: never
+      probes:
+        enabled: true
+      group:
+        liveness:
+          include: livenessState
+        readiness:
+          include: readinessState,db
 logging:
   structured:
     format:

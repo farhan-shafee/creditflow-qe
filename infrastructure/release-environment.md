@@ -17,6 +17,10 @@ Railway uses repository-root `railway.toml` and `infrastructure/Dockerfile.api`.
 
 Run Flyway migrations on the new database with a dedicated migration identity over a direct TLS connection before starting the runtime service. Apply `runtime-role.sql`; set the fresh role credential privately. No migration password belongs in runtime environment or build arguments. The application role can update the account balance and insert ledger entries, but cannot rewrite ledger entries or run migrations. Tests use a separate privileged local database to exercise controlled rollback fixtures.
 
+Docker and Railway health probes use `/actuator/health/liveness`, which does not query PostgreSQL. In public mode, aggregate health and `/actuator/health/readiness` require `X-Sandbox-Provision-Key`; readiness includes PostgreSQL and returns 503 when it is unavailable. Use an authenticated readiness check as a separate release gate. Hikari minimum idle 0, keepalive 0 and a 60-second idle timeout allow unused connections to retire. Actual provider sleep and cold-start latency remain deployment checks.
+
+`node infrastructure/validate-runtime-role.cjs` is a project-local verification probe, not a cloud migration command. It applies the role SQL and tests real privileges inside a transaction, with 10-second statement, 5-second lock and 30-second transaction limits beneath a 60-second client timeout, then rolls back. Its retained result must not be presented as proof of cloud role configuration. Public API automation similarly uses its own isolated Compose profile and private environment-only server key; its high quotas are not release settings.
+
 Create a new Vercel project with root `apps/web`; its `vercel.json` pins the build commands. Required server-only variables:
 
 | Variable | Value source |

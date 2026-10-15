@@ -11,9 +11,12 @@ concurrency:
 jobs:
   core:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
+    env:
+      CREDITFLOW_PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      CREDITFLOW_PR_BASE_SHA: ${{ github.event.pull_request.base.sha || '' }}
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1; resolved from upstream release
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
@@ -21,74 +24,53 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
-      - name: Start isolated PostgreSQL and API
-        run: |
-          printf 'CREDITFLOW_DB_PASSWORD=%s\n' "$(openssl rand -hex 32)" > .env
-          docker volume create creditflow-qe-maven-cache
-          docker compose --env-file .env -f infrastructure/compose.yml up -d --build --wait postgres api
-      - name: Unit, PostgreSQL integration, Cucumber and TestNG
-        run: docker compose --env-file .env -f infrastructure/compose.yml run --rm verify
-      - name: Assert execution evidence
-        run: python3 infrastructure/verify-evidence.py
-      - name: Resolve complete dependency inventory
-        run: sh ./mvnw -B -Pui org.cyclonedx:cyclonedx-maven-plugin:2.9.1:makeAggregateBom -DincludeTestScope=true -DoutputFormat=json
-      - name: Dependency advisory check
-        run: python3 infrastructure/audit-dependencies.py
-      - name: Secret scan
-        run: docker run --rm -v "$PWD:/repo:ro" zricethezav/gitleaks:v8.30.1 dir /repo --config /repo/infrastructure/gitleaks.toml --redact --no-banner
-      - name: Collect redacted evidence
-        if: always()
-        run: |
-          mkdir -p .work
-          docker compose --env-file .env -f infrastructure/compose.yml logs --no-color api > .work/api.log 2>&1 || true
-          git rev-parse HEAD > .work/commit.txt
+      - name: Evidence gate behavior tests
+        run: python3 -m unittest infrastructure/test_evidence_run.py -v
+      - name: Private unit, PostgreSQL, Cucumber and TestNG evidence
+        run: node infrastructure/verify.cjs
+      - name: Independent public-mode Cucumber and TestNG evidence
+        run: node infrastructure/public-verify.cjs
+      - name: Full inventory, OSV, Gitleaks and configuration checks
+        run: node infrastructure/quality-verify.cjs
+      - name: Reject stale or incomplete core/public/quality evidence
+        run: python3 infrastructure/verify-evidence.py --scope core --scope public --scope quality
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
         with:
           name: creditflow-core-${{ github.sha }}
           path: |
-            **/target/surefire-reports/
-            **/target/failsafe-reports/
-            **/target/cucumber/
-            **/target/site/jacoco/
-            target/bom.json
-            .work/dependency-audit.json
-            .work/evidence-summary.json
-            .work/api.log
-            .work/commit.txt
+            .work/evidence/runs/
+            .work/evidence/latest/
           retention-days: 14
           include-hidden-files: true
       - name: Stop this project stack
         if: always()
-        run: docker compose --env-file .env -f infrastructure/compose.yml down
+        run: python3 infrastructure/evidence-run.py cleanup
   browser:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      CREDITFLOW_PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      CREDITFLOW_PR_BASE_SHA: ${{ github.event.pull_request.base.sha || '' }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - name: Web contracts, build, types and dependency audit
-        run: |
-          docker run --rm -v "$PWD/apps/web:/app" -w /app node:24-bookworm-slim sh -c 'npm ci --ignore-scripts && npm test && npm run build && npm run typecheck && npm audit --audit-level=high'
-      - name: Start isolated local browser environment
-        run: |
-          printf 'CREDITFLOW_DB_PASSWORD=%s\n' "$(openssl rand -hex 32)" > .env
-          docker volume create creditflow-qe-maven-cache
-          docker compose --env-file .env -f infrastructure/compose.yml --profile ui up -d --build --wait postgres api web selenium playwright
-      - name: Selenium, Playwright and BFF contracts
-        run: docker compose --env-file .env -f infrastructure/compose.yml --profile ui run --rm ui-verify
-      - name: Bruno API collection
-        run: docker run --rm --network creditflow-qe_default -v "$PWD/bruno:/collection:ro" -w /collection node:24-bookworm-slim npx -y @usebruno/cli@4.2.1 run --env Local --env-var baseUrl=http://api:8080
+      - name: Web contracts, build, types and full npm audit
+        run: node infrastructure/web-verify.cjs --container-web
+      - name: Selenium, Playwright, BFF and Bruno evidence
+        run: node infrastructure/ui-verify.cjs
+      - name: Reject stale or incomplete browser/web evidence
+        run: python3 infrastructure/verify-evidence.py --scope browser --scope web
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
         with:
           name: creditflow-browser-${{ github.sha }}
           path: |
-            automation/ui-e2e/target/surefire-reports/
-            automation/ui-e2e/target/ui-artifacts/*.png
-            automation/ui-e2e/target/ui-artifacts/*.zip
+            .work/evidence/runs/
+            .work/evidence/latest/
           retention-days: 14
+          include-hidden-files: true
       - name: Stop this project stack
         if: always()
-        run: docker compose --env-file .env -f infrastructure/compose.yml --profile ui down
+        run: python3 infrastructure/evidence-run.py cleanup

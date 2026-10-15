@@ -1,40 +1,34 @@
 pipeline {
   agent { label 'linux-docker-java21' }
-  options { timestamps(); timeout(time: 25, unit: 'MINUTES'); disableConcurrentBuilds() }
+  options { timestamps(); timeout(time: 35, unit: 'MINUTES'); disableConcurrentBuilds() }
   environment { COMPOSE_PROJECT_NAME = "creditflow-qe-${BUILD_NUMBER}" }
   stages {
     stage('Checkout') { steps { checkout scm } }
-    stage('Build and start isolated application') {
-      steps {
-        sh '''
-          set -eu
-          umask 077
-          printf 'CREDITFLOW_DB_PASSWORD=%s\n' "$(openssl rand -hex 32)" > .env
-          docker volume create creditflow-qe-maven-cache
-          docker compose --env-file .env -f infrastructure/compose.yml up -d --build --wait postgres api
-        '''
-      }
+    stage('Evidence gate behavior') {
+      steps { sh 'python3 -m unittest infrastructure/test_evidence_run.py -v' }
     }
     stage('Unit and PostgreSQL/API automation') {
-      steps { sh 'docker compose --env-file .env -f infrastructure/compose.yml run --rm verify' }
+      steps { sh 'node infrastructure/verify.cjs' }
+    }
+    stage('Independent public-mode automation') {
+      steps { sh 'node infrastructure/public-verify.cjs' }
     }
     stage('Execution evidence and dependency quality') {
       steps {
         sh '''
           set -eu
-          python3 infrastructure/verify-evidence.py
-          sh ./mvnw -B org.cyclonedx:cyclonedx-maven-plugin:2.9.1:makeAggregateBom -DincludeTestScope=true -DoutputFormat=json
-          python3 infrastructure/audit-dependencies.py
+          node infrastructure/quality-verify.cjs
+          python3 infrastructure/verify-evidence.py --scope core --scope public --scope quality
         '''
       }
     }
   }
   post {
     always {
-      junit testResults: '**/target/surefire-reports/TEST-*.xml,**/target/failsafe-reports/TEST-*.xml', allowEmptyResults: false
-      archiveArtifacts artifacts: '**/target/cucumber/*,**/target/site/jacoco/**,.work/*summary.json,.work/dependency-audit.json', allowEmptyArchive: true
-      sh 'docker compose --env-file .env -f infrastructure/compose.yml down || true'
+      archiveArtifacts artifacts: '.work/evidence/runs/**,.work/evidence/latest/**', allowEmptyArchive: true
+      junit testResults: '.work/evidence/current/core/snapshot/services/banking-api/target/surefire-reports/TEST-*.xml,.work/evidence/current/core/snapshot/services/banking-api/target/failsafe-reports/TEST-*.xml,.work/evidence/current/core/snapshot/automation/api-bdd/target/cucumber/report.xml,.work/evidence/current/core/snapshot/automation/api-testng/target/surefire-reports/TEST-*.xml,.work/evidence/current/public/snapshot/automation/api-bdd/target/cucumber/report.xml,.work/evidence/current/public/snapshot/automation/api-testng/target/surefire-reports/TEST-*.xml', allowEmptyResults: false
     }
-    failure { echo 'Verification failed; inspect the test reports and stage logs. No release was attempted.' }
+    failure { echo 'Verification failed; inspect the frozen scope reports and command logs. No release was attempted.' }
+    cleanup { sh 'python3 infrastructure/evidence-run.py cleanup || true' }
   }
 }
