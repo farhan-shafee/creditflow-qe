@@ -27,7 +27,7 @@ Run these commands sequentially. The PowerShell entry point generates an ignored
 - Next.js16 / TypeScript command center with server-only API access, signed HttpOnly cookies, exact-origin writes, byte-limited JSON and safe retry/reconciliation flows.
 - Java Selenium and Java Playwright journeys; screenshots and redacted traces; Bruno collection; Jenkinsfile; GitHub Actions; Spotless, SpotBugs, JaCoCo, CycloneDX, OSV and Gitleaks.
 
-See [execution status](docs/evidence/STATUS.md) and [GitHub Actions](https://github.com/farhan-shafee/creditflow-qe/actions) for actual results and limitations. Public deployment is pending owner approval. Jenkins Groovy syntax can be parsed locally; no Jenkins server execution is claimed.
+The verified implementation is pinned to [commit b688e17](https://github.com/farhan-shafee/creditflow-qe/tree/b688e172c86c6e9cb711da79a39244636d62615c) and its successful [complete GitHub Actions run #2](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38665882283). These links identify that tested revision. See [execution status](docs/evidence/STATUS.md), [PR #1](https://github.com/farhan-shafee/creditflow-qe/pull/1) and [all Actions runs](https://github.com/farhan-shafee/creditflow-qe/actions) for later changes and limitations. Public deployment is pending owner approval. Jenkins Groovy syntax can be parsed locally; no Jenkins server execution is claimed.
 
 ## Repository map
 

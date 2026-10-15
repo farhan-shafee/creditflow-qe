@@ -69,7 +69,9 @@ Files: local verification helpers, `verify-evidence.py`, CI/Jenkins evidence han
 
 ## 6. Existing feature branch and release evidence
 
-- [ ] Commit and push validated corrections to `feat/banking-core`; update PR1.
-- [ ] Inspect required GitHub Actions jobs until the entire workflow passes; preserve failure diagnostics if repair is needed.
-- [ ] Update documentation and command-center links to actual verified runs/commits; validate the documentation/link update.
-- [ ] Prepare concrete isolated deployment/readiness/cost review and stop at the owner's approval boundary.
+- [x] Commit and push validated corrections to `feat/banking-core` (`b688e17`); retain the existing PR1.
+- [x] Inspect required GitHub Actions jobs until the entire workflow passes (run38665882283); preserve failure diagnostics if repair is needed.
+- [x] Pin documentation and command-center links to the verified implementation/run; the final link revision receives its own frontend and complete CI checks.
+- [x] Prepare concrete isolated deployment/readiness/cost review and stop at the owner's approval boundary.
+
+The final link revision's commit, required CI result and updated PR description are recorded on [PR1](https://github.com/farhan-shafee/creditflow-qe/pull/1), avoiding a self-referential commit link in its own source. The pinned implementation evidence remains immutable in [the execution record](../../evidence/STATUS.md).

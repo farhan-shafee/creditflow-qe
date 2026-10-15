@@ -1,8 +1,24 @@
 # Execution evidence — engineering finish
 
-The complete local finish passed on 2026-10-14 (America/New_York), using project Java21/Maven3.9.11 containers, actual PostgreSQL and local Java browser drivers. GitHub Actions for these corrections is pending commit/push; CI is not yet claimed green.
+The required [GitHub Actions run #2](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38665882283) passed completely for implementation commit [`b688e172c86c6e9cb711da79a39244636d62615c`](https://github.com/farhan-shafee/creditflow-qe/commit/b688e172c86c6e9cb711da79a39244636d62615c). Both [core](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38665882283/job/116197623096) and [browser](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38665882283/job/116197623278) jobs succeeded. The same engineering finish passed locally on 2026-10-14 (America/New_York), using project Java21/Maven3.9.11 containers, actual PostgreSQL and local Java browser drivers.
 
-## Fresh local results
+## Verified implementation and CI provenance
+
+These links pin one verified implementation, rather than claiming every future branch revision passes. See [PR #1](https://github.com/farhan-shafee/creditflow-qe/pull/1) for later commits and their required checks.
+
+Actions checked out PR merge HEAD `f5ac0de593608ad064c7e61b3142f09b4fef0a4f`, combining the implementation head above with base `6846890eff4e889513799576aab7aa14aacd9d3b`. All five manifests retain that executed HEAD, PR head, run ID and the same source fingerprint `de3e6d94d2f23b5440b5f5a92b91afe1f0fde71586ebcea5c910d1010bbb4955`. Job logs span 2026-10-15 01:29:03–01:32:36 UTC. The downloaded artifacts were inspected independently of the mutable module targets; command exits, report/log hashes and actual report counts were checked.
+
+| Scope | Successful Actions evidence run |
+|---|---|
+| Core | `20261015T012910Z-1f65da3fd59f402a940e825312db5c10` |
+| Public | `20261015T013131Z-0027e1e6b1fc47d29dd3520a1cbaaa92` |
+| Web | `20261015T012905Z-acbe849a394d4d2a8fe50dd81b03833f` |
+| Browser/Bruno | `20261015T012927Z-989c44ef00f3484faebe33036b9a23d0` |
+| Quality | `20261015T013200Z-bbb2372bb9eb4d60b997665574a2352c` |
+
+The run contains artifacts `creditflow-core-f5ac0de593608ad064c7e61b3142f09b4fef0a4f` (ID11941435027) and `creditflow-browser-f5ac0de593608ad064c7e61b3142f09b4fef0a4f` (ID11940877035). GitHub retention expires on 2026-10-29; the downloaded evidence remains in this checkout's ignored `.work/ci-finish-38665882283/`. Artifact downloads require repository access. The checked-in record retains provenance and counts after hosted artifacts expire.
+
+## Results reproduced locally and in Actions
 
 | Gate | Actual result |
 |---|---|
@@ -26,7 +42,7 @@ JaCoCo measured **222/239 lines** and **101/119 branches**. These are generated 
 
 `python infrastructure/verify-evidence.py --all` returned exit0 after all five fresh scopes. The actual command result and working-tree state are retained in ignored `.work/final-local-validation.json`. Each scope has its own immutable sanitized manifest/logs/reports under `.work/evidence/runs/`, and the shared working targets are not counted across scopes.
 
-Local execution was pre-commit: HEAD `44727ba121a8996d0ae8e2cb2f81b4c7355eb541` plus the engineering corrections. The manifest source fingerprint, not that old commit alone, identifies the tested working tree: `b5227b5b8abeb7ac0b67134a1edbd667d646017bd20051bdecb62b3cf49033b4`. A clean-commit CI run will provide committed-source proof.
+Local execution was pre-commit: HEAD `44727ba121a8996d0ae8e2cb2f81b4c7355eb541` plus the engineering corrections. The manifest source fingerprint, not that old commit alone, identifies the tested working tree: `b5227b5b8abeb7ac0b67134a1edbd667d646017bd20051bdecb62b3cf49033b4`. The committed-source proof is the successful Actions run above; local and Linux checkout fingerprints need not match because documentation changed before commit and Git normalizes line endings.
 
 | Scope | Actual successful local run |
 |---|---|
