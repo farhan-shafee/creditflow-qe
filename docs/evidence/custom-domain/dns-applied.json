@@ -1,0 +1,15 @@
+{
+  "appliedAt": "2026-10-15T16:23:45.991Z",
+  "zoneId": "40b0b65f2b8e58cdad31ddf5e7c95843",
+  "zoneName": "farhan-shafee.com",
+  "created": true,
+  "record": {
+    "id": "d96a0fd5d4df4d42d35d23d93d4fc3e9",
+    "name": "creditflow.farhan-shafee.com",
+    "type": "CNAME",
+    "content": "7686ee5ba0d5ae26.vercel-dns-016.com",
+    "ttl": 1,
+    "proxied": false
+  },
+  "unrelatedRecordsChanged": false
+}

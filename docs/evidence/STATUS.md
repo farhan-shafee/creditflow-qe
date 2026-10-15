@@ -1,6 +1,12 @@
 # Execution evidence — engineering finish
 
-## Current provider pilot — 2026-10-15
+## Current custom-domain release — 2026-10-15
+
+**DEPLOYED / VERIFIED** at https://creditflow.farhan-shafee.com. [The domain receipt](custom-domain.md) records frontend 39e1728 / Vercel dpl_F6d4kYaLpdojbwBQ8aKUDKNmNkbe, unchanged API 20c91f5, the exact single CNAME, trusted HTTPS, 5 cold-start checks (17.4 seconds), 10 banking checks and 11 hosted UI/BFF tests with Spotless passing. The old provider URL redirects with 308.
+
+The origin update preserved existing secrets, protected previews and resource settings. Existing portfolio edits and unused-role deletion remain unapplied. The historical records below retain their original component SHAs and timestamps.
+
+## Historical provider-URL pilot — 2026-10-15
 
 **DEPLOYED / VERIFIED** at https://creditflow-qe-pilot.vercel.app. [The cloud release record](provider-pilot.md) identifies API commit 20c91f5 and frontend commit b3209d3, exact provider deployment IDs, 24 hosted API checks, the 14.8-second true cold start, restart persistence, and the 11-test successful hosted UI/Spotless run. Both jobs passed in [Actions 38680627735](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38680627735); all 174 downloaded report/log hashes matched.
 

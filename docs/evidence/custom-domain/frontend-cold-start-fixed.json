@@ -1,0 +1,43 @@
+{
+  "startedAt": "2026-10-15T16:26:31.838Z",
+  "origin": "https://creditflow.farhan-shafee.com",
+  "prestate": {
+    "observedAt": "2026-10-15T16:26:26.167Z",
+    "backendState": "SLEEPING",
+    "databaseState": "idle",
+    "backendDeploymentId": "e0d833e4-2ed4-42a1-b32e-bfdd85bf22dd",
+    "backendSourceCommit": "20c91f5e10658ab4ce3ec7f2727c8a4934f5b314",
+    "frontendDeploymentId": "dpl_F6d4kYaLpdojbwBQ8aKUDKNmNkbe",
+    "frontendSourceCommit": "39e1728e6aca03f1e9c3d435a028e0316542edce"
+  },
+  "backendWaitBudgetMs": 20000,
+  "functionBudgetSeconds": 30,
+  "checks": [
+    {
+      "name": "Public HTTPS dashboard",
+      "passed": true
+    },
+    {
+      "name": "Session required",
+      "passed": true
+    },
+    {
+      "name": "Foreign origin rejected",
+      "passed": true
+    },
+    {
+      "name": "Cold account has secure HttpOnly cookie and no exposed bearer",
+      "passed": true
+    },
+    {
+      "name": "Frontend to API to PostgreSQL reconciliation",
+      "passed": true
+    }
+  ],
+  "coldStart": {
+    "status": 201,
+    "durationMs": 17427
+  },
+  "passed": true,
+  "endedAt": "2026-10-15T16:26:50.032Z"
+}

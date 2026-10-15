@@ -1,0 +1,6 @@
+{
+  "testsRun": 0,
+  "status": "NOT RUN",
+  "reason": "Temporary runner referred to vercel-deployment.json; actual receipt is deployment.json",
+  "corrected": true
+}

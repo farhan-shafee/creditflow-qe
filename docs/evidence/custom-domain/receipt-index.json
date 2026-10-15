@@ -1,0 +1,76 @@
+{
+  "createdAt": "2026-10-15T16:32:38.119Z",
+  "frontendSource": "39e1728e6aca03f1e9c3d435a028e0316542edce",
+  "backendSource": "20c91f5e10658ab4ce3ec7f2727c8a4934f5b314",
+  "files": [
+    {
+      "file": "attachment.json",
+      "bytes": 1207,
+      "sha256": "5488365508293ea3ba461956cd9140ca99d4ca48f75f7657c4fc8514596f06a6"
+    },
+    {
+      "file": "banking-flow.json",
+      "bytes": 1089,
+      "sha256": "76b5acf42fefe6bbf1966ec8154ea2d484bd6e52dd800572202583e7054b457e"
+    },
+    {
+      "file": "deployment-ready.json",
+      "bytes": 379,
+      "sha256": "6e0bba6a50d40765d9fa5abc13e6174e78e4c1f8ca09e4c7feaffddd5f190184"
+    },
+    {
+      "file": "dns-applied.json",
+      "bytes": 402,
+      "sha256": "a0a480655a8e288e0efc572122e0c7b2cd5785bd838ef47237c3d3a54bca19bf"
+    },
+    {
+      "file": "frontend-cold-start-fixed.json",
+      "bytes": 1129,
+      "sha256": "6252846ff5c25d9d351d14bacd6e4069aec5500a7db9020b290d69fc66afd67d"
+    },
+    {
+      "file": "network-preflight.json",
+      "bytes": 385,
+      "sha256": "62ba7dad735216ad832137e491a0bfdb3a48821df5750322f126d893c9aaff73"
+    },
+    {
+      "file": "origin-evidence.json",
+      "bytes": 604,
+      "sha256": "87b1bb3d14c52305e5b27d15f23a80ede96196a51639f839554ac7ccec2b72c9"
+    },
+    {
+      "file": "payment.png",
+      "bytes": 366446,
+      "sha256": "8ebe78c28fa161da2737c0c5a97eae410ee3d4a63eef29c3eae1b078a41aba4d"
+    },
+    {
+      "file": "provider-redirect.json",
+      "bytes": 324,
+      "sha256": "5a12ddb277cc3283dc4c3112ee5c26ac4d5807c8af9afd492cfe3437240d388d"
+    },
+    {
+      "file": "public-ui-canonical.json",
+      "bytes": 1037,
+      "sha256": "7c4c8297338fc64692ac718c652193de5368046c13d03da4de28dba53813e181"
+    },
+    {
+      "file": "ui-setup-attempt.json",
+      "bytes": 165,
+      "sha256": "f7fae16e4c0bd6b619cadb4b171b0ace6407af431ad3cf40fe83f725538a4794"
+    }
+  ],
+  "privateArtifacts": [
+    {
+      "path": ".work/custom-domain/public-ui-canonical.log",
+      "sha256": "41813ecdebecb4ec476d9565069e80cc6c618b953566b561ba643286ef0e953e"
+    },
+    {
+      "path": ".work/custom-domain/run-ui-setup-original.cjs",
+      "sha256": "3ea7c6f2ecb6e27486e5bf443131141fd2131b1fe522c41cda6ddf58558dbff4"
+    },
+    {
+      "path": ".work/custom-domain/run-ui.cjs",
+      "sha256": "869e2097c83de888c8725aa5492336870a7e13b64e865b26375bdd8a09922659"
+    }
+  ]
+}

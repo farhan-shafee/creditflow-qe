@@ -2,7 +2,7 @@
 
 A simulated credit-card ledger and independent Java quality engineering framework for hands-on financial-services interviews. Synthetic data only; no card numbers, real customers, settlement, or money movement.
 
-Try the [verified provider-URL demo](https://creditflow-qe-pilot.vercel.app). Its isolated API and database sleep when idle; the measured first account request took 14.8 seconds. See the [actual cloud release record](docs/evidence/provider-pilot.md) for component commits, checks and limitations.
+Try the [verified live demo](https://creditflow.farhan-shafee.com). Its isolated API and database sleep when idle; the measured first custom-domain account request took 17.4 seconds. See the [custom-domain release record](docs/evidence/custom-domain.md) for source commits, HTTPS, banking/UI checks and limitations. The [earlier provider pilot](docs/evidence/provider-pilot.md) retains its historical evidence.
 
 ## Run the working system
 
@@ -29,7 +29,7 @@ Run these commands sequentially. The PowerShell entry point generates an ignored
 - Next.js16 / TypeScript command center with server-only API access, signed HttpOnly cookies, exact-origin writes, byte-limited JSON and safe retry/reconciliation flows.
 - Java Selenium and Java Playwright journeys; screenshots and redacted traces; Bruno collection; Jenkinsfile; GitHub Actions; Spotless, SpotBugs, JaCoCo, CycloneDX, OSV and Gitleaks.
 
-The verified implementation is pinned to [commit b688e17](https://github.com/farhan-shafee/creditflow-qe/tree/b688e172c86c6e9cb711da79a39244636d62615c) and its successful [complete GitHub Actions run #2](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38665882283). These links identify that tested revision. See [execution status](docs/evidence/STATUS.md), [PR #1](https://github.com/farhan-shafee/creditflow-qe/pull/1) and [all Actions runs](https://github.com/farhan-shafee/creditflow-qe/actions) for later changes and limitations. The isolated provider-URL pilot is deployed and verified. The frontend timeout fix is pinned to [b3209d3](https://github.com/farhan-shafee/creditflow-qe/commit/b3209d36d979b9b2c3bfe1850882db3481839e65), with both jobs passing in [Actions 38680627735](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38680627735). See [PR #2](https://github.com/farhan-shafee/creditflow-qe/pull/2) and the cloud receipt for the separately pinned backend. DNS and existing portfolio edits remain pending separate approval. Jenkins Groovy syntax can be parsed locally; no Jenkins server execution is claimed.
+The custom-domain release runs frontend [39e1728](https://github.com/farhan-shafee/creditflow-qe/commit/39e1728e6aca03f1e9c3d435a028e0316542edce) and unchanged API [20c91f5](https://github.com/farhan-shafee/creditflow-qe/commit/20c91f5e10658ab4ce3ec7f2727c8a4934f5b314). Its source passed [both Actions jobs](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38682147631), followed by the [actual custom-host banking and UI verification](docs/evidence/custom-domain.md). [Execution status](docs/evidence/STATUS.md) retains earlier verified revisions. [PR #2](https://github.com/farhan-shafee/creditflow-qe/pull/2) contains the provider/domain work; existing portfolio edits require separate approval. Jenkins syntax is validated; no Jenkins server execution is claimed.
 
 ## Repository map
 

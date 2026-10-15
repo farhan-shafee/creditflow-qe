@@ -1,0 +1,104 @@
+{
+  "status": "PLANNED_NOT_APPLIED",
+  "destinationRepository": "farhan-shafee/farhanshafee.com",
+  "auditedCommit": "562d534160d7aee07e200dcb49fe77ec994551e9",
+  "flagshipOrder": [
+    "aegisgraph",
+    "creditops-ai",
+    "tradeflow",
+    "creditflow-qe"
+  ],
+  "screenshotSource": "docs/evidence/custom-domain/payment.png",
+  "card": {
+    "title": "CreditFlow QE",
+    "slug": "creditflow-qe",
+    "status": "Active",
+    "year": "2026",
+    "category": "Financial systems / Quality engineering",
+    "kind": "personal",
+    "description": "A transactional credit-card simulator with independent Java, Cucumber and REST Assured automation, plus executed CI and browser-test evidence.",
+    "technologies": [
+      "Java 21",
+      "Spring Boot",
+      "Cucumber",
+      "REST Assured",
+      "PostgreSQL",
+      "Maven",
+      "Playwright",
+      "GitHub Actions"
+    ],
+    "github": "https://github.com/farhan-shafee/creditflow-qe",
+    "website": "https://creditflow.farhan-shafee.com",
+    "sourceVisibility": "public",
+    "featured": true,
+    "visibility": "public",
+    "inspection": {
+      "summary": "Explore synthetic accounts, post purchases and payments, and inspect the source, test framework and verified execution evidence.",
+      "links": [
+        {
+          "label": "Live demo",
+          "href": "https://creditflow.farhan-shafee.com",
+          "featured": true
+        },
+        {
+          "label": "View source",
+          "href": "https://github.com/farhan-shafee/creditflow-qe/tree/feat/provider-pilot",
+          "featured": true
+        },
+        {
+          "label": "Verified CI",
+          "href": "https://github.com/farhan-shafee/creditflow-qe/actions/runs/38682147631"
+        },
+        {
+          "label": "Release verification",
+          "href": "https://github.com/farhan-shafee/creditflow-qe/blob/feat/provider-pilot/docs/evidence/custom-domain.md"
+        }
+      ],
+      "facts": [
+        {
+          "label": "Backend",
+          "value": "Java 21, Spring Boot, PostgreSQL and Flyway; exact money, atomic ledger updates and original receipt replay."
+        },
+        {
+          "label": "API automation",
+          "value": "Independent Cucumber/REST Assured HTTP tests, JUnit Jupiter and a separate TestNG module."
+        },
+        {
+          "label": "UI and CI",
+          "value": "Java Selenium/Playwright, Bruno and GitHub Actions; Jenkinsfile syntax checked, server execution unverified."
+        }
+      ]
+    },
+    "technicalHighlights": [
+      "Independent Java/Cucumber automation validates a real transactional credit-card API.",
+      "Real PostgreSQL rollback, ownership, idempotency and concurrency checks.",
+      "Custom-host HTTPS, isolated synthetic sessions and genuine test evidence."
+    ],
+    "caseStudy": {
+      "overview": {
+        "paragraphs": [
+          "An AI-assisted synthetic banking application and independent automation framework built for reproducible engineering and interview practice."
+        ]
+      },
+      "validation": {
+        "paragraphs": [
+          "Source CI verifies 31 unit tests, 18 real PostgreSQL integration tests and 31 Cucumber scenarios in each private/public mode. The custom-host release passed 10 banking checks and the complete 11-test Java UI/BFF module."
+        ]
+      },
+      "lessonsConstraints": {
+        "paragraphs": [
+          "Synthetic data only; no real cards, funds, settlement or regulatory-compliance claim. Sessions expire after 30 minutes, public quotas are conservative and idle services can take time to wake. Jenkins server execution and sustained-load behavior remain unverified."
+        ]
+      }
+    },
+    "screenshots": [
+      {
+        "src": "/projects/creditflow-qe/payment.png",
+        "alt": "CreditFlow QE hosted simulator after a synthetic $50 payment",
+        "width": 1440,
+        "height": 3318,
+        "caption": "Actual Playwright journey: $200 outstanding, $800 available and one committed payment."
+      }
+    ]
+  }
+}

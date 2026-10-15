@@ -1,0 +1,48 @@
+{
+  "startedAt": "2026-10-15T16:27:34.980Z",
+  "origin": "https://creditflow.farhan-shafee.com",
+  "checks": [
+    {
+      "name": "Owned initial balance and empty history",
+      "passed": true
+    },
+    {
+      "name": "Purchase commits exact decimal amount",
+      "passed": true
+    },
+    {
+      "name": "Payment commits and reduces balance",
+      "passed": true
+    },
+    {
+      "name": "Identical retry preserves original receipt",
+      "passed": true
+    },
+    {
+      "name": "Conflicting retry has exact structured error",
+      "passed": true
+    },
+    {
+      "name": "Overpayment is rejected",
+      "passed": true
+    },
+    {
+      "name": "Insufficient credit is rejected",
+      "passed": true
+    },
+    {
+      "name": "Old provider origin cannot authorize custom-host writes",
+      "passed": true
+    },
+    {
+      "name": "Tampered session is rejected",
+      "passed": true
+    },
+    {
+      "name": "Balance and two ordered ledger entries reconcile after errors",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "endedAt": "2026-10-15T16:27:36.941Z"
+}

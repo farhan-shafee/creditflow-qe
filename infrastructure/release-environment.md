@@ -33,3 +33,5 @@ The pilot Vercel project is rooted at `apps/web`, uses Node 24.x and has a 30-se
 Never set `CREDITFLOW_LOCAL_DEMO=true` in a public deployment, or expose these values through `NEXT_PUBLIC_` variables. Preview environments need their own exact origin and isolated credentials/data; do not point arbitrary previews at the public database by default.
 
 Post-release verification must prove HTTPS, unauthorized direct API rejection, same-origin BFF writes, per-session account ownership, persistence and negative cases against the release commit. The provider-URL pilot was explicitly approved. Further billable infrastructure or plan upgrades, DNS, and existing portfolio edits remain subject to the owner's separate approval boundaries.
+
+Current canonical production origin: https://creditflow.farhan-shafee.com. The previous public provider URL redirects with 308 to that hostname. The exact DNS/configuration changes and executed release checks are in `docs/evidence/custom-domain.md`. Existing portfolio edits require separate approval.

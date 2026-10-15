@@ -1,5 +1,7 @@
 # Provider-URL pilot — verified release record
 
+Historical provider-URL receipt. The separately approved [custom-domain release](custom-domain.md) is now canonical at https://creditflow.farhan-shafee.com; the original receipts and hashes below are preserved.
+
 The owner approved an isolated public provider-URL pilot. This is a synthetic portfolio system, not a production bank. DNS, existing portfolio edits, plan upgrades and new paid seats were outside this approval.
 
 - Command center: https://creditflow-qe-pilot.vercel.app

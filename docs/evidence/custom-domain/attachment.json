@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-10-15T16:23:06.523Z",
+  "projectId": "prj_oKV8BBgmOOjtRaHGDErtWNOEETJ3",
+  "accountId": "team_Jko2Re3IdRArhoz0S6WVeboc",
+  "rootDirectory": "apps/web",
+  "resourceConfig": {
+    "fluid": true,
+    "buildMachineSelection": "fixed",
+    "elasticConcurrencyEnabled": false,
+    "functionDefaultMemoryType": "standard",
+    "functionDefaultRegions": [
+      "iad1"
+    ],
+    "functionDefaultTimeout": 30,
+    "buildMachineType": "basic"
+  },
+  "ssoProtection": {
+    "deploymentType": "preview"
+  },
+  "attachment": {
+    "name": "creditflow.farhan-shafee.com",
+    "projectId": "prj_oKV8BBgmOOjtRaHGDErtWNOEETJ3",
+    "verified": true,
+    "verificationRequired": 0
+  },
+  "dns": {
+    "nameservers": [
+      "melody.ns.cloudflare.com",
+      "bryce.ns.cloudflare.com"
+    ],
+    "conflicts": [],
+    "cnames": [],
+    "recommendedCNAME": [
+      {
+        "rank": 1,
+        "value": "7686ee5ba0d5ae26.vercel-dns-016.com."
+      },
+      {
+        "rank": 2,
+        "value": "cname.vercel-dns.com."
+      }
+    ],
+    "misconfigured": true
+  },
+  "priorProjectDomains": [
+    {
+      "name": "creditflow-qe-pilot.vercel.app",
+      "redirect": null,
+      "verified": true
+    }
+  ]
+}
