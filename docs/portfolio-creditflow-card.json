@@ -65,7 +65,7 @@
         },
         {
           "label": "UI and CI",
-          "value": "Java Selenium/Playwright, Bruno and GitHub Actions; Jenkinsfile syntax checked, server execution unverified."
+          "value": "Java Selenium/Playwright, Bruno and GitHub Actions. Jenkins pipeline executed on an isolated local controller."
         }
       ]
     },
@@ -87,7 +87,7 @@
       },
       "lessonsConstraints": {
         "paragraphs": [
-          "Synthetic data only; no real cards, funds, settlement or regulatory-compliance claim. Sessions expire after 30 minutes, public quotas are conservative and idle services can take time to wake. Jenkins server execution and sustained-load behavior remain unverified."
+          "Synthetic data only; no real cards, funds, settlement or regulatory-compliance claim. Sessions expire after 30 minutes, public quotas are conservative and idle services can take time to wake. Local Jenkins execution is recorded; sustained-load behavior and availability/SLA remain unverified."
         ]
       }
     },
@@ -102,11 +102,11 @@
     ]
   },
   "applied": {
-    "sourceCommit": "9867fd2ccab55441165760ed67602e89bce76b3d",
-    "deploymentId": "dpl_DQV4fVimiUPLNg11eFCVVZ6U6HUH",
+    "sourceCommit": "5c52f2265bf204cbb0a027c487794c57553f255d",
+    "deploymentId": "dpl_3xfGi5VMGGFBtzvXddzH1e771ZYQ",
     "caseStudyUrl": "https://farhan-shafee.com/work/creditflow-qe",
-    "verifiedAt": "2026-10-15T18:17:15.016Z",
+    "verifiedAt": "2026-10-15T19:16:01.420Z",
     "prUrl": "https://github.com/farhan-shafee/farhanshafee.com/pull/1",
-    "merged": false
+    "merged": true
   }
 }

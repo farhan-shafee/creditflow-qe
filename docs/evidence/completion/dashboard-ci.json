@@ -1,0 +1,20 @@
+{
+  "runId": "38789200927",
+  "head": "81fceff035c5ad23e761f6a1c49196e488f24d58",
+  "status": "completed",
+  "conclusion": "success",
+  "url": "https://github.com/farhan-shafee/creditflow-qe/actions/runs/38789200927",
+  "jobs": [
+    {
+      "name": "core",
+      "conclusion": "success",
+      "url": "https://github.com/farhan-shafee/creditflow-qe/actions/runs/38789200927/job/116609046116"
+    },
+    {
+      "name": "browser",
+      "conclusion": "success",
+      "url": "https://github.com/farhan-shafee/creditflow-qe/actions/runs/38789200927/job/116609046443"
+    }
+  ],
+  "passed": true
+}

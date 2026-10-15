@@ -1,0 +1,668 @@
+{
+  "head": "81fceff035c5ad23e761f6a1c49196e488f24d58",
+  "matchedFiles": 165,
+  "files": [
+    {
+      "file": ".dockerignore",
+      "sha256": "646c1ef5a92e46cf8793fc347916ea7fd55dc3652be6958119ca6daf45d8c5c9"
+    },
+    {
+      "file": ".env.example",
+      "sha256": "3eafe1154e13b096fa82fb75e7913789f0adbe1accade698c1c7a66876e46ee4"
+    },
+    {
+      "file": ".gitattributes",
+      "sha256": "ba797f9d1857eea795dc43a641761806876265e6134b9cfdf81f22ba369bc832"
+    },
+    {
+      "file": ".github/workflows/verify.yml",
+      "sha256": "cf4dd51aadcd8c1f5064addd8bd0e9be484a7bed129ae9ee30b41e557b7ad549"
+    },
+    {
+      "file": ".gitignore",
+      "sha256": "a8e883ec629ad1a680def87229fcc0e4c742fc19bafe20dc7ea98840b9e46c3f"
+    },
+    {
+      "file": ".mvn/wrapper/maven-wrapper.properties",
+      "sha256": "8f2a4438810348270d9d98f8d6d530541ddb7271e373db207e8ac381e0e35b62"
+    },
+    {
+      "file": "Jenkinsfile",
+      "sha256": "4643ba702e5a1d59db5507a7eee7deb8b4494da097a13d97cc21141c7e80528c"
+    },
+    {
+      "file": "README.md",
+      "sha256": "6a8d3a87032783fbf4808c74df7eac983d5f5f6d78973574b74518d5936ad0cf"
+    },
+    {
+      "file": "apps/web/.env.example",
+      "sha256": "63a96a8d0e8a7beef497c33bbbba5e5a09e1310d785f6efa2b1b8357b1f5780a"
+    },
+    {
+      "file": "apps/web/app/CommandCenter.tsx",
+      "sha256": "9c5f9f9efd552216c54df4d573d929fdbae185e76fe470158712847eb7feb7aa"
+    },
+    {
+      "file": "apps/web/app/api/banking/route.ts",
+      "sha256": "12aca171d20e7f1bd817af58aca9cecbb9e6ae153492b2037171a46d0797293e"
+    },
+    {
+      "file": "apps/web/app/api/sandbox/route.ts",
+      "sha256": "ce5cbc8a56ca3181b351805be030b8cb847918125bc8e1e5b0444c2ed90e5755"
+    },
+    {
+      "file": "apps/web/app/globals.css",
+      "sha256": "ce5b05f580e45949d2032c672bcaa8c64bb33dde698e296b82bf537f0a5d46cb"
+    },
+    {
+      "file": "apps/web/app/layout.tsx",
+      "sha256": "98e782efb852a92311ce3ceae96d278fd42127ae551dfac1e8c6a766523f5720"
+    },
+    {
+      "file": "apps/web/app/page.tsx",
+      "sha256": "469d280bbaedd67eac5f5cdd10f15603b69a8ea4743aec647c291d2eedb51bc3"
+    },
+    {
+      "file": "apps/web/lib/backend.ts",
+      "sha256": "bbeb30da5de25dafaffc6843438d4713d14595d037f806afe1c2c4e5cd9de6fc"
+    },
+    {
+      "file": "apps/web/lib/request-policy.ts",
+      "sha256": "27fae17b87e3ae825bdca9161a80f197f953d405c1dda32bb7ce75a8acfa8545"
+    },
+    {
+      "file": "apps/web/lib/session.ts",
+      "sha256": "fdc7492e3e3eafda47d5b898e216fb37c5524e238fb1bac949e50402cf670b3f"
+    },
+    {
+      "file": "apps/web/next-env.d.ts",
+      "sha256": "1862ac4bbbc5192d4bf562161df66ea547ed3e67173100656ab606ae9797db2b"
+    },
+    {
+      "file": "apps/web/next.config.ts",
+      "sha256": "03ac472bd61bd85024bc5751c6d5e23cbd57963d81e8d5ca398bbc7ea902916f"
+    },
+    {
+      "file": "apps/web/package-lock.json",
+      "sha256": "2380d7f3f59d1b543e4a70a9ad6dadd5bfbf868ecb01c7c24aa07e97fe0fed68"
+    },
+    {
+      "file": "apps/web/package.json",
+      "sha256": "9b59919f5eaff19ba28f57bc2671e2318a63ee5b367dcf5a8a7c07f82e894dae"
+    },
+    {
+      "file": "apps/web/test/request-policy.test.ts",
+      "sha256": "e7d623316376799ffdc97c5193b11b1572f78c9d13a315d595073a3bc8e34f83"
+    },
+    {
+      "file": "apps/web/test/session.test.ts",
+      "sha256": "f667e1fe0041dcde85c6ee31ac39f594053b8ae222fd2e31f37de296adc0e636"
+    },
+    {
+      "file": "apps/web/tsconfig.json",
+      "sha256": "84b52bdbf6135ab99fc986cfbb45a050dd343bb7c6e12876caa9d6db0d9dbb3b"
+    },
+    {
+      "file": "apps/web/vercel.json",
+      "sha256": "8e276fc0fd4a8253bc0010345d2b1b6d9f747c070fbfadb7f6b711df6ba96124"
+    },
+    {
+      "file": "automation/api-bdd/pom.xml",
+      "sha256": "9b137826e1390212a53b6bf8ddc462cf9ff24ff7b8d5cceff4a19969d03d310c"
+    },
+    {
+      "file": "automation/api-bdd/src/test/java/com/creditflow/qe/ApiClient.java",
+      "sha256": "9b7932b5eeec84789bd3d8477776fc03caa17fa41bf0a12b18bfcabbf632ccc6"
+    },
+    {
+      "file": "automation/api-bdd/src/test/java/com/creditflow/qe/BankingSteps.java",
+      "sha256": "beb0db16e78daf0aee70a3ede27e738132684e0cbea01bd6756b1d73a50afa1d"
+    },
+    {
+      "file": "automation/api-bdd/src/test/java/com/creditflow/qe/RunCucumberTest.java",
+      "sha256": "d622032e4aabadd4861d418939970b971f04c72d1bc7a972faf1949ffeaefa97"
+    },
+    {
+      "file": "automation/api-bdd/src/test/java/com/creditflow/qe/ScenarioContext.java",
+      "sha256": "c337c3634b18a0cbe6ae7b06a548740225bef10733890db11f00332466964738"
+    },
+    {
+      "file": "automation/api-bdd/src/test/java/com/creditflow/qe/ScenarioHooks.java",
+      "sha256": "b957e4982a8e12b02192189d28714d08b16e07cb23ffa9572d46f03229d550b7"
+    },
+    {
+      "file": "automation/api-bdd/src/test/resources/features/credit-card.feature",
+      "sha256": "c52aea47ec55472f866bf79981a6442d6819c8dab5394f196a49056e987532eb"
+    },
+    {
+      "file": "automation/api-bdd/src/test/resources/schemas/account.json",
+      "sha256": "ed4f8fc0ab52a4da915a5c8f9e6a3d30865df342cdab1eee57bb7da2ad48e401"
+    },
+    {
+      "file": "automation/api-testng/pom.xml",
+      "sha256": "7cba2dc99639ab117768cb12ed4354b8a8b29521f4592f8449046b9722e00ea3"
+    },
+    {
+      "file": "automation/api-testng/src/test/java/com/creditflow/qe/testng/PaymentContractTest.java",
+      "sha256": "9c7558cb253a0c222b8956e6ad9db18f321c3ef7cb77dd0a039320cac8e4d2ba"
+    },
+    {
+      "file": "automation/api-testng/src/test/resources/testng.xml",
+      "sha256": "f69c2768a083099d656131ba680b29da89d178fb7b340760f53a9c713f93807a"
+    },
+    {
+      "file": "automation/ui-e2e/pom.xml",
+      "sha256": "6259203d91c82ef337c55e401965c562101ec64a3f442344e6c2cc0a5f1a80d6"
+    },
+    {
+      "file": "automation/ui-e2e/src/test/java/com/creditflow/qe/ui/BffContractTest.java",
+      "sha256": "35de0803dced7de892666d9df55e0295870d3fa1dbaaaaef99b883baefa94900"
+    },
+    {
+      "file": "automation/ui-e2e/src/test/java/com/creditflow/qe/ui/PlaywrightJourneyTest.java",
+      "sha256": "afe612d1943396c8f7b2b366d313e7d51f604ba95174255fef1d41da911ad6fc"
+    },
+    {
+      "file": "automation/ui-e2e/src/test/java/com/creditflow/qe/ui/SeleniumJourneyTest.java",
+      "sha256": "395b027d0ec079ae6d2c5153eb081cbb26b2e7ea2273b91e9f1450f41fd6517e"
+    },
+    {
+      "file": "automation/ui-e2e/src/test/java/com/creditflow/qe/ui/TraceRedactor.java",
+      "sha256": "01ac880f7c7527c1829c9d78c3148e1f04b0fc39ca4b039bd07be3582b150f22"
+    },
+    {
+      "file": "automation/ui-e2e/src/test/java/com/creditflow/qe/ui/TraceRedactorTest.java",
+      "sha256": "71cae2d4d8863cfd593b37b7d442788634f41fa3839e3bea1f16f8e1b8fc21f8"
+    },
+    {
+      "file": "bruno/01-create-sandbox.bru",
+      "sha256": "09c3fe3ab76e196f34a312eaff80c8a446ee6b78e5100ab552f4b833f8830469"
+    },
+    {
+      "file": "bruno/02-account.bru",
+      "sha256": "02c11b86a3461170036411ae64c005106adf4dafb23ccb8af3b8b4cdae612a22"
+    },
+    {
+      "file": "bruno/03-purchase.bru",
+      "sha256": "3d151f7733baedcc2bd3a0d7cad97e21d66cd855d79e09efa2866e37ce6c8117"
+    },
+    {
+      "file": "bruno/04-payment.bru",
+      "sha256": "d2c4c7b900930ed8883e23424420781eedb22298682149b855d214e9c5149619"
+    },
+    {
+      "file": "bruno/05-invalid-payment.bru",
+      "sha256": "7e040059cacc5be80c33c4fabdc89418780e50f74616f0217555a7905190d0dd"
+    },
+    {
+      "file": "bruno/06-missing-auth.bru",
+      "sha256": "b7e8c07d568a6e9369cad9187281c65ce1e2da91a96107d55bd3d0aa5412b7fb"
+    },
+    {
+      "file": "bruno/07-history.bru",
+      "sha256": "f0d4162874841c9751c1789b5ad9f2d192d6baa1604a58da3b3287850d70214a"
+    },
+    {
+      "file": "bruno/README.md",
+      "sha256": "62c82484a3f571c2f75923965faba1d9ce1e3791bc40ed25679ad9a801568018"
+    },
+    {
+      "file": "bruno/bruno.json",
+      "sha256": "a15b99ac3f9b320423d488e8dc0f6d3c0f21c4edf02e7a5033a02bb29f2e1d39"
+    },
+    {
+      "file": "bruno/environments/Local.bru",
+      "sha256": "845bfb1e633fc1678ae15d78b2d3e7d8562c6fdc2ac20e10bc54b665f40dacae"
+    },
+    {
+      "file": "docs/architecture/core-design.md",
+      "sha256": "c966563b8f95b97bde83bb3967043b0d1b049b676c7bebd9a319f501ef0f81a8"
+    },
+    {
+      "file": "docs/deployment-readiness.md",
+      "sha256": "f1b1dc541c6ee50e4bd01d9befa5054a849bda5c4ba49a3ec688c355c9ff81f9"
+    },
+    {
+      "file": "docs/evidence/STATUS.md",
+      "sha256": "df649f56c5df9ca205be367647b476c86ca597b623e2fff73b95b7db8c20c300"
+    },
+    {
+      "file": "docs/evidence/custom-domain.md",
+      "sha256": "8f8fce831b3af009c94caba60fa0a158227df2334d3ee7c7f503a1455076358a"
+    },
+    {
+      "file": "docs/evidence/custom-domain/attachment.json",
+      "sha256": "5488365508293ea3ba461956cd9140ca99d4ca48f75f7657c4fc8514596f06a6"
+    },
+    {
+      "file": "docs/evidence/custom-domain/banking-flow.json",
+      "sha256": "76b5acf42fefe6bbf1966ec8154ea2d484bd6e52dd800572202583e7054b457e"
+    },
+    {
+      "file": "docs/evidence/custom-domain/deployment-ready.json",
+      "sha256": "6e0bba6a50d40765d9fa5abc13e6174e78e4c1f8ca09e4c7feaffddd5f190184"
+    },
+    {
+      "file": "docs/evidence/custom-domain/dns-applied.json",
+      "sha256": "a0a480655a8e288e0efc572122e0c7b2cd5785bd838ef47237c3d3a54bca19bf"
+    },
+    {
+      "file": "docs/evidence/custom-domain/frontend-cold-start-fixed.json",
+      "sha256": "6252846ff5c25d9d351d14bacd6e4069aec5500a7db9020b290d69fc66afd67d"
+    },
+    {
+      "file": "docs/evidence/custom-domain/network-preflight.json",
+      "sha256": "62ba7dad735216ad832137e491a0bfdb3a48821df5750322f126d893c9aaff73"
+    },
+    {
+      "file": "docs/evidence/custom-domain/origin-evidence.json",
+      "sha256": "87b1bb3d14c52305e5b27d15f23a80ede96196a51639f839554ac7ccec2b72c9"
+    },
+    {
+      "file": "docs/evidence/custom-domain/payment.png",
+      "sha256": "8ebe78c28fa161da2737c0c5a97eae410ee3d4a63eef29c3eae1b078a41aba4d"
+    },
+    {
+      "file": "docs/evidence/custom-domain/provider-redirect.json",
+      "sha256": "5a12ddb277cc3283dc4c3112ee5c26ac4d5807c8af9afd492cfe3437240d388d"
+    },
+    {
+      "file": "docs/evidence/custom-domain/public-ui-canonical.json",
+      "sha256": "7c4c8297338fc64692ac718c652193de5368046c13d03da4de28dba53813e181"
+    },
+    {
+      "file": "docs/evidence/custom-domain/receipt-index.json",
+      "sha256": "a733e4af93aa126ae46c8721fdbc0a52d80e9edb18063b106fde133397d3382f"
+    },
+    {
+      "file": "docs/evidence/custom-domain/ui-setup-attempt.json",
+      "sha256": "f7fae16e4c0bd6b619cadb4b171b0ace6407af431ad3cf40fe83f725538a4794"
+    },
+    {
+      "file": "docs/evidence/playwright-response-lifetime.json",
+      "sha256": "ee45fea841d5591698969d8084afe17b133e2efaad11af7b7373a808738328ca"
+    },
+    {
+      "file": "docs/evidence/playwright-response-lifetime.md",
+      "sha256": "c1c986dc02644b5e671586ac9ddfc694ed462e82ecd4b3e6113f7ce6dbe95646"
+    },
+    {
+      "file": "docs/evidence/portfolio-integration.md",
+      "sha256": "9167de7015bd34543e7763fef3f48c52b62dde8653c51c7272a658186f0b9c8c"
+    },
+    {
+      "file": "docs/evidence/portfolio-integration/card.png",
+      "sha256": "334c2979ae714bf4f0e2ab3465106dd6a4373f3ffe42780dc77b2057d28eaac4"
+    },
+    {
+      "file": "docs/evidence/portfolio-integration/independent-review.json",
+      "sha256": "48b942050edc83802ddd738e49807bd0682c25f7c1e3d9ec6823ebf7ad6c78e8"
+    },
+    {
+      "file": "docs/evidence/portfolio-integration/initial-ui-observation.json",
+      "sha256": "1e05d0c3af2d159d601ea07ceb44a48cd97f26cf06e93b5edd59389a47952a85"
+    },
+    {
+      "file": "docs/evidence/portfolio-integration/local-browser.json",
+      "sha256": "2ec6cddb698433b6e54b0371f9d50c42c1c8a840340e1a7ceddac5aba083838f"
+    },
+    {
+      "file": "docs/evidence/portfolio-integration/promotion-verification.json",
+      "sha256": "6c282df0dbfca7918b422853bc2f942a9766e3e3a48c881782d996ade2c73d58"
+    },
+    {
+      "file": "docs/evidence/portfolio-integration/public-postflight.json",
+      "sha256": "e858c2ba5ff7d6a8c208a89b862421a3c10eff67584e193cc53d18d444a6e969"
+    },
+    {
+      "file": "docs/evidence/portfolio-integration/public-ui.json",
+      "sha256": "84db2e97dfbcd16d2c47fff0641037b63d60db9db4a95526315a945781895128"
+    },
+    {
+      "file": "docs/evidence/portfolio-integration/receipt-index.json",
+      "sha256": "c21e36076f468dbb005486480d0cd0d9bd501f04e32385b6c942dc78fc3e9b33"
+    },
+    {
+      "file": "docs/evidence/portfolio-integration/request-log-summary.json",
+      "sha256": "852a2a16f534210e7459b2600dcdabc8286e7cbcf07201599b4f84d65a774caa"
+    },
+    {
+      "file": "docs/evidence/portfolio-integration/source-release.json",
+      "sha256": "dca8d6af185eb111881756491da204f8a15a90f6aba8d3e006f072b2688d779b"
+    },
+    {
+      "file": "docs/evidence/portfolio-integration/staged-verification.json",
+      "sha256": "286a363e1eed4678538dd44f0d60908a3cd5f263e6293c8267fc38c70044c268"
+    },
+    {
+      "file": "docs/evidence/portfolio-integration/upload-review.json",
+      "sha256": "faf056f90b7432a18fc17fc343a7ade57d97bc91620afba5adaf43b0aad8e2f5"
+    },
+    {
+      "file": "docs/evidence/portfolio-integration/validation.json",
+      "sha256": "f12f2419df0b0b3fc4e69deffa2cfe9576fb6a742d568988f63673d94330edb5"
+    },
+    {
+      "file": "docs/evidence/provider-pilot.md",
+      "sha256": "cad070e866358b19c7c5d6a64cdb2ed330c51eaa0c474b74d878587ee99c80ed"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/canonical-spotless.json",
+      "sha256": "4212eeadeadaaa300558b4ac3cefd0d7f059b275f313af5d3d56ca37e22d221d"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/ci-artifact-verification.json",
+      "sha256": "f4d8d14ea26528c7aa4d5c300b0d1e2861eac60c25eca5412e0f527e46830847"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/cloud-api-smoke-attempt1.json",
+      "sha256": "39e61fb54ee3bd8e063bc4172e9b3e93f31152e2865dbb1056716c369aceec1b"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/cloud-api-smoke.json",
+      "sha256": "a6d369c6a259d382bebd409d2325050cb14774acca378d8cb9599d395369968a"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/dns-proposal.json",
+      "sha256": "4db176ddf2d8b34e9e30e7ba7f3cb951b32ee353aba8b1c23ea568a310e2ba1d"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/export-byte-verification.json",
+      "sha256": "90121a268f98d4ede3b29c1e5b8ddabccd6eba25f09a687dc8cd5f18a8ed90ed"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/frontend-cold-start-fixed.json",
+      "sha256": "3180102d5f9e77e2c34341554b5500a4f673634eddcde93c57ef8d898254f51f"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/frontend-cold-start.json",
+      "sha256": "29ab71efc2dd00ca19eb3ff71888674d4c01e6d7665aab61e6c701c229ff6db9"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/metrics.json",
+      "sha256": "4b03c618d2d10970f5a756406ce671ffc7c8cd696a1d86bb6cdbbc655ae32aa3"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/payment.png",
+      "sha256": "2b3dbb5b5c86a354cc098857a02aca4e23002f7d1c8346eb7754f9d8ff68b171"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/persistence-after.json",
+      "sha256": "74ad6405f3c819965a64ce742c22592f6058c4348853fa4941cdd3577e92c179"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/persistence-before.json",
+      "sha256": "a4c3b120b389bae759e88cccf65d5056850940ff22f13901949d303e5e168c0b"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/public-ui-canonical.json",
+      "sha256": "3ec046bb5f78674815b52ce8aeeee5087aed023130a18a84c966648ae4bd5c86"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/public-ui.json",
+      "sha256": "2ba161d80e646d3560b16a5874b8eed5309fb2c1a376b098fb2898f20ac12e30"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/railway-original-build-failure.json",
+      "sha256": "86d5e7329fab96374a67d5eebf51393a5ac044a4b752b798b114a4130dd7be8b"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/railway-resource-configuration.json",
+      "sha256": "c9af61eca3fddb9f06904744ec9378bb087a2d3d9f0926819b808fa9c2310b23"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/receipt-index.json",
+      "sha256": "1ee64cd732f6fb0f342f953a1267103f44e262eb8bedf2ba16e3218db0fdda3a"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/restart-evidence.json",
+      "sha256": "e710dee13112ed56211d413c1475a24eaf0fc56260fd8b735dbbebf613e1bf9c"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/runtime-socket-probe.json",
+      "sha256": "9c7128c8cb71b080066ad1d105bac43063bac8ea4622f63adc95900b1f1c5cba"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/unused-role-probe.json",
+      "sha256": "f0fdf5bd8128db73792704f27e4d2232eff10829517a91a837124f6aff339847"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/vercel-environment-evidence.json",
+      "sha256": "f6f1bfc0d667e624a46b2efd37f4d1cacf4194ef260d3fb7433084f740c752c0"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/vercel-project-configuration.json",
+      "sha256": "4f039c98eb52db9822dc389a188d7ea409c6a315e494e9b6aecc2877eae6e213"
+    },
+    {
+      "file": "docs/evidence/provider-pilot/vercel-ready.json",
+      "sha256": "541d27bd2ecb2c7211ccca87df6625d65df1777d73593802c85cbb3d831325c1"
+    },
+    {
+      "file": "docs/interview-guide/coding-exercises.md",
+      "sha256": "91e36ba2025ef082cc7af9698bc1a64644ef4b0a9f3cbce8200fb7ecae763f17"
+    },
+    {
+      "file": "docs/interview-guide/five-minute-walkthrough.md",
+      "sha256": "36909cc09bb07f6c15e7d860568703f709c190af6cffcf864c4bb87c02e1f46f"
+    },
+    {
+      "file": "docs/interview-guide/technical-practice.md",
+      "sha256": "b2e19a5e1174386442cbef773fba84480ccf42e298376e63bfa5318ee3e44a82"
+    },
+    {
+      "file": "docs/portfolio-creditflow-card.json",
+      "sha256": "9cd5515fc7cb605dc2ed9753e3c253037b49ac3da83ff6bbf9200d0dc0fb316c"
+    },
+    {
+      "file": "docs/portfolio-integration.md",
+      "sha256": "5235b13ff54fbdd5eb423909338cb26f7e7ebdd5047fc5337754d94f6d20c5ab"
+    },
+    {
+      "file": "docs/superpowers/plans/2026-10-14-creditflow-core.md",
+      "sha256": "56e7005f4de53aa7b1b2ce0430e04b6402a299f7fd01cd4b283885d80f26a796"
+    },
+    {
+      "file": "docs/superpowers/plans/2026-10-14-engineering-finish.md",
+      "sha256": "60717ab86ecbbd6da2ebedafa23cc19c9e24714911282a3d07b7bf65f2c65f50"
+    },
+    {
+      "file": "docs/testing/strategy.md",
+      "sha256": "e19bb3e763e40019fd05fd0640945475dd359363018169768a693c74239e4b0b"
+    },
+    {
+      "file": "infrastructure/Dockerfile.api",
+      "sha256": "809880b808d381d6e8dd923e88fe02018b3e7efbb74312ce17b80363a6aca44a"
+    },
+    {
+      "file": "infrastructure/Dockerfile.web",
+      "sha256": "8d007dee1c0bb4368bab96c93ff4aaf06726ce1996667d35ff42725d7df283f4"
+    },
+    {
+      "file": "infrastructure/ValidateJenkins.java",
+      "sha256": "04a70b2df923f6ab0b82f32d42971ed73fa58d8a1a0e77fbddb95f3e26d4b8d2"
+    },
+    {
+      "file": "infrastructure/audit-dependencies.py",
+      "sha256": "918ba1e65180ab776cefdb4b8bf22868b3e4171a78c2c459c5510c9246aad37f"
+    },
+    {
+      "file": "infrastructure/compose.yml",
+      "sha256": "bbf44f16b4277ef91746bcf32118b983c2715a0ccb5130a953e708fc36bee20b"
+    },
+    {
+      "file": "infrastructure/evidence-run.py",
+      "sha256": "6892d5d9b4fea034b1ced193aed1a34a7c31aadb7c2b76ffd1f402e3c03dd5b9"
+    },
+    {
+      "file": "infrastructure/gitleaks.toml",
+      "sha256": "396bc07d1938af38e9693aa072087089ddf454cfcc981042a0746928472599e8"
+    },
+    {
+      "file": "infrastructure/maven.cjs",
+      "sha256": "cb469c27d58d48ef0a6bc9b34526a78972e5947881bd40b82e92e497b470c95a"
+    },
+    {
+      "file": "infrastructure/public-verify.cjs",
+      "sha256": "f84dc4093a0276de0662ced33d650014a50e10ace7bbce705f4a478df2833a6d"
+    },
+    {
+      "file": "infrastructure/quality-verify.cjs",
+      "sha256": "83d5d667e66c5440476ead2b3cbc078b71b60282eded8342a2462d19530e29da"
+    },
+    {
+      "file": "infrastructure/release-environment.md",
+      "sha256": "6d68724dbbe0af48cbbc7b01ba21f4458f55e4488a8c182bfcf5f381a5e8d71d"
+    },
+    {
+      "file": "infrastructure/run-evidence.cjs",
+      "sha256": "2610cb68b8b17513848f8ffa42b524c551733bf640c82853b04c053e72904c82"
+    },
+    {
+      "file": "infrastructure/runtime-role.sql",
+      "sha256": "af5c448603c674fe4d87857c68fdcaa2902ac39be9983286ead4926bd128dba9"
+    },
+    {
+      "file": "infrastructure/test_evidence_run.py",
+      "sha256": "3fecca1c875a85f8dc2ff8a7a51798f18a734533461f50b303dcda3932b5694b"
+    },
+    {
+      "file": "infrastructure/ui-verify.cjs",
+      "sha256": "a7b1e1389a55449b0ca0a8a5f594f18623e67ad37d2b700def568b9cb5d72e79"
+    },
+    {
+      "file": "infrastructure/validate-runtime-role.cjs",
+      "sha256": "7b42a7b8affea3c64df4ef482da227b22575ba31aef8426ed938c31d9adfe80f"
+    },
+    {
+      "file": "infrastructure/validate-runtime-role.sql",
+      "sha256": "1e846e6756fb38078900569f8eefe37f62675d6dc6d2be9900166b09231a5235"
+    },
+    {
+      "file": "infrastructure/verify-evidence.py",
+      "sha256": "189296de504eef57eea8b89c295417a0edf20a448c49de483c3666c52f03db87"
+    },
+    {
+      "file": "infrastructure/verify.cjs",
+      "sha256": "81e2b7bb6b8a63dc66558b74b1b88a1094352c5769f61c0185ddf08e106e7edc"
+    },
+    {
+      "file": "infrastructure/verify.ps1",
+      "sha256": "9f2f5440cbd398824494790f89ee6b7d541e13be11dbd29a349b4740a8ed4de1"
+    },
+    {
+      "file": "infrastructure/web-verify.cjs",
+      "sha256": "a9f892bfb0afa8d4d9c9825a65aaad58718b53784d35f211db156ea19864ddd2"
+    },
+    {
+      "file": "mvnw",
+      "sha256": "cae96cef89ebea3531221f4ae17c23cf8edf67d00eae8306d4186ae1bbed4d02"
+    },
+    {
+      "file": "mvnw.cmd",
+      "sha256": "4a361e1374a3e5ad6d03e18e9adc0cf181ac5058ac6203b76f0ba3b456b56481"
+    },
+    {
+      "file": "pom.xml",
+      "sha256": "33b189502af0f4bfe4a9ab0b2535be6a4d5a5ab7cc499cfcff468b81ef145d96"
+    },
+    {
+      "file": "railway.toml",
+      "sha256": "da489c78ccf32b6c8dd90d04cd40e35c45b716087dcb517d3ed5c61f38ab51b7"
+    },
+    {
+      "file": "services/banking-api/pom.xml",
+      "sha256": "36c209ecf7a1afc8a4e3f3cc6d27678056ab1d7260205b64da7a9599b0e28aec"
+    },
+    {
+      "file": "services/banking-api/spotbugs-exclude.xml",
+      "sha256": "4ac938dc990a333ad21e5921a4917d69e3b10b83de45331249044124e4420e76"
+    },
+    {
+      "file": "services/banking-api/src/main/java/com/creditflow/banking/BankingApplication.java",
+      "sha256": "2ee4ecfdf561762a33a86e67dee80ecb35fef2dabb593dff67b3d3287cac37cb"
+    },
+    {
+      "file": "services/banking-api/src/main/java/com/creditflow/banking/domain/AccountState.java",
+      "sha256": "51198f9a3cc93693cfaea5d303e928ac8de99d90fa9d6dd71699eb455d77a1dd"
+    },
+    {
+      "file": "services/banking-api/src/main/java/com/creditflow/banking/domain/DomainException.java",
+      "sha256": "572f0d9b186ee6cbf6707e500f88b6a9fa867895609df632f6c8c8093eb3c681"
+    },
+    {
+      "file": "services/banking-api/src/main/java/com/creditflow/banking/domain/Money.java",
+      "sha256": "c4c48c213f97b166b184cc2dadd7b5bba4f2bb035583ba596517d9d0fedc2a97"
+    },
+    {
+      "file": "services/banking-api/src/main/java/com/creditflow/banking/ledger/ApiModels.java",
+      "sha256": "de263496593ec126bc5a2475cee39baa2d3c5e87eb5bba90a62eda485cf8eea6"
+    },
+    {
+      "file": "services/banking-api/src/main/java/com/creditflow/banking/ledger/LedgerService.java",
+      "sha256": "f31672c3c463abe2f5789bbcbbd3099ca59eecf3fd6a7ee7d337ff4102d1d059"
+    },
+    {
+      "file": "services/banking-api/src/main/java/com/creditflow/banking/web/ApiErrors.java",
+      "sha256": "247e6c80ce9139df4e6c6bfcdd59e49c9fea814e0fdecd973f51edec05dfa404"
+    },
+    {
+      "file": "services/banking-api/src/main/java/com/creditflow/banking/web/BankingController.java",
+      "sha256": "a0919f61ee1cd6f631aa22197dfa29bc2fff3c760b50a8baa1425da01f4a70d4"
+    },
+    {
+      "file": "services/banking-api/src/main/java/com/creditflow/banking/web/RequestBudget.java",
+      "sha256": "6982a8e2fc31b04c903e9535da3c8881830c6f6a03ee5ac12555314217251994"
+    },
+    {
+      "file": "services/banking-api/src/main/java/com/creditflow/banking/web/RequestControls.java",
+      "sha256": "426404a3afa271e2db201e8d7417c625932fcb48d4fbf87a9f48317c8d9e7ecb"
+    },
+    {
+      "file": "services/banking-api/src/main/java/com/creditflow/banking/web/SandboxQuota.java",
+      "sha256": "adf93badc8e7a3b72364c1f753a620b4d0708b83fa64236388c5113ddcaf4253"
+    },
+    {
+      "file": "services/banking-api/src/main/resources/application.yml",
+      "sha256": "8e72bae51d96231d0b787e0fa91a2f7cfe4c6921cc7415489d8d9d4f08ef009b"
+    },
+    {
+      "file": "services/banking-api/src/main/resources/db/migration/V1__synthetic_ledger.sql",
+      "sha256": "90c32c46df57b5de496d6656e19ab7a4ac006a28cfa77a11f5a1b5ea974322a4"
+    },
+    {
+      "file": "services/banking-api/src/main/resources/static/openapi.yaml",
+      "sha256": "061f04e6dd197ecae0a8ea3358e66c886025ee121b4bb3a36b3cf4bda1df454c"
+    },
+    {
+      "file": "services/banking-api/src/test/java/com/creditflow/banking/HealthAvailabilityIT.java",
+      "sha256": "083fce741028d674f1ba69d6ca8eaf817f1acda42f1decc163bf7c1845d9fc39"
+    },
+    {
+      "file": "services/banking-api/src/test/java/com/creditflow/banking/HistoryTest.java",
+      "sha256": "5035d450851ace2c3ee5b28141eff40cd937321923a80f53afeca3f4114e36f0"
+    },
+    {
+      "file": "services/banking-api/src/test/java/com/creditflow/banking/LedgerIT.java",
+      "sha256": "4083282f3e3c53dcdaebe5544105da33fd0df6fda003e0c8cada87142254b1df"
+    },
+    {
+      "file": "services/banking-api/src/test/java/com/creditflow/banking/PublicBoundaryIT.java",
+      "sha256": "aa0231c690e934975a2f4d20cc6b803dce1e55630ae43172a04b7883ffd7a7b1"
+    },
+    {
+      "file": "services/banking-api/src/test/java/com/creditflow/banking/RequestBudgetTest.java",
+      "sha256": "cc053fda867fdcddd75abaf240c4d360ec60eb2fbee2b5126aa6cbe0d1aa7736"
+    },
+    {
+      "file": "services/banking-api/src/test/java/com/creditflow/banking/domain/AccountStateTest.java",
+      "sha256": "0ad03f097aeff1c1ed2fa200d4ca573f8247b8dbb3dc93518f652b561989f0e7"
+    },
+    {
+      "file": "services/banking-api/src/test/java/com/creditflow/banking/domain/MoneyTest.java",
+      "sha256": "bf27bf02222d6808170bfba823474afaa2a1362ec33ad257e1c60fece7f5e0d0"
+    }
+  ],
+  "onlyGeneratedInput": ".vercelignore",
+  "archiveSourceOnly": true
+}

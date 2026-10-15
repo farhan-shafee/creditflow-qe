@@ -1,0 +1,57 @@
+{
+  "verifiedAt": "2026-10-15T19:11:32.577Z",
+  "id": "dpl_HQsUSUS6ag68W4Nq2jDNG8e6tCi8",
+  "url": "https://creditflow-qe-pilot-otikcwqv0-cyberbit-solutions.vercel.app",
+  "head": "81fceff035c5ad23e761f6a1c49196e488f24d58",
+  "project": "prj_oKV8BBgmOOjtRaHGDErtWNOEETJ3",
+  "previousDeployment": "dpl_F6d4kYaLpdojbwBQ8aKUDKNmNkbe",
+  "checks": [
+    {
+      "name": "READY exact source and project",
+      "passed": true
+    },
+    {
+      "name": "custom alias remains prior release before promotion",
+      "passed": true
+    },
+    {
+      "name": "staged homepage200",
+      "passed": true
+    },
+    {
+      "name": "tested baseline source39e and CI38682147631 visible",
+      "passed": true
+    },
+    {
+      "name": "baseline labels distinguish current release evidence",
+      "passed": true
+    },
+    {
+      "name": "old exact-current-source wording removed",
+      "passed": true
+    },
+    {
+      "name": "unauthenticated banking rejected401",
+      "passed": true
+    },
+    {
+      "name": "foreign origin rejected403",
+      "passed": true
+    },
+    {
+      "name": "configured production write origin is exact custom hostname",
+      "passed": true
+    },
+    {
+      "name": "provider hostname retains308redirect to custom host",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "configuredProductionOrigin": "https://creditflow.farhan-shafee.com",
+  "providerRedirect": {
+    "status": 308,
+    "location": "https://creditflow.farhan-shafee.com/"
+  },
+  "helperCorrection": "Initial helper assumed HTML canonical markup; existing layout has no such markup. Verified actual origin configuration and redirect contract instead. No source, assertion threshold or deployment changed."
+}

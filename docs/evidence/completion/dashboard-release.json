@@ -1,0 +1,18 @@
+{
+  "verifiedAt": "2026-10-15T19:11:44.229Z",
+  "deploymentId": "dpl_HQsUSUS6ag68W4Nq2jDNG8e6tCi8",
+  "url": "https://creditflow-qe-pilot-otikcwqv0-cyberbit-solutions.vercel.app",
+  "projectId": "prj_oKV8BBgmOOjtRaHGDErtWNOEETJ3",
+  "sourceCommit": "81fceff035c5ad23e761f6a1c49196e488f24d58",
+  "readyState": "READY",
+  "target": "production",
+  "customHost": "creditflow.farhan-shafee.com",
+  "aliasDeploymentId": "dpl_HQsUSUS6ag68W4Nq2jDNG8e6tCi8",
+  "priorDeployment": "dpl_F6d4kYaLpdojbwBQ8aKUDKNmNkbe",
+  "stagedChecks": 10,
+  "configurationPreserved": true,
+  "secretsChanged": false,
+  "dnsChanged": false,
+  "cliPromotionExit": 0,
+  "promoted": true
+}

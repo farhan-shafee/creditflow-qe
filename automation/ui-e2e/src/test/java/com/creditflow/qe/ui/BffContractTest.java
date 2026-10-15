@@ -17,8 +17,9 @@ class BffContractTest {
 
   HttpResponse<String> request(
       String path, String method, String body, String cookie, boolean origin) throws Exception {
+    // Allow the 20-second upstream deadline and 30-second hosted function deadline to return.
     HttpRequest.Builder builder =
-        HttpRequest.newBuilder(URI.create(base + path)).timeout(Duration.ofSeconds(15));
+        HttpRequest.newBuilder(URI.create(base + path)).timeout(Duration.ofSeconds(35));
     if (origin) builder.header("Origin", base);
     if (cookie != null) builder.header("Cookie", cookie);
     if (body != null) builder.header("Content-Type", "application/json");

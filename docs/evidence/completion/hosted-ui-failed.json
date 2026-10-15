@@ -1,0 +1,47 @@
+{
+  "startedAt": "2026-10-15T19:15:03.019Z",
+  "endedAt": "2026-10-15T19:16:08.150Z",
+  "commit": "81fceff035c5ad23e761f6a1c49196e488f24d58",
+  "origin": "https://creditflow.farhan-shafee.com",
+  "target": "actual Vercel BFF / Railway API / Neon PostgreSQL",
+  "noServerCredentials": true,
+  "exitCode": 1,
+  "suites": [
+    {
+      "name": "com.creditflow.qe.ui.BffContractTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 1,
+      "skipped": 0
+    },
+    {
+      "name": "com.creditflow.qe.ui.PlaywrightJourneyTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.creditflow.qe.ui.SeleniumJourneyTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "name": "com.creditflow.qe.ui.TraceRedactorTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "totals": {
+    "tests": 11,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0
+  },
+  "passed": false,
+  "error": null
+}

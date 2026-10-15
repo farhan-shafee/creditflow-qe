@@ -1,6 +1,6 @@
-# Isolated pilot readiness, cost and next approval
+# Isolated pilot readiness, cost and completed approvals
 
-The owner approved the isolated provider-URL pilot. Fresh Railway, Neon Free and Vercel resources are now deployed and verified; see [component commits, tests, limits and retained failures](evidence/provider-pilot.md). The separately approved custom-domain release is now verified at https://creditflow.farhan-shafee.com, with one DNS-only CNAME and its production origin update. See the [actual custom-domain receipt](evidence/custom-domain.md). The separately approved [portfolio integration](evidence/portfolio-integration.md) is now deployed and verified.
+The owner approved the isolated provider-URL pilot. Fresh Railway, Neon Free and Vercel resources are now deployed and verified; see [component commits, tests, limits and retained failures](evidence/provider-pilot.md). The separately approved custom-domain release is now verified at https://creditflow.farhan-shafee.com, with one DNS-only CNAME and its production origin update. See the [actual custom-domain receipt](evidence/custom-domain.md). The separately approved [portfolio integration](portfolio-integration.md) is merged, deployed and verified. [Current completion evidence](evidence/completion.md) records the later frontend release, actual local Jenkins execution and dependency-review limitation.
 
 ## Approved pilot scope
 
@@ -30,13 +30,13 @@ Railway's workspace hard limit shuts down workspace workloads. [Vercel Spend Man
 
 ## Technical release gates
 
-- A green required Actions workflow for the approved release commit, with source-bound reports, full inventory/advisory/secret checks and generated coverage. See [actual execution status](evidence/STATUS.md). Jenkins syntax parsing is not a Jenkins server run.
+- A green required Actions workflow for the approved release commit, with source-bound reports, full inventory/advisory/secret checks and generated coverage. See [actual execution status](evidence/STATUS.md). Jenkins syntax parsing is not a server run; the separate [actual local controller receipt](evidence/jenkins-execution.md) now verifies 123 published cases and 32 framework tests at pinned source.
 - Run Flyway with a dedicated migration identity on a direct verified-TLS database connection. Apply restricted runtime grants, set a new private credential and disable runtime Flyway after migration. The local role probe verifies allowed inserts/balance update/read and denied direct ledger update/delete, expiry update and schema creation; it rolls back under bounded database/client timeouts. It does not claim a deployed Neon role.
 - Use fresh project-only server keys, never another project's credentials/data. Public mode requires the server key plus account ownership. Keep conservative public quotas; high automation quotas belong only to the isolated test environment.
 - Railway/Docker probes use `/actuator/health/liveness`. Aggregate/database readiness requires the server key in public mode at `/actuator/health/readiness`. Release checks must verify both; liveness alone does not certify database readiness.
 - Configure exact HTTPS frontend origin, server-only API URL, independent signed HttpOnly session secret and provision key. Disable local-demo mode publicly. Verify same-origin writes, ownership isolation, exact posting/replay/persistence, bounded sessions/quotas, errors, logs and commit/image provenance.
 - Verify HTTPS and cold starts using provider URLs before considering DNS. The original 8-second BFF deadline failed a real cold request; the corrected 20-second deadline beneath a 30-second Vercel function limit succeeded in 14,767 ms. The database connection timeout remains 5 seconds. [Neon sleeps after five inactive minutes](https://neon.com/docs/introduction/scale-to-zero); a query wakes it. [Railway serverless](https://docs.railway.com/deployments/serverless) depends on outbound inactivity, usually 5–10 minutes. Pools/telemetry can prevent sleep. Local minimum-idle 0/keepalive 0 and idle retirement permit empty pools; they are not proof of cloud sleep or a guaranteed bill.
 
-## Smallest next approval
+## Approval scope after release
 
 The custom-domain approval has been exercised: the new CNAME, exact production origin, HTTPS, redirect and banking/UI flows are verified. See the [actual release](evidence/custom-domain.md). The separately approved [portfolio integration](portfolio-integration.md) has also been exercised and verified. Deletion of the unused bootstrap role whose password is disabled remains a separate decision. System installation, shared billing changes and unrelated resources remain outside this release. Browser Use still requires explicit permission.
