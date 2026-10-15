@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "kind": "read-only-provider-audit",
+  "checkedAt": "2026-10-15T21:24:56.260Z",
+  "targetSource": "51a2affe38a733f350390fafd59b885b74823b42",
+  "authorization": {
+    "readOnly": true,
+    "projectScoped": true,
+    "cloudMutationsPerformed": false,
+    "connectionStringsOrEnvironmentValuesRetrieved": false,
+    "databaseQueriesPerformed": false,
+    "publicBankingRequestsPerformed": false
+  },
+  "railway": {
+    "checkedAt": "2026-10-15T21:23:04.109Z",
+    "tool": "railway-status",
+    "isError": false,
+    "project": {
+      "id": "d76d1a2a-17bb-42e2-b192-481a83f1cfab",
+      "name": "creditflow-qe-pilot",
+      "workspaceName": "Farhan Shafee's Projects"
+    },
+    "environment": {
+      "id": "ea414395-69ad-4a40-bf74-61ffe0911649",
+      "name": "pilot",
+      "stagedChangesPresent": false
+    },
+    "services": [
+      {
+        "id": "b6ba2644-1e82-471d-8e50-fe1c83e61b10",
+        "name": "banking-api",
+        "latestDeployment": {
+          "id": "e0d833e4-2ed4-42a1-b32e-bfdd85bf22dd",
+          "status": "SLEEPING",
+          "createdAt": "2026-10-15T03:47:11.013Z",
+          "url": null
+        },
+        "numReplicas": null,
+        "volumeCount": 0
+      }
+    ],
+    "pendingWorkCount": 0,
+    "liveConfig": {
+      "checkedAt": "2026-10-15T21:23:04.480Z",
+      "tool": "railway-config",
+      "isError": false,
+      "service": {
+        "id": "b6ba2644-1e82-471d-8e50-fe1c83e61b10",
+        "name": "banking-api"
+      },
+      "environment": {
+        "id": "ea414395-69ad-4a40-bf74-61ffe0911649",
+        "name": "pilot"
+      },
+      "source": {
+        "repo": "farhan-shafee/creditflow-qe",
+        "branch": "feat/provider-pilot",
+        "commitSha": "20c91f5e10658ab4ce3ec7f2727c8a4934f5b314",
+        "rootDirectory": "/"
+      },
+      "build": {
+        "builder": "DOCKERFILE",
+        "buildEnvironment": "V3",
+        "dockerfilePath": "infrastructure/Dockerfile.api"
+      },
+      "deploy": {
+        "healthcheckPath": "/actuator/health/liveness",
+        "limitOverride": {
+          "containers": {
+            "cpu": 0.5,
+            "memoryBytes": 500000000
+          }
+        },
+        "healthcheckTimeout": 120,
+        "restartPolicyMaxRetries": 3,
+        "sleepApplication": true,
+        "useLegacyStacker": false,
+        "ipv6EgressEnabled": false,
+        "runtime": "V2",
+        "multiRegionConfig": {
+          "us-east4-eqdc4a": {
+            "numReplicas": 1
+          }
+        },
+        "drainingSeconds": 10,
+        "overlapSeconds": 0
+      },
+      "networking": {
+        "serviceDomains": {
+          "banking-api-pilot.up.railway.app": {
+            "port": 8080
+          }
+        }
+      },
+      "stagedPresent": false
+    },
+    "metricsWindow": {
+      "hoursBack": 24,
+      "sampleRateSeconds": 300,
+      "measurements": [
+        {
+          "measurement": "CPU_USAGE",
+          "current": 0,
+          "average": 0.0006655013956170704,
+          "min": 0,
+          "max": 0.033024066666666664,
+          "sampleCount": 289
+        },
+        {
+          "measurement": "MEMORY_USAGE_GB",
+          "current": 0.203784192,
+          "average": 0.128338520766914,
+          "min": 0,
+          "max": 0.203784192,
+          "sampleCount": 289
+        },
+        {
+          "measurement": "CPU_LIMIT",
+          "current": 0.5,
+          "average": 0.36678200692041524,
+          "min": 0,
+          "max": 0.5,
+          "sampleCount": 289
+        },
+        {
+          "measurement": "MEMORY_LIMIT_GB",
+          "current": 0.49999872,
+          "average": 0.36678106795847587,
+          "min": 0,
+          "max": 0.49999872,
+          "sampleCount": 289
+        },
+        {
+          "measurement": "NETWORK_TX_GB",
+          "current": 0,
+          "average": 2.570595155709342e-06,
+          "min": 0,
+          "max": 0.000179416,
+          "sampleCount": 289
+        }
+      ]
+    },
+    "deployments": [
+      {
+        "id": "e0d833e4-2ed4-42a1-b32e-bfdd85bf22dd",
+        "status": "SLEEPING",
+        "createdAt": "2026-10-15T03:47:11.013Z",
+        "updatedAt": "2026-10-15T19:31:01.520Z",
+        "regions": [
+          "us-east4-eqdc4a"
+        ],
+        "canRollback": true,
+        "canRedeploy": true,
+        "source": {
+          "commitHash": "20c91f5e10658ab4ce3ec7f2727c8a4934f5b314",
+          "branch": "feat/provider-pilot"
+        },
+        "snapshotId": "42343d07-bff6-4067-8c52-03f2b8a142a9"
+      },
+      {
+        "id": "16220617-cb9e-4ab7-8dc1-3b1838407000",
+        "status": "FAILED",
+        "createdAt": "2026-10-15T03:37:09.167Z",
+        "updatedAt": "2026-10-15T03:37:13.263Z",
+        "regions": [],
+        "canRollback": false,
+        "canRedeploy": true,
+        "source": {
+          "commitHash": "4ee66efa9ff76f608c03f41748cb5969c94a5bf3",
+          "branch": "feat/banking-core"
+        },
+        "snapshotId": "04dd63df-a1cb-46a6-bd76-01ca96d14b9b"
+      }
+    ],
+    "billingAndHardLimit": {
+      "status": "UNVERIFIED",
+      "reason": "Connected Railway tools expose service resource metrics/configuration but no billing, invoice or workspace spending-limit read operation; Railway CLI not installed."
+    }
+  },
+  "neon": {
+    "project": {
+      "checkedAt": "2026-10-15T21:23:18.810Z",
+      "id": "shiny-scene-38527470",
+      "name": "creditflow-qe-pilot",
+      "org_id": "org-cold-butterfly-84103096",
+      "region_id": "aws-us-east-1",
+      "pg_version": 17,
+      "default_endpoint_settings": {
+        "autoscaling_limit_min_cu": 0.25,
+        "autoscaling_limit_max_cu": 0.25,
+        "suspend_timeout_seconds": 0
+      },
+      "settings": {
+        "allowed_ips": {
+          "ips": [],
+          "protected_branches_only": false
+        },
+        "enable_logical_replication": false,
+        "maintenance_window": {
+          "weekdays": [
+            3
+          ],
+          "start_time": "06:00",
+          "end_time": "07:00"
+        },
+        "block_public_connections": false,
+        "block_vpc_connections": false,
+        "hipaa": false
+      },
+      "history_retention_seconds": 21600,
+      "branch_logical_size_limit_bytes": 536870912,
+      "consumption_period_start": "2026-10-10T20:15:24Z",
+      "consumption_period_end": "2026-11-01T00:00:00Z",
+      "data_storage_bytes_hour": 0,
+      "data_transfer_bytes": 215023,
+      "written_data_bytes": 0,
+      "compute_time_seconds": 1060,
+      "active_time_seconds": 4192,
+      "cpu_used_sec": 0,
+      "synthetic_storage_size": 0,
+      "compute_last_active_at": "2026-10-15T19:23:45Z",
+      "subscription_type": "free_v3",
+      "branches_limit": 10
+    },
+    "branches": [
+      {
+        "id": "br-soft-sky-b8qmjfcd",
+        "name": "production",
+        "default": true,
+        "current_state": "ready",
+        "primary": true,
+        "logical_size": 31268864,
+        "created_at": "2026-10-15T03:25:54Z"
+      }
+    ],
+    "endpoints": [
+      {
+        "id": "ep-restless-math-b8jlk5m4",
+        "branch_id": "br-soft-sky-b8qmjfcd",
+        "type": "read_write",
+        "current_state": "idle",
+        "autoscaling_limit_min_cu": 0.25,
+        "autoscaling_limit_max_cu": 0.25,
+        "suspend_timeout_seconds": 0,
+        "last_active": "2026-10-15T19:23:45Z",
+        "created_at": "2026-10-15T03:25:54Z",
+        "updated_at": "2026-10-15T19:29:31Z",
+        "disabled": false
+      }
+    ],
+    "usageInterpretation": "Raw provider units retained; counters are for the reported consumption period and are not an invoice. Zero storage billing counters are not evidence of an empty database.",
+    "suspendInterpretation": "suspend_timeout_seconds=0 uses the provider default; current official Free plan documentation fixes inactivity suspension at five minutes."
+  },
+  "vercel": {
+    "teamId": "team_Jko2Re3IdRArhoz0S6WVeboc",
+    "creditflowProjectId": "prj_oKV8BBgmOOjtRaHGDErtWNOEETJ3",
+    "portfolioProjectId": "prj_cogbj7rjEkWVtCzulTSr9byTFn58",
+    "creditflowDocumentedDeployment": "dpl_HQsUSUS6ag68W4Nq2jDNG8e6tCi8",
+    "portfolioDocumentedDeployment": "dpl_8GMzv1fz6A76G9CnhLkFSJyFsB8j",
+    "status": "BLOCKED_CURRENT_PROVIDER_READBACK",
+    "error": {
+      "httpStatus": 404,
+      "code": "not_found",
+      "scope": "Both exact project IDs and documented deployment IDs; CreditFlow project-domain read"
+    },
+    "teamRead": "Exact team ID resolves, but response includes only name, slug, id and SAML metadata; it supplies no billing or spending controls.",
+    "fallback": "Vercel CLI is not installed; no install, login, different-team discovery or mutation attempted.",
+    "currentSettingsUsageCostsAndAliasStatus": "UNVERIFIED",
+    "billingReadGap": {
+      "monthWindow": {
+        "from": "2026-10-01T00:00:00Z",
+        "to": "2026-10-16T00:00:00Z",
+        "result": "Rejected by connector at 4,194,304-byte catalog limit; no total retained."
+      },
+      "currentUtcDayWindow": {
+        "from": "2026-10-15T00:00:00Z",
+        "to": "2026-10-16T00:00:00Z",
+        "result": "Returned aggregate summary/byService/byCategory/sample/context shape. No complete target-project cost breakdown available; aggregate team values excluded. No month total or zero target cost inferred."
+      },
+      "receipts": [
+        "vercel-billing-read.json",
+        "vercel-billing-daily-read.json"
+      ]
+    }
+  },
+  "budget": {
+    "planningUsdMonthly": 15,
+    "reviewUsdMonthly": 10,
+    "enforcedCombinedDollarCapVerified": false,
+    "notes": [
+      "Railway resource ceilings limit capacity, not monthly dollars.",
+      "At currently published Railway rates, continuous use of 0.5 vCPU and 0.5 GB is approximately $15/month compute before egress and billing-credit/subscription effects.",
+      "Current Railway dollar usage, Vercel dollar usage, invoices and shared spending-control settings remain unverified.",
+      "Existing preflight dollar balances remain historical and must not be presented as current.",
+      "Neon reports Free plan and actual project consumption; no upgrade or paid resource was requested."
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://docs.railway.com/pricing/plans",
+      "checkedAt": "2026-10-15T21:24:23Z"
+    },
+    {
+      "url": "https://docs.railway.com/pricing/cost-control",
+      "checkedAt": "2026-10-15T21:24:23Z"
+    },
+    {
+      "url": "https://neon.com/docs/introduction/plans",
+      "checkedAt": "2026-10-15T21:24:23Z"
+    },
+    {
+      "url": "https://neon.com/docs/introduction/scale-to-zero",
+      "checkedAt": "2026-10-15T21:23:46Z"
+    },
+    {
+      "url": "https://vercel.com/docs/spend-management",
+      "checkedAt": "2026-10-15T21:24:23Z"
+    }
+  ]
+}

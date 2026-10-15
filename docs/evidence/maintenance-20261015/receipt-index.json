@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "kind": "maintenance-receipt-index",
+  "exportedAt": "2026-10-15T21:46:45.517Z",
+  "creditflowBaseline": "51a2affe38a733f350390fafd59b885b74823b42",
+  "portfolioBaseline": "7cf155efa7ec7567a3aa7c2baa031722e971a915",
+  "format": "UTF-8 JSON normalized to LF; original ignored receipts and failure logs preserved",
+  "receipts": [
+    {
+      "path": "bounded-workload.json",
+      "sha256": "97847732077c407908c940a073545112626f7f46793c252a1b3480631f184f2c",
+      "bytes": 6630
+    },
+    {
+      "path": "eol-checkout-validation.json",
+      "sha256": "734f1c6ab922546e3d62a19b5dcab17ddf0612cf75e86caf164880e9e1af2b6f",
+      "bytes": 349
+    },
+    {
+      "path": "eol-correction.json",
+      "sha256": "50eb962259b4100cc543d0332a0e6d289a4d38bea719b4eb045a1f6a90e6586c",
+      "bytes": 10055
+    },
+    {
+      "path": "focused-java.json",
+      "sha256": "55ff7094267a5a646c8fdac742110d5f1709d7543c90855fbb35d9e851931761",
+      "bytes": 6371
+    },
+    {
+      "path": "harness-development.json",
+      "sha256": "7834b60d7fdbdac20ef0222aa4f5d17e501f8569f2680f965ae2ae87e8c8ef21",
+      "bytes": 3954
+    },
+    {
+      "path": "harness-unit.json",
+      "sha256": "274abcb8c18528ebe3c6ba83cada8ce44cd51f0337c25733aa9d9bf2dd3f39a9",
+      "bytes": 680
+    },
+    {
+      "path": "portfolio-dependency-audit.json",
+      "sha256": "6ace1f8f1fbae740947f196c2c851645a55c2ac652712f1caf00858b848b8911",
+      "bytes": 5373
+    },
+    {
+      "path": "provider-operations.json",
+      "sha256": "32bd2a6c908406147821badf3e0198cd1c88603f53a2ffc017a57db0d6899463",
+      "bytes": 10631
+    },
+    {
+      "path": "public-page-status-authorized-network.json",
+      "sha256": "2412809539d2f1fdf6c7640578c82b51e714a44d686f123bf2c267454debcd17",
+      "bytes": 1611
+    },
+    {
+      "path": "public-page-status.json",
+      "sha256": "3b5a8e708bada2dffe396022cf47815ca8e1e3a018b7edfeb7ec0590ea7b4a42",
+      "bytes": 577
+    },
+    {
+      "path": "reference-validation.json",
+      "sha256": "be9a3f02c41cbd2f1ff389a47bbf0cab10931b4d3aea9843edee37aefe163b4d",
+      "bytes": 801
+    },
+    {
+      "path": "security-validation.json",
+      "sha256": "5409a276c9ceb4e8dd2cd864f48df92a3ecacce9a2d3e25bc3d68475858445bf",
+      "bytes": 890
+    },
+    {
+      "path": "vercel-billing-daily-read.json",
+      "sha256": "e0d14d6fa00e4462df6094a4cf116d4a90794fc67e2e871c0c38ec7cbeb04323",
+      "bytes": 663
+    },
+    {
+      "path": "vercel-billing-read.json",
+      "sha256": "030b4f2e80cc816f9c55918cdd08bbfde56b0db8e1808bbd89dc4e4be87b4e19",
+      "bytes": 861
+    }
+  ]
+}

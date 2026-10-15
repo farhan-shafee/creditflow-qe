@@ -1,41 +1,35 @@
-# Reproduce these without copying
+# Three interview exercises
 
-Use a practice branch. Read the existing implementation after writing your own, then run the relevant real suite. These are practice tasks, not claims of independent original authorship.
+Work on a practice branch against the local Compose stack. Write and explain your answer before opening the [separate reference solutions](reference-solutions.md). The snippets in that document are practice material; they are not additional implemented application features or evidence that you wrote this project independently.
 
-## Cucumber and REST Assured
+Run one verification process at a time. Complete the [local setup](../../README.md#run-the-working-system) first; keep automation pointed at the isolated local API. Record the command, source revision, result and what you personally learned. Existing reports describe their recorded source, not an untested practice change.
 
-Write a step in `BankingSteps` that retrieves the current scenario account, checks JSON and validates available credit. A complete reference shape is:
+## 1. Java: exact USD parsing
 
-```java
-@Then("available credit equals {string}")
-public void availableCredit(String expected) {
-  Response response = c.client.get(c.accountPath(), c.token)
-      .then().spec(ApiClient.JSON).statusCode(200).extract().response();
-  assertEquals(expected, response.path("availableCredit"));
-  BigDecimal limit = new BigDecimal(response.path("creditLimit").toString());
-  BigDecimal outstanding = new BigDecimal(response.path("outstandingBalance").toString());
-  assertEquals(0, limit.subtract(outstanding).compareTo(new BigDecimal(expected)));
-}
-```
+Reimplement the public contract of [Money](../../services/banking-api/src/main/java/com/creditflow/banking/domain/Money.java): `parse(String)` returns a `BigDecimal`, and `format(BigDecimal)` returns a two-decimal plain string. Preserve `DomainException` with code `INVALID_AMOUNT` and status 400 for invalid input.
 
-Explain why the fixture is scenario-scoped, why the test has no application imports, and why compareTo handles scale differently from equals. Add a real scenario, observe it fail for a wrong expected amount, restore the correct contract and verify the suite.
+Accept one to nine integer digits with an optional one or two fractional digits, strictly positive values up to `1000000.00`, and normalize accepted values to scale 2. Reject whitespace, signs, exponent notation, more than two fractional digits, missing integer digits and out-of-range values. Do not use `double` or silently round.
 
-## Small Java function
+Before implementing, write a small test matrix containing a one-cent purchase, exact maximum, equivalent scales (`10`, `10.0`, `10.00`), zero, null, a third fractional digit and one cent above the maximum. Explain why numeric comparison and wire-format comparison need different assertions. Use [MoneyTest](../../services/banking-api/src/test/java/com/creditflow/banking/domain/MoneyTest.java) to check the real contract, then confirm [AccountStateTest](../../services/banking-api/src/test/java/com/creditflow/banking/domain/AccountStateTest.java) still enforces purchase/payment boundaries.
 
-Implement `reconciles(initial, purchases, payments, actual)`. Sum purchases and payments with BigDecimal, compare `initial + purchases - payments` against actual and reject null inputs. Test an empty ledger, multiple mixed entries, a one-cent mismatch and scale variations. Do not use double or round an unexplained discrepancy away.
+Completion: accepted inputs retain exact value and scale 2; invalid inputs preserve the error contract; you can explain `compareTo`, `equals` and `RoundingMode.UNNECESSARY` without copying an answer.
 
-## Idempotency and concurrency
+## 2. Cucumber: independent account contract and reconciliation
 
-Sketch the decision tree: authenticate and lock account → lookup key → same operation/normalized amount returns original receipt → conflict rejects → new intent validates, updates balance and inserts receipt atomically. Explain why looking up a key outside the account lock can race, and why an insert failure must roll back the balance.
+Add a practice step class in package `com.creditflow.qe` under `automation/api-bdd/src/test/java`, using constructor-injected [ScenarioContext](../../automation/api-bdd/src/test/java/com/creditflow/qe/ScenarioContext.java). Give the step a distinct phrase so it does not conflict with [BankingSteps](../../automation/api-bdd/src/test/java/com/creditflow/qe/BankingSteps.java). Use [ApiClient](../../automation/api-bdd/src/test/java/com/creditflow/qe/ApiClient.java) to retrieve the current scenario's account.
 
-## Broken API contract
+Check HTTP 200, JSON content type, the existing [account schema](../../automation/api-bdd/src/test/resources/schemas/account.json), account identity, USD currency and literal expected balances. Check the two-decimal string representation before converting to `BigDecimal`; independently verify `creditLimit - outstandingBalance = availableCredit`. Import no application classes and create no static account/token state.
 
-Change `availableCredit` to `available` on a practice branch. Run the schema scenario, identify the consumer/provider mismatch and repair intentionally. Do not remove the schema assertion. Discuss versioning if a public consumer already depends on the old field.
+Write one practice scenario using the existing purchase/payment steps: start with the hook's fresh account, purchase `100.00`, pay `50.00`, verify your account step, then invoke the existing complete-history reconciliation step. Derive the expected values yourself. First run with a deliberately wrong expected available credit, observe the assertion failure, then restore the correct expectation and rerun. Keep this controlled failure on the practice branch.
 
-## Intermittent UI failure
+Completion: your scenario and the existing [feature suite](../../automation/api-bdd/src/test/resources/features/credit-card.feature) pass against the real local API. Explain why the balance equation alone cannot detect a consistently wrong balance, and how literal expectations plus [receipt/history reconciliation](../../automation/api-bdd/src/test/java/com/creditflow/qe/BankingSteps.java) strengthen the check.
 
-Inspect a failed screenshot/trace and identify which request or DOM condition was missing. Reproduce the actual cause with a controlled transport or lock fixture. Use a condition-based wait and demonstrate that the original failure is now covered. Avoid arbitrary sleeps, retries that conceal races or JavaScript clicks that bypass real clickability.
+## 3. Debugging: replay, transaction boundaries and concurrent posting
 
-## SQL exercise
+A payment of `10` is posted with key `original`, a later purchase of `20` succeeds, and the client retries the first payment as `10.00` with the same key. Diagnose a regression that returns a newly calculated receipt or applies the payment again. Trace the controller, [LedgerService.post](../../services/banking-api/src/main/java/com/creditflow/banking/ledger/LedgerService.java), immutable receipt and [database constraints](../../services/banking-api/src/main/resources/db/migration/V1__synthetic_ledger.sql).
 
-Write a grouped query for `initial_balance + SUM(PURCHASE amount) - SUM(PAYMENT amount)` and compare it with `outstanding_balance`, including accounts with no entries via LEFT JOIN/COALESCE. Explain how a consistent database snapshot avoids a false reconciliation failure while another transaction commits.
+Write a small regression assertion sequence covering the original receipt, replay status/header, current account balance, posting count, and conflicting reuse with another amount or operation. Make a minimal correction on the practice branch. Explain where authentication, the account row lock, idempotency lookup, domain validation, balance update and receipt insert belong, and what rolls back if insertion fails.
+
+Use the existing [LedgerIT](../../services/banking-api/src/test/java/com/creditflow/banking/LedgerIT.java) replay, concurrent-purchase, same-key and genuine insert-failure cases. Draw a two-request schedule for different purchase keys and another for duplicate keys. Explain the expected statuses and final balances before running them. A coordinated start increases contention but does not guarantee a particular interleaving; repeated green races do not prove that removing a lock is safe. Inspect `waitingMutationRechecksExpiryAfterLock` for a controlled held-lock fixture rather than adding arbitrary sleeps or weakening assertions.
+
+Completion: the replay regression and existing transaction/concurrency tests pass with PostgreSQL, and you can explain why a unique key alone does not make the balance update atomic. The separate solutions contain the expected observations and a reference test shape.

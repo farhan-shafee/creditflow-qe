@@ -4,6 +4,8 @@ A simulated credit-card ledger and independent Java quality engineering framewor
 
 Try the [verified live demo](https://creditflow.farhan-shafee.com). Its isolated API and database sleep when idle; the measured first custom-domain account request took 17.4 seconds. See the [current release and dependency-closure evidence](docs/evidence/portfolio-lint-remediation.md) for the current portfolio source, clean audits and release checks. The [hosted banking release record](docs/evidence/completion.md) retains banking/UI checks and operating limits. The [original custom-domain record](docs/evidence/custom-domain.md) remains historical evidence. The [earlier provider pilot](docs/evidence/provider-pilot.md) retains its historical evidence.
 
+The [maintenance handoff](docs/maintenance-handoff.md) records the newer read-only provider observations, blocked access/cost fields, lint-patch maintenance criteria, bounded local workload and operator checklist. Historical deployment receipts do not replace current provider readback.
+
 ## Run the working system
 
 On Chopin, from `D:\Dev\Repos\creditflow-qe`:
@@ -45,6 +47,6 @@ The current frontend is [81fceff0](https://github.com/farhan-shafee/creditflow-q
 
 Each scope saves sanitized logs, immutable report snapshots and a manifest under `.work/evidence/runs/<scope>/<run-id>`. Manifests retain command outcomes, UTC timestamps, executed HEAD, PR head where available, source fingerprint and report hashes. Prior targets/raw diagnostics are preserved under ignored `.work/evidence/private/` and are never uploaded. `verify-evidence.py --all` rejects failed, missing, stale, changed or incomplete evidence across all five scopes. Source changes require fresh runs. Module `target` reports can be replaced by later scopes; use frozen snapshots for combined counts. Generated evidence, session credentials and databases are excluded from Git.
 
-Read the [domain and concurrency decisions](docs/architecture/core-design.md), [test architecture](docs/testing/strategy.md), [five-minute walkthrough](docs/interview-guide/five-minute-walkthrough.md), [coding practice](docs/interview-guide/technical-practice.md), [deployment readiness](docs/deployment-readiness.md) and [portfolio integration](docs/portfolio-integration.md).
+Read the [domain and concurrency decisions](docs/architecture/core-design.md), [test architecture](docs/testing/strategy.md), [five-minute walkthrough](docs/interview-guide/five-minute-walkthrough.md), [coding practice](docs/interview-guide/technical-practice.md), [three exercises](docs/interview-guide/coding-exercises.md), [separate reference solutions](docs/interview-guide/reference-solutions.md), [deployment readiness](docs/deployment-readiness.md) and [portfolio integration](docs/portfolio-integration.md).
 
 This project was built with AI assistance. It is intended to be understood, reproduced and defended personally. It does not represent employment achievements, banking settlement, regulatory compliance or a production financial platform.

@@ -1,5 +1,7 @@
 # Technical practice
 
+Use this page as discussion prompts alongside the [five-minute demonstration](five-minute-walkthrough.md). The [three practical exercises](coding-exercises.md) have [separate reference solutions](reference-solutions.md); attempt them before reading the answers. Practice against the local stack and distinguish your own observed results from the repository's historical evidence.
+
 ## Java and Spring
 
 - Reimplement Money.parse using BigDecimal and UNNECESSARY scale. Explain equals vs compareTo for 10.0 and 10.00.
@@ -9,9 +11,9 @@
 
 ## Cucumber and REST Assured
 
-Exercise: write `Then the available credit is {string}` without application imports. GET the current account, assert 200 and JSON, compare a two-decimal string, then reconcile limit minus outstanding using BigDecimal.
+Explain the account-contract exercise: GET the current account, assert 200 and JSON, validate the schema and literal expected balances, then reconcile limit minus outstanding using BigDecimal. Trace [ScenarioHooks](../../automation/api-bdd/src/test/java/com/creditflow/qe/ScenarioHooks.java), [ScenarioContext](../../automation/api-bdd/src/test/java/com/creditflow/qe/ScenarioContext.java), [ApiClient](../../automation/api-bdd/src/test/java/com/creditflow/qe/ApiClient.java) and [BankingSteps](../../automation/api-bdd/src/test/java/com/creditflow/qe/BankingSteps.java). No application imports are needed.
 
-Exercise: deliberately change API output field availableCredit to available. Run the schema scenario, inspect its failure, repair the contract or consumer intentionally. Do not weaken assertions to make it green.
+Discuss how changing API output field `availableCredit` to `available` would fail the existing [account schema](../../automation/api-bdd/src/test/resources/schemas/account.json). Explain how to repair the provider or consumer intentionally and consider compatibility for existing clients.
 
 Explain hooks vs steps, scenario scope vs static state, data factories, response specs, negative tests and JSON Schema. Gherkin should describe behavior; avoid exposing arbitrary Java method names in business scenarios.
 
@@ -21,7 +23,7 @@ Explain hooks vs steps, scenario scope vs static state, data factories, response
 - Explain why a prior SELECT without a row lock is insufficient.
 - Explain why the original receipt must be replayed even after later mutations.
 - Reconcile initial balance + purchases - payments against persisted outstanding. Explain sequence gaps and stable history ordering.
-- Inspect LedgerIT rollback test. Explain what a real database trigger failure proves that a mocked repository exception does not.
+- Inspect [LedgerIT](../../services/banking-api/src/test/java/com/creditflow/banking/LedgerIT.java) and its `failureDuringInsertRollsBackBalanceAndReturnsSafeError` test. Explain what a real database trigger failure proves that a mocked repository exception does not.
 - Explain the difference between an idempotency conflict and a unique-constraint failure, and the boundary of account-scoped keys.
 
 ## UI tools
@@ -38,7 +40,9 @@ Trace reactor module dependencies, Surefire vs Failsafe and Maven lifecycle. Exp
 
 ## Debugging drill
 
-Break idempotency lookup by including current balance in its identity. Run the replay-after-later-activity case, explain the failure, fix the source and rerun the complete suite. Then introduce a missing lock and reproduce concurrency failure without sleeps or assertion weakening.
+Use exercise 3 to diagnose replay after later activity and compare the correction with [LedgerService.post](../../services/banking-api/src/main/java/com/creditflow/banking/ledger/LedgerService.java). Identity is account-scoped key plus operation/normalized amount; current balance is not part of request identity. The matching replay returns the stored receipt before domain validation against current state.
+
+Draw the failure schedule for a missing account lock, then inspect the existing coordinated concurrency cases. A latch aligns request starts but cannot guarantee an unsafe interleaving, so a green run after removing the lock is inconclusive. `LedgerIT.waitingMutationRechecksExpiryAfterLock` demonstrates a controlled row lock and observed database wait for the expiry boundary. Explain its specific proof and limits; do not turn it into a claim that all balance races have been forced. Preserve exact posting-count/balance assertions and avoid arbitrary sleeps or retries that hide failures.
 
 ## Behavioral mapping
 

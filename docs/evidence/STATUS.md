@@ -1,5 +1,9 @@
 # Execution evidence — engineering finish
 
+## Current maintenance handoff — 2026-10-15
+
+The [maintenance receipt](maintenance-handoff.md) and [operator/dependency runbook](../maintenance-handoff.md) separate the new bounded local verification and interview handoff from earlier completed releases. Fresh read-only Railway/Neon settings and two HTTPS page checks are recorded. Current Vercel control-plane access and target billing/spend-control fields remain explicitly blocked or unavailable. No portfolio edit or public deployment occurred; earlier failure and release records remain historical evidence.
+
 ## Current portfolio dependency closure — 2026-10-15
 
 **IMPLEMENTED / TESTED / DEPLOYED / VERIFIED.** [The lint remediation record](portfolio-lint-remediation.md) closes the previous five development-tool entries: full and production-only audits report zero findings. PR and main Actions each passed 63 unit and 26 browser tests. Portfolio main 7cf155ef / Vercel dpl_8GMzv1fz6A76G9CnhLkFSJyFsB8j passed 19 public HTTPS checks and two mobile/desktop journeys. CreditFlow application releases and earlier evidence remain unchanged; historical unresolved-review statements below describe their original timestamps.

@@ -1,0 +1,183 @@
+{
+  "kind": "fresh-local-Java-verification-with-preserved-failures",
+  "runs": [
+    {
+      "runId": "20261015T213242Z-f8b8d44a12ae48b88b199a7f43a2cd82",
+      "manifestSha256": "62262aab52f9c3a32326837560837a43a21ca52f63f008abd8e60afd6b174693",
+      "status": "failed",
+      "startedAt": "2026-10-15T21:32:42.948425+00:00",
+      "finishedAt": "2026-10-15T21:32:45.760917+00:00",
+      "source": {
+        "head": "51a2affe38a733f350390fafd59b885b74823b42",
+        "fingerprint": "25a3bc5975f20a9449211c8efc7e364266a325d9794b7afc65de50e993e43c08",
+        "sourceFiles": 210
+      },
+      "mavenArgs": [
+        "-pl",
+        "services/banking-api",
+        "-Dit",
+        ".test=LedgerIT",
+        "verify",
+        "spotless:check"
+      ],
+      "commands": [
+        {
+          "name": "prepare-archive",
+          "startedAt": "2026-10-15T21:32:42.962990+00:00",
+          "finishedAt": "2026-10-15T21:32:42.881349+00:00",
+          "exitCode": 0,
+          "logSha256": "015234a30de8291e1c27ecb03e007a3ed87e837a60296f39da5777e121df41e4"
+        },
+        {
+          "name": "focused-maven",
+          "startedAt": "2026-10-15T21:32:42.897230+00:00",
+          "finishedAt": "2026-10-15T21:32:45.730884+00:00",
+          "exitCode": 1,
+          "logSha256": "690c9c919abfc2ab64e2e7f1009117d9bdfe82cbd27ac652e12c5da6a34a076a"
+        }
+      ],
+      "issues": [
+        "focused: failed/incomplete command focused-maven"
+      ],
+      "reports": 0,
+      "testCases": {},
+      "failureDiagnosis": "PowerShell split an unquoted Maven -D property; no test execution. Quoted argument probe and retry retained."
+    },
+    {
+      "runId": "20261015T213335Z-4fd73b53a5ec4125b7a8c4d7b9d55071",
+      "manifestSha256": "21a36021cd2061330f374981062533234cc0e95478710b22a3a0bfacc2f3bb4b",
+      "status": "failed",
+      "startedAt": "2026-10-15T21:33:35.784884+00:00",
+      "finishedAt": "2026-10-15T21:34:28.064819+00:00",
+      "source": {
+        "head": "51a2affe38a733f350390fafd59b885b74823b42",
+        "fingerprint": "1120934317f15df02ccfd64a969197b15402d59cad945da95349d777d959f3a1",
+        "sourceFiles": 210
+      },
+      "mavenArgs": [
+        "-pl",
+        "services/banking-api",
+        "-Dit.test=LedgerIT",
+        "verify",
+        "spotless:check"
+      ],
+      "commands": [
+        {
+          "name": "focused-maven",
+          "startedAt": "2026-10-15T21:33:35.801156+00:00",
+          "finishedAt": "2026-10-15T21:34:28.029844+00:00",
+          "exitCode": 1,
+          "logSha256": "d5dfe2e35fb1ad5623a98983febb08f910fe0bb440d07b7a57ecc86b124b829e"
+        }
+      ],
+      "issues": [
+        "focused: failed/incomplete command focused-maven"
+      ],
+      "reports": 11,
+      "testCases": {
+        "unit": {
+          "executed": 31,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "postgresIntegration": {
+          "executed": 11,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      "failureDiagnosis": "All unit/integration tests passed; Spotless rejected Windows CRLF Java checkouts. Git LF rule/fresh checkout proof and passing retry retained."
+    },
+    {
+      "runId": "20261015T213614Z-ef753c6d53b948719b9e28aeb57961de",
+      "manifestSha256": "77dcd4d7a4453d69b069fa7207f521500fa486cf30cd8f5c99ecc953051dbb73",
+      "status": "passed",
+      "startedAt": "2026-10-15T21:36:14.846434+00:00",
+      "finishedAt": "2026-10-15T21:37:06.111951+00:00",
+      "source": {
+        "head": "51a2affe38a733f350390fafd59b885b74823b42",
+        "fingerprint": "8dad4595873a4d49c6c2faea5f33bce95f8145e6d70097669b5b94a2709ab80b",
+        "sourceFiles": 210
+      },
+      "mavenArgs": [
+        "-pl",
+        "services/banking-api",
+        "-Dit.test=LedgerIT",
+        "verify",
+        "spotless:check"
+      ],
+      "commands": [
+        {
+          "name": "prepare-archive",
+          "startedAt": "2026-10-15T21:36:14.860191+00:00",
+          "finishedAt": "2026-10-15T21:36:15.970077+00:00",
+          "exitCode": 0,
+          "logSha256": "dfad39252ddb102323bfce19681173f6c0abe43bcb0e1e473409167b6bcfa4e2"
+        },
+        {
+          "name": "focused-maven",
+          "startedAt": "2026-10-15T21:36:15.987724+00:00",
+          "finishedAt": "2026-10-15T21:37:06.082685+00:00",
+          "exitCode": 0,
+          "logSha256": "37ce1cd94ad0381583dbc2d65c09e9d320e72b7a9f0cc581e2222dd3756dd1db"
+        }
+      ],
+      "issues": [],
+      "reports": 11,
+      "testCases": {
+        "unit": {
+          "executed": 31,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "postgresIntegration": {
+          "executed": 11,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      }
+    },
+    {
+      "runId": "20261015T213834Z-c3a11e8c064b44aead9d621143c81a51",
+      "manifestSha256": "bbcea6305c7fc472e39b0aa1ea24eb3248ad154dc9e447ac86093eca061b12e4",
+      "status": "passed",
+      "startedAt": "2026-10-15T21:38:34.328364+00:00",
+      "finishedAt": "2026-10-15T21:38:41.366959+00:00",
+      "source": {
+        "head": "51a2affe38a733f350390fafd59b885b74823b42",
+        "fingerprint": "8dad4595873a4d49c6c2faea5f33bce95f8145e6d70097669b5b94a2709ab80b",
+        "sourceFiles": 210
+      },
+      "mavenArgs": [
+        "-Pui",
+        "spotless:check"
+      ],
+      "commands": [
+        {
+          "name": "prepare-archive",
+          "startedAt": "2026-10-15T21:38:34.344454+00:00",
+          "finishedAt": "2026-10-15T21:38:35.421138+00:00",
+          "exitCode": 0,
+          "logSha256": "33a8f2558ff0283e7ebbbe49e8acc50ca4dac69511ebafb5f9a10dcaff09c3aa"
+        },
+        {
+          "name": "focused-maven",
+          "startedAt": "2026-10-15T21:38:35.436605+00:00",
+          "finishedAt": "2026-10-15T21:38:41.340823+00:00",
+          "exitCode": 0,
+          "logSha256": "8c68f46c00c614fd932d8ce2bf1d268b1ab42905462346fecc0c33805fc6cc75"
+        }
+      ],
+      "issues": [],
+      "reports": 0,
+      "testCases": {}
+    }
+  ],
+  "successfulTestRunId": "20261015T213614Z-ef753c6d53b948719b9e28aeb57961de",
+  "allModuleFormattingRunId": "20261015T213834Z-c3a11e8c064b44aead9d621143c81a51",
+  "counting": "Only the identified successful test run contributes the fresh 31/11 counts. Failed attempts and formatting-only execution are separate."
+}

@@ -5,7 +5,10 @@ pipeline {
   stages {
     stage('Checkout') { steps { checkout scm } }
     stage('Evidence gate behavior') {
-      steps { sh 'python3 -m unittest infrastructure/test_evidence_run.py -v' }
+      steps {
+        sh 'python3 -m unittest infrastructure/test_evidence_run.py -v'
+        sh 'node --test infrastructure/test-bounded-reliability.cjs'
+      }
     }
     stage('Unit and PostgreSQL/API automation') {
       steps { sh 'node infrastructure/verify.cjs' }

@@ -1,0 +1,17 @@
+{
+  "kind": "Java21-reference-and-Jenkins-AST-validation",
+  "outcome": {
+    "StartedAt": "2026-10-15T21:38:05.6376651Z",
+    "FinishedAt": "2026-10-15T21:38:13.2397438Z",
+    "ExitCode": 0,
+    "Command": "Compose Maven Java21: compile three reference Java blocks, run 13 Money cases, parse Jenkinsfile AST",
+    "Log": "command.log"
+  },
+  "javaBlocksCompiled": 3,
+  "standaloneMoneyInputCasesPassed": 13,
+  "jenkinsAstPassed": true,
+  "newJenkinsDefinitionControllerExecuted": false,
+  "referenceMarkdownSha256": "d46bbb671c86ab636826630cc38d3ff46d9b210b6a74768bbc492781f671ab98",
+  "compilerLogSha256": "0275faf8b0906070f7635c8033ecd4ee6e0ef5ed6d78394a957b70d707f4faaf",
+  "limitation": "Cucumber and LedgerIT reference blocks compiled; no additional practice scenarios/test methods executed."
+}

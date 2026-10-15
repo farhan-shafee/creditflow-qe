@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "timeoutSeconds": 25,
+  "sandboxAttempt": {
+    "status": "REQUEST_FAILED",
+    "errorType": "HttpRequestException",
+    "receipt": "public-page-status.json"
+  },
+  "authorizedNetworkAttempt": {
+    "requestCount": 2,
+    "note": "Read-only public GETs succeeded. The command's receipt save used a relative PWD that resolved to D:/Dev/Repos under escalation; no file was written there. This receipt was then saved explicitly under the intended ignored task directory without another request.",
+    "requests": [
+      {
+        "checkedAt": "2026-10-15T21:26:08.4975435Z",
+        "url": "https://creditflow.farhan-shafee.com/",
+        "method": "GET",
+        "status": 200,
+        "elapsedMs": 231,
+        "bodySha256": "9c99659c10edbf45fbdba7cf5a7234e8795e3ec2013cc8c292daa053a714c265",
+        "containsCreditFlow": true,
+        "contentType": "text/html; charset=utf-8"
+      },
+      {
+        "checkedAt": "2026-10-15T21:26:08.6886843Z",
+        "url": "https://farhan-shafee.com/work/creditflow-qe",
+        "method": "GET",
+        "status": 200,
+        "elapsedMs": 181,
+        "bodySha256": "8353086740c4cac5150201fec5ace67e17628338c7751f9dbfc0fa7b14b4cff6",
+        "containsCreditFlow": true,
+        "contentType": "text/html; charset=utf-8"
+      }
+    ]
+  },
+  "interpretation": "Page HTTPS responses show frontend reachability only. They do not verify Vercel control-plane project identity/settings, Railway/API readiness, database state, or backend cold-start latency. No cookies, credentials, banking writes, readiness queries or page bodies were retained."
+}

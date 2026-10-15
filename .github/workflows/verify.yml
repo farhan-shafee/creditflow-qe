@@ -24,8 +24,10 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
-      - name: Evidence gate behavior tests
-        run: python3 -m unittest infrastructure/test_evidence_run.py -v
+      - name: Evidence and bounded-harness behavior tests
+        run: |
+          python3 -m unittest infrastructure/test_evidence_run.py -v
+          node --test infrastructure/test-bounded-reliability.cjs
       - name: Private unit, PostgreSQL, Cucumber and TestNG evidence
         run: node infrastructure/verify.cjs
       - name: Independent public-mode Cucumber and TestNG evidence

@@ -1,0 +1,103 @@
+{
+  "checkedAt": "2026-10-15T21:24:22.1233723Z",
+  "scope": "Read-only portfolio dependency maintenance audit. No portfolio writes, installs, tests, builds, deployments or public-site requests were performed.",
+  "classification": "Ongoing upkeep; no confirmed current portfolio defect found by the authorized static checks.",
+  "portfolio": {
+    "path": "D:/Dev/Repos/farhanshafee.com",
+    "head": "7cf155efa7ec7567a3aa7c2baa031722e971a915",
+    "branch": "main",
+    "trackedWorkingTreeClean": true,
+    "remoteMain": "7cf155efa7ec7567a3aa7c2baa031722e971a915",
+    "remote": "https://github.com/farhan-shafee/farhanshafee.com.git",
+    "pr": {
+      "url": "https://github.com/farhan-shafee/farhanshafee.com/pull/2",
+      "merged": true,
+      "mergedAt": "2026-10-15T20:51:59Z",
+      "head": "ba750a11477d66d829d7412b142389128a4b0bb3",
+      "mergeCommit": "7cf155efa7ec7567a3aa7c2baa031722e971a915"
+    }
+  },
+  "currentLocalPatch": {
+    "next": "16.3.8",
+    "eslintConfigNext": "16.3.8",
+    "plugin": "16.3.8-farhan.1",
+    "resolution": "file:tooling/next-eslint-plugin",
+    "override": "dependency reference to explicitly declared local plugin",
+    "changedUpstreamCode": "dist/utils/get-root-dirs.js",
+    "replacementDependencies": {
+      "glob": "13.0.6",
+      "minimatch": "10.2.6"
+    },
+    "globImport": "glob/raw",
+    "lockVulnerableChainEntries": 0,
+    "pluginInstancesInLock": 1,
+    "upstreamRuleInventoryCount": 22,
+    "upstreamCompiledFilesHashChecked": 53,
+    "sourceHashMismatches": [],
+    "installedHashMismatches": [],
+    "installedHelperEqualsReviewed": true,
+    "freshTestsExecuted": false,
+    "existingReceiptClaims": {
+      "unitPassed": 63,
+      "focusedLintRegressionsPassed": 21,
+      "browserPassed": 26,
+      "fullAuditFindings": 0,
+      "productionAuditFindings": 0,
+      "source": "docs/evidence/portfolio-lint-remediation.md and its preserved receipts; historical results, not rerun in this maintenance audit"
+    }
+  },
+  "officialUpstream": {
+    "latestNext": "16.4.2",
+    "latestEslintConfigNext": "16.4.2",
+    "latestPlugin": "16.4.2",
+    "stablePluginVersionsAtOrAfterCurrentBase": [
+      "16.3.8",
+      "16.4.0",
+      "16.4.1",
+      "16.4.2"
+    ],
+    "allListedStablePluginsDependOn": {
+      "fast-glob": "3.3.1",
+      "@eslint-community/eslint-utils": "4.9.1"
+    },
+    "latestPluginIntegrity": "sha512-gCTWlw0e+Y6kajpFyKKgA195jUJCRhlzJE0lV7ufe8a+ghIsANWZ0/FiJwg6DuOG1+OvRbcZDcFBoRh3mNJx0g==",
+    "canaryTag": "16.5.0-canary.14",
+    "canarySourceAlsoUsesFastGlob": true,
+    "resolvedChain": [
+      "@next/eslint-plugin-next@16.4.2 -> fast-glob@3.3.1",
+      "fast-glob@3.3.1 -> micromatch@^4.0.4 (latest 4.0.8)",
+      "micromatch@4.0.8 -> braces@^3.0.3 (latest 3.0.3)"
+    ],
+    "advisory": "GHSA-vfj7-8cjw-p6xm",
+    "affectedBraces": "<=3.0.3",
+    "patchedBracesVersions": "None",
+    "qualifyingOfficialReplacementFound": false,
+    "conclusion": "Do not remove the local package or override for 16.4.2; that official release would restore the affected dependency chain."
+  },
+  "maintenance": {
+    "currentProcedure": "When changing Next ESLint configuration, inspect matching upstream plugin, rebase only the reviewed helper patch, regenerate provenance and effective configuration baseline intentionally, and rerun every check. Never change recorded hashes solely to accept unexplained rule changes.",
+    "removalCriteria": "A tested official release eliminates the affected chain, resolves as the actual installed plugin without the local override, preserves required lint behavior, and passes full validation.",
+    "requiredRegressionChecks": [
+      "Fresh clean install resolves only intended official plugin and lock contains no affected fast-glob/micromatch/braces chain",
+      "Review official rule inventory, code/configuration changes and effective Next/React/accessibility/TypeScript configurations",
+      "Retain 21 focused regression behaviors: literal/relative/absolute roots, symlinks/hidden roots, array and missing/empty inputs, globstar and brace semantics, bracket-containing checkouts, singleton classes, bounded deep nesting, and real no-html-link-for-pages violations",
+      "Full unit and owned-loopback Playwright/axe browser suites; ESLint, build, Next type generation, TypeScript, formatting",
+      "Full and production-only audits plus normal CI gates and artifact publication"
+    ]
+  },
+  "primarySources": [
+    "https://registry.npmjs.org/@next%2feslint-plugin-next",
+    "https://registry.npmjs.org/@next%2feslint-plugin-next/latest",
+    "https://registry.npmjs.org/eslint-config-next/latest",
+    "https://registry.npmjs.org/next/latest",
+    "https://registry.npmjs.org/fast-glob/3.3.1",
+    "https://registry.npmjs.org/micromatch/latest",
+    "https://registry.npmjs.org/braces/latest",
+    "https://raw.githubusercontent.com/vercel/next.js/v16.4.2/packages/eslint-plugin-next/package.json",
+    "https://raw.githubusercontent.com/vercel/next.js/v16.4.2/packages/eslint-plugin-next/src/utils/get-root-dirs.ts",
+    "https://raw.githubusercontent.com/vercel/next.js/canary/packages/eslint-plugin-next/package.json",
+    "https://raw.githubusercontent.com/mrmlnc/fast-glob/3.3.1/package.json",
+    "https://raw.githubusercontent.com/micromatch/micromatch/4.0.8/package.json",
+    "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm"
+  ]
+}

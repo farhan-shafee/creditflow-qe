@@ -1,0 +1,189 @@
+{
+  "checkedAt": "2026-10-15T21:35:23.125593+00:00",
+  "kind": "Windows Java checkout EOL correction",
+  "sourceContentChanged": false,
+  "filesNormalized": 30,
+  "originalsPreservedUnder": ".work\\maintenance-20261015\\eol-preservation\\20261015T213521Z-a2fe9f71fa6e4b9cb534bc715071c736",
+  "files": [
+    {
+      "path": "automation/api-bdd/src/test/java/com/creditflow/qe/ApiClient.java",
+      "beforeSha256": "a56eb04e67a91e4ff289a55af8474ff9c7cf1aa6c8f343341569119e15065f0b",
+      "afterSha256": "9b7932b5eeec84789bd3d8477776fc03caa17fa41bf0a12b18bfcabbf632ccc6",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "automation/api-bdd/src/test/java/com/creditflow/qe/BankingSteps.java",
+      "beforeSha256": "4855629c528bbf281974d4bc5e3f2a3f5927533c28064579e44a8b88b73a17c0",
+      "afterSha256": "beb0db16e78daf0aee70a3ede27e738132684e0cbea01bd6756b1d73a50afa1d",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "automation/api-bdd/src/test/java/com/creditflow/qe/RunCucumberTest.java",
+      "beforeSha256": "d8680087dcc342230f4b6fec06d1fd186eeb97cc339d526ae36c08ef6b1786f2",
+      "afterSha256": "d622032e4aabadd4861d418939970b971f04c72d1bc7a972faf1949ffeaefa97",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "automation/api-bdd/src/test/java/com/creditflow/qe/ScenarioContext.java",
+      "beforeSha256": "8515b2220567337f2028a904509eb4c8d37e2502e20e89f9f5378ce6a3537da0",
+      "afterSha256": "c337c3634b18a0cbe6ae7b06a548740225bef10733890db11f00332466964738",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "automation/api-bdd/src/test/java/com/creditflow/qe/ScenarioHooks.java",
+      "beforeSha256": "67ada4b867b00b29cdbb384ffcd74838c63bc881588c1c1c28391be65492e1c8",
+      "afterSha256": "b957e4982a8e12b02192189d28714d08b16e07cb23ffa9572d46f03229d550b7",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "automation/api-testng/src/test/java/com/creditflow/qe/testng/PaymentContractTest.java",
+      "beforeSha256": "3d30a2c72f7995b8335e36f1b522380c7b14b01f4dbc88bbcd8a0c85c70f3541",
+      "afterSha256": "9c7558cb253a0c222b8956e6ad9db18f321c3ef7cb77dd0a039320cac8e4d2ba",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "automation/ui-e2e/src/test/java/com/creditflow/qe/ui/BffContractTest.java",
+      "beforeSha256": "b9aa4a4248331f96445fdc1a7be8b71cbca42cb31c6a22944b32c7059492e3aa",
+      "afterSha256": "96139738ef31d6850557c5c7ccb6a45b11b9db0c131c76f658d83ff58aa1f372",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "automation/ui-e2e/src/test/java/com/creditflow/qe/ui/PlaywrightJourneyTest.java",
+      "beforeSha256": "30878969114170f0a79115a0ae14fa9ab5dc5e2ef5f7c78231336e9bb16b5f43",
+      "afterSha256": "afe612d1943396c8f7b2b366d313e7d51f604ba95174255fef1d41da911ad6fc",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "automation/ui-e2e/src/test/java/com/creditflow/qe/ui/SeleniumJourneyTest.java",
+      "beforeSha256": "756be990000d1e60cb8994d263a5c419a75c8f11816256d23601f46c5a909fdf",
+      "afterSha256": "395b027d0ec079ae6d2c5153eb081cbb26b2e7ea2273b91e9f1450f41fd6517e",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "automation/ui-e2e/src/test/java/com/creditflow/qe/ui/TraceRedactor.java",
+      "beforeSha256": "6a5c676e85e1d0bd098962f11226de411153e573dc9609491289e68cad4486b1",
+      "afterSha256": "01ac880f7c7527c1829c9d78c3148e1f04b0fc39ca4b039bd07be3582b150f22",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "automation/ui-e2e/src/test/java/com/creditflow/qe/ui/TraceRedactorTest.java",
+      "beforeSha256": "fcb557dc1100a045a206547acf1342540cf7a02da60184ece5c3c69f54ffab54",
+      "afterSha256": "71cae2d4d8863cfd593b37b7d442788634f41fa3839e3bea1f16f8e1b8fc21f8",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "infrastructure/ValidateJenkins.java",
+      "beforeSha256": "52bd07cc169eed330231adeaefcb1620895ca97254b03a1da70a37cfedde96ae",
+      "afterSha256": "04a70b2df923f6ab0b82f32d42971ed73fa58d8a1a0e77fbddb95f3e26d4b8d2",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "services/banking-api/src/main/java/com/creditflow/banking/BankingApplication.java",
+      "beforeSha256": "f6fa71f65e671d91e816aac6be18e57cc30814b325d0cb9d5b5a461cd0695bd4",
+      "afterSha256": "2ee4ecfdf561762a33a86e67dee80ecb35fef2dabb593dff67b3d3287cac37cb",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "services/banking-api/src/main/java/com/creditflow/banking/domain/AccountState.java",
+      "beforeSha256": "ce9539d00d0dc6c85253bcec978af038c38125bb16a27d4a1ecce222835bae3a",
+      "afterSha256": "51198f9a3cc93693cfaea5d303e928ac8de99d90fa9d6dd71699eb455d77a1dd",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "services/banking-api/src/main/java/com/creditflow/banking/domain/DomainException.java",
+      "beforeSha256": "296ef4e41384f4be38c810d99b1f5291bc76f4a4707e1804b37e4287f65371f4",
+      "afterSha256": "572f0d9b186ee6cbf6707e500f88b6a9fa867895609df632f6c8c8093eb3c681",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "services/banking-api/src/main/java/com/creditflow/banking/domain/Money.java",
+      "beforeSha256": "cbc6fe6a35113b217fb18be95a5595e5fc2f75d3f2b9ac4c45975d658238e931",
+      "afterSha256": "c4c48c213f97b166b184cc2dadd7b5bba4f2bb035583ba596517d9d0fedc2a97",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "services/banking-api/src/main/java/com/creditflow/banking/ledger/ApiModels.java",
+      "beforeSha256": "8ae485c2ab5e8d22e230b26c03c1293a546a4cc7989467b990af0a21c493eea3",
+      "afterSha256": "de263496593ec126bc5a2475cee39baa2d3c5e87eb5bba90a62eda485cf8eea6",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "services/banking-api/src/main/java/com/creditflow/banking/ledger/LedgerService.java",
+      "beforeSha256": "34d423d1b8316ec344e01767467ba366701625f8ff257ea6ca0173f390e319b4",
+      "afterSha256": "f31672c3c463abe2f5789bbcbbd3099ca59eecf3fd6a7ee7d337ff4102d1d059",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "services/banking-api/src/main/java/com/creditflow/banking/web/ApiErrors.java",
+      "beforeSha256": "6a972bb7419ba33ad2031365363720392c3d41a141cee92bf392734c172a63da",
+      "afterSha256": "247e6c80ce9139df4e6c6bfcdd59e49c9fea814e0fdecd973f51edec05dfa404",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "services/banking-api/src/main/java/com/creditflow/banking/web/BankingController.java",
+      "beforeSha256": "695c8c1a09028030dd4cd8988b73b56ef1a1261dab54ac5e0d1a308cbca71eec",
+      "afterSha256": "a0919f61ee1cd6f631aa22197dfa29bc2fff3c760b50a8baa1425da01f4a70d4",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "services/banking-api/src/main/java/com/creditflow/banking/web/RequestBudget.java",
+      "beforeSha256": "a5a2ec2555e53a67c279d757aa403b62d530f094538644f35c2e5142835cdb6c",
+      "afterSha256": "6982a8e2fc31b04c903e9535da3c8881830c6f6a03ee5ac12555314217251994",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "services/banking-api/src/main/java/com/creditflow/banking/web/RequestControls.java",
+      "beforeSha256": "c5d9501cf26fa570f47ccefe98dea1aa185406ea6e22bbc44051a9bfe05d55b0",
+      "afterSha256": "426404a3afa271e2db201e8d7417c625932fcb48d4fbf87a9f48317c8d9e7ecb",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "services/banking-api/src/main/java/com/creditflow/banking/web/SandboxQuota.java",
+      "beforeSha256": "c5a2468ce77065804cb5930c1bc0d89c1e2cb2e648e378eefe9cb8b4724eb515",
+      "afterSha256": "adf93badc8e7a3b72364c1f753a620b4d0708b83fa64236388c5113ddcaf4253",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "services/banking-api/src/test/java/com/creditflow/banking/HealthAvailabilityIT.java",
+      "beforeSha256": "c241a49f17b23ed08d864bec94779be1877f9c53e5d921e9a7d4ff62ed423c49",
+      "afterSha256": "083fce741028d674f1ba69d6ca8eaf817f1acda42f1decc163bf7c1845d9fc39",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "services/banking-api/src/test/java/com/creditflow/banking/HistoryTest.java",
+      "beforeSha256": "6b83dfff788d7669f39e0048b8f69583bdeef6716a32c2323e2d51120edcbb46",
+      "afterSha256": "5035d450851ace2c3ee5b28141eff40cd937321923a80f53afeca3f4114e36f0",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "services/banking-api/src/test/java/com/creditflow/banking/LedgerIT.java",
+      "beforeSha256": "c6205f42083846e6e5dbfba9514370e0f12e21bacb3461f79fbac864912afe93",
+      "afterSha256": "4083282f3e3c53dcdaebe5544105da33fd0df6fda003e0c8cada87142254b1df",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "services/banking-api/src/test/java/com/creditflow/banking/PublicBoundaryIT.java",
+      "beforeSha256": "bfdf385358b1ad8a49c02f72b30cd61c5ef60489b61271f3d63b78b8598ddefc",
+      "afterSha256": "aa0231c690e934975a2f4d20cc6b803dce1e55630ae43172a04b7883ffd7a7b1",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "services/banking-api/src/test/java/com/creditflow/banking/RequestBudgetTest.java",
+      "beforeSha256": "8b5217e9fee361efd2054aa4ec8c87b8b931e55469d280194e0b1f0f7680972e",
+      "afterSha256": "cc053fda867fdcddd75abaf240c4d360ec60eb2fbee2b5126aa6cbe0d1aa7736",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "services/banking-api/src/test/java/com/creditflow/banking/domain/AccountStateTest.java",
+      "beforeSha256": "241b0c1bf66de08b03e9e8b7ade8104607adb40ebe3c1fd948d4a053f17e1032",
+      "afterSha256": "0ad03f097aeff1c1ed2fa200d4ca573f8247b8dbb3dc93518f652b561989f0e7",
+      "normalizedEqualsHeadBlob": true
+    },
+    {
+      "path": "services/banking-api/src/test/java/com/creditflow/banking/domain/MoneyTest.java",
+      "beforeSha256": "9cfe269255b2ab35d1c6024c678a9a9a462b8d086602e81c714cde09c2f2f502",
+      "afterSha256": "bf27bf02222d6808170bfba823474afaa2a1362ec33ad257e1c60fece7f5e0d0",
+      "normalizedEqualsHeadBlob": true
+    }
+  ]
+}
