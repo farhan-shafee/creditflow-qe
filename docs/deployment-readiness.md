@@ -1,6 +1,6 @@
 # Isolated pilot readiness, cost and next approval
 
-The owner approved the isolated provider-URL pilot. Fresh Railway, Neon Free and Vercel resources are now deployed and verified; see [component commits, tests, limits and retained failures](evidence/provider-pilot.md). The separately approved custom-domain release is now verified at https://creditflow.farhan-shafee.com, with one DNS-only CNAME and its production origin update. See the [actual custom-domain receipt](evidence/custom-domain.md). Existing portfolio edits remain unapplied and require separate approval.
+The owner approved the isolated provider-URL pilot. Fresh Railway, Neon Free and Vercel resources are now deployed and verified; see [component commits, tests, limits and retained failures](evidence/provider-pilot.md). The separately approved custom-domain release is now verified at https://creditflow.farhan-shafee.com, with one DNS-only CNAME and its production origin update. See the [actual custom-domain receipt](evidence/custom-domain.md). The separately approved [portfolio integration](evidence/portfolio-integration.md) is now deployed and verified.
 
 ## Approved pilot scope
 
@@ -39,4 +39,4 @@ Railway's workspace hard limit shuts down workspace workloads. [Vercel Spend Man
 
 ## Smallest next approval
 
-The custom-domain approval has been exercised: the new CNAME, exact production origin, HTTPS, redirect and banking/UI flows are verified. See the [actual release](evidence/custom-domain.md). The next separate approval is the existing portfolio integration in [the prepared proposal](portfolio-integration.md). Deletion of the unused bootstrap role whose password is disabled remains a separate decision. System installation, shared billing changes and unrelated resources remain outside this release. Browser Use still requires explicit permission.
+The custom-domain approval has been exercised: the new CNAME, exact production origin, HTTPS, redirect and banking/UI flows are verified. See the [actual release](evidence/custom-domain.md). The separately approved [portfolio integration](portfolio-integration.md) has also been exercised and verified. Deletion of the unused bootstrap role whose password is disabled remains a separate decision. System installation, shared billing changes and unrelated resources remain outside this release. Browser Use still requires explicit permission.

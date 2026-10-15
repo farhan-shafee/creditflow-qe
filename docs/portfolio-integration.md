@@ -1,38 +1,11 @@
-# Prepared portfolio integration — not applied
+# Portfolio integration — applied and verified
 
-## Verified destination
+The owner approved applying and deploying the prepared fourth flagship on 2026-10-15. It is live at https://farhan-shafee.com/work/creditflow-qe and appears on the homepage and Work index. See [the full integration receipt](evidence/portfolio-integration.md).
 
-Existing repository: `farhan-shafee/farhanshafee.com`, local `D:\Dev\Repos\farhanshafee.com`. The Vercel project name is `farhanshafee.com`, but its verified custom domains are **farhan-shafee.com** and **www.farhan-shafee.com**. The project also has `farhanshafeecom.vercel.app`. The connected Cloudflare zone for farhan-shafee.com is active. The initial read-only audit found the CreditFlow hostname unused; the separately approved release has now added exactly one DNS-only CNAME for the verified custom demo.
+The existing repository farhan-shafee/farhanshafee.com and Vercel project farhanshafee.com serve the actual hyphenated farhan-shafee.com domain. The released portfolio commit is 9867fd2ccab55441165760ed67602e89bce76b3d; Vercel deployment dpl_DQV4fVimiUPLNg11eFCVVZ6U6HUH was observed READY, staged checks passed, and its public aliases and user journeys were verified. https://github.com/farhan-shafee/farhanshafee.com/pull/1 remains unmerged.
 
-The existing portfolio source and deployment remain unchanged. The new CreditFlow CNAME was applied under separate DNS approval; unrelated DNS records were not modified.
+The [approved card JSON](portfolio-creditflow-card.json) now records APPLIED_VERIFIED and its actual release identifiers. Its card data remains the approved content. The existing shared Project type, card, inspection and case-study route were reused; a dedicated src/data/creditflow-project.ts and reviewed public/projects/creditflow-qe/payment.png were added. Source-only provenance, the machine-readable index, README and independent hierarchy assertions were updated as required by the existing implementation.
 
-## Existing implementation pattern
+The flagship order is AegisGraph, CreditOps AI, TradeFlow, CreditFlow QE. The same four supporting security projects follow; existing records remain unchanged. The real synthetic payment capture shows $200 outstanding, $800 available and one committed payment, with no credentials. Primary tags remain Java21, Spring Boot, Cucumber, REST Assured, PostgreSQL, Maven, Playwright and GitHub Actions. Additional framework facts retain the Jenkins-server limitation and AI-assistance disclosure.
 
-- `src/data/projects.ts` defines the shared Project type and imports CreditOps and TradeFlow records.
-- `src/components/project-card.tsx` uses the shared `flagship` presentation, selected evidence links, optional reviewed screenshot, and an existing `/work/{slug}` case-study route.
-- `src/app/page.tsx` uses `getFeaturedProjects()` and the existing card component.
-- `src/app/work/page.tsx` explicitly selects flagship slugs; the approved change must add CreditFlow to that list rather than inventing a fifth flagship or restructuring other projects.
-
-## Proposed fourth flagship
-
-| Field | Proposed value |
-|---|---|
-| title | CreditFlow QE |
-| slug | creditflow-qe |
-| status | Active; update only from actual release evidence |
-| category | Financial systems / Quality engineering |
-| kind | personal |
-| description | A synthetic credit-card ledger with transactional PostgreSQL state, independently tested through Java, Cucumber and REST Assured. |
-| technologies | Java21, Spring Boot, PostgreSQL, Cucumber, REST Assured, Jupiter, TestNG, Selenium, Playwright, Next.js, Maven, GitHub Actions |
-| GitHub | https://github.com/farhan-shafee/creditflow-qe |
-| live URL | https://creditflow.farhan-shafee.com — custom-host HTTPS and real banking/UI journeys verified |
-| featured / visibility | true / public |
-| inspection facts | Exact money, original receipt replay, account ownership, rollback and concurrent updates; attach only executed results |
-
-Create a dedicated `src/data/creditflow-project.ts` following the existing TradeFlow pattern, import it into projects.ts, append it to the flagship selection, and reuse the shared card/case-study components. The reviewed, actual hosted payment screenshot is `docs/evidence/custom-domain/payment.png`. After approval, copy it into a new portfolio asset path and reuse the existing screenshot fields. It shows a real synthetic $50 payment leaving $200 outstanding and $800 available; it contains no credentials.
-
-The intended flagship sequence remains AegisGraph, CreditOps AI, TradeFlow, CreditFlow QE. Preserve all other project content and existing routes. The custom-domain release is validated and deployed; see [the release receipt](evidence/custom-domain.md). This concrete integration remains unapplied and requires separate owner approval. Proposed inspection links are the verified custom-host demo, GitHub source, source Actions 38682147631 and the custom-domain receipt. The card should say Active, not production banking software. Existing project summaries and routes remain intact.
-
-## Concrete unapplied record
-
-The [prepared card JSON](portfolio-creditflow-card.json) contains the exact proposed summary, eight primary technology tags, verified live/source/CI links, current capability facts and reviewed 1440 × 3318 screenshot metadata. It is marked PLANNED_NOT_APPLIED. Read-only inspection on 2026-10-15 found the destination clean at `562d534160d7aee07e200dcb49fe77ec994551e9`, with the same three flagship slugs and shared card component. After approval, add the dedicated record and reviewed asset, import it into projects.ts and append creditflow-qe to the existing flagship selection. Preserve AegisGraph, CreditOps AI and TradeFlow in order and leave their content intact.
+Compatible portfolio dependency patches removed the critical inventory finding; audits still report inherited findings and are REVIEW, not green. Explicit Vercel exclusions were verified before upload. No CreditFlow application-service, DNS, billing, credential, system-software or other-project change occurred. Future portfolio changes still require owner authorization.

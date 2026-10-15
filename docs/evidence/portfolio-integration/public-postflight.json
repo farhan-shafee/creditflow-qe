@@ -1,0 +1,87 @@
+{
+  "checkedAt": "2026-10-15T18:15:26.835Z",
+  "canonicalOrigin": "https://farhan-shafee.com",
+  "caseStudyUrl": "https://farhan-shafee.com/work/creditflow-qe",
+  "deploymentId": "dpl_DQV4fVimiUPLNg11eFCVVZ6U6HUH",
+  "sourceCommit": "9867fd2ccab55441165760ed67602e89bce76b3d",
+  "trustedTls": {
+    "authorized": true,
+    "protocol": "TLSv1.3"
+  },
+  "screenshotSha256": "8ebe78c28fa161da2737c0c5a97eae410ee3d4a63eef29c3eae1b078a41aba4d",
+  "checks": [
+    {
+      "name": "trusted HTTPS 200 /",
+      "passed": true
+    },
+    {
+      "name": "trusted HTTPS 200 /work",
+      "passed": true
+    },
+    {
+      "name": "trusted HTTPS 200 /work/creditflow-qe",
+      "passed": true
+    },
+    {
+      "name": "trusted HTTPS 200 /sitemap.xml",
+      "passed": true
+    },
+    {
+      "name": "trusted HTTPS 200 /llms.txt",
+      "passed": true
+    },
+    {
+      "name": "trusted HTTPS 200 /projects/creditflow-qe/payment.png",
+      "passed": true
+    },
+    {
+      "name": "trusted HTTPS 200 /work/aegisgraph",
+      "passed": true
+    },
+    {
+      "name": "trusted HTTPS 200 /work/creditops-ai",
+      "passed": true
+    },
+    {
+      "name": "trusted HTTPS 200 /work/tradeflow",
+      "passed": true
+    },
+    {
+      "name": "retired project remains 404",
+      "passed": true
+    },
+    {
+      "name": "homepage exposes approved fourth flagship",
+      "passed": true
+    },
+    {
+      "name": "public Work keeps approved project order",
+      "passed": true
+    },
+    {
+      "name": "public case study has canonical URL, real demo and limits",
+      "passed": true
+    },
+    {
+      "name": "sitemap and machine-readable index include new case study",
+      "passed": true
+    },
+    {
+      "name": "public original image matches reviewed screenshot",
+      "passed": true
+    },
+    {
+      "name": "www redirect preserves path and query",
+      "passed": true
+    },
+    {
+      "name": "linked demo remains reachable over trusted HTTPS",
+      "passed": true
+    },
+    {
+      "name": "public security headers retained",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

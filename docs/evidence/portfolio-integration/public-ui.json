@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-15T18:17:15.016Z",
+  "origin": "https://farhan-shafee.com",
+  "deploymentId": "dpl_DQV4fVimiUPLNg11eFCVVZ6U6HUH",
+  "sourceCommit": "9867fd2ccab55441165760ed67602e89bce76b3d",
+  "journeys": [
+    {
+      "width": 375,
+      "theme": "dark",
+      "homepageToCaseStudy": true,
+      "linksVerified": true,
+      "imageLoaded": true,
+      "overflow": false,
+      "runtimeErrors": 0,
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "homepageToCaseStudy": true,
+      "linksVerified": true,
+      "imageLoaded": true,
+      "overflow": false,
+      "runtimeErrors": 0,
+      "passed": true
+    }
+  ],
+  "passed": true
+}

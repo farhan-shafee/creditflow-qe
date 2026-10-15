@@ -1,0 +1,27 @@
+{
+  "verifiedAt": "2026-10-15T18:14:10.762Z",
+  "projectId": "prj_cogbj7rjEkWVtCzulTSr9byTFn58",
+  "deploymentId": "dpl_DQV4fVimiUPLNg11eFCVVZ6U6HUH",
+  "sourceCommit": "9867fd2ccab55441165760ed67602e89bce76b3d",
+  "target": "production",
+  "readyState": "READY",
+  "aliases": [
+    {
+      "host": "farhan-shafee.com",
+      "deploymentId": "dpl_DQV4fVimiUPLNg11eFCVVZ6U6HUH",
+      "projectId": "prj_cogbj7rjEkWVtCzulTSr9byTFn58"
+    },
+    {
+      "host": "www.farhan-shafee.com",
+      "deploymentId": "dpl_DQV4fVimiUPLNg11eFCVVZ6U6HUH",
+      "projectId": "prj_cogbj7rjEkWVtCzulTSr9byTFn58"
+    },
+    {
+      "host": "farhanshafeecom.vercel.app",
+      "deploymentId": "dpl_DQV4fVimiUPLNg11eFCVVZ6U6HUH",
+      "projectId": "prj_cogbj7rjEkWVtCzulTSr9byTFn58"
+    }
+  ],
+  "postResponse": "CLI promotion helper expected JSON but received no parsable JSON; state was inspected read-only before any retry",
+  "passed": true
+}

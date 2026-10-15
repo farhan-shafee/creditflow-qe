@@ -1,0 +1,29 @@
+{
+  "full": {
+    "startedAt": "2026-10-15T18:02:43.799Z",
+    "finishedAt": "2026-10-15T18:03:30.451Z",
+    "exitCode": 0,
+    "testsPassed": 26,
+    "expectedTests": 26,
+    "target": "Isolated local production build",
+    "baseUrl": "http://127.0.0.1:38814",
+    "serverPid": 29156,
+    "occupiedPort3100Untouched": true,
+    "passed": true
+  },
+  "expanded": {
+    "checkedAt": "2026-10-15T18:04:57.778Z",
+    "exitCode": 0,
+    "testsPassed": 5,
+    "expectedTests": 5,
+    "scope": "Affected screenshot navigation and cold-load tests expanded to CreditFlow after review",
+    "passed": true
+  },
+  "initialPortObservation": {
+    "observedAt": "2026-10-15T17:57:47.252Z",
+    "exitCode": 1,
+    "testsExecuted": 0,
+    "error": "Error: http://127.0.0.1:3100 is already used, make sure that nothing is running on the port/url or set reuseExistingServer:true in config.webServer.",
+    "source": "Observed Desktop Commander browser.log read and browser-result process output. A temporary runner reused a backup filename; this structured receipt preserves the observation, not an original raw log."
+  }
+}

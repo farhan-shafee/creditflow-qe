@@ -1,5 +1,5 @@
 {
-  "status": "PLANNED_NOT_APPLIED",
+  "status": "APPLIED_VERIFIED",
   "destinationRepository": "farhan-shafee/farhanshafee.com",
   "auditedCommit": "562d534160d7aee07e200dcb49fe77ec994551e9",
   "flagshipOrder": [
@@ -100,5 +100,13 @@
         "caption": "Actual Playwright journey: $200 outstanding, $800 available and one committed payment."
       }
     ]
+  },
+  "applied": {
+    "sourceCommit": "9867fd2ccab55441165760ed67602e89bce76b3d",
+    "deploymentId": "dpl_DQV4fVimiUPLNg11eFCVVZ6U6HUH",
+    "caseStudyUrl": "https://farhan-shafee.com/work/creditflow-qe",
+    "verifiedAt": "2026-10-15T18:17:15.016Z",
+    "prUrl": "https://github.com/farhan-shafee/farhanshafee.com/pull/1",
+    "merged": false
   }
 }

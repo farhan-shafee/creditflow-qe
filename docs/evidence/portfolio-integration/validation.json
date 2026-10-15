@@ -1,0 +1,93 @@
+{
+  "checkedAt": "2026-10-15T17:57:11.340Z",
+  "results": [
+    {
+      "name": "unit",
+      "exitCode": 0,
+      "seconds": 4.327
+    },
+    {
+      "name": "lint",
+      "exitCode": 0,
+      "seconds": 8.337
+    },
+    {
+      "name": "format",
+      "exitCode": 0,
+      "seconds": 2.328
+    },
+    {
+      "name": "audit",
+      "exitCode": 1,
+      "seconds": 2.57
+    },
+    {
+      "name": "audit-production",
+      "exitCode": 1,
+      "seconds": 2.28
+    },
+    {
+      "name": "build",
+      "exitCode": 0,
+      "seconds": 11.363
+    },
+    {
+      "name": "typecheck",
+      "exitCode": 0,
+      "seconds": 3.822
+    }
+  ],
+  "tests": {
+    "tests": 37,
+    "pass": 37,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "audits": {
+    "audit": {
+      "exitCode": 1,
+      "counts": {
+        "info": 0,
+        "low": 0,
+        "moderate": 4,
+        "high": 5,
+        "critical": 0,
+        "total": 9
+      },
+      "packages": [
+        "@next/eslint-plugin-next",
+        "argparse",
+        "braces",
+        "eslint-config-next",
+        "fast-glob",
+        "gray-matter",
+        "js-yaml",
+        "micromatch",
+        "sprintf-js"
+      ],
+      "status": "REVIEW"
+    },
+    "audit-production": {
+      "exitCode": 1,
+      "counts": {
+        "info": 0,
+        "low": 0,
+        "moderate": 4,
+        "high": 0,
+        "critical": 0,
+        "total": 4
+      },
+      "packages": [
+        "argparse",
+        "gray-matter",
+        "js-yaml",
+        "sprintf-js"
+      ],
+      "status": "REVIEW"
+    }
+  },
+  "functionalChecksPassed": true,
+  "securityStatus": "REVIEW"
+}
