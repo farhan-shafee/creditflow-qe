@@ -1,5 +1,7 @@
 # Verification and maintenance receipt — 2026-10-15
 
+> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../railway-production.md) for the October 24-25 Railway topology, release state and remaining closeout.
+
 Follow-up: [PR #4 stack guard correction and fresh results](pr4-stack-guard.md). The counts and indexed receipts below remain evidence of the original maintenance implementation.
 
 **TESTED / DOCUMENTED. No deployment or portfolio edit.** This follow-up starts from CreditFlow main `51a2affe38a733f350390fafd59b885b74823b42` and portfolio main `7cf155efa7ec7567a3aa7c2baa031722e971a915`. Both expected PRs are merged; neither remote main had a newer commit at the initial read-only check. Work is on `codex/maintenance-handoff` in the existing CreditFlow checkout.

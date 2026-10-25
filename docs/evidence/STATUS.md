@@ -1,5 +1,7 @@
 # Execution evidence — engineering finish
 
+> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../railway-production.md) for the October 24-25 Railway topology, release state and remaining closeout.
+
 Latest review correction: [PR #4 stack guard](pr4-stack-guard.md) preserves POSIX path case and proves the effective local API/database relationship before workload POSTs. Original maintenance/release receipts below remain historical evidence.
 
 ## Current maintenance handoff — 2026-10-15

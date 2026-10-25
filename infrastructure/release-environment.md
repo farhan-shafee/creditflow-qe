@@ -1,37 +1,48 @@
-# Release configuration contract
+# Current Railway release configuration contract
 
-The repository files describe release configuration. The owner-approved isolated provider pilot is recorded in `docs/evidence/provider-pilot.md`. DNS and existing portfolio changes still require separate approval.
+Reviewed October 25, 2026. The canonical web, original API and live PostgreSQL are on Railway. See [production topology, source pins, backup/recovery and pending closeout](../docs/railway-production.md). Earlier Vercel/Neon pilot settings are historical.
 
-Railway builds `infrastructure/Dockerfile.api` from the repository root. The pilot was configured through the scoped service API; `infrastructure/railway.api.toml` retains the API reference. There is no auto-discovered root `railway.toml`: a repository-wide API Dockerfile would override the frontend's build selection. Configure the API and web services with their own Dockerfile paths in Railway; see `docs/railway-frontend-pilot.md`. Verified live limits are one replica in us-east4-eqdc4a, 0.5 vCPU and 500,000,000 bytes RAM, with application sleep enabled and no volume. Required server variables:
+## Per-service builds and source
 
-| Variable | Value source |
-|---|---|
-| `CREDITFLOW_BIND_ADDRESS` | `0.0.0.0` (already set in runtime image) |
-| `CREDITFLOW_DB_URL` | New Neon JDBC URL with `sslmode=verify-full` and `sslfactory=org.postgresql.ssl.DefaultJavaSSLFactory` (JVM truststore and hostname validation) |
-| `CREDITFLOW_DB_USER` / `CREDITFLOW_DB_PASSWORD` | New isolated runtime role, provider secret configuration |
-| `SPRING_FLYWAY_ENABLED` | `false` after a separately controlled owner migration |
-| `CREDITFLOW_PUBLIC_MODE` | `true` |
-| `CREDITFLOW_PROVISION_KEY` | Fresh random server key, minimum32 characters, shared only with this BFF |
-| `CREDITFLOW_SANDBOX_QUOTA` | `20` per observed peer/hour (single-replica conservative demo limit) |
-| `CREDITFLOW_REQUEST_QUOTA` | `300` per observed peer/minute |
+- API: pinned `20c91f5e10658ab4ce3ec7f2727c8a4934f5b314`, repository-root `infrastructure/Dockerfile.api`.
+- Web: pinned `7a16b50b595d01c735ae566e9737b24b6121eaf6`, `infrastructure/Dockerfile.web` in that release. Do not infer an automatic main release.
+- Keep separate Dockerfile selection for each service; do not add an auto-discovered root API config that overrides the web build.
+- Both application services have one replica with 0.5 vCPU / 500,000,000-byte configured ceilings. API sleep is disabled; web sleep remains enabled.
+- API health uses `/actuator/health/liveness`; separately verify protected `/actuator/health/readiness`. Web health is `/` on port 3100.
 
-Run Flyway migrations on the new database with a dedicated migration identity over a direct TLS connection before starting the runtime service. Apply `runtime-role.sql`; set the fresh role credential privately. No migration password belongs in runtime environment or build arguments. The application role can update the account balance and insert ledger entries, but cannot rewrite ledger entries or run migrations. Tests use a separate privileged local database to exercise controlled rollback fixtures.
+## API variables
 
-Docker and Railway health probes use `/actuator/health/liveness`, which does not query PostgreSQL. In public mode, aggregate health and `/actuator/health/readiness` require `X-Sandbox-Provision-Key`; readiness includes PostgreSQL and returns 503 when it is unavailable. Use an authenticated readiness check as a separate release gate. Hikari minimum idle 0, keepalive 0 and a 60-second idle timeout allow unused connections to retire. The BFF has a 20-second backend deadline beneath a 30-second Vercel function limit. Keep provider sleep enabled; verify the first request from observed Railway SLEEPING and Neon idle states. The original 8-second failure is retained in the pilot evidence.
+| Variable                                        | Current purpose / handling                                                                                                  |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `CREDITFLOW_BIND_ADDRESS`                       | `0.0.0.0`                                                                                                                   |
+| `CREDITFLOW_DB_URL`                             | Private Railway PostgreSQL JDBC destination, verify-full TLS, hostname validation and dedicated CA trust; resolve privately |
+| `CREDITFLOW_DB_USER` / `CREDITFLOW_DB_PASSWORD` | Project-only restricted runtime identity; never publish values                                                              |
+| `CREDITFLOW_DB_CA_B64`                          | Project CA material resolved privately to the startup trust file                                                            |
+| `SPRING_FLYWAY_ENABLED`                         | `false`; schema migration is administrative                                                                                 |
+| `CREDITFLOW_PUBLIC_MODE`                        | `true`                                                                                                                      |
+| `CREDITFLOW_PROVISION_KEY`                      | Independent server key shared only with this BFF                                                                            |
+| `CREDITFLOW_SANDBOX_QUOTA`                      | Conservative public provisioning quota                                                                                      |
+| `CREDITFLOW_REQUEST_QUOTA`                      | Conservative public request quota                                                                                           |
 
-`node infrastructure/validate-runtime-role.cjs` is a project-local verification probe, not a cloud migration command. It applies the role SQL and tests real privileges inside a transaction, with 10-second statement, 5-second lock and 30-second transaction limits beneath a 60-second client timeout, then rolls back. Its retained result must not be presented as proof of cloud role configuration. Public API automation similarly uses its own isolated Compose profile and private environment-only server key; its high quotas are not release settings.
+The current startup writes its private trust file with restrictive permissions, then starts Java. Never log variables, connection URLs, signing secrets, keys or database rows. Keep the database private with no public SQL proxy. Runtime grants/RLS allow intended ledger posting and expired-account cleanup, deny direct ledger rewriting and protect active accounts. Never grant migration ownership to the running API.
 
-The pilot Vercel project is rooted at `apps/web`, uses Node 24.x and has a 30-second function limit. Its `vercel.json` pins the build commands. Production is public at the approved provider URL; preview deployments remain authentication-protected. Required values are production-only. Required server-only variables:
+Liveness does not query PostgreSQL; protected readiness does. The BFF has a bounded backend deadline. Former Neon sleep and Vercel function-limit measurements belong to the dated pilot and do not describe the current deployment.
 
-| Variable | Value source |
-|---|---|
-| `CREDITFLOW_API_URL` | Verified HTTPS origin of the new Railway service |
-| `CREDITFLOW_WEB_ORIGIN` | Exact approved HTTPS command-center origin |
-| `CREDITFLOW_SESSION_SECRET` | Fresh independent random signing secret, minimum32 characters |
-| `CREDITFLOW_PROVISION_KEY` | Same new server access key configured on this API |
+## Frontend variables
 
-Never set `CREDITFLOW_LOCAL_DEMO=true` in a public deployment, or expose these values through `NEXT_PUBLIC_` variables. Preview environments need their own exact origin and isolated credentials/data; do not point arbitrary previews at the public database by default.
+| Variable                    | Current purpose / handling                                |
+| --------------------------- | --------------------------------------------------------- |
+| `CREDITFLOW_API_URL`        | Server-only HTTPS origin of the original Railway API      |
+| `CREDITFLOW_WEB_ORIGIN`     | `https://creditflow.farhan-shafee.com`                    |
+| `CREDITFLOW_SESSION_SECRET` | Independent private signing secret                        |
+| `CREDITFLOW_PROVISION_KEY`  | Same project-only server access key configured on the API |
 
-Post-release verification must prove HTTPS, unauthorized direct API rejection, same-origin BFF writes, per-session account ownership, persistence and negative cases against the release commit. The provider-URL pilot was explicitly approved. Further billable infrastructure or plan upgrades, DNS, and existing portfolio edits remain subject to the owner's separate approval boundaries.
+Never set `CREDITFLOW_LOCAL_DEMO=true` publicly or expose server values through `NEXT_PUBLIC_*`. Keep signed HttpOnly cookies, exact-origin mutations, per-account ownership, request/body caps and conservative quotas. Rehearsals need isolated data and their own intended origins/configuration.
 
-Current canonical production origin: https://creditflow.farhan-shafee.com. The previous public provider URL redirects with 308 to that hostname. The exact DNS/configuration changes and executed release checks are in `docs/evidence/custom-domain.md`. Existing portfolio edits require separate approval.
+## Verification and recovery
+
+After an authorized release, require terminal SUCCESS at the approved pinned SHA, canonical HTTPS, unauthorized API rejection, protected readiness, session isolation and bounded error/5xx/capacity checks. Mutating production canaries need an explicitly authorized synthetic scope.
+
+The local runtime-role validator and fault-injection harness target disposable owned local databases; their command presence is not proof of current cloud grants. Keep those tests separate from read-only production review.
+
+Production PostgreSQL uses a 1,024 MB volume, off-volume pgBackRest full/differential backups and WAL archiving. First scheduled daily-backup verification and stabilization remain open as of October 25. Retain frozen Neon, Vercel and rehearsals until those gates pass and retirement is separately approved. After Railway writes, stale Neon is not a synchronized rollback destination.

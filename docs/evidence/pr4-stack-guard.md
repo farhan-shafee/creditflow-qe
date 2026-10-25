@@ -1,5 +1,7 @@
 # PR #4 stack ownership correction — 2026-10-15
 
+> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../railway-production.md) for the October 24-25 Railway topology, release state and remaining closeout.
+
 This corrects the bounded local harness at `32d685271fae32f71e32b1e4b6f657e63dd6b523`. PR #4 remains unmerged. The [earlier maintenance receipt](maintenance-handoff.md), failures and existing indexed JSON bytes remain historical evidence. [New sanitized receipt](pr4-stack-guard/verification.json).
 
 ## Confirmed defects and correction

@@ -1,5 +1,7 @@
 # Railway frontend pilot
 
+> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](railway-production.md) for the October 24-25 Railway topology, release state and remaining closeout.
+
 The monorepo has two independent Dockerfiles. Set each service's build configuration explicitly.
 
 | Service | Dockerfile | Port | Healthcheck |

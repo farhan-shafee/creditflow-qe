@@ -2,9 +2,9 @@
 
 A simulated credit-card ledger and independent Java quality engineering framework for hands-on financial-services interviews. Synthetic data only; no card numbers, real customers, settlement, or money movement.
 
-Try the [verified live demo](https://creditflow.farhan-shafee.com). Its isolated API and database sleep when idle; the measured first custom-domain account request took 17.4 seconds. See the [current release and dependency-closure evidence](docs/evidence/portfolio-lint-remediation.md) for the current portfolio source, clean audits and release checks. The [hosted banking release record](docs/evidence/completion.md) retains banking/UI checks and operating limits. The [original custom-domain record](docs/evidence/custom-domain.md) remains historical evidence. The [earlier provider pilot](docs/evidence/provider-pilot.md) retains its historical evidence.
+Try the [live synthetic demo](https://creditflow.farhan-shafee.com). The web, API and production PostgreSQL database now run on Railway. The API remains awake; the frontend may wake from idle. See the [current Railway topology, source pins, TLS, backups and pending closeout](docs/railway-production.md). Earlier Vercel/Neon deployment and cold-start receipts remain dated historical evidence.
 
-The [maintenance handoff](docs/maintenance-handoff.md) records the newer read-only provider observations, blocked access/cost fields, lint-patch maintenance criteria, bounded local workload and operator checklist. Historical deployment receipts do not replace current provider readback.
+The [maintenance handoff](docs/maintenance-handoff.md) retains October 15 observations and ongoing local verification instructions. Its old provider state is superseded by the [October 25 Railway production runbook](docs/railway-production.md). Historical receipts do not replace current provider readback.
 
 ## Run the working system
 
@@ -31,19 +31,19 @@ Run these commands sequentially. The PowerShell entry point generates an ignored
 - Next.js16 / TypeScript command center with server-only API access, signed HttpOnly cookies, exact-origin writes, byte-limited JSON and safe retry/reconciliation flows.
 - Java Selenium and Java Playwright journeys; screenshots and redacted traces; Bruno collection; Jenkinsfile; GitHub Actions; Spotless, SpotBugs, JaCoCo, CycloneDX, OSV and Gitleaks.
 
-The current frontend is [81fceff0](https://github.com/farhan-shafee/creditflow-qe/commit/81fceff035c5ad23e761f6a1c49196e488f24d58), validated by [both Actions jobs](https://github.com/farhan-shafee/creditflow-qe/actions/runs/38789200927), with unchanged API [20c91f5](https://github.com/farhan-shafee/creditflow-qe/commit/20c91f5e10658ab4ce3ec7f2727c8a4934f5b314). [Hosted banking release evidence](docs/evidence/completion.md) records the promoted deployment and all 11 hosted UI/BFF tests passing after correcting the test transport deadline; the original failed run is retained. The [portfolio case study](https://farhan-shafee.com/work/creditflow-qe) is deployed from merged main source 7cf155ef and passed 19 public HTTPS/content checks plus two public browser journeys. Its full and production-only dependency audits have zero findings after the [verified lint-toolchain remediation](docs/evidence/portfolio-lint-remediation.md), with 63 unit and 26 browser tests passing in PR and main Actions. [Actual local Jenkins execution](docs/evidence/jenkins-execution.md) published 123 passing cases and separately ran 32 framework tests; the isolated controller was stopped after evidence export.
+The production API remains pinned to [20c91f5](https://github.com/farhan-shafee/creditflow-qe/commit/20c91f5e10658ab4ce3ec7f2727c8a4934f5b314); the Railway frontend uses [7a16b50](https://github.com/farhan-shafee/creditflow-qe/commit/7a16b50b595d01c735ae566e9737b24b6121eaf6). Source pins are recorded in the [current deployment runbook](docs/railway-production.md); new main documentation does not automatically release either service. The [historical banking/UI release](docs/evidence/completion.md), [portfolio dependency remediation](docs/evidence/portfolio-lint-remediation.md) and [actual local Jenkins execution](docs/evidence/jenkins-execution.md) retain their original revisions and distinct test counts. The [current portfolio case study](https://farhan-shafee.com/work/creditflow-qe) separates those records from the Railway migration and remaining scheduled-backup verification.
 
 ## Repository map
 
-| Path | Responsibility |
-|---|---|
-| `services/banking-api` | Application, domain unit tests, PostgreSQL/HTTP integration tests, OpenAPI |
-| `automation/api-bdd` | Independent executable Gherkin and REST Assured clients |
-| `automation/api-testng` | Parameterized negative API contracts |
-| `automation/ui-e2e` | Selenium, Playwright, BFF and trace-redaction tests (`-Pui`) |
-| `apps/web` | Banking simulator and engineering command center |
-| `bruno` | Executed versioned API collection |
-| `infrastructure` | Isolated local stack, verification scripts, release preparation |
+| Path                    | Responsibility                                                             |
+| ----------------------- | -------------------------------------------------------------------------- |
+| `services/banking-api`  | Application, domain unit tests, PostgreSQL/HTTP integration tests, OpenAPI |
+| `automation/api-bdd`    | Independent executable Gherkin and REST Assured clients                    |
+| `automation/api-testng` | Parameterized negative API contracts                                       |
+| `automation/ui-e2e`     | Selenium, Playwright, BFF and trace-redaction tests (`-Pui`)               |
+| `apps/web`              | Banking simulator and engineering command center                           |
+| `bruno`                 | Executed versioned API collection                                          |
+| `infrastructure`        | Isolated local stack, verification scripts, release preparation            |
 
 Each scope saves sanitized logs, immutable report snapshots and a manifest under `.work/evidence/runs/<scope>/<run-id>`. Manifests retain command outcomes, UTC timestamps, executed HEAD, PR head where available, source fingerprint and report hashes. Prior targets/raw diagnostics are preserved under ignored `.work/evidence/private/` and are never uploaded. `verify-evidence.py --all` rejects failed, missing, stale, changed or incomplete evidence across all five scopes. Source changes require fresh runs. Module `target` reports can be replaced by later scopes; use frozen snapshots for combined counts. Generated evidence, session credentials and databases are excluded from Git.
 

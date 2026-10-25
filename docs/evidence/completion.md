@@ -1,5 +1,7 @@
 # Completion follow-up — 2026-10-15
 
+> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../railway-production.md) for the October 24-25 Railway topology, release state and remaining closeout.
+
 **IMPLEMENTED / TESTED / DEPLOYED / VERIFIED.** At this historical completion timestamp the portfolio development dependency review below remained unresolved. The later [lint remediation](portfolio-lint-remediation.md) resolves it and supplies the current portfolio release pointer. This record supersedes the earlier release pointers without rewriting their original evidence.
 
 ## Released components

@@ -1,5 +1,7 @@
 # Portfolio lint dependency remediation — 2026-10-15
 
+> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../railway-production.md) for the October 24-25 Railway topology, release state and remaining closeout.
+
 **IMPLEMENTED / TESTED / DEPLOYED / VERIFIED.** The previous five high-severity development-tool affected-package entries are resolved by removing their shared Next ESLint → fast-glob → micromatch → braces chain. Full and production-only portfolio npm audits report zero findings at the executions below. This dated follow-up supersedes the earlier unresolved-review status; historical audit receipts remain unchanged.
 
 ## Source, CI and release

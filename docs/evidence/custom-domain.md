@@ -1,5 +1,7 @@
 # CreditFlow QE custom-domain release
 
+> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../railway-production.md) for the October 24-25 Railway topology, release state and remaining closeout.
+
 **DEPLOYED / VERIFIED — 2026-10-15.** Canonical demo: https://creditflow.farhan-shafee.com
 
 The owner explicitly approved connecting this hostname and updating CreditFlow's origin configuration. The existing portfolio and unused database role were outside this approval.

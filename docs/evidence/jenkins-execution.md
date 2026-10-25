@@ -1,5 +1,7 @@
 # Executed local Jenkins pipeline — 2026-10-15
 
+> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../railway-production.md) for the October 24-25 Railway topology, release state and remaining closeout.
+
 **TESTED / VERIFIED.** Jenkins 2.580.1 on Java 21 executed the repository Jenkinsfile through an actual authenticated local controller. Job creditflow-qe-verify, build 1, finished SUCCESS at 2026-10-15T18:53:55.642Z. SCM source was 47984ef34e444268d9315d4aa596fb6b8be8590d; its Jenkinsfile blob d598fe38b7c56d05ce519e8ff3bb0035331a0730 matches the later dashboard source's unchanged pipeline.
 
 | Executed gate | Actual result |

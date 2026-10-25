@@ -1,5 +1,7 @@
 # CreditFlow verification and maintenance handoff
 
+> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../../railway-production.md) for the October 24-25 Railway topology, release state and remaining closeout.
+
 **Goal:** Close reproducibility and interview handoff gaps without repeating completed releases or changing the portfolio.
 
 **Baseline:** CreditFlow main `51a2affe38a733f350390fafd59b885b74823b42`; portfolio main `7cf155efa7ec7567a3aa7c2baa031722e971a915`. Both expected PRs are confirmed merged. Work proceeds in the existing CreditFlow checkout on `codex/maintenance-handoff`.

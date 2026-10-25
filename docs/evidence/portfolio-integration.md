@@ -1,5 +1,7 @@
 # Verified portfolio integration — 2026-10-15
 
+> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../railway-production.md) for the October 24-25 Railway topology, release state and remaining closeout.
+
 **DEPLOYED / VERIFIED.** [Portfolio case study](https://farhan-shafee.com/work/creditflow-qe), [homepage](https://farhan-shafee.com) and [Work index](https://farhan-shafee.com/work) now expose CreditFlow QE as the fourth flagship. The owner separately approved applying and deploying the prepared card.
 
 Portfolio repository: farhan-shafee/farhanshafee.com. Vercel project prj_cogbj7rjEkWVtCzulTSr9byTFn58 remains the existing project on its existing team. The actual domain uses the hyphen: farhan-shafee.com. No DNS record changed in this integration.

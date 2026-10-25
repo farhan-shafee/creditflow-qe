@@ -1,5 +1,7 @@
 # CreditFlow QE engineering finish
 
+> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../../railway-production.md) for the October 24-25 Railway topology, release state and remaining closeout.
+
 > Execute the owner's approved six-step finish in the existing `feat/banking-core` checkout. Preserve the existing health regression. Commit only validated corrections; do not merge.
 
 **Goal:** Complete the existing banking/QE implementation with fresh, reproducible local and GitHub Actions evidence.

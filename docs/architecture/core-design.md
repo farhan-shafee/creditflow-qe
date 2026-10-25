@@ -10,6 +10,12 @@ A Maven reactor separates `services/banking-api` from `automation/api-bdd` and `
 
 Spring Boot 4.1.1 is selected from the current supported major rather than starting a new application on the retired 3.5 line. Cucumber 8 and the Boot-managed JUnit Platform are used; this is the current Jupiter generation rather than claiming a JUnit 5-specific implementation.
 
+## Current hosted topology
+
+As of October 25, 2026, the canonical Next.js BFF, Spring Boot API and production PostgreSQL database run on Railway with Cloudflare DNS. The API uses private verify-full TLS with a dedicated CA, separate migration/runtime authority and runtime Flyway disabled. The web/API remain pinned to reviewed source releases. The frontend can sleep; API sleep is disabled. Neon and Vercel are retained rollback resources, not the active database/frontend.
+
+pgBackRest provides off-volume full/differential backups and WAL archiving. Recovery was exercised in isolated preparation; first scheduled daily-backup closeout remains pending. See [current deployment and recovery](../railway-production.md) for exact source pins, access controls and limitations.
+
 ## Monetary contract
 
 USD only. Inputs are positive decimal strings with one to nine integer digits and at most two fractional digits, capped at 1,000,000.00. Parsing uses BigDecimal with exact scale; no rounding. API output amounts are two-decimal strings. Each synthetic account starts with limit 1,000.00, outstanding balance 250.00, and available credit 750.00. A posted purchase increases outstanding; a posted payment decreases it. Purchases above available credit and payments above outstanding fail with 422. There are no pending authorizations, interest, fees, refunds, chargebacks, settlement or real payment integrations.
@@ -32,7 +38,7 @@ The Next.js dashboard proxies the backend with per-visitor sandbox credentials i
 
 The UI retains one idempotency key for an ambiguous response and freezes the intent until retry or reconciliation. A successful post followed by a failed account read offers a refresh, preventing a second posting. Tests exercise both failures using real HTTP completion plus controlled browser transport loss.
 
-The owner's master prompt authorizes project-local headless Java Selenium and Playwright executions. No Browser Use or cloud browser has been opened; those require separate permission. No cloud resource or public deployment is created before a concrete cost and readiness review.
+The owner's master prompt authorizes project-local headless Java Selenium and Playwright executions. No Browser Use or cloud browser has been opened; those require separate permission. The original no-cloud-before-review gate was satisfied by the separately approved releases. Subsequent infrastructure, credential, domain or destructive changes still require their own scope; this design does not authorize them.
 
 ## Alternatives considered
 
