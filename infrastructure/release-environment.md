@@ -2,7 +2,7 @@
 
 The repository files describe release configuration. The owner-approved isolated provider pilot is recorded in `docs/evidence/provider-pilot.md`. DNS and existing portfolio changes still require separate approval.
 
-Railway builds `infrastructure/Dockerfile.api` from the repository root. The pilot was configured through the scoped service API; `railway.toml` is a reference, not the source of its live settings (the API rejected the deprecated config-file-path field). Verified live limits are one replica in us-east4-eqdc4a, 0.5 vCPU and 500,000,000 bytes RAM, with application sleep enabled and no volume. Required server variables:
+Railway builds `infrastructure/Dockerfile.api` from the repository root. The pilot was configured through the scoped service API; `infrastructure/railway.api.toml` retains the API reference. There is no auto-discovered root `railway.toml`: a repository-wide API Dockerfile would override the frontend's build selection. Configure the API and web services with their own Dockerfile paths in Railway; see `docs/railway-frontend-pilot.md`. Verified live limits are one replica in us-east4-eqdc4a, 0.5 vCPU and 500,000,000 bytes RAM, with application sleep enabled and no volume. Required server variables:
 
 | Variable | Value source |
 |---|---|
