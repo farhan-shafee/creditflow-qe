@@ -1,6 +1,6 @@
 # CreditFlow QE on Railway
 
-Current production topology reviewed October 25, 2026. [Live synthetic demo](https://creditflow.farhan-shafee.com) · [Public source](https://github.com/farhan-shafee/creditflow-qe).
+Current production topology reviewed October 25, 2026. [Live synthetic demo](https://creditflow.farhan-shafee.com) Â· [Public source](https://github.com/farhan-shafee/creditflow-qe).
 
 The canonical Next.js command center, original Spring Boot API and live PostgreSQL database now run on Railway. The project/environment still have legacy pilot labels; those labels do not make Neon or Vercel the active providers. Cloudflare supplies DNS. The retained Neon application role is write-frozen and Vercel/rehearsal resources remain retained.
 
@@ -58,6 +58,10 @@ Private off-volume pgBackRest storage provides weekly full/daily differential ba
 The five-minute monitor validates health, live cluster identity, TLS, backup metadata/freshness and archiver progress. It emits structured results and failed cron executions; end-to-end chat notification delivery has not been established. Review every failed outcome, missing result, archive error and actual disk capacity rather than relying only on the newest passing line.
 
 A recovery drill must use a fresh isolated volume, compatible image and selected successful backup. Disable recovered-instance archiving and public SQL exposure, wait for recovery completion, then validate data/schema/authorization/invariants. A production replacement requires a separate reviewed service/volume and archive destination.
+
+## October 31 archive incident follow-up
+
+The running application remains on its pinned releases. The read-only incident review found recovered archive timeouts and a native monitor that still alerts on the lifetime failure counter. The [review-bounded recovery candidate](archive-monitor-recovery.md) preserves the eleven failures, requires an exact reviewed incident acknowledgement, and is **not deployed pending separate approval**. Historical October25 pending-gate statements above are dated records; the October26 scheduled daily/stabilization gate passed and the five rehearsal service instances were retired October29 with retained volumes/buckets preserved.
 
 ## Release and rollback discipline
 
