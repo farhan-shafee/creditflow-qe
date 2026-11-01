@@ -14,8 +14,11 @@
     <!-- Patch overrides verified against OSV and Maven Central on 2026-10-14. -->
     <jackson-bom.version>3.1.7</jackson-bom.version><jackson-2-bom.version>2.21.7</jackson-2-bom.version><tomcat.version>11.0.25</tomcat.version>
     <selenium.version>4.51.0</selenium.version>
+    <!-- Security fixes: GHSA-xxph-c9ww-hj94 and GHSA-ccrj-gw8r-854m; reviewed 2026-10-31. -->
+    <guava.version>33.7.2-jre</guava.version><opentelemetry.version>1.67.0</opentelemetry.version>
   </properties>
   <dependencyManagement><dependencies>
+    <dependency><groupId>com.google.guava</groupId><artifactId>guava</artifactId><version>${guava.version}</version></dependency>
     <dependency><groupId>org.mozilla</groupId><artifactId>rhino</artifactId><version>1.7.15.1</version></dependency>
     <dependency><groupId>io.cucumber</groupId><artifactId>cucumber-bom</artifactId><version>${cucumber.version}</version><type>pom</type><scope>import</scope></dependency>
     <dependency><groupId>io.rest-assured</groupId><artifactId>rest-assured</artifactId><version>${rest-assured.version}</version></dependency>

@@ -1,0 +1,25 @@
+{
+  "assessmentUnix": 1793495461.072,
+  "metadata": {
+    "systemIdentifier": "7700470356004089914",
+    "archivedCount": "9666",
+    "failedCount": "11",
+    "lastFailedUnix": 1793477059.095708,
+    "lastFailedWal": "00000001000000240000008B",
+    "statsResetUnix": 1792905469.450778,
+    "lastArchivedUnix": 1793495298.088951,
+    "lastArchivedWal": "0000000100000025000000B9",
+    "currentWal": "0000000100000025000000BA",
+    "walSegmentBytes": 16777216
+  },
+  "certificateObservation": {
+    "checkedAt": "2026-11-01T00:58:02.656Z",
+    "leafExpires": 1824441471,
+    "caExpires": 1824441471
+  },
+  "sources": {
+    "database": "read-only pg_stat_archiver query over existing scoped Railway SSH; no row data or credentials",
+    "certificate": "existing native monitor result"
+  },
+  "note": "Separate read-only observations combined for an offline regression; no candidate deployed."
+}

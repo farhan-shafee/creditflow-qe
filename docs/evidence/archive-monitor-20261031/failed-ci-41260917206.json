@@ -1,0 +1,54 @@
+{
+  "recordedAtUtc": "2026-11-01T01:31:32.405Z",
+  "runId": 41260917206,
+  "headSha": "40c8fb453a7a1d047874c47d5ba28794e988ae9c",
+  "url": "https://github.com/farhan-shafee/creditflow-qe/actions/runs/41260917206",
+  "conclusion": "failure",
+  "reason": "Evidence validator retained a minimum of 209 versioned PURLs; dependency convergence produces 205 versions but the identical 204 distinct group:artifact families. All runtime/browser and security commands passed before the completeness assertion failed.",
+  "security": {
+    "resolvedComponents": 205,
+    "affectedComponents": 0,
+    "gitleaksExitCode": 0
+  },
+  "inventoryComparison": {
+    "originalVersionedComponents": 209,
+    "patchedVersionedComponents": 205,
+    "originalDistinctLibraryFamilies": 204,
+    "patchedDistinctLibraryFamilies": 204,
+    "removedFamilies": [],
+    "addedFamilies": [],
+    "originalBomSha256": "e53a7a8e2bc861be23be92367c75266a44741fb686846e65952f0a9b02c4cb56",
+    "patchedBomSha256": "0c715de821584efdeaa52807de80a024028275401135c8b9f6271b69f2b791e8"
+  },
+  "correction": "Retain the 204 distinct-family floor and require exact module/UI identities, coherent versioned coordinates, complete/unique reference nodes, no dangling edges and root reachability. Duplicate versions cannot pad omitted library families.",
+  "regressions": {
+    "red": {
+      "tests": 40,
+      "failures": 10,
+      "errors": 3
+    },
+    "green": {
+      "tests": 40,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    }
+  },
+  "artifacts": [
+    {
+      "id": 13065401382,
+      "name": "creditflow-browser-77e432b055d72219e11dc46b36326fc02a910481",
+      "size": 8925818,
+      "digest": "sha256:65a107db241bbca1a3732c994e84d8bedd3e6dfdc10057fdb7530eb5e13cc748",
+      "expiresAt": "2026-11-15T01:27:14Z"
+    },
+    {
+      "id": 13064967629,
+      "name": "creditflow-core-77e432b055d72219e11dc46b36326fc02a910481",
+      "size": 1229993,
+      "digest": "sha256:68081b4bd2320a72bf3f28bb777a8c50e892f7c748dcf6038323a57b0d09b304",
+      "expiresAt": "2026-11-15T01:26:57Z"
+    }
+  ],
+  "productionMutation": "None"
+}

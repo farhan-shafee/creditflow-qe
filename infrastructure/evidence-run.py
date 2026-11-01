@@ -38,6 +38,49 @@ def check(condition, message):
         raise EvidenceError(message)
 
 
+def validate_inventory(data):
+    components = data.get('components', [])
+    check(isinstance(components, list) and all(isinstance(c, dict) for c in components), 'quality: invalid inventory coordinate')
+    for item in components:
+        group, name, version = (item.get(key) for key in ('group', 'name', 'version'))
+        check(all(isinstance(v, str) and v for v in (group, name, version))
+              and isinstance(item.get('purl'), str)
+              and item['purl'].split('?', 1)[0] == f'pkg:maven/{group}/{name}@{version}'
+              and isinstance(item.get('bom-ref'), str) and item['bom-ref'], 'quality: invalid inventory coordinate')
+    purls = {item['purl'] for item in components}
+    families = {(item['group'], item['name']) for item in components}
+    modules = {('com.creditflow', name) for name in ('banking-api', 'api-bdd', 'api-testng', 'ui-e2e')}
+    # Both original 209-version and converged 205-version BOMs contain 204 library families.
+    # Duplicate versions cannot satisfy the retained completeness floor.
+    check(len(families) >= 204 and modules <= families
+          and {('org.seleniumhq.selenium', 'selenium-java'), ('com.microsoft.playwright', 'playwright')} <= families,
+          'quality: incomplete UI/test-scope inventory')
+    root = data.get('metadata', {}).get('component', {})
+    root_ref = root.get('bom-ref')
+    check(root.get('group') == 'com.creditflow' and root.get('name') == 'creditflow-qe'
+          and isinstance(root_ref, str) and root_ref, 'quality: invalid inventory graph root')
+    refs = {c['bom-ref'] for c in components}
+    check(len(refs) == len(components) == len(purls) and root_ref not in refs, 'quality: duplicate inventory graph coordinate')
+    refs.add(root_ref)
+    nodes = data.get('dependencies', [])
+    check(isinstance(nodes, list) and all(isinstance(n, dict) and isinstance(n.get('ref'), str)
+          and isinstance(n.get('dependsOn'), list) and all(isinstance(ref, str) for ref in n['dependsOn']) for n in nodes),
+          'quality: invalid inventory graph')
+    graph = {node['ref']: node['dependsOn'] for node in nodes}
+    check(len(graph) == len(nodes) and set(graph) == refs
+          and all(ref in refs for children in graph.values() for ref in children), 'quality: incomplete inventory graph')
+    module_refs = {c['bom-ref'] for c in components if (c['group'], c['name']) in modules}
+    check(module_refs <= set(graph[root_ref]), 'quality: missing module in inventory graph')
+    visited, pending = set(), [root_ref]
+    while pending:
+        ref = pending.pop()
+        if ref not in visited:
+            visited.add(ref)
+            pending.extend(graph[ref])
+    check(visited == refs, 'quality: disconnected inventory graph')
+    return purls
+
+
 def utc():
     return dt.datetime.now(dt.timezone.utc).isoformat()
 
@@ -430,8 +473,7 @@ def validate_manifest(root, manifest, current, verify_commands=True):
         bom, osv, leaks, role = (reports.get(name) for name in ('target/bom.json', '.work/dependency-audit.json', 'gitleaks.json', '.work/runtime-role-validation.json'))
         check(all(item is not None for item in (bom, osv, leaks, role)), 'quality: missing generated scan/config result')
         data, audit = json.loads(bom.read_text(encoding='utf-8')), json.loads(osv.read_text(encoding='utf-8'))
-        purls = {c['purl'] for c in data.get('components', []) if c.get('purl')}
-        check(len(purls) >= 209 and any('selenium-java' in p for p in purls) and any('playwright' in p for p in purls), 'quality: incomplete UI/test-scope inventory')
+        purls = validate_inventory(data)
         original_bom_hash = next(item['sourceSha256'] for item in manifest['reports'] if item['sourcePath'] == 'target/bom.json')
         check(audit.get('bomSha256') == original_bom_hash and audit.get('components') == len(purls) and audit.get('findings') == [], 'quality: stale/incomplete/affected OSV result')
         queried_ns = int(dt.datetime.fromisoformat(audit['queriedAt'].replace('Z', '+00:00')).timestamp() * 1_000_000_000)

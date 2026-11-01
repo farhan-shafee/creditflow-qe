@@ -1,0 +1,73 @@
+{
+  "recordedAtUtc": "2026-11-01T01:23:45.860Z",
+  "failedRun": 41260248400,
+  "components": 205,
+  "findings": [],
+  "queriedAt": "2026-11-01T01:23:21.966856+00:00",
+  "bomSha256": "0c715de821584efdeaa52807de80a024028275401135c8b9f6271b69f2b791e8",
+  "resolvedTargeted": [
+    {
+      "group": "com.google.guava",
+      "name": "guava",
+      "version": "33.7.2-jre"
+    },
+    {
+      "group": "io.opentelemetry",
+      "name": "opentelemetry-api",
+      "version": "1.67.0"
+    },
+    {
+      "group": "io.opentelemetry",
+      "name": "opentelemetry-context",
+      "version": "1.67.0"
+    },
+    {
+      "group": "io.opentelemetry",
+      "name": "opentelemetry-common",
+      "version": "1.67.0"
+    },
+    {
+      "group": "io.opentelemetry",
+      "name": "opentelemetry-exporter-logging",
+      "version": "1.67.0"
+    },
+    {
+      "group": "io.opentelemetry",
+      "name": "opentelemetry-sdk-common",
+      "version": "1.67.0"
+    },
+    {
+      "group": "io.opentelemetry",
+      "name": "opentelemetry-sdk-extension-autoconfigure-spi",
+      "version": "1.67.0"
+    },
+    {
+      "group": "io.opentelemetry",
+      "name": "opentelemetry-sdk-extension-autoconfigure",
+      "version": "1.67.0"
+    },
+    {
+      "group": "io.opentelemetry",
+      "name": "opentelemetry-sdk-trace",
+      "version": "1.67.0"
+    },
+    {
+      "group": "io.opentelemetry",
+      "name": "opentelemetry-sdk",
+      "version": "1.67.0"
+    },
+    {
+      "group": "io.opentelemetry",
+      "name": "opentelemetry-sdk-metrics",
+      "version": "1.67.0"
+    },
+    {
+      "group": "io.opentelemetry",
+      "name": "opentelemetry-sdk-logs",
+      "version": "1.67.0"
+    }
+  ],
+  "source": "Official OSV batch API against freshly resolved full test-inclusive CycloneDX inventory; no advisory suppressions",
+  "review": "Independent review confirmed Boot BOM property alignment and Selenium declared Guava compatibility",
+  "productionDeployment": "Not performed; these pins affect future builds only"
+}

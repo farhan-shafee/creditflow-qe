@@ -267,13 +267,89 @@ class EvidenceBehavior(unittest.TestCase):
         (self.root / 'infrastructure/validate-runtime-role.sql').write_bytes(b'-- probe\r\n')
         bom = self.root / 'target/bom.json'
         bom.parent.mkdir(exist_ok=True)
-        bom.write_bytes((json.dumps(dict(components=[dict(purl='pkg:maven/example/component' + str(i)) for i in range(207)] + [dict(purl='pkg:maven/org.seleniumhq.selenium/selenium-java'), dict(purl='pkg:maven/com.microsoft.playwright/playwright')])) + '\n').encode())
+        self.write_quality_inventory()
         (self.root / '.work').mkdir(exist_ok=True)
-        (self.root / '.work/dependency-audit.json').write_text(json.dumps(dict(queriedAt=self.api['utc'](), bomSha256=self.api['digest'](bom), components=209, findings=[])))
+        (self.root / '.work/dependency-audit.json').write_text(json.dumps(dict(queriedAt=self.api['utc'](), bomSha256=self.api['digest'](bom), components=205, findings=[])))
         (self.root / '.work/runtime-role-validation.json').write_text(json.dumps(dict(passed=True, transactionRolledBack=True, sourceSha256=hashlib.sha256(b'-- role\r\n-- probe\r\n').hexdigest())))
         (self.root / '.work/runtime-role-validation.log').write_text('BEGIN\nROLLBACK\n')
         (self.folder / 'snapshot/gitleaks.json').write_text('[]')
         self.api['snapshot'](self.root, self.manifest)
+
+    def write_quality_inventory(self, unique_count=204, total_count=205, mutate=None):
+        coordinates = [
+            ('com.creditflow', name) for name in ('banking-api', 'api-bdd', 'api-testng', 'ui-e2e')
+        ] + [('org.seleniumhq.selenium', 'selenium-java'), ('com.microsoft.playwright', 'playwright')]
+        coordinates += [('example', 'component' + str(i)) for i in range(unique_count - len(coordinates))]
+        components = [dict(group=g, name=n, version='1') for g, n in coordinates]
+        components += [dict(group='example', name='component0', version=str(i + 2))
+                       for i in range(total_count - unique_count)]
+        for item in components:
+            item['purl'] = 'pkg:maven/' + item['group'] + '/' + item['name'] + '@' + item['version']
+            item['bom-ref'] = item['purl']
+        root_ref = 'pkg:maven/com.creditflow/creditflow-qe@1'
+        data = dict(components=components,
+                    metadata=dict(component={'bom-ref': root_ref, 'group': 'com.creditflow', 'name': 'creditflow-qe'}),
+                    dependencies=[dict(ref=root_ref, dependsOn=[c['bom-ref'] for c in components])]
+                                 + [dict(ref=c['bom-ref'], dependsOn=[]) for c in components])
+        if mutate:
+            mutate(data)
+        bom = self.root / 'target/bom.json'
+        bom.write_bytes((json.dumps(data) + '\n').encode('utf-8'))
+        audit = self.root / '.work/dependency-audit.json'
+        if audit.exists():
+            value = json.loads(audit.read_text())
+            value.update(bomSha256=self.api['digest'](bom), components=len({c['purl'] for c in data['components']}))
+            audit.write_text(json.dumps(value))
+            self.manifest['reports'] = []
+            self.api['snapshot'](self.root, self.manifest)
+
+    def test_complete_converged_205_inventory_passes(self):
+        self.quality_fixture()
+        self.assertEqual(self.validate()['components'], 205)
+
+    def test_duplicate_versions_cannot_pad_missing_library_families(self):
+        self.quality_fixture()
+        self.write_quality_inventory(unique_count=203, total_count=209)
+        self.rejects('incomplete UI/test-scope inventory')
+
+    def test_missing_dependency_reference_is_rejected(self):
+        self.quality_fixture()
+        self.write_quality_inventory(total_count=209, mutate=lambda d: d['dependencies'][0]['dependsOn'].append('pkg:maven/missing/library@1'))
+        self.rejects('inventory graph')
+
+    def test_missing_dependency_node_is_rejected(self):
+        self.quality_fixture()
+        self.write_quality_inventory(total_count=209, mutate=lambda d: d['dependencies'].pop())
+        self.rejects('inventory graph')
+
+    def test_disconnected_component_is_rejected(self):
+        self.quality_fixture()
+        self.write_quality_inventory(total_count=209, mutate=lambda d: d['dependencies'][0]['dependsOn'].pop())
+        self.rejects('inventory graph')
+
+    def test_duplicate_dependency_node_is_rejected(self):
+        self.quality_fixture()
+        self.write_quality_inventory(total_count=209, mutate=lambda d: d['dependencies'].append(copy.deepcopy(d['dependencies'][-1])))
+        self.rejects('inventory graph')
+
+    def test_missing_ui_module_cannot_be_replaced_by_padding(self):
+        self.quality_fixture()
+        def rename(data):
+            item = data['components'][3]
+            previous = item['bom-ref']
+            item.update(name='other-module', purl='pkg:maven/com.creditflow/other-module@1')
+            item['bom-ref'] = item['purl']
+            for node in data['dependencies']:
+                if node['ref'] == previous:
+                    node['ref'] = item['bom-ref']
+                node['dependsOn'] = [item['bom-ref'] if ref == previous else ref for ref in node['dependsOn']]
+        self.write_quality_inventory(total_count=209, mutate=rename)
+        self.rejects('incomplete UI/test-scope inventory')
+
+    def test_unversioned_or_mismatched_coordinate_is_rejected(self):
+        self.quality_fixture()
+        self.write_quality_inventory(total_count=209, mutate=lambda d: d['components'][-1].update(version='not-the-purl-version'))
+        self.rejects('inventory coordinate')
 
     def test_osv_binds_original_bom_bytes_even_when_snapshot_newlines_differ(self):
         self.quality_fixture()

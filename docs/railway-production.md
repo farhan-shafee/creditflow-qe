@@ -59,6 +59,10 @@ The five-minute monitor validates health, live cluster identity, TLS, backup met
 
 A recovery drill must use a fresh isolated volume, compatible image and selected successful backup. Disable recovered-instance archiving and public SQL exposure, wait for recovery completion, then validate data/schema/authorization/invariants. A production replacement requires a separate reviewed service/volume and archive destination.
 
+## October 31 archive incident follow-up
+
+The running application remains on its pinned releases. The read-only incident review found recovered archive timeouts and a native monitor that still alerts on the lifetime failure counter. The [review-bounded recovery candidate](archive-monitor-recovery.md) preserves the eleven failures, requires an exact reviewed incident acknowledgement, and is **not deployed pending separate approval**. Historical October25 pending-gate statements above are dated records; the October26 scheduled daily/stabilization gate passed and the five rehearsal service instances were retired October29 with retained volumes/buckets preserved.
+
 ## Release and rollback discipline
 
 1. Review source, CI, migrations and pinned deployment settings before a separately authorized application release. Documentation publication does not unpin services.

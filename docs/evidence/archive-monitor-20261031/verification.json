@@ -1,0 +1,62 @@
+{
+  "recordedAtUtc": "2026-11-01T01:12:21.875Z",
+  "branch": "fix/archive-monitor-recovery-20261031",
+  "baseCommit": "3025493d490ece831769943b0e524a2336270797",
+  "baselineMonitorSha256": "d3b3bd2b38bb7db0b678b582fb321da594f4a5cdb485a454f661356cd830e27c",
+  "candidateMonitorSha256": "8a1bae0492c21c54fdd9eea2ed194b1c678dd72b0a7cd2d9718d538ca9c95204",
+  "testSourceSha256": "a5ddb34ddaba5117bf48544bc9a2aa473e688f68fb6b68613c6e5c554b12b32f",
+  "localWindows": {
+    "monitorTests": {
+      "passed": 50,
+      "failed": 0,
+      "skipped": 0
+    },
+    "preservedLegacyChecks": 13,
+    "evidenceFramework": {
+      "passed": 32
+    },
+    "boundedGuard": {
+      "passed": 25,
+      "skipped": 1,
+      "skipReason": "Native Linux filesystem regression on Windows"
+    }
+  },
+  "redGreen": {
+    "first": {
+      "tests": 40,
+      "passed": 31,
+      "failed": 9
+    },
+    "reviewBoundedPolicy": {
+      "tests": 49,
+      "passed": 40,
+      "failed": 9
+    },
+    "identityDiagnosticRegression": {
+      "tests": 49,
+      "passed": 48,
+      "failed": 1
+    },
+    "final": {
+      "tests": 50,
+      "passed": 50,
+      "failed": 0
+    }
+  },
+  "commands": [
+    "node infrastructure/monitor/legacy-validation.mjs",
+    "node --test --test-reporter=tap infrastructure/monitor/creditflow-monitor.test.mjs",
+    "python -m unittest infrastructure/test_evidence_run.py -v",
+    "node --test infrastructure/test-bounded-reliability.cjs",
+    "node --check infrastructure/monitor/creditflow-monitor.mjs",
+    "git diff --check"
+  ],
+  "ci": "Pending on this local receipt; consult the PR for latest execution",
+  "deployment": "Not applied; requires separate owner approval",
+  "productionMutations": [],
+  "readOnlyProductionQuery": "pg_stat_archiver metadata under default_transaction_read_only=on; no credentials or business row contents",
+  "limitations": [
+    "No new restore, load test or provider-side timeout repair.",
+    "Bun-native platform execution and subsequent scheduled result remain post-approval checks."
+  ]
+}
