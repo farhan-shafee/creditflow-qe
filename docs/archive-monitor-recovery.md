@@ -42,3 +42,15 @@ The separate hourly review task is read-only and was not edited. Its reviewer mu
 - [Existing production topology](railway-production.md).
 
 The original provider timeout cause cannot be repaired by changing alert classification. Production state and all historical alerts remain untouched pending approval. Future restore drills, archive-object integrity, weekly retention, external statistics resets and monitoring delivery need their own evidence; this change makes no new RPO/RTO, continuous-uptime or production-capacity claim.
+
+## Proposed hourly-review interpretation (also pending approval)
+
+The existing task explicitly requires `failedCount0` for CreditFlow, so the native function change alone would leave the hourly review inconsistent. The proposed edit replaces only this exact phrase in the CreditFlow section:
+
+`matching systemIdentifier, failedCount0, archived/pending counts nonnegative`
+
+with:
+
+`matching systemIdentifier, either failedCount0 or the exact reviewed CF-ARCHIVE-20261031 history (reviewedIncidentId=CF-ARCHIVE-20261031, archiveFailureState=historical_with_later_progress, failedCount=11, lastFailedUnix=1793477059.095708, lastFailedWal=00000001000000240000008B, statsResetUnix=1792905469.450778, and lastArchivedUnix strictly after lastFailedUnix with at least900 seconds since that failure), archived/pending counts nonnegative`
+
+All other task text, project scopes, checks, event-window rules, enabled state and hourly schedule remain unchanged. Compare the entire current prompt with the privately retained pre-change prompt before applying; stop on drift. This proposal does not authorize resetting counters or ignoring a new failure. The task was not changed during implementation.

@@ -1,6 +1,6 @@
 # CreditFlow QE on Railway
 
-Current production topology reviewed October 25, 2026. [Live synthetic demo](https://creditflow.farhan-shafee.com) Â· [Public source](https://github.com/farhan-shafee/creditflow-qe).
+Current production topology reviewed October 25, 2026. [Live synthetic demo](https://creditflow.farhan-shafee.com) · [Public source](https://github.com/farhan-shafee/creditflow-qe).
 
 The canonical Next.js command center, original Spring Boot API and live PostgreSQL database now run on Railway. The project/environment still have legacy pilot labels; those labels do not make Neon or Vercel the active providers. Cloudflare supplies DNS. The retained Neon application role is write-frozen and Vercel/rehearsal resources remain retained.
 
