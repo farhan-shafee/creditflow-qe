@@ -54,3 +54,11 @@ with:
 `matching systemIdentifier, either failedCount0 or the exact reviewed CF-ARCHIVE-20261031 history (reviewedIncidentId=CF-ARCHIVE-20261031, archiveFailureState=historical_with_later_progress, failedCount=11, lastFailedUnix=1793477059.095708, lastFailedWal=00000001000000240000008B, statsResetUnix=1792905469.450778, and lastArchivedUnix strictly after lastFailedUnix with at least900 seconds since that failure), archived/pending counts nonnegative`
 
 All other task text, project scopes, checks, event-window rules, enabled state and hourly schedule remain unchanged. Compare the entire current prompt with the privately retained pre-change prompt before applying; stop on drift. This proposal does not authorize resetting counters or ignoring a new failure. The task was not changed during implementation.
+
+## Security findings discovered by full CI
+
+The first full PR run [41260248400](https://github.com/farhan-shafee/creditflow-qe/actions/runs/41260248400) failed its unchanged OSV gate on two existing resolved dependencies. The browser job passed. Its [failure receipt](evidence/archive-monitor-20261031/failed-ci-41260248400.json) and original artifacts remain preserved.
+
+The root POM now manages Guava at `33.7.2-jre` for [GHSA-xxph-c9ww-hj94](https://github.com/advisories/GHSA-xxph-c9ww-hj94) and overrides Boot's imported OpenTelemetry BOM through `opentelemetry.version=1.67.0` for [GHSA-ccrj-gw8r-854m](https://github.com/advisories/GHSA-ccrj-gw8r-854m). The latter aligns the stable API/context/SDK/exporter family instead of pinning API alone. These are dependency-management changes for future builds, not a live application upgrade. No audit rule, vulnerability exception or assertion was weakened. Resolved-inventory, security and full runtime/browser checks must pass before merge approval.
+
+The same monitor source also passed 50 tests and 13 legacy checks in the matching Bun1.4.4 runtime, using an isolated network-disabled/read-only container; see [runtime receipt](evidence/archive-monitor-20261031/bun-runtime.json). This does not substitute for a post-approval native scheduled execution.

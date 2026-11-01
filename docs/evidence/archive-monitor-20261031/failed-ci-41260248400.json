@@ -1,0 +1,47 @@
+{
+  "runId": 41260248400,
+  "url": "https://github.com/farhan-shafee/creditflow-qe/actions/runs/41260248400",
+  "headCommit": "39bbe41ad070ee93703fd651e486e772adb268b1",
+  "conclusion": "failure",
+  "core": {
+    "monitorTests": 50,
+    "legacyChecks": 13,
+    "privateAndPublicSuites": "passed",
+    "boundedRequests": 253,
+    "failure": "quality-osv detected two affected components; Gitleaks and final quality validation did not execute after the genuine failure"
+  },
+  "browser": "success",
+  "advisories": [
+    {
+      "id": "GHSA-xxph-c9ww-hj94",
+      "component": "com.google.guava:guava",
+      "observedVersion": "33.2.1-jre",
+      "selectedFix": "33.7.2-jre",
+      "source": "https://github.com/advisories/GHSA-xxph-c9ww-hj94"
+    },
+    {
+      "id": "GHSA-ccrj-gw8r-854m",
+      "component": "io.opentelemetry:opentelemetry-api",
+      "observedVersion": "1.62.0",
+      "selectedFix": "1.67.0",
+      "source": "https://github.com/advisories/GHSA-ccrj-gw8r-854m"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 13064848099,
+      "name": "creditflow-browser-82540aecd2c0e3d0d021a481752dfd398e266514",
+      "sizeBytes": 8641232,
+      "digest": "sha256:925a4bb47e6871ad3c0b6aa030ac70d3ed6eb9f836d31c2fd5b479b56ed11d89",
+      "expiresAt": "2026-11-15T01:17:39Z"
+    },
+    {
+      "id": 13064254992,
+      "name": "creditflow-core-82540aecd2c0e3d0d021a481752dfd398e266514",
+      "sizeBytes": 1229106,
+      "digest": "sha256:975f9cba4ec7a0321e9f4451780177923cc1fc4968b25b702207bd027ddab3c8",
+      "expiresAt": "2026-11-15T01:17:34Z"
+    }
+  ],
+  "preserved": "Original failed run retained; no gate suppression, workflow rerun or evidence replacement."
+}

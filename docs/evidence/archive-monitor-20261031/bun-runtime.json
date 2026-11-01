@@ -1,0 +1,21 @@
+{
+  "recordedAtUtc": "2026-11-01T01:21:39.502Z",
+  "runtime": "Bun1.4.4",
+  "image": "ghcr.io/railwayapp/function-bun@sha256:a7aa5bc4cac87bcc28c4b92682a3b9b75b2f07d16446336fd2f0cb214c72c4a8",
+  "network": "none",
+  "filesystem": "read-only mounts limited to monitor source and sanitized evidence; read-only rootfs",
+  "limits": {
+    "memoryMB": 256,
+    "cpu": 0.5,
+    "pids": 128
+  },
+  "tests": {
+    "passed": 50,
+    "failed": 0
+  },
+  "legacyChecks": 13,
+  "exitCode": 0,
+  "sourceSha256": "8a1bae0492c21c54fdd9eea2ed194b1c678dd72b0a7cd2d9718d538ca9c95204",
+  "testSha256": "a5ddb34ddaba5117bf48544bc9a2aa473e688f68fb6b68613c6e5c554b12b32f",
+  "limitsOfEvidence": "Offline function tests; no Bun-native live SQL/TLS/provider interaction, deployment or scheduled execution."
+}
