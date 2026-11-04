@@ -1,6 +1,6 @@
 # Isolated pilot readiness, cost and completed approvals
 
-> **Current hosting — October 25, 2026:** Web, API and live PostgreSQL are on Railway. [Current production configuration, pinned releases, TLS, recovery and pending scheduled-backup closeout](railway-production.md). Provider observations, versions, costs and results below belong to their stated historical review dates; they are not current Vercel/Neon hosting instructions.
+> **Current hosting — reviewed November 4, 2026:** Web, API and live PostgreSQL are on Railway. [Current production configuration, pinned releases, TLS, recovery and completed closeout gates](railway-production.md). Provider observations, versions, costs and results below belong to their stated historical review dates; they are not current Vercel/Neon hosting instructions.
 
 For the 2026-10-15 21:23–21:26 UTC read-only follow-up, see the [maintenance/operator handoff](maintenance-handoff.md). Railway/Neon identities and settings were read back; current Vercel project/deployment access and target cost/spending-control fields remain blocked or unavailable. The balances and release validations below describe their original preflight/release timestamps, not a new invoice or current Vercel readback. No provider configuration changed in this maintenance pass.
 

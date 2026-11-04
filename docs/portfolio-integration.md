@@ -1,5 +1,9 @@
 # Portfolio integration — merged, deployed and verified
 
+> **Recorded workspace portfolio publication — November 4:** [PR #4](https://github.com/farhan-shafee/farhanshafee.com/pull/4) merged as `c77adc0`, [main CI 41914070783](https://github.com/farhan-shafee/farhanshafee.com/actions/runs/41914070783) passed and Railway deployment `04a17d27-edc3-43be-a2d4-46ffb86d8a73` reached SUCCESS. The case study now includes the financial workspace, four correctness demonstrations, actual November 4 hosted capture and distinct CI/release/Jenkins evidence. See the [current index](current-state.md).
+
+## Historical October 15 integration
+
 > **Historical integration record (October 15, 2026).** The portfolio now runs on Railway; its old Vercel deployment no longer owns canonical traffic. See [current CreditFlow hosting](railway-production.md) and the [current portfolio deployment matrix](https://github.com/farhan-shafee/farhanshafee.com/blob/main/docs/PROJECT_DEPLOYMENTS.md). The source/test/deployment claims and card JSON below are snapshots of that earlier release.
 
 The fourth flagship remains live at https://farhan-shafee.com/work/creditflow-qe. The repository and Vercel project are named farhanshafee.com; the actual public domain is farhan-shafee.com.

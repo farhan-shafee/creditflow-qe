@@ -1,6 +1,6 @@
 # CreditFlow QE verification and maintenance handoff
 
-> **Current hosting — October 25, 2026:** Web, API and live PostgreSQL are on Railway. [Current production configuration, pinned releases, TLS, recovery and pending scheduled-backup closeout](railway-production.md). Provider observations, versions, costs and results below belong to their stated historical review dates; they are not current Vercel/Neon hosting instructions.
+> **Current hosting — reviewed November 4, 2026:** Web, API and live PostgreSQL are on Railway. [Current production configuration, pinned releases, TLS, recovery and completed closeout gates](railway-production.md). Provider observations, versions, costs and results below belong to their stated historical review dates; they are not current Vercel/Neon hosting instructions.
 
 This maintenance pass starts from CreditFlow main `51a2affe38a733f350390fafd59b885b74823b42` and portfolio main `7cf155efa7ec7567a3aa7c2baa031722e971a915`. [CreditFlow PR #3](https://github.com/farhan-shafee/creditflow-qe/pull/3) and [portfolio PR #2](https://github.com/farhan-shafee/farhanshafee.com/pull/2) are confirmed merged. Neither remote main had a newer commit at the initial check. The portfolio checkout remains read-only.
 

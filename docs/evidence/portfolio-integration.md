@@ -1,6 +1,6 @@
 # Verified portfolio integration — 2026-10-15
 
-> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../railway-production.md) for the October 24-25 Railway topology, release state and remaining closeout.
+> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../railway-production.md) for current Railway topology, source pins and operations status.
 
 **DEPLOYED / VERIFIED.** [Portfolio case study](https://farhan-shafee.com/work/creditflow-qe), [homepage](https://farhan-shafee.com) and [Work index](https://farhan-shafee.com/work) now expose CreditFlow QE as the fourth flagship. The owner separately approved applying and deploying the prepared card.
 

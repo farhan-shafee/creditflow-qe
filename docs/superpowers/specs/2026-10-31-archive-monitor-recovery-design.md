@@ -1,5 +1,7 @@
 # CreditFlow archive monitor recovery design
 
+> **Historical October 31 pre-rollout checkpoint.** The monitor was subsequently merged, deployed and verified through two scheduled executions. See the [current release index](../../current-state.md) and [rollout follow-through](../../archive-monitor-recovery.md); pending-CI/rollout statements below retain their original scope.
+
 The October 31 archive incident produced ten per-WAL async timeouts and one repository-metadata timeout (HTTP 408). Seven named WAL segments later archived successfully. Existing lifetime failed_count=11 remains visible; the deployed monitor currently makes every later cycle fail on that historical count.
 
 Use the existing stateless Bun monitor and read-only PostgreSQL metadata. A reviewed acknowledgement must exactly match the cluster identity, failure count, failure timestamp, failed WAL and statistics-reset epoch from the preserved incident receipt. Any unreviewed failure stays an alert. Recognize that acknowledged historical failure with later progress only when the last successful archive is later than the failure, its WAL is at or beyond the failed WAL on the same timeline, at least 900 seconds have passed since the failure, metadata is coherent, and all existing lag/certificate/backup/identity/health checks pass. Missing or malformed recovery evidence fails closed. A new failure inside the quiet window remains an alert. Emit the failure count, timestamp, WAL and assessment even on recovered observations.

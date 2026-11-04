@@ -1,5 +1,7 @@
 # Financial workspace production acceptance — November 4, 2026
 
+> **Historical functional acceptance.** This receipt binds the earlier `b286242` release and its original requests/tests. The subsequent `d7658be` evidence refresh has separate CI and a read-only release check; see the [current index](../current-state.md). The original results below are not relabeled as execution of the newer revision.
+
 **DEPLOYED / VERIFIED at the recorded times.** [CreditFlow QE](https://creditflow.farhan-shafee.com) runs frontend [b286242](https://github.com/farhan-shafee/creditflow-qe/commit/b286242e0b3e8f3aa1539a256662865ba4002ef1), Railway deployment `5af466c1-c2ba-4685-aad0-d431a08d7552`. [PR #7](https://github.com/farhan-shafee/creditflow-qe/pull/7) records the reviewed implementation and release history.
 
 The dashboard applied only the approved branch/commit source fields once. Independent provider reads observed terminal SUCCESS, healthy services and no pending work. Non-source frontend configuration matched the pre-release baseline. Backend, PostgreSQL and monitor deployment identities did not change. Synthetic account/ledger data changed only through the approved bounded test journeys.

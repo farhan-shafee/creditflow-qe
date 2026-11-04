@@ -2,13 +2,13 @@
 
 A simulated credit-card ledger and independent Java quality engineering framework for hands-on financial-services interviews. Synthetic data only; no card numbers, real customers, settlement, or money movement.
 
-Try the [live synthetic demo](https://creditflow.farhan-shafee.com). The web, API and production PostgreSQL database now run on Railway. The API remains awake; the frontend may wake from idle. See the [current Railway topology, source pins, TLS, backups and pending closeout](docs/railway-production.md). Earlier Vercel/Neon deployment and cold-start receipts remain dated historical evidence.
+Try the [live synthetic demo](https://creditflow.farhan-shafee.com) or read the [portfolio case study](https://farhan-shafee.com/work/creditflow-qe). The web, API and production PostgreSQL database run on Railway. The API remains awake; the frontend may wake from idle. Start with the [current release and evidence index](docs/current-state.md), then the [Railway topology, source pins, TLS and recovery runbook](docs/railway-production.md). Earlier Vercel/Neon deployment and cold-start receipts remain dated historical evidence.
 
-The [maintenance handoff](docs/maintenance-handoff.md) retains October 15 observations and ongoing local verification instructions. Its old provider state is superseded by the [October 25 Railway production runbook](docs/railway-production.md). Historical receipts do not replace current provider readback.
+The [maintenance handoff](docs/maintenance-handoff.md) retains October 15 observations and ongoing local verification instructions. Use the current runbook for hosting and release identities; historical receipts do not replace fresh provider readback.
 
 ## Run the working system
 
-On Chopin, from `D:\Dev\Repos\creditflow-qe`:
+From the repository root in PowerShell:
 
 ```powershell
 .\infrastructure\verify.ps1
@@ -33,7 +33,9 @@ The financial engineering workspace separates the banking simulator, four isolat
 - Next.js16 / TypeScript command center with server-only API access, signed HttpOnly cookies, exact-origin writes, byte-limited JSON and safe retry/reconciliation flows.
 - Java Selenium and Java Playwright journeys; screenshots and redacted traces; Bruno collection; Jenkinsfile; GitHub Actions; Spotless, SpotBugs, JaCoCo, CycloneDX, OSV and Gitleaks.
 
-The production API remains pinned to [20c91f5](https://github.com/farhan-shafee/creditflow-qe/commit/20c91f5e10658ab4ce3ec7f2727c8a4934f5b314); the Railway frontend uses [7a16b50](https://github.com/farhan-shafee/creditflow-qe/commit/7a16b50b595d01c735ae566e9737b24b6121eaf6). Source pins are recorded in the [current deployment runbook](docs/railway-production.md); new main documentation does not automatically release either service. The [historical banking/UI release](docs/evidence/completion.md), [portfolio dependency remediation](docs/evidence/portfolio-lint-remediation.md) and [actual local Jenkins execution](docs/evidence/jenkins-execution.md) retain their original revisions and distinct test counts. The [current portfolio case study](https://farhan-shafee.com/work/creditflow-qe) separates those records from the Railway migration and remaining scheduled-backup verification.
+As reviewed November 4, 2026, the production API remains pinned to [20c91f5](https://github.com/farhan-shafee/creditflow-qe/commit/20c91f5e10658ab4ce3ec7f2727c8a4934f5b314) and the frontend to [d7658be](https://github.com/farhan-shafee/creditflow-qe/commit/d7658beeee006f56889f094b66845e8ef47ba680). [Full main CI for that frontend release passed](https://github.com/farhan-shafee/creditflow-qe/actions/runs/41899735083). Its evidence refresh preserves the earlier [b286242 functional acceptance](docs/evidence/financial-workspace-20261104.md): five synthetic accounts, 44 HTTP requests, 37 Java UI/BFF cases and 57 frontend tests in the separate CI execution. The [release index](docs/current-state.md) distinguishes those executions from the later read-only release check and portfolio publication.
+
+The first scheduled-backup/stabilization gate passed October 26, five rehearsal service instances were retired October 29, and the archive monitor recovery rollout was verified October 31. Protected retained volumes/archive storage and frozen old-provider resources are not synchronized database standbys. New documentation on `main` does not automatically release either pinned application. The [historical banking/UI release](docs/evidence/completion.md), [portfolio dependency remediation](docs/evidence/portfolio-lint-remediation.md) and [actual local Jenkins execution](docs/evidence/jenkins-execution.md) retain their original revisions and distinct test counts.
 
 ## Repository map
 

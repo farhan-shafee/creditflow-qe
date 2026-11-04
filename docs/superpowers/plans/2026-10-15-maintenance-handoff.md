@@ -1,6 +1,6 @@
 # CreditFlow verification and maintenance handoff
 
-> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../../railway-production.md) for the October 24-25 Railway topology, release state and remaining closeout.
+> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../../railway-production.md) for current Railway topology, source pins and operations status.
 
 **Goal:** Close reproducibility and interview handoff gaps without repeating completed releases or changing the portfolio.
 

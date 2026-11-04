@@ -12,9 +12,9 @@ Spring Boot 4.1.1 is selected from the current supported major rather than start
 
 ## Current hosted topology
 
-As of October 25, 2026, the canonical Next.js BFF, Spring Boot API and production PostgreSQL database run on Railway with Cloudflare DNS. The API uses private verify-full TLS with a dedicated CA, separate migration/runtime authority and runtime Flyway disabled. The web/API remain pinned to reviewed source releases. The frontend can sleep; API sleep is disabled. Neon and Vercel are retained rollback resources, not the active database/frontend.
+As reviewed November 4, 2026, the canonical Next.js BFF, Spring Boot API and production PostgreSQL database run on Railway with Cloudflare DNS. The API uses private verify-full TLS with a dedicated CA, separate migration/runtime authority and runtime Flyway disabled. The web/API remain pinned to reviewed source releases. The frontend can sleep; API sleep is disabled. Neon and Vercel are retained rollback resources, not the active database/frontend.
 
-pgBackRest provides off-volume full/differential backups and WAL archiving. Recovery was exercised in isolated preparation; first scheduled daily-backup closeout remains pending. See [current deployment and recovery](../railway-production.md) for exact source pins, access controls and limitations.
+pgBackRest provides off-volume full/differential backups and WAL archiving. Recovery was exercised in isolated preparation. The first scheduled daily-backup/stabilization gate passed October 26; five rehearsal service instances were retired October 29 with protected volumes/archive storage preserved. See [current deployment and recovery](../railway-production.md) for exact source pins, access controls and limitations.
 
 ## Monetary contract
 
