@@ -560,25 +560,38 @@ class WorkspaceJourneyTest {
   @MethodSource("labCases")
   void labProvesRealStatusesAndPersistedStateWithoutChangingSimulator(LabCase example) {
     startAccount();
-    List<LabPost> posts = new ArrayList<>();
-    List<Map<?, ?>> snapshots = new ArrayList<>();
+    List<Response> postResponses = new ArrayList<>();
+    List<Response> snapshotResponses = new ArrayList<>();
     page.onResponse(
         response -> {
           if (!response.url().endsWith("/api/lab/banking")) return;
           if (response.request().method().equals("POST")) {
-            posts.add(
-                new LabPost(
-                    response.status(),
-                    response.headers().get("idempotency-replayed"),
-                    object(response.text())));
+            // Record first: synchronous Playwright calls can dispatch nested response callbacks.
+            postResponses.add(response);
+            if (example.scenario().equals("conflicting-key") && response.status() == 201) {
+              // Exercise a slow observer while the browser continues its real request sequence.
+              page.waitForCondition(
+                  () -> postResponses.stream().anyMatch(post -> post.status() == 409));
+            }
           } else if (response.request().method().equals("GET") && response.status() == 200) {
-            snapshots.add(object(response.text()));
+            snapshotResponses.add(response);
           }
         });
     page.getByTestId("lab-select").selectOption(example.scenario());
     page.getByTestId("lab-run").click();
     assertThat(page.getByTestId("lab-status")).hasAttribute("data-state", "passed");
     assertThat(page.getByTestId("lab-status")).containsText("Passed");
+    List<LabPost> posts =
+        postResponses.stream()
+            .map(
+                response ->
+                    new LabPost(
+                        response.status(),
+                        response.headers().get("idempotency-replayed"),
+                        object(response.text())))
+            .toList();
+    List<Map<?, ?>> snapshots = new ArrayList<>();
+    for (Response response : snapshotResponses) snapshots.add(object(response.text()));
     assertEquals(
         example.statuses(),
         posts.stream().map(LabPost::status).toList(),
@@ -622,7 +635,7 @@ class WorkspaceJourneyTest {
   @Test
   void lostLabWriteResponseRequiresExplicitRetryOfTheSameCommittedIntent() {
     List<LabWrite> writes = new ArrayList<>();
-    List<Map<?, ?>> snapshots = new ArrayList<>();
+    List<Response> snapshots = new ArrayList<>();
     int[] sandboxes = {0};
     page.onRequest(
         request -> {
@@ -634,7 +647,7 @@ class WorkspaceJourneyTest {
           if (response.url().endsWith("/api/lab/banking")
               && response.request().method().equals("GET")
               && response.status() == 200) {
-            snapshots.add(object(response.text()));
+            snapshots.add(response);
           }
         });
     page.route(
@@ -679,7 +692,7 @@ class WorkspaceJourneyTest {
     assertEquals("true", writes.getLast().replayed());
     assertEquals(writes.getFirst().receipt(), writes.getLast().receipt());
     assertFalse(snapshots.isEmpty());
-    assertSnapshot(snapshots.getLast(), "350.00", "650.00", 1);
+    assertSnapshot(object(snapshots.getLast().text()), "350.00", "650.00", 1);
   }
 
   @Test
@@ -712,13 +725,13 @@ class WorkspaceJourneyTest {
         new java.util.concurrent.atomic.AtomicInteger();
     java.util.concurrent.atomic.AtomicBoolean lost =
         new java.util.concurrent.atomic.AtomicBoolean();
-    List<Map<?, ?>> snapshots = new ArrayList<>();
+    List<Response> snapshots = new ArrayList<>();
     page.onResponse(
         response -> {
           if (response.url().endsWith("/api/lab/banking")
               && response.request().method().equals("GET")
               && response.status() == 200) {
-            snapshots.add(object(response.text()));
+            snapshots.add(response);
           }
         });
     page.route(
@@ -740,7 +753,7 @@ class WorkspaceJourneyTest {
     assertThat(page.getByTestId("lab-status")).hasAttribute("data-state", "passed");
     assertEquals(1, writes.get(), "Refreshing a confirmed write must never repeat it");
     assertFalse(snapshots.isEmpty());
-    assertSnapshot(snapshots.getLast(), "350.00", "650.00", 1);
+    assertSnapshot(object(snapshots.getLast().text()), "350.00", "650.00", 1);
   }
 
   @Test
