@@ -1,106 +1,67 @@
 'use client';
-import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import type { Exchange } from '../lib/banking';
+import type { EvidenceViewModel } from '../lib/evidence';
+import CorrectnessLab from '../components/CorrectnessLab';
+import EvidenceView from './EvidenceView';
+import Simulator from './components/Simulator';
+import TransactionInspector from './components/TransactionInspector';
+import DetailsDialog, { type Detail } from './components/DetailsDialog';
+import { containDialogTab } from './components/dialog-focus';
 
-type Account = { id: string; currency: string; creditLimit: string; outstandingBalance: string; availableCredit: string; expiresAt: string };
-type Entry = { id: string; sequence: number; kind: string; amount: string; balanceAfter: string; postedAt: string };
-type Snapshot = { account: Account; history: { entries: Entry[]; nextCursor: number | null } };
 const repo = 'https://github.com/farhan-shafee/creditflow-qe';
-const verifiedCommit = '39e1728e6aca03f1e9c3d435a028e0316542edce';
-const verifiedRun = `${repo}/actions/runs/38682147631`;
-const verifiedTree = `${repo}/tree/${verifiedCommit}`;
-const verifiedBlob = `${repo}/blob/${verifiedCommit}`;
-const evidenceRecord = `${repo}/blob/feat/provider-pilot/docs/evidence/STATUS.md`;
-const navigation = [['01', 'Overview', '#overview'], ['02', 'Banking simulator', '#simulator'], ['03', 'API explorer', '#api'], ['04', 'Test automation', '#automation'], ['05', 'Architecture', '#architecture'], ['06', 'Interview walkthrough', '#interview']];
-
-export default function CommandCenter() {
-  const [data, setData] = useState<Snapshot | null>(null);
-  const [busy, setBusy] = useState(false);
-  const [message, setMessage] = useState('Start a private synthetic account to exercise the real API.');
-  const [error, setError] = useState('');
-  const [amount, setAmount] = useState('50.00');
-  const [operation, setOperation] = useState('payments');
-  const [receipt, setReceipt] = useState<Record<string, unknown> | null>(null);
-  const [recovery, setRecovery] = useState<'refresh' | 'retry' | null>(null);
-  const pending = useRef<{ operation: string; amount: string; key: string } | null>(null);
-  async function refresh(signal?: AbortSignal) {
-    const response = await fetch('/api/banking', { cache: 'no-store', signal });
-    if (response.ok) { const payload = await response.json() as Snapshot; setData(payload); return; }
-    if (response.status === 401) { setData(null); return; }
-    throw new Error('Could not refresh account state. Retry before submitting another transaction.');
-  }
+const source = `${repo}/blob/5b65732a9ce8fd77ea0052215d1d8f6156629441`;
+const tree = `${repo}/tree/5b65732a9ce8fd77ea0052215d1d8f6156629441`;
+const navigation = [
+  ['01', 'Overview', 'overview', 'Workspace'], ['02', 'Banking simulator', 'simulator', 'Workspace'],
+  ['03', 'Correctness lab', 'lab', 'Workspace'], ['04', 'API inspector', 'api', 'Workspace'],
+  ['05', 'Java automation', 'automation', 'Engineering'], ['06', 'Release evidence', 'evidence', 'Engineering'],
+  ['07', 'Architecture', 'architecture', 'Engineering'], ['08', 'Interview walkthrough', 'interview', 'Engineering']
+];
+function Brand() { return <a className="brand" href="#overview" aria-label="CreditFlow QE overview"><span className="brandmark" aria-hidden="true">CF</span><span>CreditFlow<span className="brand-sub">QUALITY ENGINEERING</span></span></a>; }
+export default function CommandCenter({ evidence }: { evidence: EvidenceViewModel }) {
+  const [active, setActive] = useState('overview');
+  const [menu, setMenu] = useState(false);
+  const [exchange, setExchange] = useState<Exchange | null>(null);
+  const [detail, setDetail] = useState<Detail | null>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const opener = useRef<HTMLButtonElement>(null);
   useEffect(() => {
-    const controller = new AbortController();
-    refresh(controller.signal).catch((e: unknown) => { if (!controller.signal.aborted) setError(e instanceof Error ? e.message : 'Connection unavailable.'); });
-    return () => controller.abort();
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      let next = 'overview';
+      for (const [, , id] of navigation) { const section = document.getElementById(id); if (section && section.getBoundingClientRect().top <= 150) next = id; }
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8) next = 'interview';
+      setActive(next);
+    };
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    const resize = new ResizeObserver(schedule);
+    const main = document.getElementById('main'); if (main) resize.observe(main);
+    update(); window.addEventListener('scroll', schedule, { passive: true }); window.addEventListener('hashchange', schedule); window.addEventListener('resize', schedule); window.visualViewport?.addEventListener('resize', schedule);
+    return () => { cancelAnimationFrame(frame); resize.disconnect(); window.removeEventListener('scroll', schedule); window.removeEventListener('hashchange', schedule); window.removeEventListener('resize', schedule); window.visualViewport?.removeEventListener('resize', schedule); };
   }, []);
-  async function start() {
-    setBusy(true); setError('');
-    try {
-      const r = await fetch('/api/sandbox', { method: 'POST' });
-      if (!r.ok) throw new Error(r.status === 429 ? 'Sandbox creation limit reached. Try again later.' : 'The banking sandbox is temporarily unavailable. Please try again.');
-      pending.current = null; setRecovery(null); setReceipt(null); await refresh(); setMessage('Fresh synthetic account created. Your session expires in 30 minutes.');
-    } catch (e) { setError(e instanceof Error ? e.message : 'Request failed.'); }
-    finally { setBusy(false); }
-  }
-  async function reconcile() {
-    setBusy(true); setError('');
-    try { await refresh(); pending.current = null; setRecovery(null); setMessage('Account state reconciled with PostgreSQL.'); }
-    catch { setError('Could not refresh account state. Refresh before posting another transaction.'); }
-    finally { setBusy(false); }
-  }
-  async function postIntent() {
-    if (!pending.current) return;
-    setBusy(true); setError(''); setRecovery('retry');
-    try {
-      const r = await fetch('/api/banking', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(pending.current) });
-      const payload = await r.json() as Record<string, unknown>;
-      setReceipt(payload);
-      if (!r.ok) {
-        if (r.status < 500) { pending.current = null; setRecovery(null); }
-        throw new Error(`${String(payload.code ?? 'REQUEST_FAILED')}: ${String(payload.message ?? 'Request rejected')}`);
-      }
-      setRecovery('refresh');
-      await refresh(); pending.current = null; setRecovery(null); setMessage('Transaction posted. Balances and ledger refreshed from PostgreSQL.');
-    } catch (e) { setError(e instanceof Error ? e.message : 'Connection interrupted. Retry the last transaction safely.'); }
-    finally { setBusy(false); }
-  }
-  async function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (busy || recovery) return;
-    const bytes = crypto.getRandomValues(new Uint8Array(16));
-    pending.current = { operation, amount, key: Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('') };
-    await postIntent();
-  }
-  const a = data?.account;
-  const utilization = a ? Number(a.outstandingBalance) / Number(a.creditLimit) * 100 : 0;
+  useEffect(() => {
+    if (menu) dialog.current?.showModal();
+    else if (dialog.current?.open) { dialog.current.close(); opener.current?.focus({ preventScroll: true }); }
+  }, [menu]);
+  function links() { return ['Workspace', 'Engineering'].map(group => <div className="nav-group" key={group}><div className="nav-label">{group}</div>{navigation.filter(item => item[3] === group).map(([n, text, id]) => <a key={id} href={`#${id}`} aria-current={active === id ? 'location' : undefined} onClick={() => { setActive(id); setMenu(false); }}><span>{n}</span>{text}<span className="nav-active-dot" aria-hidden="true" /></a>)}</div>); }
   return <div className="shell">
     <a className="skip" href="#main">Skip to content</a>
-    <aside className="sidebar">
-      <a className="brand" href="#overview"><span className="brandmark">C<span>F</span></span><span>CreditFlow<span className="brand-sub">QUALITY ENGINEERING</span></span></a>
-      <div className="workspace">ENGINEERING WORKSPACE</div>
-      <nav aria-label="Main navigation">{navigation.map(([n, text, href]) => <a key={n} href={href}><span>{n}</span>{text}</a>)}</nav>
-      <div className="sidebar-bottom"><span className="dot" /> Synthetic environment<p>Real application. Real tests.<br />No real funds.</p><a href={verifiedTree} target="_blank" rel="noreferrer">View tested baseline ↗</a></div>
-    </aside>
+    <aside className="sidebar"><Brand /><nav aria-label="Main navigation">{links()}</nav><div className="sidebar-bottom"><div><span className="dot" />Synthetic by design</div><p>Real Java. Real transactions.<br />No real funds.</p><a href={repo} target="_blank" rel="noreferrer">Explore the repository ↗</a></div></aside>
+    <dialog id="mobile-navigation" ref={dialog} className="navigation-dialog" data-testid="nav-dialog" aria-labelledby="mobile-nav-title" onKeyDown={containDialogTab} onCancel={() => setMenu(false)}><div className="panel-top"><h2 id="mobile-nav-title">Your workspace</h2><button className="icon-button" data-testid="mobile-menu-close" aria-label="Close navigation" autoFocus onClick={() => setMenu(false)}>×</button></div><nav aria-label="Mobile navigation">{links()}</nav></dialog>
     <main id="main">
-      <header className="topbar"><span>PROJECT / CREDITFLOW QE</span><div><span className="pill">Synthetic USD</span><a href={verifiedRun} target="_blank" rel="noreferrer">Baseline CI ↗</a></div></header>
-      <section id="overview" className="hero">
-        <div><div className="eyebrow">THE AUTOMATION COMMAND CENTER</div><h1>Financial logic.<br /><span>Executable proof.</span></h1><p>A working credit-card ledger, independently tested through Java and Cucumber. Explore the behavior, inspect the contracts, follow the evidence.</p><div className="hero-actions"><a className="button" href="#simulator">Open banking simulator <span>↗</span></a><a className="text-link" href={verifiedRun}>Inspect baseline CI ↗</a></div><div className="tech-row">{['Java 21', 'Spring Boot', 'Cucumber', 'REST Assured', 'PostgreSQL'].map(t => <span key={t}>{t}</span>)}</div></div>
-        <div className="ledger-visual" aria-label="Transaction correctness principles"><div className="visual-top"><span>CF / ENGINEERING LEDGER</span><span>01</span></div><div className="visual-title">Every state change<br />has a receipt.</div><div className="visual-rule"><span>01</span><div>Validate the contract<small>Exact decimal input</small></div><b>↗</b></div><div className="visual-rule"><span>02</span><div>Commit atomically<small>Balance + immutable ledger</small></div><b>↗</b></div><div className="visual-rule"><span>03</span><div>Prove the behavior<small>Independent HTTP assertions</small></div><b>↗</b></div><div className="visual-footer">ISOLATED SESSIONS <span>•</span> IDEMPOTENT REQUESTS</div></div>
-      </section>
-      <section id="simulator" className="section">
-        <div className="section-heading"><div><div className="eyebrow">01 / BANKING SIMULATOR</div><h2>Exercise the real system.</h2><p>Fresh synthetic data for your session. Changes persist until its 30-minute expiry.</p></div><button onClick={start} disabled={busy} data-testid="start-sandbox" className="button">{a ? 'Start fresh account' : 'Start synthetic account'} <span>＋</span></button></div>
-        <div role="status" className="notice">{busy ? 'Processing request…' : message}</div>
-        {error ? <div role="alert" data-testid="error" className="error">{error}</div> : null}
-        {recovery ? <button type="button" className="button" disabled={busy} data-testid={recovery === 'refresh' ? 'refresh-account' : 'retry-transaction'} onClick={recovery === 'refresh' ? reconcile : postIntent}>{recovery === 'refresh' ? 'Refresh account' : 'Retry last transaction'}</button> : null}
-        <div className="metrics">{[['Credit limit', a?.creditLimit, 'USD / fixed synthetic limit', 'credit-limit'], ['Outstanding balance', a?.outstandingBalance, 'Posted purchases − payments', 'outstanding'], ['Available credit', a?.availableCredit, 'Limit − outstanding balance', 'available']].map(([title, value, hint, id]) => <div className="metric" key={id}><span>{title}</span><strong data-testid={id}>{value ? `$${value}` : '—'}</strong><small>{hint}</small></div>)}</div>
-        <div className="sim-grid"><form className="panel" onSubmit={submit}><div className="panel-top"><h3>Post a transaction</h3><span className="mini-label">USD</span></div><label htmlFor="operation">Operation</label><select id="operation" data-testid="operation" value={operation} onChange={e => setOperation(e.target.value)} disabled={busy || !!recovery}><option value="payments">Simulated payment</option><option value="purchases">Simulated purchase</option></select><label htmlFor="amount">Amount</label><div className="amount-input"><span>$</span><input id="amount" data-testid="amount" inputMode="decimal" value={amount} onChange={e => setAmount(e.target.value)} required maxLength={14} disabled={busy || !!recovery} /></div><button className="button full" data-testid="submit-transaction" disabled={busy || !!recovery || !a} type="submit">Post simulated transaction <span>→</span></button><p className="fine">The API enforces precision, credit limits, overpayment rules and idempotency. No real money moves.</p></form><div className="panel account-panel"><div className="panel-top"><h3>Session account</h3><span className="tag">{a ? 'ACTIVE' : 'NOT STARTED'}</span></div><div className="account-id">{a ? `CF •••• ${a.id.slice(-8).toUpperCase()}` : 'Your isolated account'}</div><p>{a ? 'This account belongs only to your sandbox session.' : 'Start an account to see live balances and transaction history.'}</p><div className="util-label"><span>Credit utilization</span><strong>{a ? `${utilization.toFixed(1)}%` : '—'}</strong></div><div className="meter" role="meter" aria-label="Credit utilization" aria-valuemin={0} aria-valuemax={100} aria-valuenow={utilization}><div style={{ width: `${utilization}%` }} /></div><div className="account-note"><span>AUTHENTICATION</span><b>Account-scoped, expiring session</b></div><div className="account-note"><span>DATA SOURCE</span><b>Live API → PostgreSQL</b></div></div></div>
-        <div className="panel history"><div className="panel-top"><h3>Transaction ledger</h3><span className="mini-label">NEWEST FIRST / UP TO 50 ENTRIES</span></div><div className="table-scroll"><table><thead><tr><th>Sequence</th><th>Operation</th><th>Amount</th><th>Balance after</th><th>Posted at</th></tr></thead><tbody>{data?.history.entries.length ? data.history.entries.map(t => <tr key={t.id} data-testid="ledger-row"><td>#{t.sequence}</td><td><span className={`type ${t.kind.toLowerCase()}`}>{t.kind}</span></td><td>${t.amount}</td><td>${t.balanceAfter}</td><td>{new Date(t.postedAt).toLocaleTimeString()}</td></tr>) : <tr><td colSpan={5} className="empty">{a ? 'No transactions yet. Post a payment or purchase above.' : 'Start a synthetic account to view its ledger.'}</td></tr>}</tbody></table></div></div>
-      </section>
-      <section id="api" className="section"><div className="section-heading"><div><div className="eyebrow">02 / API EXPLORER</div><h2>Contracts you can inspect.</h2><p>Versioned endpoints, structured errors and explicit request identity.</p></div><a className="text-link" href={`${verifiedBlob}/services/banking-api/src/main/resources/static/openapi.yaml`}>OpenAPI source ↗</a></div><div className="api-grid"><div className="panel"><div className="endpoint"><b>POST</b><code>/api/v1/accounts/&#123;id&#125;/payments</code></div><pre>{'Authorization: Bearer <session-token>\nIdempotency-Key: payment-001\nContent-Type: application/json\n\n{ "amount": "50.00" }'}</pre><p className="fine">Representative request. Amount is a decimal string. Initial post: 201. Identical replay: 200. Conflicting key: 409.</p></div><div className="panel"><div className="panel-top"><h3>Latest transaction response</h3><span className="mini-label">LIVE SESSION</span></div><pre data-testid="receipt">{receipt ? JSON.stringify(receipt, null, 2) : '// Submit a transaction to inspect\n// its actual response here.'}</pre></div></div></section>
-      <section id="automation" className="section"><div className="section-heading"><div><div className="eyebrow">03 / TEST AUTOMATION & CI</div><h2>Follow a rule through every layer.</h2><p>Inspect a tested reference revision and its reports, then follow the current release record.</p></div><a className="button secondary" href={verifiedRun}>Open baseline CI run ↗</a></div><div className="layer-grid">{[['01','Domain unit tests','Money precision, immutable state and credit boundaries.','services/banking-api/src/test/java/com/creditflow/banking/domain',verifiedTree],['02','PostgreSQL integration','Persistence, rollback, constraints, replay and concurrent updates.','services/banking-api/src/test/java/com/creditflow/banking/LedgerIT.java',verifiedBlob],['03','Independent Cucumber','Gherkin → scenario context → REST Assured → running API.','automation/api-bdd',verifiedTree],['04','Enterprise tooling','Separate TestNG matrix, Bruno collection and Jenkins pipeline.','docs/testing/strategy.md',verifiedBlob]].map(([n,t,d,p,source]) => <a className="layer" key={n} href={`${source}/${p}`}><span>{n}</span><h3>{t}</h3><p>{d}</p><b>Inspect implementation ↗</b></a>)}</div><details className="code-details"><summary>Read an executable scenario</summary><pre>{'Scenario: Concurrent requests cannot overspend available credit\n  When I submit 12 simultaneous purchases of "100"\n  Then exactly 7 responses have status 201\n  And exactly 5 responses have status 422\n  And the account has outstanding "950.00" and available "50.00"\n  And there are 7 ledger entries'}</pre></details><p className="fine">Source and CI links identify tested baseline <a href={`${repo}/commit/${verifiedCommit}`}>{verifiedCommit.slice(0, 7)}</a>. See the <a href={evidenceRecord}>current release and evidence record</a> for deployed frontend/API commits, later runs and verification limits. Authored configuration is not execution proof.</p></section>
-      <section id="architecture" className="section"><div className="eyebrow">04 / ARCHITECTURE & DECISIONS</div><h2>Small system. Explicit boundaries.</h2><div className="architecture"><div><span>VISITOR</span><strong>Next.js command center</strong><small>HttpOnly session · same-origin writes</small></div><b>→</b><div><span>APPLICATION</span><strong>Spring Boot ledger</strong><small>Ownership · validation · row locks</small></div><b>→</b><div><span>PERSISTENCE</span><strong>PostgreSQL</strong><small>Atomic state + receipt · Flyway</small></div></div><div className="decisions">{[['Why exact decimals?','No rounding ambiguity. The backend calculates with BigDecimal; the UI displays returned strings.'],['Why row locks?','Concurrent operations serialize per account. The credit check and ledger entry share one transaction.'],['Why independent tests?','API automation imports no application classes, so it validates observable contracts rather than implementation details.']].map(([t,d]) => <article key={t}><h3>{t}</h3><p>{d}</p></article>)}</div></section>
-      <section id="interview" className="walkthrough"><div><div className="eyebrow">05 / THE FIVE-MINUTE WALKTHROUGH</div><h2>Run it. Explain it.<br />Rebuild the important parts.</h2><p>Domain rules → transactional service → Cucumber architecture → execution evidence → trade-offs.</p><a className="button" href={`${verifiedBlob}/docs/interview-guide/five-minute-walkthrough.md`}>Open the interview guide ↗</a></div><div className="walkthrough-note">BUILT TO BE DEFENDED<p>This portfolio project was built with AI assistance. The interview goal is to understand, reproduce and debug the engineering personally.</p></div></section>
-      <footer><span>CreditFlow QE / Farhan Shafee</span><span>Synthetic data only. No real banking services.</span><a href={verifiedRun}>Baseline CI run ↗</a></footer>
+      <header className="topbar"><div className="mobile-brand"><button ref={opener} className="icon-button" data-testid="mobile-menu" onClick={() => setMenu(true)} aria-label="Open navigation" aria-expanded={menu} aria-controls="mobile-navigation">☰</button><span>CreditFlow <b>QE</b></span></div><span className="breadcrumb">WORKSPACE <span>/</span> {navigation.find(item => item[2] === active)?.[1]}</span><div className="topbar-actions"><span className="pill"><span className="dot" />Synthetic USD</span><a href="#evidence">Evidence <span aria-hidden="true">↗</span></a></div></header>
+      <section id="overview" className="hero" aria-labelledby="workspace-title"><div className="hero-copy"><div className="eyebrow">THE FINANCIAL ENGINEERING WORKSPACE</div><h1 id="workspace-title">Financial logic.<br /><span>Executable proof.</span></h1><p>A real Java ledger. Independent Cucumber automation. One clear place to explore the behavior and defend the engineering.</p><div className="hero-actions"><a className="button" href="#simulator">Open banking simulator <span>↗</span></a><a className="text-link" href="#lab">Explore the correctness lab →</a></div><div className="tech-row">{['Java 21', 'Spring Boot', 'Cucumber', 'REST Assured', 'PostgreSQL'].map(t => <span key={t}>{t}</span>)}</div></div><div className="engineering-card"><div className="visual-top"><span>THE CORRECTNESS CHAIN</span><span className="tag">API → state</span></div><h2>Every state change<br />has a receipt.</h2>{[['01', 'Validate the contract', 'Exact input. Explicit errors.'], ['02', 'Commit atomically', 'Balance and immutable ledger, together.'], ['03', 'Prove it independently', 'Java + REST Assured through real HTTP.']].map(([n, title, text]) => <div className="visual-rule" key={n}><span>{n}</span><div><strong>{title}</strong><small>{text}</small></div><b aria-hidden="true">↗</b></div>)}<div className="visual-footer">OWNED SESSIONS <span>·</span> EXACT DECIMALS <span>·</span> IDEMPOTENCY</div></div></section>
+      <Simulator onInspect={setExchange} onDetails={entry => setDetail({ kind: 'entry', value: entry })} />
+      <CorrectnessLab onInspect={setExchange} />
+      <section id="api" className="section" aria-labelledby="api-title"><div className="section-heading"><div><div className="eyebrow">04 / LIVE API INSPECTOR</div><h2 id="api-title">Understand the exchange.</h2><p>Inspect a simulator or lab request. Every status and duration belongs to that observed operation.</p></div><a className="text-link" href={`${source}/services/banking-api/src/main/resources/static/openapi.yaml`} target="_blank" rel="noreferrer">OpenAPI source ↗</a></div><div className="api-grid"><TransactionInspector exchange={exchange} details={() => exchange && setDetail({ kind: 'exchange', value: exchange })} /><aside className="panel contract-note"><div className="eyebrow">READ THE CONTRACT</div><h3>An intent has an identity.</h3><p>The same idempotency key, operation and decimal amount identify the same transaction.</p><dl className="status-contract"><div><dt>201</dt><dd>New posting committed</dd></div><div><dt>200 + replay</dt><dd>Original receipt returned</dd></div><div><dt>409</dt><dd>Identity reused with a different intent</dd></div><div><dt>422</dt><dd>Financial boundary rejected</dd></div><div><dt>No response</dt><dd>Outcome uncertain. Preserve identity.</dd></div></dl><p className="fine">A browser timer measures HTTP round trip, including transport and response reading. It cannot measure backend processing time.</p><a className="text-link" href={`${source}/automation/api-bdd/src/test/resources/features/credit-card.feature`} target="_blank" rel="noreferrer">Follow the executable scenarios ↗</a></aside></div></section>
+      <section id="automation" className="section" aria-labelledby="automation-title"><div className="section-heading"><div><div className="eyebrow">05 / INDEPENDENT JAVA AUTOMATION</div><h2 id="automation-title">A rule, tested through every layer.</h2><p>The browser demonstrates behavior. The Java suite supplies independent, executable assertions.</p></div><a className="button secondary" href={`${tree}/automation/api-bdd`} target="_blank" rel="noreferrer">Inspect Cucumber JVM ↗</a></div><div className="layer-grid">{[['01', 'Domain precision', 'BigDecimal, exact USD parsing, immutable state and financial boundaries.', 'services/banking-api/src/test/java/com/creditflow/banking/domain', tree], ['02', 'Transactional integration', 'Real PostgreSQL, rollback, constraints, replay and concurrent updates.', 'services/banking-api/src/test/java/com/creditflow/banking/LedgerIT.java', source], ['03', 'Independent API contracts', 'Gherkin → scenario context → reusable client → REST Assured → HTTP.', 'automation/api-bdd', tree], ['04', 'Release verification', 'Separate TestNG, browser journeys, Bruno, dependency checks and frozen reports.', 'docs/testing/strategy.md', source]].map(([n, title, text, path, base]) => <a className="layer" key={n} href={`${base}/${path}`} target="_blank" rel="noreferrer"><span className="layer-number">{n}</span><h3>{title}</h3><p>{text}</p><span className="text-link">Read implementation ↗</span></a>)}</div><details className="code-details"><summary>Read the concurrent-purchase Cucumber scenario</summary><pre tabIndex={0}>{'Scenario: Concurrent requests cannot overspend available credit\n  When I submit 12 simultaneous purchases of "100"\n  Then exactly 7 responses have status 201\n  And exactly 5 responses have status 422\n  And the account has outstanding "950.00" and available "50.00"\n  And there are 7 ledger entries'}</pre><a className="text-link" href={`${source}/automation/api-bdd/src/test/resources/features/credit-card.feature`} target="_blank" rel="noreferrer">Open the pinned executable feature ↗</a></details></section>
+      <section id="evidence" className="section"><EvidenceView evidence={evidence} /></section>
+      <section id="architecture" className="section" aria-labelledby="architecture-title"><div className="eyebrow">07 / ARCHITECTURE & TRADE-OFFS</div><h2 id="architecture-title">Small system. Explicit boundaries.</h2><p className="section-intro">A same-origin application boundary protects the session. The Java service owns every financial decision.</p><div className="architecture"><div><span>EXPERIENCE</span><strong>Next.js workspace</strong><small>Signed HttpOnly sessions<br />Same-origin, bounded BFF requests</small></div><span className="flow-arrow" aria-hidden="true">→</span><div><span>APPLICATION</span><strong>Spring Boot ledger</strong><small>Ownership · validation · idempotency<br />Per-account transaction and row lock</small></div><span className="flow-arrow" aria-hidden="true">→</span><div><span>PERSISTENCE</span><strong>PostgreSQL</strong><small>Balance + immutable receipt<br />Flyway migrations and constraints</small></div></div><div className="decisions">{[['Why exact decimals?', 'Money travels as decimal strings. Java BigDecimal owns calculations; the workspace renders returned balances and uses integer cents only to check observed results.'], ['Why row locks?', 'Concurrent operations serialize per account. Validation, balance update and receipt insertion share one transaction, so failures roll back together.'], ['Why independent automation?', 'Cucumber imports no application classes. Its scenario context, factories and REST Assured client validate observable contracts against the actual API.']].map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div><a className="text-link" href={`${source}/docs/architecture/core-design.md`} target="_blank" rel="noreferrer">Read engineering decisions ↗</a></section>
+      <section id="interview" className="walkthrough section" aria-labelledby="interview-title"><div><div className="eyebrow">08 / A FIVE-MINUTE WALKTHROUGH</div><h2 id="interview-title">Run it. Explain it.<br />Defend the important parts.</h2><ol className="walkthrough-steps"><li>Post a transaction and inspect its receipt.</li><li>Replay the identity; show one persisted posting.</li><li>Trace the rule into Java and Cucumber.</li><li>Read the exact tested revision and its limits.</li></ol><a className="button" href={`${source}/docs/interview-guide/five-minute-walkthrough.md`} target="_blank" rel="noreferrer">Open the interview guide ↗</a></div><div className="walkthrough-note"><div className="eyebrow">BUILT TO BE UNDERSTOOD</div><h3>Honest engineering.<br />Personal understanding.</h3><p>This portfolio project was built with AI assistance. The goal is to understand, reproduce and debug the work personally. It does not represent workplace achievements or production financial operations.</p><a className="text-link" href={`${source}/docs/interview-guide/coding-exercises.md`} target="_blank" rel="noreferrer">Practice three coding exercises ↗</a></div></section>
+      <footer><span>CreditFlow QE <span className="footer-divider">/</span> Farhan Shafee</span><span>Synthetic data. Real engineering.</span><a href={repo} target="_blank" rel="noreferrer">Source repository ↗</a></footer>
     </main>
+    <DetailsDialog detail={detail} close={() => setDetail(null)} />
   </div>;
 }

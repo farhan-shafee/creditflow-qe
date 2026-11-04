@@ -201,7 +201,7 @@ class EvidenceBehavior(unittest.TestCase):
         self.folder = self.api['run_folder'](self.root, self.manifest)
         (self.folder / 'logs').mkdir(parents=True)
         (self.folder / 'snapshot').mkdir()
-        summary = summary or '\u2139 tests 5\n\u2139 pass 5\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n'
+        summary = summary or '\u2139 tests 57\n\u2139 pass 57\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n'
         start = time.time_ns() - 1_000_000_000
         for name in self.api['SCOPES']['web']['steps']:
             command, cwd = self.api['command_for'](self.root, self.manifest, name)
@@ -226,16 +226,20 @@ class EvidenceBehavior(unittest.TestCase):
             try:
                 counts = self.validate()
             except self.api['EvidenceError'] as error:
-                self.fail('Valid UTF-8 Node26 five-test summary was rejected: ' + str(error))
-            self.assertEqual(counts['frontend'], 5)
+                self.fail('Valid UTF-8 complete workspace summary was rejected: ' + str(error))
+            self.assertEqual(counts['frontend'], 57)
 
-    def test_frontend_summary_keeps_all_five_and_zero_assertions(self):
-        summary = '\u2139 tests 5\n\u2139 pass 5\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n'
-        for original, invalid in [('tests 5', 'tests 6'), ('pass 5', 'pass 4'), ('fail 0', 'fail 1'), ('cancelled 0', 'cancelled 1'), ('skipped 0', 'skipped 1'), ('todo 0', 'todo 1')]:
+    def test_frontend_summary_keeps_complete_count_and_zero_assertions(self):
+        summary = '\u2139 tests 57\n\u2139 pass 57\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n'
+        for original, invalid in [('tests 57', 'tests 58'), ('pass 57', 'pass 56'), ('fail 0', 'fail 1'), ('cancelled 0', 'cancelled 1'), ('skipped 0', 'skipped 1'), ('todo 0', 'todo 1')]:
             with self.subTest(summary=invalid):
                 self.web_fixture(summary.replace(original, invalid))
                 with self.windows_locale():
                     self.rejects('incomplete frontend tests')
+
+    def test_historical_five_test_summary_cannot_validate_the_expanded_workspace(self):
+        self.web_fixture('\u2139 tests 5\n\u2139 pass 5\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n')
+        self.rejects('incomplete frontend tests')
 
     def test_utf8_child_tail_can_be_published_to_cp1252_stdout(self):
         captured = io.BytesIO()

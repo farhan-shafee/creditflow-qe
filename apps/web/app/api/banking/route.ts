@@ -23,10 +23,15 @@ export async function POST(request: NextRequest) {
   try {
     const current = session(request);
     if (!current) return safeError('SESSION_REQUIRED', 401);
+    const expectedAccount = request.headers.get('X-Expected-Account');
+    if (expectedAccount !== null && expectedAccount !== current.accountId) return safeError('SESSION_CHANGED', 409);
     const body = await readJsonBody(request.body);
     if (!['payments', 'purchases'].includes(String(body.operation)) || typeof body.amount !== 'string' || typeof body.key !== 'string' || !/^[A-Za-z0-9_-]{1,80}$/.test(body.key)) return safeError('INVALID_BODY', 400);
     const result = await backend(`/api/v1/accounts/${encodeURIComponent(current.accountId)}/${body.operation}`, { method: 'POST', headers: { Authorization: `Bearer ${current.token}`, 'Idempotency-Key': body.key, 'Content-Type': 'application/json' }, body: JSON.stringify({ amount: body.amount }) });
     const payload: unknown = await result.json();
-    return NextResponse.json(payload, { status: result.status, headers: { 'Cache-Control': 'no-store', 'Idempotency-Replayed': result.headers.get('Idempotency-Replayed') ?? 'false' } });
+    const headers: Record<string, string> = { 'Cache-Control': 'no-store' };
+    const replayed = result.headers.get('Idempotency-Replayed');
+    if (replayed === 'true' || replayed === 'false') headers['Idempotency-Replayed'] = replayed;
+    return NextResponse.json(payload, { status: result.status, headers });
   } catch (error) { return error instanceof BodyError ? safeError(error.message, error.status) : safeError('BACKEND_UNAVAILABLE', 503); }
 }

@@ -23,3 +23,19 @@ test('streaming body limit counts bytes and cancels without draining oversized i
   await assert.rejects(readJsonBody(body), (e: unknown) => e instanceof BodyError && e.status === 413);
   assert.equal(cancelled, true);
 });
+
+test('only explicit creation mode accepts missing and zero-byte bodies', async () => {
+  assert.deepEqual(await readJsonBody(null, 1024, true), {});
+  assert.deepEqual(await readJsonBody(stream(''), 1024, true), {});
+  assert.deepEqual(await readJsonBody(new ReadableStream({ start(controller) { controller.close(); } }), 1024, true), {});
+  await assert.rejects(readJsonBody(null), (error: unknown) => error instanceof BodyError && error.status === 400);
+  await assert.rejects(readJsonBody(stream('')), (error: unknown) => error instanceof BodyError && error.status === 400);
+});
+
+test('creation mode preserves JSON, UTF-8 and byte limits for nonempty bodies', async () => {
+  for (const raw of [' ', '{', 'null', '[]', 'true']) await assert.rejects(readJsonBody(stream(raw), 1024, true), (error: unknown) => error instanceof BodyError && error.status === 400);
+  await assert.rejects(readJsonBody(new ReadableStream({ start(controller) { controller.enqueue(new Uint8Array([255])); controller.close(); } }), 1024, true), (error: unknown) => error instanceof BodyError && error.status === 400);
+  await assert.rejects(readJsonBody(stream(' '.repeat(1025)), 1024, true), (error: unknown) => error instanceof BodyError && error.status === 413);
+  assert.deepEqual(await readJsonBody(stream('{}'), 1024, true), {});
+  assert.deepEqual(await readJsonBody(stream('{"unexpected":true}'), 1024, true), { unexpected: true });
+});

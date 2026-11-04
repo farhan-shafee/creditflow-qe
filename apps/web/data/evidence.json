@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-11-04T13:33:32Z",
+  "sourceRevision": "5b65732a9ce8fd77ea0052215d1d8f6156629441",
+  "production": {
+    "reviewedOn": "2026-10-25",
+    "sourcePath": "docs/railway-production.md",
+    "webRevision": "7a16b50b595d01c735ae566e9737b24b6121eaf6",
+    "apiRevision": "20c91f5e10658ab4ce3ec7f2727c8a4934f5b314",
+    "currentVerification": "unverified"
+  },
+  "latestMainCI": {
+    "runId": 41262698339,
+    "revision": "5b65732a9ce8fd77ea0052215d1d8f6156629441",
+    "branch": "main",
+    "workflow": "Verify banking and automation",
+    "startedAt": "2026-11-01T01:49:58Z",
+    "finishedAt": "2026-11-01T01:53:15Z",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "core",
+        "conclusion": "success"
+      },
+      {
+        "name": "browser",
+        "conclusion": "success"
+      }
+    ],
+    "counts": [
+      {
+        "scope": "core",
+        "runId": "20261101T015007Z-4cb0d3d3552e4cde93f9e459721caa96",
+        "finishedAt": "2026-11-01T01:51:59.384874Z",
+        "counts": {
+          "unit": 31,
+          "postgres_integration": 18,
+          "testng": 6,
+          "cucumber": 31,
+          "cucumber_steps": 154
+        }
+      },
+      {
+        "scope": "public",
+        "runId": "20261101T015159Z-01ce914cb9584347b80cec13a2369d63",
+        "finishedAt": "2026-11-01T01:52:31.852728Z",
+        "counts": {
+          "testng": 6,
+          "cucumber": 31,
+          "cucumber_steps": 154
+        }
+      },
+      {
+        "scope": "browser",
+        "runId": "20261101T015027Z-d6f5ec5d17b0424990dcd6ee93c19c88",
+        "finishedAt": "2026-11-01T01:53:05.671257Z",
+        "counts": {
+          "ui": 11,
+          "bruno_requests": 7,
+          "bruno_checks": 11
+        }
+      },
+      {
+        "scope": "web",
+        "runId": "20261101T015004Z-adcdeda7465b4ef8bc4744ef0cdd7a89",
+        "finishedAt": "2026-11-01T01:50:26.774855Z",
+        "counts": {
+          "frontend": 5,
+          "npm_vulnerabilities": 0
+        }
+      },
+      {
+        "scope": "quality",
+        "runId": "20261101T015233Z-13c43d3252d244c892a9e032cc172dcd",
+        "finishedAt": "2026-11-01T01:52:52.732139Z",
+        "counts": {
+          "components": 205,
+          "affected_components": 0,
+          "gitleaks_findings": 0
+        }
+      }
+    ],
+    "artifactAccess": "validated",
+    "accessReason": "Initial default access returned ZIP HTTP 401 and logs HTTP 403. Existing host GitHub authentication then downloaded both artifacts; retained reports and log hashes were validated.",
+    "artifacts": [
+      {
+        "id": 13065872944,
+        "name": "creditflow-core-5b65732a9ce8fd77ea0052215d1d8f6156629441",
+        "digest": "sha256:44a604955f7e87e8dcea23a6616b83325de6b3dc6bd3f466b61f85cde64de0db",
+        "expiresAt": "2026-11-15T01:52:53Z"
+      },
+      {
+        "id": 13065464677,
+        "name": "creditflow-browser-5b65732a9ce8fd77ea0052215d1d8f6156629441",
+        "digest": "sha256:6afafc23371d673ba5bdd8726bfbe5e2ff252b328255e232f57561d605a0156b",
+        "expiresAt": "2026-11-15T01:53:06Z"
+      }
+    ],
+    "artifactValidation": {
+      "validatedAt": "2026-11-04T13:33:32Z",
+      "sourceRevision": "5b65732a9ce8fd77ea0052215d1d8f6156629441",
+      "fingerprint": "55c1389eab3c25273c2df2c5f704ab4e8b300046f74680a7f308f8b0db5e5f21",
+      "reportHashesVerified": 152,
+      "commandLogHashesVerified": 22,
+      "commandArguments": "Original Linux argument equality was not replayed on Windows. Required command names, completion, hashes, report production windows and computed counts were checked against pinned source."
+    }
+  },
+  "historicalBaseline": {
+    "verifiedAt": "2026-10-15T04:20:49.691Z",
+    "runId": 38680627735,
+    "declaredSourceRevision": "b3209d36d979b9b2c3bfe1850882db3481839e65",
+    "manifestRevision": "bb169a6f591e60ebd94358c82da5b9ae12e4093f",
+    "sourcePath": "docs/evidence/provider-pilot/ci-artifact-verification.json",
+    "matchedHashes": 174,
+    "artifactAccess": "expired-or-removed",
+    "artifactExpiresAt": "2026-10-29T04:20:25Z",
+    "scopes": [
+      {
+        "scope": "core",
+        "runId": "20261015T041654Z-0bd438fb3a9848a7864116e8f455e648",
+        "finishedAt": "2026-10-15T04:19:17.734443Z",
+        "counts": {
+          "unit": 31,
+          "postgres_integration": 18,
+          "testng": 6,
+          "cucumber": 31,
+          "cucumber_steps": 154
+        }
+      },
+      {
+        "scope": "public",
+        "runId": "20261015T041918Z-c215d76f28804cbf8b161cbd26d53d0f",
+        "finishedAt": "2026-10-15T04:19:58.627420Z",
+        "counts": {
+          "testng": 6,
+          "cucumber": 31,
+          "cucumber_steps": 154
+        }
+      },
+      {
+        "scope": "browser",
+        "runId": "20261015T041713Z-db7a14af53994c89a16ace1a922a1e94",
+        "finishedAt": "2026-10-15T04:19:40.671814Z",
+        "counts": {
+          "ui": 11,
+          "bruno_requests": 7,
+          "bruno_checks": 11
+        }
+      },
+      {
+        "scope": "web",
+        "runId": "20261015T041649Z-3dc63f82c30847158f40ad3f11ef842a",
+        "finishedAt": "2026-10-15T04:17:13.732614Z",
+        "counts": {
+          "frontend": 5,
+          "npm_vulnerabilities": 0
+        }
+      },
+      {
+        "scope": "quality",
+        "runId": "20261015T041959Z-e4f3e15ad89b45a0b1bb0a9ef0812cea",
+        "finishedAt": "2026-10-15T04:20:24.515440Z",
+        "counts": {
+          "components": 209,
+          "affected_components": 0,
+          "gitleaks_findings": 0
+        }
+      }
+    ]
+  },
+  "archiveMonitor": {
+    "recordedAt": "2026-11-01T01:12:21.875Z",
+    "sourcePath": "docs/archive-monitor-recovery.md",
+    "incidentId": "CF-ARCHIVE-20261031",
+    "retainedFailures": 11,
+    "rollout": "pending"
+  }
+}

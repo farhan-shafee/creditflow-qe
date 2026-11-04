@@ -455,20 +455,20 @@ def validate_manifest(root, manifest, current, verify_commands=True):
         check(len(scenarios) >= 31 and steps >= 154, f'{scope}: incomplete Cucumber execution')
         counts.update(cucumber=len(scenarios), cucumber_steps=steps)
     if scope == 'browser':
-        counts['ui'] = junit('automation/ui-e2e/target/surefire-reports', ('BffContractTest', 'PlaywrightJourneyTest', 'SeleniumJourneyTest', 'TraceRedactorTest'), 11)
+        counts['ui'] = junit('automation/ui-e2e/target/surefire-reports', ('BffContractTest', 'PlaywrightJourneyTest', 'SeleniumJourneyTest', 'TraceRedactorTest', 'WorkspaceJourneyTest'), 37)
         check(sum(name.endswith('.png') for name in reports) >= 6 and sum(name.endswith('.zip') for name in reports) >= 4, 'browser: missing screenshots or final traces')
         bruno = (folder / commands['browser-bruno']['log']).read_text(encoding='utf-8')
         check(re.search(r'Requests\W+7\s*\(7 Passed\)', bruno) and re.search(r'Tests\W+11/11', bruno), 'browser: missing passing Bruno request/check counts')
         counts.update(bruno_requests=7, bruno_checks=11)
     if scope == 'web':
         log = (folder / commands['web-test']['log']).read_text(encoding='utf-8')
-        for name, expected in {'tests': 5, 'pass': 5, 'fail': 0, 'cancelled': 0, 'skipped': 0, 'todo': 0}.items():
+        for name, expected in {'tests': 57, 'pass': 57, 'fail': 0, 'cancelled': 0, 'skipped': 0, 'todo': 0}.items():
             values = re.findall(r'(?m)^\s*(?:ℹ|#)\s+' + name + r'\s+(\d+)\s*$', log)
             check(values == [str(expected)], 'web: incomplete frontend tests (' + name + ')')
         audit = reports.get('npm-audit.json')
         check(audit is not None, 'web: missing npm JSON audit')
         check(json.loads(audit.read_text(encoding='utf-8')).get('metadata', {}).get('vulnerabilities', {}).get('total') == 0, 'web: npm vulnerabilities or incomplete audit')
-        counts.update(frontend=5, npm_vulnerabilities=0)
+        counts.update(frontend=57, npm_vulnerabilities=0)
     if scope == 'quality':
         bom, osv, leaks, role = (reports.get(name) for name in ('target/bom.json', '.work/dependency-audit.json', 'gitleaks.json', '.work/runtime-role-validation.json'))
         check(all(item is not None for item in (bom, osv, leaks, role)), 'quality: missing generated scan/config result')

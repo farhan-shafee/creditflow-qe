@@ -177,11 +177,7 @@ class PlaywrightJourneyTest {
       if (context != null) {
         Path raw = folder.resolve(name + "-raw.zip");
         try {
-          var secrets =
-              context.cookies().stream()
-                  .filter(c -> c.name.equals("creditflow_session"))
-                  .map(c -> c.value)
-                  .toList();
+          var secrets = TraceRedactor.sessionSecrets(context.cookies());
           context.tracing().stop(new Tracing.StopOptions().setPath(raw));
           TraceRedactor.redact(raw, folder.resolve(name + ".zip"), secrets);
         } finally {

@@ -13,8 +13,8 @@ export class BodyError extends Error {
   constructor(status: number) { super(status === 413 ? 'REQUEST_TOO_LARGE' : 'INVALID_BODY'); this.status = status; }
 }
 
-export async function readJsonBody(body: ReadableStream<Uint8Array> | null, maximum = 1024): Promise<Record<string, unknown>> {
-  if (!body) throw new BodyError(400);
+export async function readJsonBody(body: ReadableStream<Uint8Array> | null, maximum = 1024, allowEmpty = false): Promise<Record<string, unknown>> {
+  if (!body) { if (allowEmpty) return {}; throw new BodyError(400); }
   const reader = body.getReader();
   const chunks: Uint8Array[] = [];
   let length = 0;
@@ -27,6 +27,7 @@ export async function readJsonBody(body: ReadableStream<Uint8Array> | null, maxi
       chunks.push(result.value);
     }
   } finally { reader.releaseLock(); }
+  if (allowEmpty && length === 0) return {};
   const bytes = new Uint8Array(length);
   let offset = 0;
   for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
