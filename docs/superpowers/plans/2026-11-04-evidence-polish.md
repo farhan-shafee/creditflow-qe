@@ -27,12 +27,12 @@
 - [x] Read current remote source, provider identities, canonical portfolio route and existing card patterns.
 - [x] Pass baseline 57 frontend tests; validate five retained CI scopes and all 214 report/log hashes.
 - [x] Record production acceptance, one authentic capture, a verification JSON and CI validation.
-- [ ] Inspect/scanner-check and commit the records before referring to that immutable commit.
+- [x] Inspect/scanner-check and commit the records before referring to that immutable commit.
 
 ## Task 2: Refresh dashboard and prepare portfolio proposal
 
-- [ ] Update snapshot to the recorded release/CI, preserve historical fields and unverified-current-health semantics.
-- [ ] Update fixed-time test expectations and verify current counts, freshness, expiry and source links.
-- [ ] Prepare accurate card copy, dated CI/proof links and the reviewed capture; edit no portfolio files.
-- [ ] Run frontend tests/build/types/audit, evidence/scanner regressions and source review.
+- [x] Update snapshot to the recorded release/CI, preserve historical fields and unverified-current-health semantics.
+- [x] Update fixed-time test expectations and verify current counts, freshness, expiry and source links.
+- [x] Prepare accurate card copy, dated CI/proof links and the reviewed capture; edit no portfolio files.
+- [x] Run frontend tests/build/types/audit, evidence/scanner regressions and source review.
 - [ ] Commit/push a feature PR, inspect its CI, and request only the remaining release/edit approvals.
