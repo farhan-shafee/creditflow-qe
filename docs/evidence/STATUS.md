@@ -1,19 +1,26 @@
 # Execution evidence — engineering finish
 
-## Financial workspace release — November 4, 2026
+## Current release index — November 4, 2026
 
-**DEPLOYED / VERIFIED at the recorded times.** [The production acceptance record](financial-workspace-20261104.md) binds frontend b286242 and Railway deployment 5af466c1 to full merged-main CI, 192 report / 22 command-log hashes, and bounded public acceptance of five synthetic accounts / 44 requests. This record supersedes earlier frontend identities while preserving their historical evidence. This metadata polish has not itself been deployed.
+**DEPLOYED / VERIFIED at the recorded times.** The [current release and evidence index](../current-state.md) separates deployed frontend `d7658be`, API `20c91f5`, completed operations gates, portfolio publication and historical execution.
 
+- [PR #8](https://github.com/farhan-shafee/creditflow-qe/pull/8): evidence refresh deployed as `e19a4383-e1ef-4568-acc4-c15cb684072e`; [full main CI 41899735083](https://github.com/farhan-shafee/creditflow-qe/actions/runs/41899735083) passed. Its read-only public check used 10 requests, zero accounts and zero page errors.
+- [Workspace acceptance / PR #7](financial-workspace-20261104.md): earlier `b286242` / deployment `5af466c1`, with full merged-main CI, 192 report / 22 command-log hashes and five-account / 44-request financial acceptance. These results remain bound to that revision.
+- [Portfolio PR #4](https://github.com/farhan-shafee/farhanshafee.com/pull/4): merged at `c77adc0`, deployed on Railway; [main CI 41914070783](https://github.com/farhan-shafee/farhanshafee.com/actions/runs/41914070783) passed. The refreshed case study is public.
 
-> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../railway-production.md) for the October 24-25 Railway topology, release state and remaining closeout.
+The evidence refresh and portfolio proposal are implemented and published; their earlier unmerged/not-deployed statements below describe previous checkpoints. The application snapshot records the earlier functional execution and does not imply continuous current-health verification.
+
+## Historical milestone records
+
+> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../railway-production.md) for current Railway topology, source pins and operations status.
 
 Latest review correction: [PR #4 stack guard](pr4-stack-guard.md) preserves POSIX path case and proves the effective local API/database relationship before workload POSTs. Original maintenance/release receipts below remain historical evidence.
 
-## Current maintenance handoff — 2026-10-15
+## Historical maintenance handoff — 2026-10-15
 
 The [maintenance receipt](maintenance-handoff.md) and [operator/dependency runbook](../maintenance-handoff.md) separate the new bounded local verification and interview handoff from earlier completed releases. Fresh read-only Railway/Neon settings and two HTTPS page checks are recorded. Current Vercel control-plane access and target billing/spend-control fields remain explicitly blocked or unavailable. No portfolio edit or public deployment occurred; earlier failure and release records remain historical evidence.
 
-## Current portfolio dependency closure — 2026-10-15
+## Historical portfolio dependency closure — 2026-10-15
 
 **IMPLEMENTED / TESTED / DEPLOYED / VERIFIED.** [The lint remediation record](portfolio-lint-remediation.md) closes the previous five development-tool entries: full and production-only audits report zero findings. PR and main Actions each passed 63 unit and 26 browser tests. Portfolio main 7cf155ef / Vercel dpl_8GMzv1fz6A76G9CnhLkFSJyFsB8j passed 19 public HTTPS checks and two mobile/desktop journeys. CreditFlow application releases and earlier evidence remain unchanged; historical unresolved-review statements below describe their original timestamps.
 

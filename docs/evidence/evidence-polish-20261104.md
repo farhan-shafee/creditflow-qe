@@ -1,5 +1,9 @@
 # Evidence refresh validation — November 4, 2026
 
+> **Release follow-through — November 4:** This refresh was merged in [PR #8](https://github.com/farhan-shafee/creditflow-qe/pull/8) as `d7658be` and deployed on Railway as `e19a4383-e1ef-4568-acc4-c15cb684072e` (SUCCESS). [Main CI 41899735083](https://github.com/farhan-shafee/creditflow-qe/actions/runs/41899735083) passed; the separate public check used 10 read-only requests, zero accounts and zero page errors. See the [current index](../current-state.md). The original pre-release validation below retains its original scope.
+
+## Historical local validation checkpoint
+
 **IMPLEMENTED / TESTED locally; NOT DEPLOYED.** Branch `chore/release-evidence-20261104` starts at merged main b286242. The dashboard snapshot pins documentation commit 4fac13a independently of the recorded deployed/CI revision.
 
 - Baseline and updated frontend: 57 passed, no failures/errors/skips.

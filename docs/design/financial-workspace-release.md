@@ -1,5 +1,9 @@
 # Frontend release and rollback plan — separate approval required
 
+> **Release completed — November 4:** [PR #7](https://github.com/farhan-shafee/creditflow-qe/pull/7) was merged and the workspace accepted at `b286242`. The later evidence refresh is deployed at `d7658be`. See the [current release index](../current-state.md) for exact deployment identities and distinct checks. The original plan below is historical; a future application release still requires its own reviewed source and release scope.
+
+## Historical pre-release plan
+
 This plan authorizes no release. The feature PR remains unmerged and production is unchanged. Select the exact approved 40-character frontend commit after reviewing its complete Actions run and screenshots. Keep the Spring Boot API, PostgreSQL, schema, DNS, secrets, limits, spending controls and portfolio unchanged.
 
 ## Preflight for an approved frontend-only release

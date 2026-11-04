@@ -1,5 +1,9 @@
 # CreditFlow archive incident and monitor recovery
 
+> **Rollout completed — October 31, 2026 (New York):** [PR #6](https://github.com/farhan-shafee/creditflow-qe/pull/6) merged as `5b65732`; native monitor `374ce843-286f-44ec-927c-92a57ac58d9a` reached SUCCESS. Source SHA-256 `8a1bae0492c21c54fdd9eea2ed194b1c678dd72b0a7cd2d9718d538ca9c95204` matched the reviewed blob. Two distinct scheduled executions at November 1 01:55:48 and 02:00:49 UTC returned status=ok while retaining failedCount=11 and the exact reviewed incident. No counter reset or provider root-cause resolution is claimed. The pending-rollout statements below are historical checkpoints.
+
+## Historical implementation and rollout plan
+
 **IMPLEMENTED / TESTED locally; LIVE ROLLOUT PENDING separate approval.**
 
 The October 31 incident is diagnosed as actual archive request timeouts, including a repository HTTP 408. It is distinct from the watcher's separate rc50 initialization lock contention. Ten async archive timeouts and one repository-metadata failure account for eleven recorded archive-command failures. All seven named failed WAL segments have later successful push records in the bounded 19:35–20:15 UTC service log read. A later differential completed at 20:07 UTC. No queue-loss warning matched the bounded read. This is not a provider root-cause resolution or a new restore guarantee.

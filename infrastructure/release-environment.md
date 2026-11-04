@@ -1,11 +1,11 @@
 # Current Railway release configuration contract
 
-Reviewed October 25, 2026. The canonical web, original API and live PostgreSQL are on Railway. See [production topology, source pins, backup/recovery and pending closeout](../docs/railway-production.md). Earlier Vercel/Neon pilot settings are historical.
+Reviewed November 4, 2026. The canonical web, original API and live PostgreSQL are on Railway. See [production topology, source pins, backup/recovery and completed closeout gates](../docs/railway-production.md). Earlier Vercel/Neon pilot settings are historical.
 
 ## Per-service builds and source
 
 - API: pinned `20c91f5e10658ab4ce3ec7f2727c8a4934f5b314`, repository-root `infrastructure/Dockerfile.api`.
-- Web: pinned `7a16b50b595d01c735ae566e9737b24b6121eaf6`, `infrastructure/Dockerfile.web` in that release. Do not infer an automatic main release.
+- Web: pinned `d7658beeee006f56889f094b66845e8ef47ba680`, `infrastructure/Dockerfile.web` in that release. Do not infer an automatic main release.
 - Keep separate Dockerfile selection for each service; do not add an auto-discovered root API config that overrides the web build.
 - Both application services have one replica with 0.5 vCPU / 500,000,000-byte configured ceilings. API sleep is disabled; web sleep remains enabled.
 - API health uses `/actuator/health/liveness`; separately verify protected `/actuator/health/readiness`. Web health is `/` on port 3100.
@@ -45,4 +45,4 @@ After an authorized release, require terminal SUCCESS at the approved pinned SHA
 
 The local runtime-role validator and fault-injection harness target disposable owned local databases; their command presence is not proof of current cloud grants. Keep those tests separate from read-only production review.
 
-Production PostgreSQL uses a 1,024 MB volume, off-volume pgBackRest full/differential backups and WAL archiving. First scheduled daily-backup verification and stabilization remain open as of October 25. Retain frozen Neon, Vercel and rehearsals until those gates pass and retirement is separately approved. After Railway writes, stale Neon is not a synchronized rollback destination.
+Production PostgreSQL uses a 1,024 MB volume, off-volume pgBackRest full/differential backups and WAL archiving. The first scheduled daily-backup/stabilization gate passed October 26 and five rehearsal service instances were retired October 29, preserving protected volumes/archive storage. Frozen Neon/Vercel and retained recovery resources require a separate decision for any further retirement. After Railway writes, stale Neon is not a synchronized rollback destination.

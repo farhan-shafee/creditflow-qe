@@ -1,5 +1,9 @@
 # CreditFlow QE portfolio refresh proposal — November 4, 2026
 
+> **Applied and published — November 4:** [Portfolio PR #4](https://github.com/farhan-shafee/farhanshafee.com/pull/4) merged as `c77adc0`; [main CI 41914070783](https://github.com/farhan-shafee/farhanshafee.com/actions/runs/41914070783) passed and Railway deployment `04a17d27-edc3-43be-a2d4-46ffb86d8a73` reached SUCCESS. The [public case study](https://farhan-shafee.com/work/creditflow-qe) contains the new evidence links and hosted capture. The proposal below is preserved as the earlier planning checkpoint; its stale checkout and unpublished status are historical.
+
+## Historical proposal checkpoint
+
 **PROPOSED. Portfolio files and deployment remain unchanged.**
 
 The canonical public case study returned HTTP 200 at https://farhan-shafee.com/work/creditflow-qe; its canonical URL uses the hyphenated host. A separate request to farhanshafee.com failed in the audit environment, so no redirect, DNS ownership or availability conclusion is drawn for that different domain. Vercel's project name is not treated as domain proof.

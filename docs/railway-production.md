@@ -1,6 +1,6 @@
 # CreditFlow QE on Railway
 
-Current production topology reviewed October 25, 2026. [Live synthetic demo](https://creditflow.farhan-shafee.com) · [Public source](https://github.com/farhan-shafee/creditflow-qe).
+Current production topology and application pins reviewed November 4, 2026. Start with the [current release and evidence index](current-state.md). [Live synthetic demo](https://creditflow.farhan-shafee.com) · [Public source](https://github.com/farhan-shafee/creditflow-qe).
 
 The canonical Next.js command center, original Spring Boot API and live PostgreSQL database now run on Railway. The project/environment still have legacy pilot labels; those labels do not make Neon or Vercel the active providers. Cloudflare supplies DNS. The retained Neon application role is write-frozen and Vercel/rehearsal resources remain retained.
 
@@ -21,7 +21,7 @@ These releases are deliberately pinned; a new `main` documentation commit does n
 | Component   | Observed release/configuration                                                    |
 | ----------- | --------------------------------------------------------------------------------- |
 | API         | `20c91f5e10658ab4ce3ec7f2727c8a4934f5b314`, `feat/provider-pilot`                 |
-| Web         | `7a16b50b595d01c735ae566e9737b24b6121eaf6`, `ops/railway-frontend-pilot-20261024` |
+| Web         | `d7658beeee006f56889f094b66845e8ef47ba680`, pinned commit on `main` |
 | API build   | Repository-root `infrastructure/Dockerfile.api`; Java 21                          |
 | Web build   | `infrastructure/Dockerfile.web` from the pinned frontend release; Node 24         |
 | API health  | `/actuator/health/liveness`; separate protected database readiness                |
@@ -41,6 +41,10 @@ The API connects to the production Railway database with a restricted runtime ro
 
 The production runtime permits intended ledger insertion/account-balance updates and expiry cleanup, while denying direct ledger UPDATE/DELETE, expiry UPDATE and schema creation. RLS protects active accounts from cleanup deletion. Tests with privileged fault-injection fixtures run only against owned disposable databases, never production.
 
+## November 4 frontend release
+
+The financial workspace was accepted at `b286242` / deployment `5af466c1`. The subsequent evidence refresh is live at `d7658be` / deployment `e19a4383-e1ef-4568-acc4-c15cb684072e`, with [full main CI](https://github.com/farhan-shafee/creditflow-qe/actions/runs/41899735083) and a separate read-only public release check. The [release index](current-state.md) distinguishes the earlier five-account financial acceptance, later zero-account metadata check, portfolio publication and historical Jenkins execution. API/database/monitor identities were unchanged by these frontend releases.
+
 ## Migration and acceptance
 
 Writes reopened October 25 at approximately 05:36 UTC after a consistent frozen-source export, target restore, data/schema/sequence comparison, actual deployment-identity verification and synthetic banking acceptance. The release guard caught and corrected an earlier platform build mismatch before writes reopened.
@@ -49,11 +53,11 @@ The cutover recorded nineteen production acceptance checks, including synthetic 
 
 After disabling API sleep, the reviewed API deployment reached SUCCESS at 12:38:24 UTC. Canonical web, unauthorized API rejection, liveness and protected database readiness passed; subsequent monitor outcomes and bounded error/HTTP checks passed through the recorded closeout window.
 
-## Backups, recovery and open closeout
+## Backups, recovery and completed closeout gates
 
 Private off-volume pgBackRest storage provides weekly full/daily differential backups and continuous WAL archiving, with four retained full backups. A new production full containing the fresh restore completed October 25 at 05:32:11 UTC, and accepted canary WAL reached the archive. Isolated preparation demonstrated archived chosen-time recovery with timestamp canaries and sequence reservations; the production cutover did not destructively restore the live database.
 
-**Still pending as of October 25:** observe the first scheduled daily backup cycle and continue stabilization before approving retirement. An initial or manual full backup does not prove that scheduled cycle. Full weekly/retention expiry, every archive-object/dependency chain, sustained capacity, cross-provider disaster independence and RPO/RTO are not guaranteed.
+The first scheduled daily-backup/stabilization gate passed October 26; five rehearsal service instances were retired October 29 while protected volumes/archive storage were retained. This supersedes the October 25 pending-gate statement. Full weekly/retention expiry, every archive-object/dependency chain, sustained capacity, cross-provider disaster independence and RPO/RTO are not guaranteed.
 
 The five-minute monitor validates health, live cluster identity, TLS, backup metadata/freshness and archiver progress. It emits structured results and failed cron executions; end-to-end chat notification delivery has not been established. Review every failed outcome, missing result, archive error and actual disk capacity rather than relying only on the newest passing line.
 
@@ -61,7 +65,7 @@ A recovery drill must use a fresh isolated volume, compatible image and selected
 
 ## October 31 archive incident follow-up
 
-The running application remains on its pinned releases. The read-only incident review found recovered archive timeouts and a native monitor that still alerts on the lifetime failure counter. The [review-bounded recovery candidate](archive-monitor-recovery.md) preserves the eleven failures, requires an exact reviewed incident acknowledgement, and is **not deployed pending separate approval**. Historical October25 pending-gate statements above are dated records; the October26 scheduled daily/stabilization gate passed and the five rehearsal service instances were retired October29 with retained volumes/buckets preserved.
+The [review-bounded recovery policy](archive-monitor-recovery.md) was merged and deployed as monitor `374ce843-286f-44ec-927c-92a57ac58d9a`. [PR #6](https://github.com/farhan-shafee/creditflow-qe/pull/6) records exact source-hash verification and two successful native scheduled executions at November 1 01:55:48 and 02:00:49 UTC (October 31 evening in New York). The policy retains all eleven historical failures and requires an exact reviewed incident acknowledgement plus every independent health/backup/identity/TLS/archive gate. New or unreviewed failures still alert. It does not establish provider-side timeout resolution, notification delivery or a new restore result.
 
 ## Release and rollback discipline
 

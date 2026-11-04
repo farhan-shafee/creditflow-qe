@@ -4,16 +4,16 @@
 
 Use the local demo at `http://localhost:3100`. Complete the [README verification sequence](../../README.md#run-the-working-system) beforehand, one process at a time; it builds and starts the local stack and produces real reports. Open the source and selected reports before presenting. A full verification run belongs in preparation, not inside the five-minute talk.
 
-Record `git rev-parse HEAD` and `git status --short`. Open the corresponding sanitized manifest and frozen reports from `.work/evidence/runs/`, checking command outcome, executed source and timestamps as described in the [test strategy](../testing/strategy.md). If local execution is unavailable, present the pinned [Actions evidence](../evidence/STATUS.md#historical-engineering-finish) and archived reports explicitly as historical execution. Hosted artifacts have retention limits; a checked-in receipt preserves provenance but does not replace an executable report. Do not label an old result as a test of the current checkout.
+Record `git rev-parse HEAD` and `git status --short`. Open the corresponding sanitized manifest and frozen reports from `.work/evidence/runs/`, checking command outcome, executed source and timestamps as described in the [test strategy](../testing/strategy.md). If local execution is unavailable, present the pinned [Actions evidence](../current-state.md#which-evidence-proves-what) and archived reports explicitly as historical execution. Hosted artifacts have retention limits; a checked-in receipt preserves provenance but does not replace an executable report. Do not label an old result as a test of the current checkout.
 
-The [recorded hosted banking release](../evidence/completion.md) pins frontend `81fceff035c5ad23e761f6a1c49196e488f24d58` and API `20c91f5e10658ab4ce3ec7f2727c8a4934f5b314`. This maintenance work started from later main `51a2affe38a733f350390fafd59b885b74823b42`. Before claiming local source matches a deployed component, inspect the relevant path differences, for example:
+The [current release index](../current-state.md) records the November 4 frontend pin `d7658be` and independently pinned API `20c91f5`. The [functional workspace acceptance](../evidence/financial-workspace-20261104.md) belongs to the earlier `b286242` release; the subsequent evidence refresh passed separate CI and a read-only public check. Before claiming local source matches a deployed component, compare the relevant paths:
 
 ```powershell
-git diff 81fceff035c5ad23e761f6a1c49196e488f24d58 -- apps/web
+git diff d7658beeee006f56889f094b66845e8ef47ba680 -- apps/web
 git diff 20c91f5e10658ab4ce3ec7f2727c8a4934f5b314 -- services/banking-api
 ```
 
-A later main revision and documentation updates do not establish a new deployment. This talk needs no hosted automation or load run.
+A later main revision and documentation updates do not establish a new application deployment or Jenkins execution. This talk needs no hosted automation or load run.
 
 ## 0:00 — the problem and one local journey
 

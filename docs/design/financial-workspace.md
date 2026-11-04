@@ -1,5 +1,7 @@
 # CreditFlow QE — Ledger Studio
 
+> **Implemented and released November 4, 2026.** This document preserves the original design and pre-release boundaries. Use the [current index](../current-state.md) for deployed sources and the [acceptance record](../evidence/financial-workspace-20261104.md) for executed proof.
+
 ## Starting point and direction
 
 Baseline: main `5b65732a9ce8fd77ea0052215d1d8f6156629441`, independently checked against origin on November 4. The checkout was clean; other worktrees are preserved. Work uses `feat/financial-workspace` in the clean existing checkout, retaining its project-scoped Compose tooling.

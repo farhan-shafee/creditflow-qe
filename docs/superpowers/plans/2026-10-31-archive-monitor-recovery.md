@@ -1,5 +1,7 @@
 # CreditFlow archive monitor recovery implementation plan
 
+> **Historical October 31 pre-rollout checkpoint.** The monitor was subsequently merged, deployed and verified through two scheduled executions. See the [current release index](../../current-state.md) and [rollout follow-through](../../archive-monitor-recovery.md); pending-CI/rollout statements below retain their original scope.
+
 > **For agentic workers:** Use superpowers:executing-plans to implement these tasks in the isolated worktree.
 
 **Goal:** Prepare a tested, reviewable recovery-aware CreditFlow monitor without erasing failures or changing production.

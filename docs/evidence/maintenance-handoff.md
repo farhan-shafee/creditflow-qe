@@ -1,6 +1,6 @@
 # Verification and maintenance receipt — 2026-10-15
 
-> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../railway-production.md) for the October 24-25 Railway topology, release state and remaining closeout.
+> **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../railway-production.md) for current Railway topology, source pins and operations status.
 
 Follow-up: [PR #4 stack guard correction and fresh results](pr4-stack-guard.md). The counts and indexed receipts below remain evidence of the original maintenance implementation.
 
