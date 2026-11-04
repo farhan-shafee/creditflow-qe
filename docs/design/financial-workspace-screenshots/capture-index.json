@@ -1,0 +1,1287 @@
+{
+  "recordedAt": "2026-11-04T15:21:05.155627Z",
+  "baseline": "5b65732a9ce8fd77ea0052215d1d8f6156629441",
+  "before": "Actual local baseline captured before visual changes.",
+  "after": "Actual local frontend image built and verified by source-bound browser run 20261104T150509Z-97c07ec122ce4550b95b242485192b8f (37 UI cases passed). These refreshed captures include the reload-recovery safeguards and final visual refinements. They show uncommitted feature work based on HEAD 5b65732a9ce8fd77ea0052215d1d8f6156629441; no deployed release is represented.",
+  "captureSource": {
+    "environment": "local Docker Compose",
+    "webImageId": "sha256:9ef894495cdae46c8c06f93dca067e454251527358cc59dfe24427437d8844ca",
+    "wipHead": "5b65732a9ce8fd77ea0052215d1d8f6156629441",
+    "worktree": "uncommitted feature changes",
+    "sectionAssetSources": {
+      "after-desktop-evidence.png": "sections-settled-desktop-evidence.png",
+      "after-mobile-evidence.png": "sections-settled-mobile-evidence.png",
+      "after-desktop-architecture.png": "sections-settled-desktop-architecture.png",
+      "after-mobile-architecture.png": "sections-settled-mobile-architecture.png"
+    },
+    "primaryHelper": ".work/workspace-design-20261104/archive-before-settled-sections/WorkspaceCapture.java",
+    "primaryHelperSha256": "29b817ab43e193cb36e68b6a852b1f4228cef7593476dba9980f89ebbc36c4f7",
+    "sectionHelper": ".work/workspace-design-20261104/WorkspaceCapture.java",
+    "sectionHelperSha256": "749a6cdf9413ffd3c5f68e41df1b968d7ada78fed3f49a53459fbd0f37b9a39b"
+  },
+  "browserVerification": {
+    "runId": "20261104T150509Z-97c07ec122ce4550b95b242485192b8f",
+    "status": "passed",
+    "source": {
+      "head": "5b65732a9ce8fd77ea0052215d1d8f6156629441",
+      "fingerprint": "9637d382afe1fcd80d365ea4e3b1684de6f377d310aae6556585f07128df34e5",
+      "sourceFiles": 277
+    },
+    "tests": 37,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "classes": [
+      {
+        "class": "com.creditflow.qe.ui.BffContractTest",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.creditflow.qe.ui.PlaywrightJourneyTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.creditflow.qe.ui.SeleniumJourneyTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.creditflow.qe.ui.TraceRedactorTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.creditflow.qe.ui.WorkspaceJourneyTest",
+        "tests": 19,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ]
+  },
+  "baselineRenderMetadata": {
+    "schema": "creditflow-local-ui-capture-v1",
+    "label": "before",
+    "completedAtUtc": "2026-11-04T13:31:52.467356154Z",
+    "source": "WorkspaceCapture.java",
+    "captures": [
+      {
+        "device": "desktop",
+        "capturedAtUtc": "2026-11-04T13:31:51.842577640Z",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "url": "http://web:3100",
+        "navigationStatus": 200,
+        "title": "CreditFlow QE | Engineering Command Center",
+        "heading": "Financial logic.\nExecutable proof.",
+        "documentGeometry": {
+          "width": 1440,
+          "height": 3300,
+          "viewportWidth": 1440,
+          "viewportHeight": 1000
+        },
+        "startSandboxVisible": true,
+        "requestFailureCount": 0,
+        "pageErrorCount": 0,
+        "httpStatuses": [
+          {
+            "path": "/",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/12kt2d6fc6y-_.css",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/3cfn99dbrcvvp.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/0umf92h1sb77c.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/3bowbu4lotl7n.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/0r-yur70-ku2o.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/01s_f_3qlcqtb.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/api/banking",
+            "method": "GET",
+            "status": 401
+          }
+        ],
+        "viewportScreenshot": "/workspace/.work/workspace-design-20261104/before-desktop.png",
+        "fullPageScreenshot": "/workspace/.work/workspace-design-20261104/before-desktop-full.png"
+      },
+      {
+        "device": "mobile",
+        "capturedAtUtc": "2026-11-04T13:31:52.404426792Z",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "url": "http://web:3100",
+        "navigationStatus": 200,
+        "title": "CreditFlow QE | Engineering Command Center",
+        "heading": "Financial logic.\nExecutable proof.",
+        "documentGeometry": {
+          "width": 390,
+          "height": 5127,
+          "viewportWidth": 390,
+          "viewportHeight": 844
+        },
+        "startSandboxVisible": true,
+        "requestFailureCount": 0,
+        "pageErrorCount": 0,
+        "httpStatuses": [
+          {
+            "path": "/",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/12kt2d6fc6y-_.css",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/3cfn99dbrcvvp.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/0umf92h1sb77c.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/3bowbu4lotl7n.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/0r-yur70-ku2o.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/01s_f_3qlcqtb.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/api/banking",
+            "method": "GET",
+            "status": 401
+          }
+        ],
+        "viewportScreenshot": "/workspace/.work/workspace-design-20261104/before-mobile.png",
+        "fullPageScreenshot": "/workspace/.work/workspace-design-20261104/before-mobile-full.png"
+      }
+    ],
+    "sensitiveHttpDataCollected": false
+  },
+  "renderMetadata": {
+    "schema": "creditflow-local-ui-capture-v1",
+    "label": "after",
+    "completedAtUtc": "2026-11-04T15:14:27.052166929Z",
+    "source": "WorkspaceCapture.java",
+    "captures": [
+      {
+        "device": "desktop",
+        "capturedAtUtc": "2026-11-04T15:14:20.439800527Z",
+        "viewport": {
+          "height": 1000,
+          "width": 1440
+        },
+        "url": "http://web:3100",
+        "navigationStatus": 200,
+        "title": "CreditFlow QE | Engineering Command Center",
+        "heading": "Financial logic.\nExecutable proof.",
+        "documentGeometry": {
+          "width": 1440,
+          "height": 6926,
+          "viewportWidth": 1440,
+          "viewportHeight": 1000
+        },
+        "startSandboxVisible": true,
+        "requestFailureCount": 0,
+        "pageErrorCount": 0,
+        "httpStatuses": [
+          {
+            "status": 200,
+            "path": "/",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/08o3237whfra1.css",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/media/InterVariable-s.p.2c0y96ae70xfx.woff2",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/3cfn99dbrcvvp.js",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/0umf92h1sb77c.js",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/1jxfhbs2sa6gx.js",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/0r-yur70-ku2o.js",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/01s_f_3qlcqtb.js",
+            "method": "GET"
+          },
+          {
+            "status": 401,
+            "path": "/api/banking",
+            "method": "GET"
+          },
+          {
+            "status": 201,
+            "path": "/api/sandbox",
+            "method": "POST"
+          },
+          {
+            "status": 200,
+            "path": "/api/banking",
+            "method": "GET"
+          },
+          {
+            "status": 201,
+            "path": "/api/banking",
+            "method": "POST"
+          },
+          {
+            "status": 200,
+            "path": "/api/banking",
+            "method": "GET"
+          },
+          {
+            "status": 422,
+            "path": "/api/banking",
+            "method": "POST"
+          },
+          {
+            "status": 200,
+            "path": "/api/banking",
+            "method": "GET"
+          },
+          {
+            "status": 201,
+            "path": "/api/lab/sandbox",
+            "method": "POST"
+          },
+          {
+            "status": 200,
+            "path": "/api/lab/banking",
+            "method": "GET"
+          },
+          {
+            "status": 201,
+            "path": "/api/lab/banking",
+            "method": "POST"
+          },
+          {
+            "status": 200,
+            "path": "/api/lab/banking",
+            "method": "POST"
+          },
+          {
+            "status": 200,
+            "path": "/api/lab/banking",
+            "method": "GET"
+          }
+        ],
+        "viewportScreenshot": "/workspace/.work/workspace-design-20261104/after-desktop.png",
+        "fullPageScreenshot": "/workspace/.work/workspace-design-20261104/after-desktop-full.png",
+        "interactionScreenshots": [
+          "/workspace/.work/workspace-design-20261104/after-desktop-loading.png",
+          "/workspace/.work/workspace-design-20261104/after-desktop-empty.png",
+          "/workspace/.work/workspace-design-20261104/after-desktop-simulator.png",
+          "/workspace/.work/workspace-design-20261104/after-desktop-details.png",
+          "/workspace/.work/workspace-design-20261104/after-desktop-css-zoom-200.png",
+          "/workspace/.work/workspace-design-20261104/after-desktop-error.png",
+          "/workspace/.work/workspace-design-20261104/after-desktop-lab.png"
+        ],
+        "cssZoomProbe": {
+          "kind": "CSS root zoom; native Chrome UI zoom was not manipulated",
+          "factor": 2,
+          "geometry": {
+            "rootClientWidth": 1440,
+            "rootScrollWidth": 1440,
+            "bodyRight": 1440,
+            "viewportWidth": 1440
+          }
+        }
+      },
+      {
+        "device": "mobile",
+        "capturedAtUtc": "2026-11-04T15:14:24.665611821Z",
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "url": "http://web:3100",
+        "navigationStatus": 200,
+        "title": "CreditFlow QE | Engineering Command Center",
+        "heading": "Financial logic.\nExecutable proof.",
+        "documentGeometry": {
+          "width": 390,
+          "height": 12677,
+          "viewportWidth": 390,
+          "viewportHeight": 844
+        },
+        "startSandboxVisible": true,
+        "requestFailureCount": 0,
+        "pageErrorCount": 0,
+        "httpStatuses": [
+          {
+            "status": 200,
+            "path": "/",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/08o3237whfra1.css",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/media/InterVariable-s.p.2c0y96ae70xfx.woff2",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/3cfn99dbrcvvp.js",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/0umf92h1sb77c.js",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/1jxfhbs2sa6gx.js",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/0r-yur70-ku2o.js",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/01s_f_3qlcqtb.js",
+            "method": "GET"
+          },
+          {
+            "status": 401,
+            "path": "/api/banking",
+            "method": "GET"
+          },
+          {
+            "status": 201,
+            "path": "/api/sandbox",
+            "method": "POST"
+          },
+          {
+            "status": 200,
+            "path": "/api/banking",
+            "method": "GET"
+          },
+          {
+            "status": 201,
+            "path": "/api/banking",
+            "method": "POST"
+          },
+          {
+            "status": 200,
+            "path": "/api/banking",
+            "method": "GET"
+          },
+          {
+            "status": 422,
+            "path": "/api/banking",
+            "method": "POST"
+          },
+          {
+            "status": 200,
+            "path": "/api/banking",
+            "method": "GET"
+          },
+          {
+            "status": 201,
+            "path": "/api/lab/sandbox",
+            "method": "POST"
+          },
+          {
+            "status": 200,
+            "path": "/api/lab/banking",
+            "method": "GET"
+          },
+          {
+            "status": 201,
+            "path": "/api/lab/banking",
+            "method": "POST"
+          },
+          {
+            "status": 200,
+            "path": "/api/lab/banking",
+            "method": "POST"
+          },
+          {
+            "status": 200,
+            "path": "/api/lab/banking",
+            "method": "GET"
+          }
+        ],
+        "viewportScreenshot": "/workspace/.work/workspace-design-20261104/after-mobile.png",
+        "fullPageScreenshot": "/workspace/.work/workspace-design-20261104/after-mobile-full.png",
+        "interactionScreenshots": [
+          "/workspace/.work/workspace-design-20261104/after-mobile-loading.png",
+          "/workspace/.work/workspace-design-20261104/after-mobile-empty.png",
+          "/workspace/.work/workspace-design-20261104/after-mobile-simulator.png",
+          "/workspace/.work/workspace-design-20261104/after-mobile-details.png",
+          "/workspace/.work/workspace-design-20261104/after-mobile-error.png",
+          "/workspace/.work/workspace-design-20261104/after-mobile-lab.png",
+          "/workspace/.work/workspace-design-20261104/after-mobile-navigation.png"
+        ],
+        "cssZoomProbe": {}
+      },
+      {
+        "device": "tablet",
+        "capturedAtUtc": "2026-11-04T15:14:27.010049793Z",
+        "viewport": {
+          "height": 1000,
+          "width": 900
+        },
+        "url": "http://web:3100",
+        "navigationStatus": 200,
+        "title": "CreditFlow QE | Engineering Command Center",
+        "heading": "Financial logic.\nExecutable proof.",
+        "documentGeometry": {
+          "width": 900,
+          "height": 8003,
+          "viewportWidth": 900,
+          "viewportHeight": 1000
+        },
+        "startSandboxVisible": true,
+        "requestFailureCount": 0,
+        "pageErrorCount": 0,
+        "httpStatuses": [
+          {
+            "status": 200,
+            "path": "/",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/08o3237whfra1.css",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/media/InterVariable-s.p.2c0y96ae70xfx.woff2",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/3cfn99dbrcvvp.js",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/0umf92h1sb77c.js",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/0r-yur70-ku2o.js",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/1jxfhbs2sa6gx.js",
+            "method": "GET"
+          },
+          {
+            "status": 200,
+            "path": "/_next/static/chunks/01s_f_3qlcqtb.js",
+            "method": "GET"
+          },
+          {
+            "status": 401,
+            "path": "/api/banking",
+            "method": "GET"
+          },
+          {
+            "status": 201,
+            "path": "/api/sandbox",
+            "method": "POST"
+          },
+          {
+            "status": 200,
+            "path": "/api/banking",
+            "method": "GET"
+          },
+          {
+            "status": 201,
+            "path": "/api/banking",
+            "method": "POST"
+          },
+          {
+            "status": 200,
+            "path": "/api/banking",
+            "method": "GET"
+          },
+          {
+            "status": 422,
+            "path": "/api/banking",
+            "method": "POST"
+          },
+          {
+            "status": 200,
+            "path": "/api/banking",
+            "method": "GET"
+          },
+          {
+            "status": 201,
+            "path": "/api/lab/sandbox",
+            "method": "POST"
+          },
+          {
+            "status": 200,
+            "path": "/api/lab/banking",
+            "method": "GET"
+          },
+          {
+            "status": 201,
+            "path": "/api/lab/banking",
+            "method": "POST"
+          },
+          {
+            "status": 200,
+            "path": "/api/lab/banking",
+            "method": "POST"
+          },
+          {
+            "status": 200,
+            "path": "/api/lab/banking",
+            "method": "GET"
+          }
+        ],
+        "viewportScreenshot": "/workspace/.work/workspace-design-20261104/after-tablet.png",
+        "fullPageScreenshot": "/workspace/.work/workspace-design-20261104/after-tablet-full.png",
+        "interactionScreenshots": [
+          "/workspace/.work/workspace-design-20261104/after-tablet-loading.png",
+          "/workspace/.work/workspace-design-20261104/after-tablet-empty.png",
+          "/workspace/.work/workspace-design-20261104/after-tablet-simulator.png",
+          "/workspace/.work/workspace-design-20261104/after-tablet-details.png",
+          "/workspace/.work/workspace-design-20261104/after-tablet-error.png",
+          "/workspace/.work/workspace-design-20261104/after-tablet-lab.png"
+        ],
+        "cssZoomProbe": {}
+      }
+    ],
+    "sensitiveHttpDataCollected": false
+  },
+  "sectionRenderMetadata": {
+    "schema": "creditflow-local-ui-capture-v1",
+    "label": "sections-settled",
+    "completedAtUtc": "2026-11-04T15:20:27.467276177Z",
+    "source": "WorkspaceCapture.java",
+    "captures": [
+      {
+        "device": "desktop",
+        "capturedAtUtc": "2026-11-04T15:20:26.220290575Z",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "settlePolicy": "Pointer outside sidebar; expected aria-current observed; 250ms CSS transition wait",
+        "sections": [
+          {
+            "section": "evidence",
+            "viewportScreenshot": "/workspace/.work/workspace-design-20261104/sections-settled-desktop-evidence.png",
+            "sectionScreenshot": "/workspace/.work/workspace-design-20261104/sections-settled-desktop-evidence-full.png",
+            "navigationStateAtCapture": [
+              {
+                "href": "#automation",
+                "current": null,
+                "hover": false,
+                "background": "rgba(0, 0, 0, 0)"
+              },
+              {
+                "href": "#evidence",
+                "current": "location",
+                "hover": false,
+                "background": "rgb(39, 76, 62)"
+              },
+              {
+                "href": "#architecture",
+                "current": null,
+                "hover": false,
+                "background": "rgba(0, 0, 0, 0)"
+              },
+              {
+                "href": "#automation",
+                "current": null,
+                "hover": false,
+                "background": "rgba(0, 0, 0, 0)"
+              },
+              {
+                "href": "#evidence",
+                "current": "location",
+                "hover": false,
+                "background": "rgb(39, 76, 62)"
+              },
+              {
+                "href": "#architecture",
+                "current": null,
+                "hover": false,
+                "background": "rgba(0, 0, 0, 0)"
+              }
+            ]
+          },
+          {
+            "section": "architecture",
+            "viewportScreenshot": "/workspace/.work/workspace-design-20261104/sections-settled-desktop-architecture.png",
+            "sectionScreenshot": "/workspace/.work/workspace-design-20261104/sections-settled-desktop-architecture-full.png",
+            "navigationStateAtCapture": [
+              {
+                "href": "#automation",
+                "current": null,
+                "hover": false,
+                "background": "rgba(0, 0, 0, 0)"
+              },
+              {
+                "href": "#evidence",
+                "current": null,
+                "hover": false,
+                "background": "rgba(0, 0, 0, 0)"
+              },
+              {
+                "href": "#architecture",
+                "current": "location",
+                "hover": false,
+                "background": "rgb(39, 76, 62)"
+              },
+              {
+                "href": "#automation",
+                "current": null,
+                "hover": false,
+                "background": "rgba(0, 0, 0, 0)"
+              },
+              {
+                "href": "#evidence",
+                "current": null,
+                "hover": false,
+                "background": "rgba(0, 0, 0, 0)"
+              },
+              {
+                "href": "#architecture",
+                "current": "location",
+                "hover": false,
+                "background": "rgb(39, 76, 62)"
+              }
+            ]
+          }
+        ],
+        "httpStatuses": [
+          {
+            "path": "/",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/08o3237whfra1.css",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/media/InterVariable-s.p.2c0y96ae70xfx.woff2",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/3cfn99dbrcvvp.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/0umf92h1sb77c.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/1jxfhbs2sa6gx.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/0r-yur70-ku2o.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/01s_f_3qlcqtb.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/api/banking",
+            "method": "GET",
+            "status": 401
+          }
+        ],
+        "requestFailureCount": 0,
+        "pageErrorCount": 0
+      },
+      {
+        "device": "mobile",
+        "capturedAtUtc": "2026-11-04T15:20:27.431509508Z",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "settlePolicy": "Pointer outside sidebar; expected aria-current observed; 250ms CSS transition wait",
+        "sections": [
+          {
+            "section": "evidence",
+            "viewportScreenshot": "/workspace/.work/workspace-design-20261104/sections-settled-mobile-evidence.png",
+            "sectionScreenshot": "/workspace/.work/workspace-design-20261104/sections-settled-mobile-evidence-full.png",
+            "navigationStateAtCapture": [
+              {
+                "href": "#automation",
+                "current": null,
+                "hover": false,
+                "background": "rgba(0, 0, 0, 0)"
+              },
+              {
+                "href": "#evidence",
+                "current": "location",
+                "hover": false,
+                "background": "rgb(39, 76, 62)"
+              },
+              {
+                "href": "#architecture",
+                "current": null,
+                "hover": false,
+                "background": "rgba(0, 0, 0, 0)"
+              },
+              {
+                "href": "#automation",
+                "current": null,
+                "hover": false,
+                "background": "rgba(0, 0, 0, 0)"
+              },
+              {
+                "href": "#evidence",
+                "current": "location",
+                "hover": false,
+                "background": "rgb(39, 76, 62)"
+              },
+              {
+                "href": "#architecture",
+                "current": null,
+                "hover": false,
+                "background": "rgba(0, 0, 0, 0)"
+              }
+            ]
+          },
+          {
+            "section": "architecture",
+            "viewportScreenshot": "/workspace/.work/workspace-design-20261104/sections-settled-mobile-architecture.png",
+            "sectionScreenshot": "/workspace/.work/workspace-design-20261104/sections-settled-mobile-architecture-full.png",
+            "navigationStateAtCapture": [
+              {
+                "href": "#automation",
+                "current": null,
+                "hover": false,
+                "background": "rgba(0, 0, 0, 0)"
+              },
+              {
+                "href": "#evidence",
+                "current": null,
+                "hover": false,
+                "background": "rgba(0, 0, 0, 0)"
+              },
+              {
+                "href": "#architecture",
+                "current": "location",
+                "hover": false,
+                "background": "rgb(39, 76, 62)"
+              },
+              {
+                "href": "#automation",
+                "current": null,
+                "hover": false,
+                "background": "rgba(0, 0, 0, 0)"
+              },
+              {
+                "href": "#evidence",
+                "current": null,
+                "hover": false,
+                "background": "rgba(0, 0, 0, 0)"
+              },
+              {
+                "href": "#architecture",
+                "current": "location",
+                "hover": false,
+                "background": "rgb(39, 76, 62)"
+              }
+            ]
+          }
+        ],
+        "httpStatuses": [
+          {
+            "path": "/",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/08o3237whfra1.css",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/media/InterVariable-s.p.2c0y96ae70xfx.woff2",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/3cfn99dbrcvvp.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/0umf92h1sb77c.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/0r-yur70-ku2o.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/1jxfhbs2sa6gx.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/01s_f_3qlcqtb.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/api/banking",
+            "method": "GET",
+            "status": 401
+          }
+        ],
+        "requestFailureCount": 0,
+        "pageErrorCount": 0
+      }
+    ],
+    "sensitiveHttpDataCollected": false
+  },
+  "images": [
+    {
+      "name": "before-desktop.png",
+      "sha256": "a554c23ce28ddec40dc51d0b3413b705fc2e7fc16bcd9d7e748e71ded6d52067",
+      "bytes": 137936,
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "name": "before-mobile.png",
+      "sha256": "44af5be362c2f1bed227c3ff314b2eb896d663ba323824434dd4f4e3856b0270",
+      "bytes": 57223,
+      "width": 390,
+      "height": 844
+    },
+    {
+      "name": "after-desktop.png",
+      "sha256": "a4a2ad295bf79295e2d15ac370c48f0c601f9485cca0d4f281d9727df3b6bd5c",
+      "bytes": 127361,
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "name": "after-mobile.png",
+      "sha256": "2995b86d8b37209cc93e819488f4f3fb9e0990461d82e261fb4b5798e3e99997",
+      "bytes": 49815,
+      "width": 390,
+      "height": 844
+    },
+    {
+      "name": "after-tablet.png",
+      "sha256": "0fe79eb23326363a39294e9b26cc47f267ad4b04dd6eb99982e25a366b44ebf0",
+      "bytes": 94934,
+      "width": 900,
+      "height": 1000
+    },
+    {
+      "name": "after-desktop-simulator.png",
+      "sha256": "4c06805a8e2b41134860a8df7918bfadaf8a5a8e3cffebe46b2d27440d80334a",
+      "bytes": 118365,
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "name": "after-desktop-details.png",
+      "sha256": "428b373c272b24f2f626819a185bbb05a2adcbc5882ba8c167c14daf2749210f",
+      "bytes": 211074,
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "name": "after-desktop-lab.png",
+      "sha256": "4dc2667973d51b3586677a8c8189c19b95510d4bb6090f730dce0bbfd303632d",
+      "bytes": 131822,
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "name": "after-mobile-navigation.png",
+      "sha256": "45de5d86f250bbf27610f21cfbfb3e7fa2516e75b25dd5401297a9ebe632d3fc",
+      "bytes": 47742,
+      "width": 390,
+      "height": 844
+    },
+    {
+      "name": "after-desktop-css-zoom-200.png",
+      "sha256": "12bc53212bcfc820abbbae3c1369a7680417c241dd4d92b0599ee26a3941c1b0",
+      "bytes": 102323,
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "name": "after-desktop-evidence.png",
+      "sha256": "39c023f657cfb4c8a4cb91124945325caaafe3c24f7b3e8244b39d9e42d3164e",
+      "bytes": 142607,
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "name": "after-mobile-evidence.png",
+      "sha256": "30ec8fc9cb0b50023af5705c4a5ef4970fd030fe10e8aca5be2dc84d9b301b0d",
+      "bytes": 43882,
+      "width": 390,
+      "height": 844
+    },
+    {
+      "name": "after-desktop-architecture.png",
+      "sha256": "7e490dd3baf6702e74a79ad5702d116dd3c70d564bbf5d6b1ff151c9583ae6e7",
+      "bytes": 137157,
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "name": "after-mobile-architecture.png",
+      "sha256": "32e4e6a365c4543812d2b18236c7d328c46be315e53dc0593d5538006f24fab2",
+      "bytes": 43219,
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "supplementalRenderMetadata": {
+    "schema": "creditflow-local-ui-capture-v1",
+    "label": "sections",
+    "completedAtUtc": "2026-11-04T15:15:16.815097007Z",
+    "source": "WorkspaceCapture.java",
+    "captures": [
+      {
+        "device": "desktop",
+        "capturedAtUtc": "2026-11-04T15:15:15.427398712Z",
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "sections": [
+          {
+            "section": "api",
+            "viewportScreenshot": "/workspace/.work/workspace-design-20261104/sections-desktop-api.png",
+            "sectionScreenshot": "/workspace/.work/workspace-design-20261104/sections-desktop-api-full.png"
+          },
+          {
+            "section": "automation",
+            "viewportScreenshot": "/workspace/.work/workspace-design-20261104/sections-desktop-automation.png",
+            "sectionScreenshot": "/workspace/.work/workspace-design-20261104/sections-desktop-automation-full.png"
+          },
+          {
+            "section": "evidence",
+            "viewportScreenshot": "/workspace/.work/workspace-design-20261104/sections-desktop-evidence.png",
+            "sectionScreenshot": "/workspace/.work/workspace-design-20261104/sections-desktop-evidence-full.png"
+          },
+          {
+            "section": "architecture",
+            "viewportScreenshot": "/workspace/.work/workspace-design-20261104/sections-desktop-architecture.png",
+            "sectionScreenshot": "/workspace/.work/workspace-design-20261104/sections-desktop-architecture-full.png"
+          },
+          {
+            "section": "interview",
+            "viewportScreenshot": "/workspace/.work/workspace-design-20261104/sections-desktop-interview.png",
+            "sectionScreenshot": "/workspace/.work/workspace-design-20261104/sections-desktop-interview-full.png"
+          }
+        ],
+        "keyboardFocus": {
+          "tag": "A",
+          "className": "layer",
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "outlineColor": "rgb(111, 139, 48)",
+          "focusVisible": true
+        },
+        "keyboardFocusScreenshot": "/workspace/.work/workspace-design-20261104/sections-desktop-keyboard-focus.png",
+        "reducedMotion": {
+          "matches": true,
+          "scrollBehavior": "auto",
+          "animatedElementCount": 0
+        },
+        "reducedMotionScreenshot": "/workspace/.work/workspace-design-20261104/sections-desktop-reduced-motion.png",
+        "httpStatuses": [
+          {
+            "path": "/",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/08o3237whfra1.css",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/media/InterVariable-s.p.2c0y96ae70xfx.woff2",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/3cfn99dbrcvvp.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/0umf92h1sb77c.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/1jxfhbs2sa6gx.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/0r-yur70-ku2o.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/01s_f_3qlcqtb.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/api/banking",
+            "method": "GET",
+            "status": 401
+          }
+        ],
+        "requestFailureCount": 0,
+        "pageErrorCount": 0
+      },
+      {
+        "device": "mobile",
+        "capturedAtUtc": "2026-11-04T15:15:16.786556427Z",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "sections": [
+          {
+            "section": "api",
+            "viewportScreenshot": "/workspace/.work/workspace-design-20261104/sections-mobile-api.png",
+            "sectionScreenshot": "/workspace/.work/workspace-design-20261104/sections-mobile-api-full.png"
+          },
+          {
+            "section": "automation",
+            "viewportScreenshot": "/workspace/.work/workspace-design-20261104/sections-mobile-automation.png",
+            "sectionScreenshot": "/workspace/.work/workspace-design-20261104/sections-mobile-automation-full.png"
+          },
+          {
+            "section": "evidence",
+            "viewportScreenshot": "/workspace/.work/workspace-design-20261104/sections-mobile-evidence.png",
+            "sectionScreenshot": "/workspace/.work/workspace-design-20261104/sections-mobile-evidence-full.png"
+          },
+          {
+            "section": "architecture",
+            "viewportScreenshot": "/workspace/.work/workspace-design-20261104/sections-mobile-architecture.png",
+            "sectionScreenshot": "/workspace/.work/workspace-design-20261104/sections-mobile-architecture-full.png"
+          },
+          {
+            "section": "interview",
+            "viewportScreenshot": "/workspace/.work/workspace-design-20261104/sections-mobile-interview.png",
+            "sectionScreenshot": "/workspace/.work/workspace-design-20261104/sections-mobile-interview-full.png"
+          }
+        ],
+        "keyboardFocus": {
+          "tag": "A",
+          "className": "layer",
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "outlineColor": "rgb(111, 139, 48)",
+          "focusVisible": true
+        },
+        "keyboardFocusScreenshot": "/workspace/.work/workspace-design-20261104/sections-mobile-keyboard-focus.png",
+        "reducedMotion": {
+          "matches": true,
+          "scrollBehavior": "auto",
+          "animatedElementCount": 0
+        },
+        "reducedMotionScreenshot": "/workspace/.work/workspace-design-20261104/sections-mobile-reduced-motion.png",
+        "httpStatuses": [
+          {
+            "path": "/",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/08o3237whfra1.css",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/media/InterVariable-s.p.2c0y96ae70xfx.woff2",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/3cfn99dbrcvvp.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/turbopack-3-ry682tkyiqk.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/0umf92h1sb77c.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/0r-yur70-ku2o.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/1jxfhbs2sa6gx.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/_next/static/chunks/01s_f_3qlcqtb.js",
+            "method": "GET",
+            "status": 200
+          },
+          {
+            "path": "/api/banking",
+            "method": "GET",
+            "status": 401
+          }
+        ],
+        "requestFailureCount": 0,
+        "pageErrorCount": 0
+      }
+    ],
+    "sensitiveHttpDataCollected": false
+  },
+  "supplementalRenderHelperSha256": "29b817ab43e193cb36e68b6a852b1f4228cef7593476dba9980f89ebbc36c4f7"
+}

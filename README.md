@@ -25,6 +25,8 @@ Run these commands sequentially. The PowerShell entry point generates an ignored
 
 ## What is implemented
 
+The financial engineering workspace separates the banking simulator, four isolated correctness demonstrations, live sanitized HTTP inspection and revision-bound evidence. Browser demonstrations use the real API and do not execute Cucumber. The [design brief](docs/design/financial-workspace.md) explains the readable forest-and-paper direction; the [frontend release/rollback plan](docs/design/financial-workspace-release.md) requires separate approval. The UI self-hosts Inter under its bundled SIL Open Font License and makes no per-visitor GitHub/provider evidence calls.
+
 - Spring Boot4.1.1 / Java21 / PostgreSQL17 / Flyway: exact USD arithmetic, account ownership, expiring synthetic sessions, purchases, payments, cursor history and structured errors.
 - Atomic balance and ledger updates, per-account row locks, account-scoped idempotency, replay of original receipts and rollback on a genuine database failure.
 - Independent Cucumber8 / REST Assured6 / JUnit Platform framework, scenario-scoped PicoContainer context, reusable clients, schemas, concurrency and negative cases. Separate TestNG data-provider module.

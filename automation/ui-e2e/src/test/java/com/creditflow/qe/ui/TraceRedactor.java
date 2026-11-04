@@ -1,5 +1,6 @@
 package com.creditflow.qe.ui;
 
+import com.microsoft.playwright.options.Cookie;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
@@ -17,7 +18,16 @@ final class TraceRedactor {
         || key.contains("token")
         || key.contains("password")
         || key.contains("secret")
-        || key.equals("creditflow_session");
+        || key.startsWith("creditflow_");
+  }
+
+  static List<String> sessionSecrets(List<Cookie> cookies) {
+    return cookies.stream()
+        .filter(cookie -> cookie.name.toLowerCase(Locale.ROOT).startsWith("creditflow_"))
+        .map(cookie -> cookie.value)
+        .filter(value -> !value.isEmpty())
+        .distinct()
+        .toList();
   }
 
   static Object scrub(Object input) {
@@ -50,8 +60,13 @@ final class TraceRedactor {
         if (entry.getName().endsWith(".trace") || entry.getName().endsWith(".network")) {
           StringBuilder content = new StringBuilder();
           for (String line : new String(bytes, StandardCharsets.UTF_8).split("\\R")) {
-            if (!line.isBlank())
-              content.append(json.toJson(scrub(json.toType(line, Map.class)))).append('\n');
+            if (!line.isBlank()) {
+              try (var record = json.newOutput(content)) {
+                record.setPrettyPrint(false);
+                record.write(scrub(json.toType(line, Map.class)));
+              }
+              content.append('\n');
+            }
           }
           bytes = content.toString().getBytes(StandardCharsets.UTF_8);
         }

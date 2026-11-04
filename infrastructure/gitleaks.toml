@@ -4,3 +4,14 @@ useDefault = true
 [[allowlists]]
 description = "Ignored local state and generated reports never enter source control"
 paths = ['''(^|/)\.env$''', '''(^|/)\.work/''', '''(^|/)target/''', '''(^|/)node_modules/''', '''(^|/)\.next/''', '''(^|/)\.git/''']
+
+# Public commit already contained in main, not a provision/API credential:
+# https://github.com/farhan-shafee/creditflow-qe/commit/20c91f5e10658ab4ce3ec7f2727c8a4934f5b314
+# Exact value AND exact evidence locations; other findings on these lines still apply.
+# Scope semantics: https://github.com/gitleaks/gitleaks/blob/v8.30.1/README.md#configuration
+[[allowlists]]
+description = "Recorded public banking API revision in snapshot and provenance assertion"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''(^|/)apps/web/(data/evidence\.json|test/evidence\.test\.ts)$''']
+regexes = ['''^20c91f5e10658ab4ce3ec7f2727c8a4934f5b314$''']

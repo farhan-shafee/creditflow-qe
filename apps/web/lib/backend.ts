@@ -12,8 +12,8 @@ export function signingKey(): string {
   globalState.creditflowLocalKey ??= randomBytes(32).toString('hex');
   return globalState.creditflowLocalKey;
 }
-export function session(request: NextRequest): SandboxSession | null {
-  return decodeSession(request.cookies.get('creditflow_session')?.value ?? '', signingKey(), Math.floor(Date.now() / 1000));
+export function session(request: NextRequest, cookieName: 'creditflow_session' | 'creditflow_lab_session' = 'creditflow_session'): SandboxSession | null {
+  return decodeSession(request.cookies.get(cookieName)?.value ?? '', signingKey(), Math.floor(Date.now() / 1000));
 }
 export function sameOrigin(request: NextRequest): boolean {
   return allowedOrigin(request.headers.get('origin'), request.headers.get('host'), process.env.CREDITFLOW_WEB_ORIGIN, process.env.CREDITFLOW_LOCAL_DEMO === 'true' || process.env.NODE_ENV !== 'production');

@@ -8,6 +8,8 @@ mvnw text eol=lf
 docs/evidence/portfolio-lint-remediation/*.json text eol=lf
 docs/evidence/maintenance-20261015/*.json text eol=lf
 docs/evidence/pr4-stack-guard/*.json text eol=lf
+docs/design/financial-workspace-screenshots/*.json text eol=lf
+apps/web/data/*.json text eol=lf
 
 infrastructure/monitor/** text eol=lf
 docs/evidence/archive-monitor-20261031/** text eol=lf

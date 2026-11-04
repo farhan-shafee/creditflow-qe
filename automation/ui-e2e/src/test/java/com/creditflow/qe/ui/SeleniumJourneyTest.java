@@ -60,6 +60,19 @@ class SeleniumJourneyTest {
     assertEquals("$800.00", find("available").getText());
     assertEquals(1, browser.findElements(By.cssSelector("[data-testid='ledger-row']")).size());
     assertTrue(find("receipt").getText().contains("PAYMENT"));
+    assertTrue(find("inspector-status").getText().contains("201"));
+    WebElement details = find("ledger-details");
+    browser.executeScript("arguments[0].scrollIntoView({block:'center'})", details);
+    details.sendKeys(Keys.ENTER);
+    wait.until(d -> find("transaction-drawer").isDisplayed());
+    assertTrue(find("transaction-drawer").getText().contains("PAYMENT"));
+    assertTrue(find("transaction-drawer").getText().contains("50.00"));
+    browser.switchTo().activeElement().sendKeys(Keys.ESCAPE);
+    wait.until(
+        d ->
+            d.findElements(By.cssSelector("[data-testid='transaction-drawer']")).stream()
+                .noneMatch(WebElement::isDisplayed));
+    assertEquals(details, browser.switchTo().activeElement());
   }
 
   @Test

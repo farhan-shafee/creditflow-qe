@@ -40,6 +40,8 @@ jobs:
         run: node infrastructure/bounded-reliability.cjs
       - name: Full inventory, OSV, Gitleaks and configuration checks
         run: node infrastructure/quality-verify.cjs
+      - name: Secret-scan exception boundaries with the prepared pinned image
+        run: node --test infrastructure/test-gitleaks-config.cjs
       - name: Reject stale or incomplete core/public/quality evidence
         run: python3 infrastructure/verify-evidence.py --scope core --scope public --scope quality
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
@@ -50,6 +52,7 @@ jobs:
             .work/evidence/runs/
             .work/evidence/latest/
             .work/maintenance-20261015/reliability/
+            .work/gitleaks-config/runs/
           retention-days: 14
           include-hidden-files: true
       - name: Stop this project stack
