@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { getEvidenceView } from '../lib/evidence.ts';
 
 const source = JSON.parse(readFileSync(new URL('../data/evidence.json', import.meta.url), 'utf8'));
-const now = new Date('2026-11-04T14:00:00Z');
+const now = new Date('2026-11-04T23:00:00Z');
 function fixture() { return structuredClone(source); }
 function available(input = fixture(), at = now) {
   const view = getEvidenceView(input, at);
@@ -13,18 +13,22 @@ function available(input = fixture(), at = now) {
   return view;
 }
 
-test('keeps recorded deployments separate from the later verified main revision', () => {
+test('ties the accepted frontend to verified main while keeping the backend revision separate', () => {
   const view = available();
-  assert.equal(view.production.webRevision, '7a16b50b595d01c735ae566e9737b24b6121eaf6');
+  assert.equal(view.production.webRevision, 'b286242e0b3e8f3aa1539a256662865ba4002ef1');
   assert.equal(view.production.apiRevision, '20c91f5e10658ab4ce3ec7f2727c8a4934f5b314');
   assert.equal(view.production.currentVerification, 'unverified');
-  assert.equal(view.latestMainCI.revision, '5b65732a9ce8fd77ea0052215d1d8f6156629441');
+  assert.equal(view.latestMainCI.revision, 'b286242e0b3e8f3aa1539a256662865ba4002ef1');
   assert.equal(view.latestMainCI.conclusion, 'success');
 });
 
 test('uses validated latest counts and leaves inaccessible counts unavailable', () => {
   const view = available();
   assert.equal(view.latestMainCI.counts?.find((scope: any) => scope.scope === 'quality')?.counts.components, 205);
+  assert.equal(view.latestMainCI.counts?.find((scope: any) => scope.scope === 'browser')?.counts.ui, 37);
+  assert.equal(view.latestMainCI.counts?.find((scope: any) => scope.scope === 'web')?.counts.frontend, 57);
+  assert.equal(view.latestMainCI.artifactValidation?.reportHashesVerified, 192);
+  assert.equal(view.latestMainCI.artifactValidation?.commandLogHashesVerified, 22);
   assert.equal(view.latestMainCI.artifactAccess, 'validated');
   assert.equal(view.historicalBaseline.scopes[0].counts.unit, 31);
   const input = fixture();
@@ -45,18 +49,24 @@ test('preserves the historical manifest revision instead of the receipt declared
   assert.equal(view.historicalBaseline.artifactAccess, 'expired-or-removed');
 });
 
-test('separates fresh metadata observation from stale execution and deployment records', () => {
-  const view = available();
+test('fresh metadata does not renew older execution and deployment records', () => {
+  const current = available();
+  assert.equal(current.observationFreshness, 'recent');
+  assert.equal(current.latestMainCI.executionFreshness, 'recent');
+  assert.equal(current.production.recordFreshness, 'recent');
+  const input = fixture();
+  input.observedAt = '2026-11-06T12:00:00Z';
+  const view = available(input, new Date('2026-11-06T13:00:00Z'));
   assert.equal(view.observationFreshness, 'recent');
   assert.equal(view.latestMainCI.executionFreshness, 'stale');
   assert.equal(view.production.recordFreshness, 'stale');
-  assert.equal(available(fixture(), new Date('2026-11-05T13:33:32Z')).observationFreshness, 'stale');
+  assert.equal(available(fixture(), new Date(Date.parse(source.observedAt) + 86_400_000)).observationFreshness, 'stale');
 });
 
 test('marks expired artifacts while preserving the recorded access failure', () => {
   const before = available();
   assert.equal(before.latestMainCI.artifacts[0].availability, 'validated');
-  const after = available(fixture(), new Date('2026-11-16T00:00:00Z'));
+  const after = available(fixture(), new Date('2026-11-19T00:00:00Z'));
   assert.equal(after.latestMainCI.artifacts[0].availability, 'expired');
   assert.equal(after.latestMainCI.artifactAccess, 'validated');
 });
@@ -137,8 +147,8 @@ test('does not allow production verification or monitor rollout claims to be ele
 test('pins report links and returns independent validated data', () => {
   const input = fixture();
   const view = available(input);
-  assert.equal(view.latestMainCI.runUrl, 'https://github.com/farhan-shafee/creditflow-qe/actions/runs/41262698339');
-  assert.equal(view.production.sourceUrl, 'https://github.com/farhan-shafee/creditflow-qe/blob/5b65732a9ce8fd77ea0052215d1d8f6156629441/docs/railway-production.md');
+  assert.equal(view.latestMainCI.runUrl, 'https://github.com/farhan-shafee/creditflow-qe/actions/runs/41886196621');
+  assert.equal(view.production.sourceUrl, 'https://github.com/farhan-shafee/creditflow-qe/blob/4fac13ac84565296281fed72ae6e1b1dd9b3be55/docs/evidence/financial-workspace-20261104.md');
   input.production.webRevision = 'bad';
-  assert.equal(view.production.webRevision, '7a16b50b595d01c735ae566e9737b24b6121eaf6');
+  assert.equal(view.production.webRevision, 'b286242e0b3e8f3aa1539a256662865ba4002ef1');
 });

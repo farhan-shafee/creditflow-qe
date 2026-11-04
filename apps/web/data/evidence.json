@@ -1,37 +1,51 @@
 {
   "schemaVersion": 1,
-  "observedAt": "2026-11-04T13:33:32Z",
-  "sourceRevision": "5b65732a9ce8fd77ea0052215d1d8f6156629441",
+  "observedAt": "2026-11-04T19:26:03.667Z",
+  "sourceRevision": "4fac13ac84565296281fed72ae6e1b1dd9b3be55",
   "production": {
-    "reviewedOn": "2026-10-25",
-    "sourcePath": "docs/railway-production.md",
-    "webRevision": "7a16b50b595d01c735ae566e9737b24b6121eaf6",
+    "reviewedOn": "2026-11-04",
+    "sourcePath": "docs/evidence/financial-workspace-20261104.md",
+    "webRevision": "b286242e0b3e8f3aa1539a256662865ba4002ef1",
     "apiRevision": "20c91f5e10658ab4ce3ec7f2727c8a4934f5b314",
     "currentVerification": "unverified"
   },
   "latestMainCI": {
-    "runId": 41262698339,
-    "revision": "5b65732a9ce8fd77ea0052215d1d8f6156629441",
+    "runId": 41886196621,
+    "revision": "b286242e0b3e8f3aa1539a256662865ba4002ef1",
     "branch": "main",
     "workflow": "Verify banking and automation",
-    "startedAt": "2026-11-01T01:49:58Z",
-    "finishedAt": "2026-11-01T01:53:15Z",
+    "startedAt": "2026-11-04T18:20:35Z",
+    "finishedAt": "2026-11-04T18:24:35Z",
     "conclusion": "success",
     "jobs": [
       {
-        "name": "core",
+        "name": "browser",
         "conclusion": "success"
       },
       {
-        "name": "browser",
+        "name": "core",
         "conclusion": "success"
+      }
+    ],
+    "artifacts": [
+      {
+        "id": 13352196299,
+        "name": "creditflow-browser-b286242e0b3e8f3aa1539a256662865ba4002ef1",
+        "digest": "sha256:c1db2b0b7416d844d275056fc0511699abc1bf8ddec4ca530dcba4fc4df25517",
+        "expiresAt": "2026-11-18T18:24:23Z"
+      },
+      {
+        "id": 13350594476,
+        "name": "creditflow-core-b286242e0b3e8f3aa1539a256662865ba4002ef1",
+        "digest": "sha256:ed86bc690f733ff4fd8d11a11410690f9d2ac02730d5babd7fb518e92182ef07",
+        "expiresAt": "2026-11-18T18:24:01Z"
       }
     ],
     "counts": [
       {
         "scope": "core",
-        "runId": "20261101T015007Z-4cb0d3d3552e4cde93f9e459721caa96",
-        "finishedAt": "2026-11-01T01:51:59.384874Z",
+        "runId": "20261104T182046Z-53c9f66a792247698b880959c5fc59b2",
+        "finishedAt": "2026-11-04T18:22:54.707831Z",
         "counts": {
           "unit": 31,
           "postgres_integration": 18,
@@ -42,8 +56,8 @@
       },
       {
         "scope": "public",
-        "runId": "20261101T015159Z-01ce914cb9584347b80cec13a2369d63",
-        "finishedAt": "2026-11-01T01:52:31.852728Z",
+        "runId": "20261104T182255Z-f889f964e1cf4e32b422b54251bfa960",
+        "finishedAt": "2026-11-04T18:23:34.453110Z",
         "counts": {
           "testng": 6,
           "cucumber": 31,
@@ -52,27 +66,27 @@
       },
       {
         "scope": "browser",
-        "runId": "20261101T015027Z-d6f5ec5d17b0424990dcd6ee93c19c88",
-        "finishedAt": "2026-11-01T01:53:05.671257Z",
+        "runId": "20261104T182114Z-45ac73021c6b4dfa80ee8797197de8fc",
+        "finishedAt": "2026-11-04T18:24:22.607956Z",
         "counts": {
-          "ui": 11,
+          "ui": 37,
           "bruno_requests": 7,
           "bruno_checks": 11
         }
       },
       {
         "scope": "web",
-        "runId": "20261101T015004Z-adcdeda7465b4ef8bc4744ef0cdd7a89",
-        "finishedAt": "2026-11-01T01:50:26.774855Z",
+        "runId": "20261104T182054Z-01101e0cd54040899cef9fc069e75067",
+        "finishedAt": "2026-11-04T18:21:14.763912Z",
         "counts": {
-          "frontend": 5,
+          "frontend": 57,
           "npm_vulnerabilities": 0
         }
       },
       {
         "scope": "quality",
-        "runId": "20261101T015233Z-13c43d3252d244c892a9e032cc172dcd",
-        "finishedAt": "2026-11-01T01:52:52.732139Z",
+        "runId": "20261104T182337Z-567f04b240664b26a212f09d23546109",
+        "finishedAt": "2026-11-04T18:23:59.303796Z",
         "counts": {
           "components": 205,
           "affected_components": 0,
@@ -81,28 +95,14 @@
       }
     ],
     "artifactAccess": "validated",
-    "accessReason": "Initial default access returned ZIP HTTP 401 and logs HTTP 403. Existing host GitHub authentication then downloaded both artifacts; retained reports and log hashes were validated.",
-    "artifacts": [
-      {
-        "id": 13065872944,
-        "name": "creditflow-core-5b65732a9ce8fd77ea0052215d1d8f6156629441",
-        "digest": "sha256:44a604955f7e87e8dcea23a6616b83325de6b3dc6bd3f466b61f85cde64de0db",
-        "expiresAt": "2026-11-15T01:52:53Z"
-      },
-      {
-        "id": 13065464677,
-        "name": "creditflow-browser-5b65732a9ce8fd77ea0052215d1d8f6156629441",
-        "digest": "sha256:6afafc23371d673ba5bdd8726bfbe5e2ff252b328255e232f57561d605a0156b",
-        "expiresAt": "2026-11-15T01:53:06Z"
-      }
-    ],
+    "accessReason": "Both source-bound GitHub artifacts were retained locally. Five scopes were independently recounted from report snapshots and original command logs; all 192 report and 22 command-log hashes matched. Counts describe this dated run, not a later source revision.",
     "artifactValidation": {
-      "validatedAt": "2026-11-04T13:33:32Z",
-      "sourceRevision": "5b65732a9ce8fd77ea0052215d1d8f6156629441",
-      "fingerprint": "55c1389eab3c25273c2df2c5f704ab4e8b300046f74680a7f308f8b0db5e5f21",
-      "reportHashesVerified": 152,
+      "validatedAt": "2026-11-04T19:20:42.419969Z",
+      "sourceRevision": "b286242e0b3e8f3aa1539a256662865ba4002ef1",
+      "fingerprint": "2200a5425b1bc7f241424c676d4b088006dcf2e73a3d313d622b3305610633d2",
+      "reportHashesVerified": 192,
       "commandLogHashesVerified": 22,
-      "commandArguments": "Original Linux argument equality was not replayed on Windows. Required command names, completion, hashes, report production windows and computed counts were checked against pinned source."
+      "commandArguments": "Required command names, original successful outcomes, exact retained hashes, producer windows, report counts, dependency inventory and source fingerprint validated. Windows audit did not replay Linux command-argument equality; that check ran in the original Linux evidence producer."
     }
   },
   "historicalBaseline": {

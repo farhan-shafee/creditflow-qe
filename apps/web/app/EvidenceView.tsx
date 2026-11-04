@@ -34,7 +34,7 @@ export default function EvidenceView({ evidence }: { evidence: EvidenceViewModel
         <div className="panel-top"><h3>Recorded production</h3><span className="tag neutral">Current state unverified</span></div>
         <dl className="evidence-identities"><div><dt>Frontend</dt><dd><Commit value={production.webRevision} /></dd></div><div><dt>API</dt><dd><Commit value={production.apiRevision} /></dd></div></dl>
         <p>Railway release record reviewed <time dateTime={production.reviewedOn}>{production.reviewedOn}</time>.</p>
-        <p className="fine">{production.recordFreshness === 'stale' ? 'Stale record. ' : ''}No current provider read or production transaction was performed for this workspace.</p>
+        <p className="fine">{production.recordFreshness === 'stale' ? 'Stale record. ' : ''}The pinned record describes verification at its stated time. This saved page does not recheck provider health or submit verification transactions.</p>
         <a className="text-link" href={production.sourceUrl} target="_blank" rel="noreferrer">Read pinned release record ↗</a>
       </article>
       <article className="panel">
@@ -44,7 +44,7 @@ export default function EvidenceView({ evidence }: { evidence: EvidenceViewModel
         <p>{ci.jobs.map(job => `${job.name}: ${job.conclusion}`).join(' · ')}</p>
         {ci.counts ? <>
           <details><summary>View validated execution counts</summary><Counts scopes={ci.counts} /></details>
-          <p className="fine">{ci.artifactValidation && ci.artifactValidation.reportHashesVerified + ci.artifactValidation.commandLogHashesVerified} retained report and command-log hashes checked {ci.artifactValidation && time(ci.artifactValidation.validatedAt)}. Jenkins server execution remains unverified.</p>
+          <p className="fine">{ci.artifactValidation && ci.artifactValidation.reportHashesVerified + ci.artifactValidation.commandLogHashesVerified} retained report and command-log hashes checked {ci.artifactValidation && time(ci.artifactValidation.validatedAt)}. Jenkins controller execution for this CI revision remains unverified.</p>
         </> : <p>Counts unavailable. Latest artifacts could not be inspected.</p>}
         <p className="fine">{expired ? ci.counts ? 'Artifact download retention has expired; these counts come from the retained validation.' : 'Artifact download retention has expired. Counts remain unavailable.' : `Artifact retention ends ${time(ci.artifacts.reduce((earliest, artifact) => artifact.expiresAt < earliest ? artifact.expiresAt : earliest, ci.artifacts[0].expiresAt))}. Access may require GitHub sign-in.`}</p>
         <details><summary>Access and validation limits</summary><p className="fine">{ci.accessReason}</p>{ci.artifactValidation && <p className="fine">{ci.artifactValidation.commandArguments}</p>}</details>

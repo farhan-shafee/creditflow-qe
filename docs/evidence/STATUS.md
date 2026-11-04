@@ -1,5 +1,10 @@
 # Execution evidence — engineering finish
 
+## Financial workspace release — November 4, 2026
+
+**DEPLOYED / VERIFIED at the recorded times.** [The production acceptance record](financial-workspace-20261104.md) binds frontend b286242 and Railway deployment 5af466c1 to full merged-main CI, 192 report / 22 command-log hashes, and bounded public acceptance of five synthetic accounts / 44 requests. This record supersedes earlier frontend identities while preserving their historical evidence. This metadata polish has not itself been deployed.
+
+
 > **Historical deployment context** - This record retains its original milestone, source revisions, measured results and approval boundaries. Earlier hosting/source-visibility/pending-release statements are dated history. Use [the current production documentation](../railway-production.md) for the October 24-25 Railway topology, release state and remaining closeout.
 
 Latest review correction: [PR #4 stack guard](pr4-stack-guard.md) preserves POSIX path case and proves the effective local API/database relationship before workload POSTs. Original maintenance/release receipts below remain historical evidence.
