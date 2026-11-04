@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-11-04T19:22:50.176Z",
+  "frontend": {
+    "revision": "b286242e0b3e8f3aa1539a256662865ba4002ef1",
+    "deploymentId": "5af466c1-c2ba-4685-aad0-d431a08d7552",
+    "observedStatus": "SUCCESS",
+    "url": "https://creditflow.farhan-shafee.com"
+  },
+  "backend": {
+    "sourceUrl": "https://github.com/farhan-shafee/creditflow-qe/commit/20c91f5e10658ab4ce3ec7f2727c8a4934f5b314",
+    "deploymentId": "061eba48-7344-4bb4-b44c-769374180ce7"
+  },
+  "database": {
+    "deploymentId": "7e6043dd-cfe8-4d20-b265-d035f83b21c3"
+  },
+  "providerObservation": {
+    "observedAt": "2026-11-04T19:18:52.355Z",
+    "summary": {
+      "totalServices": 4,
+      "servicesWithIssues": 0,
+      "totalFailures": 0
+    },
+    "pendingChanges": 0
+  },
+  "mainCI": {
+    "runId": 41886196621,
+    "revision": "b286242e0b3e8f3aa1539a256662865ba4002ef1",
+    "branch": "main",
+    "workflow": "Verify banking and automation",
+    "startedAt": "2026-11-04T18:20:35Z",
+    "finishedAt": "2026-11-04T18:24:35Z",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "browser",
+        "conclusion": "success"
+      },
+      {
+        "name": "core",
+        "conclusion": "success"
+      }
+    ],
+    "artifacts": [
+      {
+        "id": 13352196299,
+        "name": "creditflow-browser-b286242e0b3e8f3aa1539a256662865ba4002ef1",
+        "digest": "sha256:c1db2b0b7416d844d275056fc0511699abc1bf8ddec4ca530dcba4fc4df25517",
+        "expiresAt": "2026-11-18T18:24:23Z"
+      },
+      {
+        "id": 13350594476,
+        "name": "creditflow-core-b286242e0b3e8f3aa1539a256662865ba4002ef1",
+        "digest": "sha256:ed86bc690f733ff4fd8d11a11410690f9d2ac02730d5babd7fb518e92182ef07",
+        "expiresAt": "2026-11-18T18:24:01Z"
+      }
+    ]
+  },
+  "ciValidation": {
+    "source": {
+      "head": "b286242e0b3e8f3aa1539a256662865ba4002ef1",
+      "fingerprint": "2200a5425b1bc7f241424c676d4b088006dcf2e73a3d313d622b3305610633d2",
+      "sourceFiles": 282
+    },
+    "validatedAt": "2026-11-04T19:20:42.419969Z",
+    "reportHashesVerified": 192,
+    "commandLogHashesVerified": 22,
+    "limits": "Required command names, original successful outcomes, exact retained hashes, producer windows, report counts, dependency inventory and source fingerprint validated. Windows audit did not replay Linux command-argument equality; that check ran in the original Linux evidence producer."
+  },
+  "productionAcceptance": {
+    "initial": {
+      "startedAt": "2026-11-04T18:48:03.333085944Z",
+      "completedAt": "2026-11-04T18:48:20.331642601Z",
+      "checkGroups": 7,
+      "requests": 34,
+      "accounts": 5,
+      "pageErrors": 0,
+      "passed": true
+    },
+    "settledNavigation": {
+      "startedAt": "2026-11-04T18:57:06.740880643Z",
+      "completedAt": "2026-11-04T18:57:11.323677965Z",
+      "requests": 10,
+      "accounts": 0,
+      "pageErrors": 0,
+      "passed": true
+    },
+    "totals": {
+      "requests": 44,
+      "accounts": 5
+    },
+    "approvedLimits": {
+      "requests": 60,
+      "accounts": 5
+    },
+    "releaseArtifactHashes": 43,
+    "releaseArtifactIndexSha256": "47020939c96f55cfa3820c7102a72098b7e1a905a270b8233b94cf265155d576"
+  },
+  "screenshot": {
+    "path": "docs/evidence/financial-workspace-20261104/payment.png",
+    "sha256": "307ec2bc5d69c5ee4ba21650c75075fee3263203d7546810166ee2d707aeb62e",
+    "width": 1440,
+    "height": 1000,
+    "caption": "Actual hosted purchase of 100 USD and payment of 50 USD; final outstanding 300 USD, available 700 USD and two persisted receipts."
+  },
+  "limitations": [
+    "Point-in-time synthetic correctness evidence, not continuous health, capacity, availability or an SLA.",
+    "No new production transactions were submitted during this metadata refresh.",
+    "The original transitional navigation capture and failed local checker rehearsals remain retained.",
+    "Jenkins controller execution for this revision, sleep/cold starts and spending caps were not revalidated."
+  ]
+}

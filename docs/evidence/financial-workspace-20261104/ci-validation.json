@@ -1,0 +1,91 @@
+{
+  "validatedAt": "2026-11-04T19:20:42.419969Z",
+  "source": {
+    "head": "b286242e0b3e8f3aa1539a256662865ba4002ef1",
+    "fingerprint": "2200a5425b1bc7f241424c676d4b088006dcf2e73a3d313d622b3305610633d2",
+    "sourceFiles": 282
+  },
+  "reportHashesVerified": 192,
+  "commandLogHashesVerified": 22,
+  "scopes": [
+    {
+      "scope": "browser",
+      "runId": "20261104T182114Z-45ac73021c6b4dfa80ee8797197de8fc",
+      "finishedAt": "2026-11-04T18:24:22.607956Z",
+      "counts": {
+        "ui": 37,
+        "bruno_requests": 7,
+        "bruno_checks": 11
+      }
+    },
+    {
+      "scope": "web",
+      "runId": "20261104T182054Z-01101e0cd54040899cef9fc069e75067",
+      "finishedAt": "2026-11-04T18:21:14.763912Z",
+      "counts": {
+        "frontend": 57,
+        "npm_vulnerabilities": 0
+      }
+    },
+    {
+      "scope": "core",
+      "runId": "20261104T182046Z-53c9f66a792247698b880959c5fc59b2",
+      "finishedAt": "2026-11-04T18:22:54.707831Z",
+      "counts": {
+        "unit": 31,
+        "postgres_integration": 18,
+        "coverage": {
+          "INSTRUCTION": {
+            "covered": 1235,
+            "missed": 76
+          },
+          "BRANCH": {
+            "covered": 101,
+            "missed": 18
+          },
+          "LINE": {
+            "covered": 222,
+            "missed": 17
+          },
+          "COMPLEXITY": {
+            "covered": 101,
+            "missed": 24
+          },
+          "METHOD": {
+            "covered": 58,
+            "missed": 7
+          },
+          "CLASS": {
+            "covered": 21,
+            "missed": 0
+          }
+        },
+        "testng": 6,
+        "cucumber": 31,
+        "cucumber_steps": 154
+      }
+    },
+    {
+      "scope": "public",
+      "runId": "20261104T182255Z-f889f964e1cf4e32b422b54251bfa960",
+      "finishedAt": "2026-11-04T18:23:34.453110Z",
+      "counts": {
+        "testng": 6,
+        "cucumber": 31,
+        "cucumber_steps": 154
+      }
+    },
+    {
+      "scope": "quality",
+      "runId": "20261104T182337Z-567f04b240664b26a212f09d23546109",
+      "finishedAt": "2026-11-04T18:23:59.303796Z",
+      "counts": {
+        "components": 205,
+        "affected_components": 0,
+        "gitleaks_findings": 0,
+        "jenkins_runtime": "NOT RUN"
+      }
+    }
+  ],
+  "limits": "Required command names, original successful outcomes, exact retained hashes, producer windows, report counts, dependency inventory and source fingerprint validated. Windows audit did not replay Linux command-argument equality; that check ran in the original Linux evidence producer."
+}
