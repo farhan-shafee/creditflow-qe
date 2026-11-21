@@ -42,7 +42,7 @@
         },
         {
           "label": "View source",
-          "href": "https://github.com/farhan-shafee/creditflow-qe/tree/feat/provider-pilot",
+          "href": "https://github.com/farhan-shafee/creditflow-qe/tree/c85fe246f6d01a8e4455efe3efc26f292eaabbf6",
           "featured": true
         },
         {
@@ -51,7 +51,7 @@
         },
         {
           "label": "Release verification",
-          "href": "https://github.com/farhan-shafee/creditflow-qe/blob/feat/provider-pilot/docs/evidence/custom-domain.md"
+          "href": "https://github.com/farhan-shafee/creditflow-qe/blob/c85fe246f6d01a8e4455efe3efc26f292eaabbf6/docs/evidence/custom-domain.md"
         }
       ],
       "facts": [

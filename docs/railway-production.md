@@ -1,6 +1,6 @@
 # CreditFlow QE on Railway
 
-Current production topology and application pins reviewed November 4, 2026. Start with the [current release and evidence index](current-state.md). [Live synthetic demo](https://creditflow.farhan-shafee.com) · [Public source](https://github.com/farhan-shafee/creditflow-qe).
+Production topology and application pins originally reviewed November 4, 2026; API source-branch label reverified and updated November 21, 2026. Start with the [current release and evidence index](current-state.md). [Live synthetic demo](https://creditflow.farhan-shafee.com) · [Public source](https://github.com/farhan-shafee/creditflow-qe).
 
 The canonical Next.js command center, original Spring Boot API and live PostgreSQL database now run on Railway. The project/environment still have legacy pilot labels; those labels do not make Neon or Vercel the active providers. Cloudflare supplies DNS. The retained Neon application role is write-frozen and Vercel/rehearsal resources remain retained.
 
@@ -16,11 +16,11 @@ Synthetic data only: no real cards, customers, funds, settlement or regulated ba
 
 ## Released source and runtime
 
-These releases are deliberately pinned; a new `main` documentation commit does not automatically replace either production application.
+These releases are deliberately pinned; a new `main` documentation commit does not automatically replace either production application. The November 21 source-branch migration changed only the API branch label from the now-merged `feat/provider-pilot` to `main`, retaining the exact `20c91f5` source SHA. The resulting Railway API deployment `2242c650-4e0d-419d-8d11-8f2ce06969ae` reached `SUCCESS`. This was not a new application-code or database migration.
 
 | Component   | Observed release/configuration                                                    |
 | ----------- | --------------------------------------------------------------------------------- |
-| API         | `20c91f5e10658ab4ce3ec7f2727c8a4934f5b314`, `feat/provider-pilot`                 |
+| API         | `20c91f5e10658ab4ce3ec7f2727c8a4934f5b314`, `main`                 |
 | Web         | `d7658beeee006f56889f094b66845e8ef47ba680`, pinned commit on `main` |
 | API build   | Repository-root `infrastructure/Dockerfile.api`; Java 21                          |
 | Web build   | `infrastructure/Dockerfile.web` from the pinned frontend release; Node 24         |
