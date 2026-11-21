@@ -21,7 +21,7 @@ These releases are deliberately pinned; a new `main` documentation commit does n
 | Component   | Observed release/configuration                                                    |
 | ----------- | --------------------------------------------------------------------------------- |
 | API         | `20c91f5e10658ab4ce3ec7f2727c8a4934f5b314`, `main`                 |
-| Web         | `d7658beeee006f56889f094b66845e8ef47ba680`, pinned commit on `main` |
+| Web         | `9396c9f7c29f3dda45066b99eb603ee6bf76c51b`, pinned hotfix commit on `security/prod-web-nextjs-1646-20261121` |
 | API build   | Repository-root `infrastructure/Dockerfile.api`; Java 21                          |
 | Web build   | `infrastructure/Dockerfile.web` from the pinned frontend release; Node 24         |
 | API health  | `/actuator/health/liveness`; separate protected database readiness                |
@@ -30,6 +30,8 @@ These releases are deliberately pinned; a new `main` documentation commit does n
 | Web runtime | One replica, 0.5 vCPU / 500 MB; web sleep remains enabled                         |
 | Database    | Private PostgreSQL, 1,024 MB volume; no public SQL proxy                          |
 | Monitor     | Five-minute read-only health, identity, TLS, backup and archiver checks           |
+
+**November 21 frontend security deployment:** Backported Next.js `16.4.6` to the original pinned web source without changing API, database or financial behavior. Railway web deployment `5ddee11c-153e-483b-8f95-f11d1ffd865d` reached SUCCESS; its build logs report Next.js 16.4.6, healthcheck succeeded and server Ready. Both independent exact-source PR #13 CI jobs passed; the historical November 4 frontend pin `d7658be` remains in dated release evidence but no longer describes the deployed web source. Its original deployment remains eligible for a controlled rollback, subject to release compatibility checks.
 
 The frontend may wake from idle. The former Neon five-minute sleep behavior is historical and no longer describes the live database. API sleep was disabled after a recorded liveness 503 during a stop/start; post-change checks passed. This is not an uptime or restart guarantee.
 
