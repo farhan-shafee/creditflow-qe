@@ -1,6 +1,6 @@
 # CreditFlow QE — current release and evidence index
 
-Reviewed November 4, 2026 against GitHub and Railway provider reads. This is a dated release index; it does not continuously poll production.
+Reviewed November 4, 2026 against GitHub and Railway provider reads, with a **November 21, 2026 source-branch retirement update** below. This is a dated release index; it does not continuously poll production.
 
 [Live synthetic workspace](https://creditflow.farhan-shafee.com) · [Portfolio case study](https://farhan-shafee.com/work/creditflow-qe) · [Source](https://github.com/farhan-shafee/creditflow-qe)
 
@@ -13,7 +13,9 @@ Reviewed November 4, 2026 against GitHub and Railway provider reads. This is a d
 | PostgreSQL | Railway `7e6043dd-cfe8-4d20-b265-d035f83b21c3` | SUCCESS; private persistent database |
 | Five-minute monitor | Railway `374ce843-286f-44ec-927c-92a57ac58d9a` | SUCCESS; recovery policy rollout recorded in [PR #6](https://github.com/farhan-shafee/creditflow-qe/pull/6) |
 
-No staged configuration or pending deployment was observed. Later documentation commits do not change either application's pin. See the [production runbook](railway-production.md) and [configuration contract](../infrastructure/release-environment.md) for operational controls.
+No staged configuration or pending deployment was observed **at the original November 4 review**. Later documentation commits do not change either application's pin. See the [production runbook](railway-production.md) and [configuration contract](../infrastructure/release-environment.md) for operational controls.
+
+**November 21, 2026 branch retirement:** Railway's `creditflow-api` source branch was changed from the merged `feat/provider-pilot` to `main` while retaining the **identical source commit** `20c91f5e10658ab4ce3ec7f2727c8a4934f5b314`. The new API deployment `2242c650-4e0d-419d-8d11-8f2ce06969ae` reached `SUCCESS`; frontend, database, and monitor deployments were not changed by this action. The historical deployment ID and branch in the dated table above remain original November 4 evidence. This operation does **not** constitute a new financial regression, isolated restore, or sustained-availability verification.
 
 ## Which evidence proves what?
 
