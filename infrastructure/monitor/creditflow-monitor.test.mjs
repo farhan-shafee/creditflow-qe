@@ -102,6 +102,58 @@ test('WAL rollover uses exact positions rather than segment suffixes', () => {
   assert.equal(result.ok, true);
   assert.equal(result.pendingSegments, 1);
 });
+test('backup-history archive reports a conservative WAL position without a false crash', () => {
+  const result=assessFixture(recovered({
+    lastArchivedWal:'000000010000000000000020.00000028.backup'
+  }), NOW);
+  assert.equal(result.ok,true);
+  assert.equal(result.lastArchivedFileType,'backup_history');
+  assert.equal(result.pendingSegments,2); // .backup is not evidence segment 20 was archived
+  assert.equal(result.archiveFailureState,'historical_with_later_progress');
+});
+test('ordinary WAL progress retains its exact, non-conservative position', () => {
+  const result=assessFixture(recovered(), NOW);
+  assert.equal(result.lastArchivedFileType,'wal_segment');
+  assert.equal(result.pendingSegments,1);
+});
+test('a backed-up history file cannot hide a growing archive backlog', () => {
+  const result=assessFixture(recovered({
+    lastArchivedWal:'000000010000000000000020.00000028.backup',
+    lastArchivedUnix:NOW-600
+  }), NOW);
+  assert.equal(result.ok,false);
+  assert.ok(result.issues.includes('archive_lag'));
+});
+test('a backup-history filename cannot clear a new unreviewed archive failure', () => {
+  const result=assessFixture(recovered({
+    lastArchivedWal:'000000010000000000000020.00000028.backup',
+    failedCount:'12'
+  }), NOW);
+  assert.equal(result.ok,false);
+  assert.equal(result.archiveFailureState,'unreviewed');
+});
+for(const [name,invalid,nowWal] of [
+  ['malformed suffix','000000010000000000000020.00000028.backup.tmp',undefined],
+  ['invalid offset','000000010000000000000020.01000000.backup',undefined],
+  ['wrong timeline','000000020000000000000020.00000028.backup',undefined],
+  ['history newer than current WAL','000000010000000000000020.00000028.backup','00000001000000000000001E']
+]){
+  test('backup-history '+name+' fails closed',()=>{
+    const result=assessFixture(recovered({
+      lastArchivedWal:invalid,...(nowWal?{currentWal:nowWal}:{})
+    }),NOW);
+    assert.equal(result.ok,false);
+    assert.ok(result.issues.includes('wal_metadata_invalid'));
+  });
+}
+test('production-style post-backup history filename passes full monitor checks', async () => {
+  const result=await run(recovered({
+    lastArchivedWal:'000000010000000000000020.00000028.backup'
+  }));
+  assert.equal(result.status,'ok');
+  assert.deepEqual(result.issues,[]);
+  assert.equal(result.database.lastArchivedFileType,'backup_history');
+});
 for (const [label, patch] of [
   ['missing failed WAL', {lastFailedWal:undefined}],
   ['malformed failed WAL', {lastFailedWal:'bad'}],
