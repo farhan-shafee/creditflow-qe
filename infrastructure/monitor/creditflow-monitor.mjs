@@ -54,7 +54,7 @@ export function assessArchive(row,now,reviewed=REVIEWED_ARCHIVE_INCIDENT){
   const expiry=row?.[key];if(typeof expiry!=='number'||!Number.isFinite(expiry)||expiry<=now)issues.push(name+'_invalid_or_expired');
   else if(expiry-now<45*86400)issues.push(name+'_expiring');
  }
- let pending=null,priorPosition=null,failedPosition=null,failureWalValid=false;
+ let pending=null,priorPosition=null,failedPosition=null,failureWalValid=false,archivedFileType='unverifiable';
  try{
   const current=row.currentWal,prior=row.lastArchivedWal,bytes=row.walSegmentBytes;
   if(!Number.isSafeInteger(bytes)||bytes<1048576||bytes>1073741824||4294967296%bytes!==0)throw Error();
@@ -64,15 +64,24 @@ export function assessArchive(row,now,reviewed=REVIEWED_ARCHIVE_INCIDENT){
    const segment=BigInt('0x'+wal.slice(16));if(segment>=perLog)throw Error();
    return BigInt('0x'+wal.slice(8,16))*perLog+segment;
   };
-  priorPosition=position(prior);
-  if(current.slice(0,8)!==prior.slice(0,8))throw Error();
+  // pg_stat_archiver may briefly report a backup-history file after pgBackRest completes.
+  // A history file is NOT proof its named WAL segment has been archived: use the
+  // preceding segment as a conservative progress floor and keep lag checks active.
+  const history=typeof prior==='string'&&/^([0-9A-F]{24})\.([0-9A-F]{8})\.backup$/.exec(prior);
+  const segmentWal=history?history[1]:prior;
+  if(history&&BigInt('0x'+history[2])>=BigInt(bytes))throw Error();
+  const completedPosition=position(segmentWal);
+  if(history&&completedPosition===0n)throw Error();
+  priorPosition=history?completedPosition-1n:completedPosition;
+  if(current.slice(0,8)!==segmentWal.slice(0,8))throw Error();
   const gap=position(current)-priorPosition;
+  archivedFileType=history?'backup_history':'wal_segment';
   if(gap<0n||gap>BigInt(Number.MAX_SAFE_INTEGER))throw Error();pending=Number(gap);
   if(pending>1&&now-last>300)issues.push('archive_lag');
   if(failed>0){
    try{
     failedPosition=position(row.lastFailedWal);
-    failureWalValid=row.lastFailedWal.slice(0,8)===prior.slice(0,8);
+    failureWalValid=row.lastFailedWal.slice(0,8)===segmentWal.slice(0,8);
    }catch{failureWalValid=false;}
   }
  }catch{issues.push('wal_metadata_invalid');}
@@ -94,7 +103,7 @@ export function assessArchive(row,now,reviewed=REVIEWED_ARCHIVE_INCIDENT){
  }else{
   issues.push('archiver_failure_metadata_invalid');
  }
- return{ok:issues.length===0,issues,systemIdentifier:row?.systemIdentifier??null,archivedCount:Number.isFinite(archived)?archived:null,failedCount:Number.isFinite(failed)?failed:null,lastArchivedUnix:Number.isFinite(last)?last:null,pendingSegments:pending,certificateExpires:row?.leafExpires??null,caExpires:row?.caExpires??null,lastFailedUnix:validTime(row?.lastFailedUnix)?row.lastFailedUnix:null,lastFailedWal:typeof row?.lastFailedWal==='string'&&/^[0-9A-F]{24}$/.test(row.lastFailedWal)?row.lastFailedWal:null,statsResetUnix:validTime(row?.statsResetUnix)?row.statsResetUnix:null,reviewedIncidentId:archiveFailureState==='historical_with_later_progress'?reviewed.id:null,archiveFailureState};
+ return{ok:issues.length===0,issues,systemIdentifier:row?.systemIdentifier??null,archivedCount:Number.isFinite(archived)?archived:null,failedCount:Number.isFinite(failed)?failed:null,lastArchivedUnix:Number.isFinite(last)?last:null,lastArchivedFileType:archivedFileType,pendingSegments:pending,certificateExpires:row?.leafExpires??null,caExpires:row?.caExpires??null,lastFailedUnix:validTime(row?.lastFailedUnix)?row.lastFailedUnix:null,lastFailedWal:typeof row?.lastFailedWal==='string'&&/^[0-9A-F]{24}$/.test(row.lastFailedWal)?row.lastFailedWal:null,statsResetUnix:validTime(row?.statsResetUnix)?row.statsResetUnix:null,reviewedIncidentId:archiveFailureState==='historical_with_later_progress'?reviewed.id:null,archiveFailureState};
 }
 async function readBounded(stream,limit){
  if(!stream)throw Error();const reader=stream.getReader(),chunks=[];let size=0;
